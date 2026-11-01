@@ -47,20 +47,20 @@ class CausalLMScorer:
             chunk = cand_ids[b:b + batch_size]
             L = max(len(c) for c in chunk)
             pad = self.tok.pad_token_id if self.tok.pad_token_id is not None else 0
-            inp = torch.full((len(chunk), L), pad, dtype=torch.long)
-            mask = torch.zeros((len(chunk), L), dtype=torch.long)
+            inp = torch.full((len(chunk), L), pad, dtype=torch.long, device=self.device)
+            mask = torch.zeros((len(chunk), L), dtype=torch.long, device=self.device)
             for i, c in enumerate(chunk):
-                inp[i, :len(c)] = torch.tensor(c)
+                inp[i, :len(c)] = torch.tensor(c, device=self.device)
                 mask[i, :len(c)] = 1
             # logits[i, j] predicts candidate token j+1 (given prompt + tokens 0..j)
             bpast = _repeat_cache(past, len(chunk))
-            attn = torch.cat([torch.ones((len(chunk), p_ids.shape[1]), dtype=torch.long), mask], dim=1)
+            attn = torch.cat([torch.ones((len(chunk), p_ids.shape[1]), dtype=torch.long, device=self.device), mask], dim=1)
             logits = self.model(inp, past_key_values=bpast, attention_mask=attn, use_cache=False).logits
             for i, c in enumerate(chunk):
                 lp = float(first_logprobs[c[0]])
                 if len(c) > 1:
                     step = torch.log_softmax(logits[i, :len(c) - 1].float(), dim=-1)
-                    lp += float(step.gather(1, torch.tensor(c[1:]).unsqueeze(1)).sum())
+                    lp += float(step.gather(1, torch.tensor(c[1:], device=step.device).unsqueeze(1)).sum())
                 scores.append(lp)
         return scores
 

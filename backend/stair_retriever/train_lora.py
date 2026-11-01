@@ -151,13 +151,15 @@ def main():
         tok.pad_token = tok.eos_token
     load_kw = {}
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    # T4 / V100 have no native bfloat16: use float16 there
+    half = torch.bfloat16 if device == "cuda" and torch.cuda.is_bf16_supported() else torch.float16
     if a.load_in_4bit:
         from transformers import BitsAndBytesConfig
-        load_kw["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
+        load_kw["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=half,
                                                             bnb_4bit_quant_type="nf4")
         load_kw["device_map"] = "auto"
     else:
-        load_kw["dtype"] = torch.bfloat16 if device == "cuda" else torch.float32
+        load_kw["dtype"] = half if device == "cuda" else torch.float32
     model = AutoModelForCausalLM.from_pretrained(a.base_model, **load_kw)
     if a.load_in_4bit:
         from peft import prepare_model_for_kbit_training
@@ -213,6 +215,7 @@ def main():
     order = list(range(len(tok_train)))
     model.train()
     running = 0.0
+    nonfinite = 0
     while step < total_steps:
         epoch_rng_state = [random.getstate()[0], list(random.getstate()[1]), random.getstate()[2]]
         random.shuffle(order)
@@ -225,6 +228,10 @@ def main():
             ids = torch.tensor([ex["input_ids"]], device=device)
             labels = torch.tensor([ex["labels"]], device=device)
             loss = model(input_ids=ids, labels=labels).loss / a.grad_accum
+            if not torch.isfinite(loss):
+                nonfinite += 1
+                print(f"warning: non-finite loss skipped (total {nonfinite})", flush=True)
+                continue
             loss.backward()
             running += float(loss.detach())
             micro += 1
