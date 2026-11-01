@@ -103,6 +103,7 @@ def main():
     ap.add_argument("--base-model", default="Qwen/Qwen2.5-0.5B-Instruct")
     ap.add_argument("--lora-adapter", default=None)
     ap.add_argument("--tag", default=None)
+    ap.add_argument("--stage1-predictions", default=None, help="precomputed stage-1 rankings (R10/R11)")
     ap.add_argument("--max-leaves", type=int, default=None)
     ap.add_argument("--leaf-rel", type=float, default=None)
     a = ap.parse_args()
@@ -122,6 +123,11 @@ def main():
             raise SystemExit("--lora-adapter required for R7/R9")
         from backend.stair_retriever.constrained import load_scorer
         lora_sel = LoraSelector(load_scorer(a.base_model, a.lora_adapter), embedder=emb, **sel_kw)
+
+    pre_sel = None
+    if any(m in methods for m in ("R10_stair_precomputed", "R11_stair_precomputed_hybrid")):
+        from backend.stair_retriever.selector import PrecomputedSelector
+        pre_sel = PrecomputedSelector(a.stage1_predictions, embedder=emb, **sel_kw)
 
     per_query: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     timing = Counter()
@@ -165,13 +171,21 @@ def main():
                     cache["R7"] = run("R7_stair_lora", lambda: ret.stair(q, qu, lora_sel, 20))
                     if "R7_stair_lora" in methods:
                         results["R7_stair_lora"] = cache["R7"]
+                if pre_sel and any(m in methods for m in ("R10_stair_precomputed", "R11_stair_precomputed_hybrid")):
+                    cache["R10"] = run("R10_stair_precomputed", lambda: ret.stair(q, qu, pre_sel, 20))
+                    if "R10_stair_precomputed" in methods:
+                        results["R10_stair_precomputed"] = cache["R10"]
+                    if "R11_stair_precomputed_hybrid" in methods:
+                        if "R4" not in cache:
+                            cache["R4"] = run("R4_hybrid_structured", lambda: ret.hybrid_structured(q, qu, 20))
+                        results["R11_stair_precomputed_hybrid"] = (fuse(cache["R10"][0], cache["R4"][0]), cache["R10"][1])
                 if "R8_stair_hybrid" in methods:
                     results["R8_stair_hybrid"] = (fuse(cache["R5"][0], cache["R4"][0]), cache["R5"][1])
                 if "R9_stair_lora_hybrid" in methods and "R7" in cache:
                     results["R9_stair_lora_hybrid"] = (fuse(cache["R7"][0], cache["R4"][0]), cache["R7"][1])
                 for name, (recs, trace) in results.items():
                     assert all(r["patient_id"] == pid for r in recs), "patient isolation violated"
-                    m = score_query(ex, recs, trace if name.startswith(("R5", "R6", "R7", "R8", "R9")) else None)
+                    m = score_query(ex, recs, trace if name.startswith(("R5", "R6", "R7", "R8", "R9", "R10", "R11")) else None)
                     m.update({"example_id": ex["example_id"], "patient_id": pid, "category": ex["query_category"],
                               "n_gold": len(ex["gold_evidence_ids"]), "top5": [r["record_id"] for r in recs[:5]]})
                     per_query[name].append(m)
@@ -217,6 +231,9 @@ def main():
         paired("R7_stair_lora", "R5_stair_structural", metric)
         paired("R9_stair_lora_hybrid", "R4_hybrid_structured", metric)
         paired("R3_hybrid_rrf", "R1_bm25", metric)
+        paired("R10_stair_precomputed", "R4_hybrid_structured", metric)
+        paired("R11_stair_precomputed_hybrid", "R4_hybrid_structured", metric)
+        paired("R10_stair_precomputed", "R7_stair_lora", metric)
 
     failures = {}
     for name, qs in per_query.items():
@@ -235,7 +252,7 @@ def main():
         "protocol": "STAIR-Clinical longitudinal patient-context retrieval v1 (patient-separated split)",
         "split": a.split, "sample": len(rows), "seed": a.seed, "methods": methods, "selector_params": sel_kw,
         "query_set_sha256": hashlib.sha256(json.dumps(sorted(q["example_id"] for q in rows)).encode()).hexdigest(),
-        "embedding_model": emb.model_name, "base_model": a.base_model, "lora_adapter": a.lora_adapter,
+        "embedding_model": emb.model_name, "stage1_predictions": a.stage1_predictions, "base_model": a.base_model, "lora_adapter": a.lora_adapter,
         "metric_definitions": {
             "recall@k": "capped: |gold ∩ top-k| / min(|gold|, k); gold = up to 3 most recent records per gold evidence path",
             "context_precision@10": "share of top-10 records that belong to a gold evidence path (concept group)",

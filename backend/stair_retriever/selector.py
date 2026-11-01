@@ -12,6 +12,7 @@ recorded in `invalid` and dropped):
 Stage 2 falls back to the structural scorer when a backend has no stage-2 model.
 """
 
+import json
 import math
 import re
 from typing import Dict, List, Optional, Sequence, Tuple
@@ -231,6 +232,28 @@ class OllamaSelector(BaseSelector):
             elif path not in [p for p, _ in scored]:
                 scored.append((path, 1.0 / (len(scored) + 1)))
         return scored, invalid
+
+
+class PrecomputedSelector(BaseSelector):
+    """Stage-1 rankings computed offline (e.g. Mistral-7B + LoRA on a cloud GPU by
+    predict_stage1.py), looked up by (patient_id, query). Paths are still validated
+    against the patient's ToC in select(); stage 2 uses the structural scorer."""
+    backend_name = "precomputed"
+
+    def __init__(self, predictions_file, **kw):
+        super().__init__(**kw)
+        self.table = {}
+        for line in open(predictions_file, encoding="utf-8"):
+            if line.strip():
+                r = json.loads(line)
+                self.table[(r["patient_id"], r["query"])] = [(x["path"], x["prob"]) for x in r["ranked"]]
+                self.backend_name = f"precomputed:{r.get('base_model')}"
+
+    def rank_leaves(self, mem, query, qu, toc):
+        key = (mem.pid, query)
+        if key not in self.table:
+            raise KeyError(f"no precomputed stage-1 prediction for this query: {query[:60]}")
+        return self.table[key], []
 
 
 def build_selector(backend: str = "auto", embedder=None, **kw) -> BaseSelector:
