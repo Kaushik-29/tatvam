@@ -4,6 +4,7 @@
 
 | Run | Status | Base model | Steps | Train ex. | Train time s | Val R@1 before → after | Val R@3 after | Val MRR after | Free-gen invalid rate | Hardware |
 |---|---|---|---:|---:|---:|---|---|---|---|---|
+| mistral7b_clinical_stage1 | completed | mistralai/Mistral-7B-Instruct-v0.2 | 100 | 4000 | 15779.2 | 0.740 → 0.980 (n=300) | 1.000 | 0.990 | 0.000 (n=100) | 4 CPU threads, CUDA=True |
 | qwen05b_stage1_cpu_run2 | completed_reduced_scale | Qwen/Qwen2.5-0.5B-Instruct | 30 | 628 | 3976.7 | 0.227 → 0.780 (n=150) | 0.913 | 0.860 | 0.000 (n=30) | 20 CPU threads, CUDA=False |
 | smoke_stage1 | smoke_test_only | Qwen/Qwen2.5-0.5B-Instruct | 5 | 49 | 467.3 | 0.350 → 0.550 (n=20) | 0.700 | 0.648 | 1.000 (n=5) | 20 CPU threads, CUDA=False |
 
@@ -50,6 +51,50 @@ Recall@5 by query category:
 | procedure_history (n=34) | 1.000 | 0.275 | 0.000 | 0.000 | 0.392 |
 | relevant_history (n=69) | 0.572 | 0.824 | 0.252 | 0.666 | 0.734 |
 | similar_symptoms (n=70) | 0.771 | 0.405 | 0.000 | 0.298 | 0.652 |
+
+### Retrieval — `retrieval_eval_test_mistral_trained.json`
+
+Split **test**, 599 queries, seed 2026, selector params {}, query-set SHA-256 `7cf3e0f2a4f40642…`
+
+| Method | n | R@1 | R@3 | R@5 | R@10 | MRR | nDCG@10 | Ctx-P@10 | Ctx-R@10 | Leaf EM | Invalid paths | s/query |
+|---|---:|---|---|---|---|---|---|---|---|---|---|---:|
+| R4_hybrid_structured | 599 | 0.673 [0.636, 0.708] | 0.711 [0.677, 0.745] | 0.758 [0.728, 0.786] | 0.824 [0.794, 0.850] | 0.746 [0.716, 0.775] | 0.734 [0.706, 0.761] | 0.411 [0.381, 0.442] | 0.809 [0.779, 0.837] | — | — | 0.15 |
+| R5_stair_structural | 599 | 0.489 [0.454, 0.528] | 0.473 [0.435, 0.515] | 0.567 [0.530, 0.603] | 0.622 [0.585, 0.658] | 0.567 [0.532, 0.604] | 0.527 [0.496, 0.561] | 0.306 [0.283, 0.332] | 0.648 [0.610, 0.682] | 0.466 [0.425, 0.508] | 0/3334 | 0.09 |
+| R10_stair_precomputed | 599 | 0.688 [0.649, 0.725] | 0.670 [0.637, 0.702] | 0.783 [0.756, 0.807] | 0.862 [0.837, 0.883] | 0.778 [0.746, 0.807] | 0.740 [0.714, 0.764] | 0.387 [0.368, 0.408] | 0.880 [0.857, 0.901] | 0.843 [0.813, 0.872] | 0/3547 | 0.01 |
+| R11_stair_precomputed_hybrid | 599 | 0.818 [0.787, 0.847] | 0.812 [0.785, 0.837] | 0.867 [0.843, 0.892] | 0.943 [0.925, 0.959] | 0.873 [0.850, 0.895] | 0.858 [0.835, 0.879] | 0.309 [0.291, 0.329] | 0.930 [0.912, 0.945] | 0.843 [0.813, 0.872] | 0/3547 | 0.00 |
+| R8_stair_hybrid | 599 | 0.636 [0.598, 0.673] | 0.636 [0.597, 0.673] | 0.720 [0.687, 0.751] | 0.873 [0.851, 0.896] | 0.719 [0.686, 0.749] | 0.725 [0.698, 0.752] | 0.308 [0.288, 0.328] | 0.870 [0.845, 0.891] | 0.466 [0.425, 0.508] | 0/3334 | 0.00 |
+
+Paired differences (patient-clustered bootstrap):
+
+| Comparison | Δ mean | 95% CI | p (bootstrap) | n queries / patients |
+|---|---|---|---|---|
+| R5_stair_structural - R4_hybrid_structured (recall@5) | -0.191 | [-0.239, -0.139] | 0.000 | 599 / 108 |
+| R8_stair_hybrid - R4_hybrid_structured (recall@5) | -0.038 | [-0.079, 0.005] | 0.080 | 599 / 108 |
+| R10_stair_precomputed - R4_hybrid_structured (recall@5) | 0.024 | [-0.012, 0.061] | 0.192 | 599 / 108 |
+| R11_stair_precomputed_hybrid - R4_hybrid_structured (recall@5) | 0.109 | [0.075, 0.142] | 0.000 | 599 / 108 |
+| R5_stair_structural - R4_hybrid_structured (mrr) | -0.180 | [-0.224, -0.133] | 0.000 | 599 / 108 |
+| R8_stair_hybrid - R4_hybrid_structured (mrr) | -0.027 | [-0.067, 0.011] | 0.186 | 599 / 108 |
+| R10_stair_precomputed - R4_hybrid_structured (mrr) | 0.032 | [-0.007, 0.067] | 0.096 | 599 / 108 |
+| R11_stair_precomputed_hybrid - R4_hybrid_structured (mrr) | 0.127 | [0.099, 0.154] | 0.000 | 599 / 108 |
+
+Recall@5 by query category:
+
+| Category | R4_hybrid_structured | R5_stair_structural | R10_stair_precomputed | R11_stair_precomputed_hybrid | R8_stair_hybrid |
+|---|---|---|---|---|---|
+| allergy_check (n=6) | 0.317 | 0.789 | 0.789 | 0.789 | 0.789 |
+| condition_status (n=35) | 0.757 | 0.533 | 0.876 | 0.900 | 0.829 |
+| current_medications (n=21) | 0.649 | 0.317 | 0.878 | 0.915 | 0.343 |
+| diagnoses_in_year (n=35) | 0.593 | 0.415 | 0.561 | 0.603 | 0.517 |
+| immunization_history (n=35) | 1.000 | 0.881 | 0.881 | 0.971 | 0.971 |
+| lab_lookup (n=60) | 0.880 | 0.930 | 0.930 | 0.963 | 0.963 |
+| lab_trend (n=70) | 0.825 | 0.346 | 0.486 | 0.775 | 0.554 |
+| last_visit (n=35) | 0.057 | 1.000 | 1.000 | 0.943 | 0.971 |
+| latest_measurement (n=70) | 0.986 | 0.600 | 1.000 | 1.000 | 0.929 |
+| medication_changes (n=33) | 1.000 | 0.157 | 0.788 | 0.894 | 0.444 |
+| medication_during_episode (n=26) | 0.549 | 0.293 | 0.492 | 0.576 | 0.363 |
+| procedure_history (n=34) | 1.000 | 0.275 | 0.843 | 0.931 | 0.441 |
+| relevant_history (n=69) | 0.572 | 0.824 | 0.795 | 0.859 | 0.857 |
+| similar_symptoms (n=70) | 0.771 | 0.405 | 0.676 | 0.836 | 0.636 |
 
 ### Retrieval — `retrieval_eval_test_nonllm.json`
 

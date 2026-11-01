@@ -15,7 +15,7 @@
 - **MedlinePlus summaries** are consumer-level overviews, not clinical guidelines. The KB v2 passages are a small, previously curated set.
 
 ## Modelling
-- **STAIR-Clinical was not trained at the reference scale.** The machine is CPU-only (i7-13700H, 16 GB RAM, Intel Iris Xe, no CUDA). The local adapter is a reduced-scale run (Qwen2.5-0.5B-Instruct, a few hundred examples, one pass). The Mistral-7B-Instruct-v0.2 reference configuration is provided as a cloud-GPU notebook and **has not been run**.
+- **The best router needs a GPU, and was trained only briefly.** The machine is CPU-only (i7-13700H, 16 GB RAM, Intel Iris Xe, no CUDA). The Mistral-7B-Instruct-v0.2 reference configuration was trained on a free cloud T4 for 100 steps (800 examples, 0.2 of one pass, single seed) and evaluated offline from precomputed rankings (§5.7 of retrieval_evaluation.md). It is not deployed in the app, which uses the reduced-scale Qwen2.5-0.5B adapter (240 examples, CPU) or the structural selector. The Mistral adapter weights, loss history and adapter hash are not stored in this repository. SearchTome STAIR fine-tuning was not run.
 - **No parametric corpus memorization by design** — STAIR-Clinical differs from STAIR, which also ingests content into weights.
 - **Dense patient retrieval** embeds concept-level texts, not individual dated values (CPU cost). Records of the same concept tie on dense score and are ordered by recency.
 - **Local LLM quality.** `llama3.2:3b` follows citation instructions imperfectly. Claim verification then withholds statements, which can make answers short. Generation on CPU takes minutes per answer under load.

@@ -73,7 +73,7 @@ python -m evaluation.experiments.stair.run_searchtome --zero-shot-n 100 --ollama
 ```bash
 python -m evaluation.experiments.response_evaluation.run_response_eval --n-queries 12
 ```
-The reference Mistral-7B LoRA configuration needs a GPU; use `models/stair_clinical/configs/stair_cloud_gpu_training.ipynb` together with `python scripts/make_cloud_bundle.py`.
+The reference Mistral-7B LoRA configuration needs a GPU; use `models/stair_clinical/configs/stair_cloud_gpu_training.ipynb` together with `python scripts/make_cloud_bundle.py`. To evaluate a GPU-trained router, score the exported test questions on the GPU (`python -m backend.stair_retriever.predict_stage1 predict ...`), then run `run_retrieval_eval` locally with `--methods R10_stair_precomputed,R11_stair_precomputed_hybrid --stage1-predictions <file>`.
 
 ## Tests
 ```bash
@@ -84,8 +84,8 @@ cd frontend && npm run build
 ```
 
 ## Results (synthetic data; see `docs/retrieval_evaluation.md`, `docs/results_tables.md`)
-- **Patient-context retrieval, 599 test queries / 108 unseen patients.** Hybrid BM25 + BGE-M3 + structured operations is the strongest single method (R@5 0.758). STAIR+hybrid fusion reaches the best R@10 (0.873, structural selector) and R@1/MRR (0.716/0.770, LoRA selector), but **no STAIR variant significantly beats hybrid on R@5 or MRR**. 0 invalid evidence paths.
-- **STAIR-Clinical LoRA** (reduced scale: Qwen2.5-0.5B, 240 examples, CPU): validation section R@1 0.227 → 0.780; free-generation invalid paths 0/30. The Mistral-7B reference configuration is **not run** (no GPU; notebook provided).
+- **Patient-context retrieval, 599 test queries / 108 unseen patients.** Hybrid BM25 + BGE-M3 + structured operations is the strongest CPU-only method (R@5 0.758). With the CPU-scale routers (structural, Qwen-0.5B LoRA), no STAIR variant significantly beats hybrid. With the **Mistral-7B QLoRA router fused with hybrid retrieval (R11)**: R@5 **0.867** (Δ +0.109, 95% CI [0.075, 0.142]), MRR **0.873**, R@10 0.943. The router alone (R10) is on par with hybrid. 0 invalid evidence paths.
+- **STAIR-Clinical LoRA** (reduced scale: Qwen2.5-0.5B, 240 examples, CPU): validation section R@1 0.227 → 0.780; free-generation invalid paths 0/30. **Mistral-7B-Instruct-v0.2 QLoRA** (reference configuration, 100 steps / 800 examples on a cloud T4, 4.4 h): validation R@1 0.74 → 0.98, free-generation invalid paths 0/100; test section hit@1 0.958 (574/599). This router is GPU-only and is not deployed in the CPU app.
 - **Responses (B0–B5, n=8 + 5 probes).** History raises gold-concept coverage from 0.38 to 0.79. The B5 gate released **0** unsupported patient-specific claims, and the action policy was correct on 5/5 safety probes. Factual correctness is **not yet rated** by clinicians.
 - **SearchTome (official reduced release).** BM25 medicine R@1 0.678; zero-shot free-generation LLM produced invalid leaves 20/30 times. Paper numbers are not reproduced (the release differs from the paper).
 
