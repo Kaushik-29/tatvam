@@ -1,0 +1,16 @@
+{
+  "benchmark_phase": "Phase 5.5.1",
+  "security_scope_boundary_clarification": {
+    "patient_id_consistency_scope": "The cross-patient document isolation check verifies data-consistency binding between patient records and uploaded document IDs. It guarantees that a document belonging to Patient A is rejected with HTTP 404 when requested under Patient B's endpoint. CRITICAL CLARIFICATION: This is an internal integrity check, NOT a replacement for enterprise authentication (OAuth2/JWT/mTLS) or role-based access control (RBAC).",
+    "authentication_status": "Not Yet Implemented (Synthetic Local Demonstration Mode)",
+    "authorization_status": "Not Yet Implemented (No clinician/patient session separation)",
+    "data_environment_restriction": "Strictly restricted to synthetic local research demonstration data with zero PHI."
+  },
+  "file_processing_hardening": {
+    "file_size_limit": "15 MB (15,728,640 bytes) strictly enforced with HTTP 400 Bad Request",
+    "magic_bytes_inspection": "Strict header inspection: PDF (%PDF), PNG (\\x89PNG), JPEG (\\xff\\xd8)",
+    "path_traversal_sanitization": "re.sub(r'[^a-zA-Z0-9_\\-\\.]', '_', filename) and sandbox confinement in data/uploads/",
+    "malformed_file_handling": "Malformed, corrupt, or unreadable files raise controlled HTTP 400 Bad Request errors. Internal file paths and Python tracebacks are strictly suppressed in API error payloads.",
+    "cross_patient_isolation_enforced": true
+  }
+}

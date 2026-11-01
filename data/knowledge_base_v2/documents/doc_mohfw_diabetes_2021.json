@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_MOHFW_DIABETES_2021",
+  "title": "Standard Treatment Guidelines: Clinical Practice Guidelines for Management of Type 2 Diabetes Mellitus",
+  "author_or_organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+  "source_url": "https://main.mohfw.gov.in/",
+  "publication_or_revision_date": "2021-03-25",
+  "date_uncertainty_note": "National guidelines for non-communicable disease control program.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+  "document_type": "Standard Clinical Guideline",
+  "version": "2.0",
+  "passages": [
+    {
+      "passage_id": "DOC_MOHFW_DIABETES_2021_P001",
+      "section_heading": "1. Diagnostic Criteria for Type 2 Diabetes",
+      "text": "The diagnosis of diabetes mellitus is established by any of the following confirmed laboratory criteria: fasting plasma glucose (FPG) >= 126 mg/dL (7.0 mmol/L) after at least 8 hours of caloric restriction; 2-hour plasma glucose >= 200 mg/dL (11.1 mmol/L) during a 75-gram oral glucose tolerance test (OGTT); or glycosylated hemoglobin (HbA1c) >= 6.5% (48 mmol/mol) standardized to NGSP assay. In symptomatic individuals presenting with classic osmotic symptoms (polyuria, polydipsia, unexplained weight loss), a random plasma glucose >= 200 mg/dL confirms diagnosis."
+    },
+    {
+      "passage_id": "DOC_MOHFW_DIABETES_2021_P002",
+      "section_heading": "2. Acute Glycemic Emergencies: Hypoglycemia and Hyperosmolar State",
+      "text": "Acute hypoglycemia is defined as plasma glucose < 70 mg/dL (3.9 mmol/L). Autonomic warning symptoms include tremors, diaphoresis, tachycardia, anxiety, and hunger. Neuroglycopenic symptoms include confusion, bizarre behavior, drowsiness, seizures, and loss of consciousness. Immediate treatment for conscious patients is the 'Rule of 15': ingest 15 grams of fast-acting simple carbohydrates (3-4 glucose tablets or 1/2 cup fruit juice), recheck blood glucose in 15 minutes, and repeat if glucose remains below 70 mg/dL. Severe hypoglycemia with altered consciousness requires intravenous 25% dextrose or intramuscular glucagon."
+    },
+    {
+      "passage_id": "DOC_MOHFW_DIABETES_2021_P003",
+      "section_heading": "3. Glycemic Targets and Monitoring",
+      "text": "For most non-pregnant adults with type 2 diabetes, a reasonable glycemic target is an HbA1c < 7.0% (53 mmol/mol), corresponding to preprandial capillary plasma glucose 80-130 mg/dL and peak postprandial glucose < 180 mg/dL. Less stringent HbA1c goals (< 8.0%) are appropriate for patients with a history of severe hypoglycemia, limited life expectancy, advanced microvascular or macrovascular complications, or extensive comorbid conditions."
+    },
+    {
+      "passage_id": "DOC_MOHFW_DIABETES_2021_P004",
+      "section_heading": "4. First-Line Pharmacotherapy and Kidney Safety",
+      "text": "Metformin is the preferred initial pharmacological agent for type 2 diabetes in the absence of contraindications. Metformin should be initiated at 500 mg once or twice daily with meals and titrated gradually to minimize gastrointestinal adverse effects. Renal function must be monitored: metformin is contraindicated when estimated glomerular filtration rate (eGFR) falls below 30 mL/min/1.73m2, and initiation is not recommended with eGFR 30-44 mL/min/1.73m2."
+    }
+  ]
+}

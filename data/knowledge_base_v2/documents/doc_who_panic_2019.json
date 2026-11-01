@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_WHO_PANIC_2019",
+  "title": "Clinical Protocol for Acute Hyperventilation Syndrome and Panic Disorder in Primary Care",
+  "author_or_organization": "World Health Organization (WHO) / Directorate General of Health Services, MoHFW",
+  "source_url": "https://www.who.int/mental_health/mhgap/",
+  "publication_or_revision_date": "2019-11-20",
+  "date_uncertainty_note": "WHO mhGAP primary care clinical protocol.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+  "document_type": "mhGAP Clinical Protocol",
+  "version": "2.0",
+  "passages": [
+    {
+      "passage_id": "DOC_WHO_PANIC_2019_P001",
+      "section_heading": "1. Clinical Features of Acute Panic Attacks",
+      "text": "Panic attacks present as sudden surges of intense fear or overwhelming discomfort that reach a crescendo within minutes. Physical symptoms prominently include palpitations, pounding heart, trembling or shaking, sensations of shortness of breath or smothering, chest tightness, dizziness, and fear of losing control or impending death. Attacks often occur without an apparent external trigger."
+    },
+    {
+      "passage_id": "DOC_WHO_PANIC_2019_P002",
+      "section_heading": "2. Physiological Consequences of Hyperventilation",
+      "text": "Rapid, shallow breathing (hyperventilation) frequently accompanies acute panic attacks, causing excess carbon dioxide exhalation and acute respiratory alkalosis. This hypocapnia triggers cerebral vasoconstriction (causing lightheadedness and presyncope) and increased neuromuscular excitability, manifesting as perioral numbness/tingling, distal paresthesia in both hands, and carpopedal spasm."
+    },
+    {
+      "passage_id": "DOC_WHO_PANIC_2019_P003",
+      "section_heading": "3. Mandatory Exclusion of Organic Emergencies",
+      "text": "Because acute chest tightness, dyspnea, and autonomic panic symptoms can mimic life-threatening organic cardiopulmonary diseases, clinicians must never diagnose panic disorder without appropriate exclusion of organic conditions. Potential mimics include acute pulmonary embolism, acute asthma exacerbation, cardiac arrhythmia, acute coronary syndrome, and pneumothorax. Physical examination, pulse oximetry, and clinical risk stratification must be evaluated."
+    },
+    {
+      "passage_id": "DOC_WHO_PANIC_2019_P004",
+      "section_heading": "4. Supportive Care and Safety Precautions",
+      "text": "Acute management focuses on calm, structured verbal reassurance in a quiet setting. The clinician should guide the patient through controlled slow diaphragmatic breathing (inhalation for 4 seconds, holding for 2 seconds, exhalation for 4 seconds) to restore normal arterial pCO2. Rebreathing into a paper bag is obsolete and strictly contraindicated due to documented risks of fatal hypoxia if the underlying diagnosis is an unrecognized organic respiratory disease."
+    }
+  ]
+}

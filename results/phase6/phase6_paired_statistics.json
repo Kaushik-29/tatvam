@@ -1,0 +1,113 @@
+{
+  "primary_comparison": {
+    "comparison": "B0_Direct_Baseline vs B3_Full_MedResolve",
+    "hypothesis": "H1: R_prop(B0) > R_prop(B3)",
+    "contingency_table": {
+      "n11": 17,
+      "n10": 13,
+      "n01": 1,
+      "n00": 54
+    },
+    "n_discordant_pairs": 14,
+    "rate_b0": 0.3529,
+    "rate_b3": 0.2118,
+    "paired_risk_difference": 0.1412,
+    "newcombe_95_ci": [
+      0.0599,
+      0.2226
+    ],
+    "p_value_one_sided_exact": 0.00091552734375,
+    "alpha": 0.05,
+    "is_statistically_significant": true
+  },
+  "secondary_ablation_family": [
+    {
+      "comparison": "B1 vs B2",
+      "description": "Longitudinal Ledger & Conflict Detection",
+      "contingency_table": {
+        "n11": 18,
+        "n10": 18,
+        "n01": 2,
+        "n00": 47
+      },
+      "n_discordant_pairs": 20,
+      "rate_a": 0.4235,
+      "rate_b": 0.2353,
+      "risk_difference": 0.1882,
+      "newcombe_95_ci": [
+        0.0918,
+        0.2802
+      ],
+      "raw_p_value": 0.00020122528076171875,
+      "holm_rank": 1,
+      "holm_alpha_threshold": 0.0125,
+      "is_significant_adjusted": true
+    },
+    {
+      "comparison": "B0 vs B2",
+      "description": "Reconciliation without Action Gating",
+      "contingency_table": {
+        "n11": 14,
+        "n10": 16,
+        "n01": 6,
+        "n00": 49
+      },
+      "n_discordant_pairs": 22,
+      "rate_a": 0.3529,
+      "rate_b": 0.2353,
+      "risk_difference": 0.1176,
+      "newcombe_95_ci": [
+        0.0117,
+        0.2207
+      ],
+      "raw_p_value": 0.026239395141601562,
+      "holm_rank": 2,
+      "holm_alpha_threshold": 0.0167,
+      "is_significant_adjusted": false
+    },
+    {
+      "comparison": "B2 vs B3",
+      "description": "Selective Policy & Claim Verification",
+      "contingency_table": {
+        "n11": 4,
+        "n10": 16,
+        "n01": 14,
+        "n00": 51
+      },
+      "n_discordant_pairs": 30,
+      "rate_a": 0.2353,
+      "rate_b": 0.2118,
+      "risk_difference": 0.0235,
+      "newcombe_95_ci": [
+        -0.1026,
+        0.1488
+      ],
+      "raw_p_value": 0.427767775952816,
+      "holm_rank": 3,
+      "holm_alpha_threshold": 0.025,
+      "is_significant_adjusted": false
+    },
+    {
+      "comparison": "B0 vs B1",
+      "description": "Provenance Effect alone",
+      "contingency_table": {
+        "n11": 25,
+        "n10": 5,
+        "n01": 11,
+        "n00": 44
+      },
+      "n_discordant_pairs": 16,
+      "rate_a": 0.3529,
+      "rate_b": 0.4235,
+      "risk_difference": -0.0706,
+      "newcombe_95_ci": [
+        -0.1591,
+        0.02
+      ],
+      "raw_p_value": 0.9615936279296875,
+      "holm_rank": 4,
+      "holm_alpha_threshold": 0.05,
+      "is_significant_adjusted": false
+    }
+  ]
+}

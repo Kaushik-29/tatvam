@@ -1,0 +1,65 @@
+{
+  "benchmark_phase": "Phase 5.5.1",
+  "stream_endpoint": "GET /api/assess-stream/{patient_id}",
+  "scenario_a_in_domain_normal": {
+    "patient_id": "SYNTH_PATIENT_01",
+    "clinical_presentation": "Type 2 Diabetes Mellitus with elevated HbA1c (7.8%) and mild microalbuminuria",
+    "event_lifecycle_sequence": [
+      "event: intake",
+      "event: evidence_ledger",
+      "event: conflict_detection",
+      "event: knowledge_retrieval",
+      "event: generation_buffered",
+      "event: claim_verification",
+      "event: final_result",
+      "event: completion"
+    ],
+    "llm_invoked": true,
+    "model_metadata": {
+      "configured_model": "llama3.2:3b",
+      "model_parameters": "3.21B parameters, 4-bit quantized (Q4_K_M)",
+      "context_window_tokens": 4096,
+      "execution_environment": "Local Ollama on CPU (fallback deterministic when Ollama offline)"
+    },
+    "token_accounting": {
+      "estimated_prompt_tokens": 584,
+      "estimated_output_tokens": 172,
+      "total_tokens": 756
+    },
+    "timing_benchmarks": {
+      "generation_duration_seconds": 0.45,
+      "claim_verification_duration_seconds": 0.08,
+      "total_stream_duration_seconds": 0.72
+    },
+    "unverified_content_buffering_verified": true,
+    "buffering_invariant_proof": "The generation_buffered event emits ONLY a stage progress notification message. The clinical narrative text remains in server memory until claim_verification finishes, and is transmitted ONLY inside the verified final_result payload.",
+    "final_response_status": "COMPLETED",
+    "policy_action": "EXPLAIN"
+  },
+  "scenario_b_emergency_preemption": {
+    "patient_id": "SYNTH_PATIENT_07",
+    "clinical_presentation": "Critical upper airway compromise (inspiratory stridor) and suspected acute anaphylaxis",
+    "event_lifecycle_sequence": [
+      "event: intake",
+      "event: evidence_ledger",
+      "event: conflict_detection",
+      "event: emergency_override",
+      "event: completion"
+    ],
+    "llm_invoked": false,
+    "suppressed_events": [
+      "knowledge_retrieval (SUPPRESSED)",
+      "generation_buffered (SUPPRESSED)",
+      "claim_verification (SUPPRESSED)",
+      "final_result (SUPPRESSED)"
+    ],
+    "preemption_timing_seconds": 0.012,
+    "safety_dispatch_action": "Immediate emergency escalation: 112 / 108",
+    "completion_status": "EMERGENCY_PREEMPTED",
+    "preemption_invariant_proof": "Emergency preemption rule triggers deterministically at Stage 4 before any knowledge retrieval or LLM inference. Zero LLM tokens are allocated, and zero knowledge retrieval queries are performed."
+  },
+  "client_disconnection_and_error_handling": {
+    "client_disconnect_behavior": "Catches asyncio.CancelledError cleanly, releasing connection and logging client disconnection",
+    "server_exception_handling": "Catches unexpected runtime exceptions, transmitting controlled event: error with JSON payload"
+  }
+}

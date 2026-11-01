@@ -1,0 +1,62 @@
+599 queries, 108 patients, methods=['R4_hybrid_structured', 'R5_stair_structural', 'R6_stair_base_zeroshot', 'R7_stair_lora', 'R9_stair_lora_hybrid']
+`torch_dtype` is deprecated! Use `dtype` instead!
+  10/108 patients (560s)
+  20/108 patients (1163s)
+  30/108 patients (1829s)
+  40/108 patients (2363s)
+  50/108 patients (2931s)
+  60/108 patients (3516s)
+  70/108 patients (4239s)
+  80/108 patients (4962s)
+  90/108 patients (5611s)
+  100/108 patients (6251s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 599,
+  "seconds_per_query": 0.1346748129951337,
+  "recall@1": 0.672787979966611,
+  "recall@5": 0.7581246521981082,
+  "mrr": 0.7461890005683319,
+  "ndcg@10": 0.734111501785394
+ },
+ "R5_stair_structural": {
+  "n_queries": 599,
+  "seconds_per_query": 0.10321936623281946,
+  "recall@1": 0.48914858096828046,
+  "recall@5": 0.5672787979966613,
+  "mrr": 0.5666149932427055,
+  "ndcg@10": 0.5266102992998011,
+  "leaf_exact_match": 0.4657762938230384,
+  "invalid_path_rate": 0.0
+ },
+ "R6_stair_base_zeroshot": {
+  "n_queries": 599,
+  "seconds_per_query": 5.508215585813698,
+  "recall@1": 0.10684474123539232,
+  "recall@5": 0.18670005564830275,
+  "mrr": 0.16823078146116555,
+  "ndcg@10": 0.18472961395608262,
+  "leaf_exact_match": 0.035058430717863104,
+  "invalid_path_rate": 0.0
+ },
+ "R7_stair_lora": {
+  "n_queries": 599,
+  "seconds_per_query": 5.684132160845901,
+  "recall@1": 0.31385642737896496,
+  "recall@5": 0.491068447412354,
+  "mrr": 0.43309098617946584,
+  "ndcg@10": 0.4583896017778119,
+  "leaf_exact_match": 0.19365609348914858,
+  "invalid_path_rate": 0.0
+ },
+ "R9_stair_lora_hybrid": {
+  "n_queries": 599,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.7161936560934892,
+  "recall@5": 0.7220645520311636,
+  "mrr": 0.7701332208743296,
+  "ndcg@10": 0.7107510260388569,
+  "leaf_exact_match": 0.19365609348914858,
+  "invalid_path_rate": 0.0
+ }
+}

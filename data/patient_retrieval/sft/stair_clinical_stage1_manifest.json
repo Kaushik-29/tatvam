@@ -1,0 +1,14 @@
+{
+  "stage": 1,
+  "seed": 0,
+  "files": {
+    "stair_clinical_stage1_train.jsonl": {
+      "examples": 20346,
+      "sha256": "2e88f23c7d118131f2fb9ef01106ab7d8c915f4ba13f4af7ee7e3b1f6e0f2b43"
+    },
+    "stair_clinical_stage1_validation.jsonl": {
+      "examples": 400,
+      "sha256": "c472864b42bf3644daaaf03c3bbd21c604095f3fa282113459934c12b9c9f9b7"
+    }
+  }
+}

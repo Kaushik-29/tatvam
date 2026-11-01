@@ -1,0 +1,294 @@
+{
+  "benchmark_name": "MedResolve Phase 5.1 Medical Retrieval Benchmark (100-Query Benchmark)",
+  "corpus_directory": "data/knowledge_base_v2",
+  "total_test_queries": 100,
+  "evaluable_queries_with_ground_truth": 90,
+  "negative_control_queries": 10,
+  "methods": {
+    "lexical": {
+      "mrr": 0.7569,
+      "zero_hit_rate": 0.0667,
+      "zero_hit_count": 6,
+      "total_evaluated_queries": 90,
+      "negative_controls": {
+        "total": 10,
+        "correctly_abstained": 3,
+        "abstention_rate": 0.3
+      },
+      "latency_ms": {
+        "mean": 1.32,
+        "p50": 1.28,
+        "p95": 1.89
+      },
+      "recall@1": 0.5444,
+      "precision@1": 0.6444,
+      "recall@3": 0.7667,
+      "precision@3": 0.3111,
+      "recall@5": 0.8556,
+      "precision@5": 0.2111,
+      "per_category": {
+        "direct_medical": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.84,
+          "recall@1": 0.76,
+          "recall@3": 0.88,
+          "recall@5": 0.96,
+          "precision@1": 0.76,
+          "precision@3": 0.2933,
+          "precision@5": 0.192
+        },
+        "symptom_based": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.7347,
+          "recall@1": 0.58,
+          "recall@3": 0.82,
+          "recall@5": 0.94,
+          "precision@1": 0.6,
+          "precision@3": 0.28,
+          "precision@5": 0.192
+        },
+        "multi_passage": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.8889,
+          "recall@1": 0.4667,
+          "recall@3": 0.7,
+          "recall@5": 0.7333,
+          "precision@1": 0.8667,
+          "precision@3": 0.4444,
+          "precision@5": 0.28
+        },
+        "ambiguous": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.5722,
+          "recall@1": 0.2333,
+          "recall@3": 0.4667,
+          "recall@5": 0.6333,
+          "precision@1": 0.4,
+          "precision@3": 0.2667,
+          "precision@5": 0.2267
+        },
+        "out_of_domain": {
+          "total_queries": 10,
+          "evaluable_queries": 0,
+          "note": "Negative control category (all OOD)"
+        },
+        "outdated_or_trap": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 0.8,
+          "recall@1": 0.6,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 0.6,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        },
+        "patient_contextual": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 0.5667,
+          "recall@1": 0.4,
+          "recall@3": 0.8,
+          "recall@5": 0.8,
+          "precision@1": 0.4,
+          "precision@3": 0.2667,
+          "precision@5": 0.16
+        }
+      }
+    },
+    "dense": {
+      "mrr": 0.8152,
+      "zero_hit_rate": 0.0778,
+      "zero_hit_count": 7,
+      "total_evaluated_queries": 90,
+      "negative_controls": {
+        "total": 10,
+        "correctly_abstained": 9,
+        "abstention_rate": 0.9
+      },
+      "latency_ms": {
+        "mean": 429.63,
+        "p50": 417.85,
+        "p95": 516.75
+      },
+      "recall@1": 0.6333,
+      "precision@1": 0.7333,
+      "recall@3": 0.85,
+      "precision@3": 0.3593,
+      "recall@5": 0.8944,
+      "precision@5": 0.2311,
+      "per_category": {
+        "direct_medical": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.9733,
+          "recall@1": 0.96,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 0.96,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        },
+        "symptom_based": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.62,
+          "recall@1": 0.48,
+          "recall@3": 0.72,
+          "recall@5": 0.78,
+          "precision@1": 0.48,
+          "precision@3": 0.24,
+          "precision@5": 0.16
+        },
+        "multi_passage": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.9333,
+          "recall@1": 0.4667,
+          "recall@3": 0.9333,
+          "recall@5": 1.0,
+          "precision@1": 0.8667,
+          "precision@3": 0.6,
+          "precision@5": 0.3867
+        },
+        "ambiguous": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.6689,
+          "recall@1": 0.3333,
+          "recall@3": 0.6333,
+          "recall@5": 0.7333,
+          "precision@1": 0.5333,
+          "precision@3": 0.3778,
+          "precision@5": 0.2667
+        },
+        "out_of_domain": {
+          "total_queries": 10,
+          "evaluable_queries": 0,
+          "note": "Negative control category (all OOD)"
+        },
+        "outdated_or_trap": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 0.9,
+          "recall@1": 0.8,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 0.8,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        },
+        "patient_contextual": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 1.0,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        }
+      }
+    },
+    "hybrid": {
+      "mrr": 0.8485,
+      "zero_hit_rate": 0.0444,
+      "zero_hit_count": 4,
+      "total_evaluated_queries": 90,
+      "negative_controls": {
+        "total": 10,
+        "correctly_abstained": 0,
+        "abstention_rate": 0.0
+      },
+      "latency_ms": {
+        "mean": 243.35,
+        "p50": 167.03,
+        "p95": 440.52
+      },
+      "recall@1": 0.6722,
+      "precision@1": 0.7778,
+      "recall@3": 0.8667,
+      "precision@3": 0.3593,
+      "recall@5": 0.9222,
+      "precision@5": 0.2356,
+      "per_category": {
+        "direct_medical": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.9233,
+          "recall@1": 0.88,
+          "recall@3": 0.96,
+          "recall@5": 1.0,
+          "precision@1": 0.88,
+          "precision@3": 0.32,
+          "precision@5": 0.2
+        },
+        "symptom_based": {
+          "total_queries": 25,
+          "evaluable_queries": 25,
+          "mrr": 0.8033,
+          "recall@1": 0.72,
+          "recall@3": 0.88,
+          "recall@5": 0.92,
+          "precision@1": 0.72,
+          "precision@3": 0.2933,
+          "precision@5": 0.192
+        },
+        "multi_passage": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.9222,
+          "recall@1": 0.4667,
+          "recall@3": 0.9,
+          "recall@5": 0.9333,
+          "precision@1": 0.8667,
+          "precision@3": 0.5778,
+          "precision@5": 0.36
+        },
+        "ambiguous": {
+          "total_queries": 15,
+          "evaluable_queries": 15,
+          "mrr": 0.6911,
+          "recall@1": 0.3667,
+          "recall@3": 0.5667,
+          "recall@5": 0.7333,
+          "precision@1": 0.6,
+          "precision@3": 0.3333,
+          "precision@5": 0.2667
+        },
+        "out_of_domain": {
+          "total_queries": 10,
+          "evaluable_queries": 0,
+          "note": "Negative control category (all OOD)"
+        },
+        "outdated_or_trap": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 0.9,
+          "recall@1": 0.8,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 0.8,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        },
+        "patient_contextual": {
+          "total_queries": 5,
+          "evaluable_queries": 5,
+          "mrr": 0.9,
+          "recall@1": 0.8,
+          "recall@3": 1.0,
+          "recall@5": 1.0,
+          "precision@1": 0.8,
+          "precision@3": 0.3333,
+          "precision@5": 0.2
+        }
+      }
+    }
+  }
+}

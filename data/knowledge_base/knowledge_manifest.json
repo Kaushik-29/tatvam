@@ -1,0 +1,92 @@
+{
+  "corpus_name": "MedResolve Clinical Reference Knowledge Base",
+  "version": "1.0.0",
+  "total_documents": 6,
+  "total_passages": 24,
+  "documents": [
+    {
+      "document_id": "DOC_MOHFW_GERD_2019",
+      "title": "Standard Treatment Guidelines: Medical Management of Dyspepsia and Gastroesophageal Reflux Disease (GERD)",
+      "author_or_organization": "National Health Portal (NHP), Ministry of Health and Family Welfare, Government of India",
+      "source_url": "https://www.nhp.gov.in/disease/digestive-system/gastroesophageal-reflux-disease-gerd",
+      "publication_or_revision_date": "2019-08-12",
+      "date_uncertainty_note": "Guideline revision date verified from official NHP clinical release portal.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "Open Government Data (OGD) License India (Public clinical management guidance)",
+      "document_type": "Standard Treatment Guideline",
+      "version": "1.2",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_mohfw_gerd_2019.json"
+    },
+    {
+      "document_id": "DOC_MOHFW_ACS_2020",
+      "title": "Standard Treatment Guidelines for Secondary Care: Acute Coronary Syndrome and Ischemic Heart Disease",
+      "author_or_organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+      "source_url": "https://main.mohfw.gov.in/",
+      "publication_or_revision_date": "2020-02-15",
+      "date_uncertainty_note": "DGHS national secondary care clinical guideline.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+      "document_type": "Standard Clinical Guideline",
+      "version": "2.1",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_mohfw_acs_2020.json"
+    },
+    {
+      "document_id": "DOC_MOHFW_BRONCHITIS_2021",
+      "title": "Clinical Guidance for Management of Adult Patients with Acute Respiratory Symptoms and Acute Bronchitis",
+      "author_or_organization": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+      "source_url": "https://main.mohfw.gov.in/",
+      "publication_or_revision_date": "2021-05-17",
+      "date_uncertainty_note": "National clinical guidance for respiratory infections in adult primary care.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+      "document_type": "Standard Treatment Guideline",
+      "version": "2.0",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_mohfw_bronchitis_2021.json"
+    },
+    {
+      "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+      "title": "Anaphylaxis Assessment, Recognition, and Immediate Care",
+      "author_or_organization": "StatPearls Publishing / National Center for Biotechnology Information (NCBI Bookshelf)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK441865/",
+      "publication_or_revision_date": "2023-01-29",
+      "date_uncertainty_note": "NCBI Bookshelf peer-reviewed clinical review; annual revision cycle verified.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "Public Domain / Permitted Non-Commercial Educational Reuse (NCBI Bookshelf)",
+      "document_type": "Clinical Reference Review",
+      "version": "2023.1",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_statpearls_anaphylaxis_2023.json"
+    },
+    {
+      "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+      "title": "Vasovagal Syncope Clinical Evaluation and Differential Diagnosis",
+      "author_or_organization": "StatPearls Publishing / National Center for Biotechnology Information (NCBI Bookshelf)",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK537248/",
+      "publication_or_revision_date": "2023-05-01",
+      "date_uncertainty_note": "StatPearls clinical review; publication date recorded from NCBI database.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "Public Domain / Permitted Non-Commercial Educational Reuse (NCBI Bookshelf)",
+      "document_type": "Clinical Reference Review",
+      "version": "2023.2",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_statpearls_syncope_2023.json"
+    },
+    {
+      "document_id": "DOC_WHO_PANIC_2019",
+      "title": "Clinical Protocol for Acute Hyperventilation Syndrome and Panic Disorder in Primary Care",
+      "author_or_organization": "World Health Organization (WHO) / Directorate General of Health Services, MoHFW",
+      "source_url": "https://www.who.int/mental_health/mhgap/",
+      "publication_or_revision_date": "2019-11-20",
+      "date_uncertainty_note": "WHO mhGAP primary care clinical protocol.",
+      "access_date": "2026-10-30",
+      "license_or_reuse_conditions": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+      "document_type": "mhGAP Clinical Protocol",
+      "version": "2.0",
+      "passage_count": 4,
+      "file_path": "data/knowledge_base/documents/doc_who_panic_2019.json"
+    }
+  ]
+}

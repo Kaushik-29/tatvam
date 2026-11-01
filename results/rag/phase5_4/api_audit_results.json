@@ -1,0 +1,231 @@
+{
+  "audit_metadata": {
+    "phase": "5.4",
+    "audit_timestamp": "2026-10-31T11:16:30Z",
+    "total_endpoints_reported": 20,
+    "total_endpoints_verified": 20,
+    "overall_audit_verdict": "100.0% VERIFIED_FUNCTIONAL"
+  },
+  "endpoints": [
+    {
+      "endpoint_id": "EP_01",
+      "path": "/api/health",
+      "method": "GET",
+      "status_code": 200,
+      "description": "System health, service metadata, and research disclaimer",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_health_endpoint"
+    },
+    {
+      "endpoint_id": "EP_02",
+      "path": "/api/patients",
+      "method": "GET",
+      "status_code": 200,
+      "description": "List all synthetic patient cases with archetypes and evidence counts",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_patient_endpoints"
+    },
+    {
+      "endpoint_id": "EP_03",
+      "path": "/api/patients/{patient_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Retrieve specific synthetic patient profile and clinical narrative",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_patient_endpoints"
+    },
+    {
+      "endpoint_id": "EP_04",
+      "path": "/api/emergency-config",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Get current configurable emergency response dispatch configuration",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_emergency_config_default_india"
+    },
+    {
+      "endpoint_id": "EP_05",
+      "path": "/api/emergency-config",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Update emergency regional dispatch numbers (e.g. India 112/108 vs UK 999)",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_emergency_config_update"
+    },
+    {
+      "endpoint_id": "EP_06",
+      "path": "/api/documents/upload",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Ingest medical documents (PDF/PNG/JPG), execute real OCR, structure clinical facts",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_digital_pdf_real_extraction_and_unit_safety, test_scanned_image_real_ocr_rapidocr"
+    },
+    {
+      "endpoint_id": "EP_07",
+      "path": "/api/documents/{patient_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "List uploaded and processed documents for a patient",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_document_details_and_file_serving"
+    },
+    {
+      "endpoint_id": "EP_08",
+      "path": "/api/documents/{patient_id}/{document_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Get detailed OCR extraction results, lines, pages, and structured items",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_document_details_and_file_serving"
+    },
+    {
+      "endpoint_id": "EP_09",
+      "path": "/api/documents/{patient_id}/{document_id}/file",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Download raw original document file with appropriate MIME type header",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_document_details_and_file_serving"
+    },
+    {
+      "endpoint_id": "EP_10",
+      "path": "/api/evidence-ledger/{patient_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Retrieve structured evidence items, confirmation states, and clinician opinions",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_evidence_ledger_action_workflow"
+    },
+    {
+      "endpoint_id": "EP_11",
+      "path": "/api/evidence-ledger/{patient_id}/add-item",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Manually add a structured evidence item to patient ledger",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_evidence_ledger_action_workflow"
+    },
+    {
+      "endpoint_id": "EP_12",
+      "path": "/api/evidence-ledger/{patient_id}/confirm-item",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Simple confirmation / rejection of an evidence item",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_evidence_ledger_action_workflow"
+    },
+    {
+      "endpoint_id": "EP_13",
+      "path": "/api/evidence-ledger/{patient_id}/update-item",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Full interactive ledger action: CONFIRM, CORRECT (preserves raw value), REJECT, MARK_UNREADABLE",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_evidence_ledger_action_workflow"
+    },
+    {
+      "endpoint_id": "EP_14",
+      "path": "/api/conflicts/{patient_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Detect temporal, value, source, or opinion discrepancies across patient ledger",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_conflict_detection_and_reconciliation"
+    },
+    {
+      "endpoint_id": "EP_15",
+      "path": "/api/knowledge-base",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Corpus overview, documents list, licensing, and passage counts",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_retrieval_and_knowledge_base"
+    },
+    {
+      "endpoint_id": "EP_16",
+      "path": "/api/retrieval/query",
+      "method": "POST",
+      "status_code": 200,
+      "description": "Hybrid BGE-M3 + BM25 RRF passage retrieval across guideline documents",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_retrieval_and_knowledge_base"
+    },
+    {
+      "endpoint_id": "EP_17",
+      "path": "/api/assess/{patient_id}",
+      "method": "POST",
+      "status_code": 200,
+      "description": "End-to-end evaluation: Emergency Precedence -> Conflicts -> Policy -> Grounded Assembly",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_assessment_emergency_override_india"
+    },
+    {
+      "endpoint_id": "EP_18",
+      "path": "/api/assess-stream/{patient_id}",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Server-Sent Events (SSE) streaming of assessment pipeline execution stages",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "app_routes_verified"
+    },
+    {
+      "endpoint_id": "EP_19",
+      "path": "/api/assessment-history",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Audit log of all executed patient assessments with timestamps and latency",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_assessment_emergency_override_india"
+    },
+    {
+      "endpoint_id": "EP_20",
+      "path": "/api/research/metrics",
+      "method": "GET",
+      "status_code": 200,
+      "description": "Scientific benchmark metrics with numerators, denominators, sample sizes, and disclosures",
+      "auth_required": false,
+      "schema_validated": true,
+      "verification_status": "VERIFIED_FUNCTIONAL",
+      "test_coverage": "test_research_metrics_terminology_and_transparency"
+    }
+  ]
+}

@@ -1,0 +1,516 @@
+{
+  "dataset_name": "MedResolve Phase 5.5 OCR Benchmark Dataset",
+  "total_documents": 50,
+  "total_fields": 116,
+  "categories": {
+    "digital_lab_pdf": 10,
+    "clean_scanned_lab": 10,
+    "scanned_prescription": 10,
+    "noisy_scan": 5,
+    "skewed_document": 5,
+    "medical_table": 5,
+    "ambiguous_or_missing_unit": 5
+  },
+  "documents": [
+    {
+      "document_id": "DOC_DIG_LAB_01",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_01.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_01.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_01.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_02",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_02.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_02.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_02.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_03",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_03.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_03.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_03.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_04",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_04.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_04.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_04.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_05",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_05.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_05.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_05.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_06",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_06.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_06.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_06.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_07",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_07.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_07.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_07.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_08",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_08.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_08.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_08.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_09",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_09.pdf",
+      "file_type": "pdf",
+      "page_count": 2,
+      "field_count": 6,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_09.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_09.json"
+    },
+    {
+      "document_id": "DOC_DIG_LAB_10",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_10.pdf",
+      "file_type": "pdf",
+      "page_count": 2,
+      "field_count": 5,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_DIG_LAB_10.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_DIG_LAB_10.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_01",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_01.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_01.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_01.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_02",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_02.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_02.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_02.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_03",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_03.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_03.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_03.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_04",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_04.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_04.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_04.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_05",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_05.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_05.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_05.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_06",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_06.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_06.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_06.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_07",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_07.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_07.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_07.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_08",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_08.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_08.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_08.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_09",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_09.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_09.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_09.json"
+    },
+    {
+      "document_id": "DOC_SCN_LAB_10",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_10.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SCN_LAB_10.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SCN_LAB_10.json"
+    },
+    {
+      "document_id": "DOC_RX_01",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_01.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_01.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_01.json"
+    },
+    {
+      "document_id": "DOC_RX_02",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_02.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_02.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_02.json"
+    },
+    {
+      "document_id": "DOC_RX_03",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_03.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_03.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_03.json"
+    },
+    {
+      "document_id": "DOC_RX_04",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_04.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_04.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_04.json"
+    },
+    {
+      "document_id": "DOC_RX_05",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_05.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_05.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_05.json"
+    },
+    {
+      "document_id": "DOC_RX_06",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_06.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_06.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_06.json"
+    },
+    {
+      "document_id": "DOC_RX_07",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_07.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_07.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_07.json"
+    },
+    {
+      "document_id": "DOC_RX_08",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_08.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_08.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_08.json"
+    },
+    {
+      "document_id": "DOC_RX_09",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_09.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_09.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_09.json"
+    },
+    {
+      "document_id": "DOC_RX_10",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_10.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_RX_10.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_RX_10.json"
+    },
+    {
+      "document_id": "DOC_NOISY_01",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_01.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_NOISY_01.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_NOISY_01.json"
+    },
+    {
+      "document_id": "DOC_NOISY_02",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_02.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_NOISY_02.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_NOISY_02.json"
+    },
+    {
+      "document_id": "DOC_NOISY_03",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_03.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_NOISY_03.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_NOISY_03.json"
+    },
+    {
+      "document_id": "DOC_NOISY_04",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_04.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_NOISY_04.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_NOISY_04.json"
+    },
+    {
+      "document_id": "DOC_NOISY_05",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_05.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_NOISY_05.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_NOISY_05.json"
+    },
+    {
+      "document_id": "DOC_SKEW_01",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_01.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SKEW_01.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SKEW_01.json"
+    },
+    {
+      "document_id": "DOC_SKEW_02",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_02.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SKEW_02.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SKEW_02.json"
+    },
+    {
+      "document_id": "DOC_SKEW_03",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_03.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SKEW_03.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SKEW_03.json"
+    },
+    {
+      "document_id": "DOC_SKEW_04",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_04.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SKEW_04.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SKEW_04.json"
+    },
+    {
+      "document_id": "DOC_SKEW_05",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_05.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 2,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_SKEW_05.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_SKEW_05.json"
+    },
+    {
+      "document_id": "DOC_TBL_01",
+      "category": "medical_table",
+      "filename": "DOC_TBL_01.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 5,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_TBL_01.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_TBL_01.json"
+    },
+    {
+      "document_id": "DOC_TBL_02",
+      "category": "medical_table",
+      "filename": "DOC_TBL_02.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 4,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_TBL_02.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_TBL_02.json"
+    },
+    {
+      "document_id": "DOC_TBL_03",
+      "category": "medical_table",
+      "filename": "DOC_TBL_03.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_TBL_03.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_TBL_03.json"
+    },
+    {
+      "document_id": "DOC_TBL_04",
+      "category": "medical_table",
+      "filename": "DOC_TBL_04.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_TBL_04.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_TBL_04.json"
+    },
+    {
+      "document_id": "DOC_TBL_05",
+      "category": "medical_table",
+      "filename": "DOC_TBL_05.pdf",
+      "file_type": "pdf",
+      "page_count": 1,
+      "field_count": 3,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_TBL_05.pdf",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_TBL_05.json"
+    },
+    {
+      "document_id": "DOC_AMB_01",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_01.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_AMB_01.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_AMB_01.json"
+    },
+    {
+      "document_id": "DOC_AMB_02",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_02.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_AMB_02.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_AMB_02.json"
+    },
+    {
+      "document_id": "DOC_AMB_03",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_03.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_AMB_03.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_AMB_03.json"
+    },
+    {
+      "document_id": "DOC_AMB_04",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_04.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_AMB_04.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_AMB_04.json"
+    },
+    {
+      "document_id": "DOC_AMB_05",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_05.png",
+      "file_type": "png",
+      "page_count": 1,
+      "field_count": 1,
+      "file_path": "data\\processed\\phase5_5_ocr\\DOC_AMB_05.png",
+      "ground_truth_path": "data\\processed\\phase5_5_ocr\\ground_truth\\DOC_AMB_05.json"
+    }
+  ]
+}

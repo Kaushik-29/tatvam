@@ -1,0 +1,381 @@
+[1/13] B0 EXPLAIN unsupported=1.0 cov=0.0 t=14.413
+[1/13] B1 EXPLAIN unsupported=1.0 cov=0.0 t=29.427
+[1/13] B2 EXPLAIN unsupported=0.3333333333333333 cov=0.6666666666666666 t=63.467
+[1/13] B3 EXPLAIN unsupported=0.5 cov=1.0 t=74.478
+[1/13] B4 EXPLAIN unsupported=0.2 cov=1.0 t=18.606
+[1/13] B5 EXPLAIN unsupported=0.2 cov=1.0 t=17.232
+[2/13] B0 EXPLAIN unsupported=1.0 cov=1.0 t=16.169
+[2/13] B1 EXPLAIN unsupported=1.0 cov=1.0 t=33.461
+[2/13] B2 EXPLAIN unsupported=1.0 cov=1.0 t=54.038
+[2/13] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=106.229
+[2/13] B4 EXPLAIN unsupported=0.5555555555555556 cov=1.0 t=103.764
+[2/13] B5 EXPLAIN unsupported=0.5 cov=1.0 t=53.323
+[3/13] B0 EXPLAIN unsupported=1.0 cov=0.0 t=11.934
+[3/13] B1 EXPLAIN unsupported=1.0 cov=0.0 t=31.044
+[3/13] B2 EXPLAIN unsupported=0.5 cov=1.0 t=27.632
+[3/13] B3 EXPLAIN unsupported=0.4 cov=1.0 t=79.423
+[3/13] B4 EXPLAIN unsupported=0.5 cov=1.0 t=40.346
+[3/13] B5 EXPLAIN unsupported=0.5 cov=1.0 t=29.308
+[4/13] B0 EXPLAIN unsupported=1.0 cov=0.0 t=8.301
+[4/13] B1 EXPLAIN unsupported=1.0 cov=0.0 t=27.019
+[4/13] B2 EXPLAIN unsupported=1.0 cov=0.0 t=41.209
+[4/13] B3 EXPLAIN unsupported=0.625 cov=1.0 t=38.151
+[4/13] B4 EXPLAIN unsupported=0.8 cov=1.0 t=44.519
+[4/13] B5 EXPLAIN unsupported=0.5 cov=1.0 t=22.787
+[5/13] B0 EXPLAIN unsupported=1.0 cov=1.0 t=16.863
+[5/13] B1 EXPLAIN unsupported=1.0 cov=1.0 t=30.841
+[5/13] B2 EXPLAIN unsupported=0.8571428571428571 cov=1.0 t=39.606
+[5/13] B3 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=58.676
+[5/13] B4 EXPLAIN unsupported=0.8 cov=1.0 t=60.438
+[5/13] B5 EXPLAIN unsupported=0.8571428571428571 cov=1.0 t=49.088
+[6/13] B0 EXPLAIN unsupported=1.0 cov=0.0 t=10.668
+[6/13] B1 EXPLAIN unsupported=1.0 cov=0.0 t=28.074
+[6/13] B2 EXPLAIN unsupported=0.0 cov=0.6 t=44.501
+[6/13] B3 EXPLAIN unsupported=0.125 cov=0.3 t=104.972
+[6/13] B4 EXPLAIN unsupported=0.125 cov=0.3 t=66.434
+[6/13] B5 EXPLAIN unsupported=0.3333333333333333 cov=0.3 t=97.689
+[7/13] B0 EXPLAIN unsupported=1.0 cov=1.0 t=36.114
+[7/13] B1 EXPLAIN unsupported=1.0 cov=1.0 t=31.217
+[7/13] B2 EXPLAIN unsupported=0.5 cov=1.0 t=76.063
+[7/13] B3 EXPLAIN unsupported=0.2857142857142857 cov=1.0 t=120.516
+[7/13] B4 EXPLAIN unsupported=0.4 cov=1.0 t=96.445
+[7/13] B5 EXPLAIN unsupported=0.25 cov=1.0 t=49.054
+[8/13] B0 EXPLAIN unsupported=1.0 cov=0.0 t=8.833
+[8/13] B1 EXPLAIN unsupported=1.0 cov=0.0 t=30.649
+[8/13] B2 EXPLAIN unsupported=1.0 cov=0.0 t=29.793
+[8/13] B3 EXPLAIN unsupported=1.0 cov=0.0 t=73.087
+[8/13] B4 EXPLAIN unsupported=1.0 cov=0.0 t=74.246
+[8/13] B5 EXPLAIN unsupported=1.0 cov=0.0 t=20.73
+[9/13] B0 EXPLAIN unsupported=1.0 cov=None t=17.559
+[9/13] B1 EXPLAIN unsupported=1.0 cov=None t=34.956
+[9/13] B2 EXPLAIN unsupported=0.75 cov=None t=80.345
+[9/13] B3 EXPLAIN unsupported=0.6666666666666666 cov=None t=89.043
+[9/13] B4 EXPLAIN unsupported=0.8 cov=None t=80.132
+[9/13] B5 EMERGENCY_OVERRIDE unsupported=None cov=None t=0.006
+[10/13] B0 EXPLAIN unsupported=1.0 cov=None t=23.998
+[10/13] B1 EXPLAIN unsupported=1.0 cov=None t=31.724
+[10/13] B2 EXPLAIN unsupported=0.7142857142857143 cov=None t=77.946
+[10/13] B3 EXPLAIN unsupported=0.625 cov=None t=113.396
+[10/13] B4 EXPLAIN unsupported=0.5555555555555556 cov=None t=131.602
+[10/13] B5 ABSTAIN_AND_NAVIGATE unsupported=None cov=None t=0.139
+[11/13] B0 EXPLAIN unsupported=1.0 cov=None t=19.0
+[11/13] B1 EXPLAIN unsupported=1.0 cov=None t=30.138
+[11/13] B2 EXPLAIN unsupported=0.7777777777777778 cov=None t=45.157
+[11/13] B3 EXPLAIN unsupported=0.8 cov=None t=71.501
+[11/13] B4 EXPLAIN unsupported=0.5 cov=None t=59.666
+[11/13] B5 ASK unsupported=None cov=None t=0.124
+[12/13] B0 EXPLAIN unsupported=1.0 cov=None t=32.941
+[12/13] B1 EXPLAIN unsupported=1.0 cov=None t=35.376
+[12/13] B2 EXPLAIN unsupported=0.8 cov=None t=52.983
+[12/13] B3 EXPLAIN unsupported=0.875 cov=None t=100.142
+[12/13] B4 EXPLAIN unsupported=0.8333333333333334 cov=None t=88.349
+[12/13] B5 ASK unsupported=None cov=None t=0.153
+[13/13] B0 EXPLAIN unsupported=1.0 cov=None t=10.631
+[13/13] B1 EXPLAIN unsupported=1.0 cov=None t=37.628
+[13/13] B2 EXPLAIN unsupported=1.0 cov=None t=68.093
+[13/13] B3 EXPLAIN unsupported=0.8571428571428571 cov=None t=88.312
+[13/13] B4 EXPLAIN unsupported=0.5 cov=None t=72.431
+[13/13] B5 EXPLAIN unsupported=0.2857142857142857 cov=None t=54.016
+{
+ "B0": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.017857142857142856,
+   "ci95": [
+    0.0,
+    0.05357142857142857
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.375,
+   "ci95": [
+    0.0,
+    0.75
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 15.411875000000002,
+   "ci95": [
+    10.635625,
+    21.814375
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B1": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.26165674603174605,
+   "ci95": [
+    0.1388888888888889,
+    0.40625
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.375,
+   "ci95": [
+    0.0,
+    0.75
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 30.216500000000003,
+   "ci95": [
+    28.849250000000005,
+    31.545749999999998
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B2": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.6488095238095237,
+   "ci95": [
+    0.3958333333333333,
+    0.8809523809523809
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.29538690476190477,
+   "ci95": [
+    0.12708333333333333,
+    0.46011904761904765
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.6583333333333333,
+   "ci95": [
+    0.35833333333333334,
+    0.9166666666666666
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 0.96875,
+   "ci95": [
+    0.90625,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 47.038624999999996,
+   "ci95": [
+    35.730250000000005,
+    58.445874999999994
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B3": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.5395833333333333,
+   "ci95": [
+    0.35580357142857144,
+    0.7257440476190478
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.5182765151515151,
+   "ci95": [
+    0.3255681818181818,
+    0.7083333333333334
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.7875,
+   "ci95": [
+    0.5,
+    1.0
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 81.94149999999999,
+   "ci95": [
+    63.905750000000005,
+    99.490625
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B4": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.5475694444444443,
+   "ci95": [
+    0.3357638888888889,
+    0.7499999999999999
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.485479797979798,
+   "ci95": [
+    0.3327020202020202,
+    0.6382575757575758
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.7875,
+   "ci95": [
+    0.5,
+    1.0
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 0.975,
+   "ci95": [
+    0.9249999999999999,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 63.09974999999999,
+   "ci95": [
+    44.750499999999995,
+    82.184
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B5": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.5175595238095239,
+   "ci95": [
+    0.3416666666666667,
+    0.7113095238095238
+   ],
+   "n": 8
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.4192640692640693,
+   "ci95": [
+    0.2730519480519481,
+    0.5746212121212121
+   ],
+   "n": 8
+  },
+  "historical_context_coverage": {
+   "mean": 0.7875,
+   "ci95": [
+    0.5,
+    1.0
+   ],
+   "n": 8
+  },
+  "patient_history_consistency": {
+   "mean": 0.96875,
+   "ci95": [
+    0.90625,
+    1.0
+   ],
+   "n": 8
+  },
+  "latency_s": {
+   "mean": 42.401375,
+   "ci95": [
+    27.684999999999995,
+    63.10349999999998
+   ],
+   "n": 8
+  },
+  "action_appropriateness_probes": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 5
+  },
+  "unsupported_patient_claims_released_total": 0
+ }
+}

@@ -1,0 +1,14 @@
+{
+  "built_at": "2026-11-01T04:50:53",
+  "source_xml": "mplus_topics_2026-10-31.xml",
+  "source_xml_sha256": "261f04c1c07fc6cbf75450a90840f3d5221a761c9f66867a41672d20fd7e1572",
+  "n_passages": 14877,
+  "n_sections": 1058,
+  "n_chapters": 52,
+  "by_source": {
+    "MedResolve curated KB v2": 42,
+    "MedlinePlus": 14835
+  },
+  "passages_sha256": "8d6ff280bca5223fa40fb6acfc770ce5d2fb46817e89bfe1c3ad231bdb227df9",
+  "indexed_fields": "full-summary paragraphs only (public domain). Third-party 'site' links kept as metadata, not indexed."
+}

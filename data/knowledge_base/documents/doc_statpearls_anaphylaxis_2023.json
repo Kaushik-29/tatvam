@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+  "title": "Anaphylaxis Assessment, Recognition, and Immediate Care",
+  "author_or_organization": "StatPearls Publishing / National Center for Biotechnology Information (NCBI Bookshelf)",
+  "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK441865/",
+  "publication_or_revision_date": "2023-01-29",
+  "date_uncertainty_note": "NCBI Bookshelf peer-reviewed clinical review; annual revision cycle verified.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Public Domain / Permitted Non-Commercial Educational Reuse (NCBI Bookshelf)",
+  "document_type": "Clinical Reference Review",
+  "version": "2023.1",
+  "passages": [
+    {
+      "passage_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023_P001",
+      "section_heading": "1. Clinical Definition and Diagnostic Criteria",
+      "text": "Anaphylaxis is an acute, life-threatening multi-system allergic reaction. Diagnostic criteria are met when there is acute onset (minutes to several hours) of symptoms involving the skin, mucosal tissue, or both (e.g., generalized hives, pruritus or flushing, swollen lips/tongue/uvula) PLUS at least one of the following: (a) respiratory compromise (dyspnea, wheeze, bronchospasm, stridor, hypoxemia), or (b) reduced blood pressure or associated symptoms of end-organ dysfunction (hypotonia, syncope, incontinence)."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+      "section_heading": "2. Upper Airway and Respiratory Compromise",
+      "text": "Laryngeal edema manifesting as throat tightness, difficulty speaking, hoarseness, or inspiratory stridor represents a critical airway emergency. Bronchospasm causing expiratory wheezing and chest tightness reflects lower airway involvement. Rapid progression can lead to total asphyxiation within minutes without prompt intervention."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023_P003",
+      "section_heading": "3. Distinction from Benign Isolated Urticaria",
+      "text": "Isolated acute urticaria (hives) presenting with localized or generalized pruritic wheals without airway symptoms, without dyspnea, and with normal blood pressure does NOT constitute anaphylaxis. While uncomfortable, isolated urticaria is not an immediate life threat unless accompanied by respiratory or cardiovascular signs. Careful clinical observation is essential to ensure progression to systemic anaphylaxis does not occur."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+      "section_heading": "4. Emergency Management Priorities",
+      "text": "Intramuscular epinephrine (1 mg/mL, dose 0.3-0.5 mg in adults) injected into the mid-anterolateral thigh is the first-line medication of choice for anaphylaxis and must be administered immediately upon diagnosis. Second-line agents including H1-antihistamines and corticosteroids relieve cutaneous symptoms but do not reverse airway obstruction or vascular collapse, and must never delay epinephrine."
+    }
+  ]
+}

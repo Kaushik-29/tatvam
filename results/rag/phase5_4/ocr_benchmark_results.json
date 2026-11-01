@@ -1,0 +1,183 @@
+{
+  "benchmark_metadata": {
+    "phase": "5.4",
+    "title": "CPU-Compatible Real OCR & Direct Text Extraction Benchmark",
+    "timestamp": "2026-10-31T11:16:30Z",
+    "environment": "Local Workstation CPU Execution (No GPU)",
+    "python_version": "3.11",
+    "ocr_engine": "RapidOCR 1.4.4 (ONNX Runtime CPU)",
+    "pdf_engine": "PyMuPDF (fitz) 1.25+",
+    "disclaimer": "Academic research prototype evaluation on synthetic clinical documents. Not validated for clinical triage."
+  },
+  "summary_metrics": {
+    "total_documents_tested": 3,
+    "total_observations_structured": 9,
+    "mean_processing_latency_ms": 2704.94,
+    "provenance_preservation_rate": "100.0%",
+    "ambiguous_unit_prevention_rate": "100.0% (all inferred units flagged for manual confirmation)"
+  },
+  "benchmark_runs": [
+    {
+      "filename": "test_digital_lab.pdf",
+      "display_name": "Digital Lab Report (PDF)",
+      "document_type": "LABORATORY_REPORT",
+      "file_size_bytes": 1957,
+      "pages_processed": 1,
+      "extraction_method": "PyMuPDF (Direct Text)",
+      "latency_ms": 15.91,
+      "total_observations_extracted": 4,
+      "unconfirmed_count": 0,
+      "unit_provenance_breakdown": {
+        "EXPLICIT": 4
+      },
+      "extracted_concepts": [
+        "E_HEMOGLOBIN",
+        "E_BLOOD_GLUCOSE_FASTING",
+        "E_D_DIMER",
+        "E_VITALS_BP"
+      ],
+      "sample_extractions": [
+        {
+          "concept": "E_HEMOGLOBIN",
+          "concept_name_en": "Hemoglobin (blood test)",
+          "raw_text": "Hemoglobin: 14.2 g/dL (Ref: 12.0 - 16.0 g/dL)",
+          "normalized_value": "14.2",
+          "unit": "g/dL",
+          "unit_status": "EXPLICIT",
+          "confidence": 1.0,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        },
+        {
+          "concept": "E_BLOOD_GLUCOSE_FASTING",
+          "concept_name_en": "Fasting Blood Sugar",
+          "raw_text": "Fasting Blood Sugar: 112 mg/dL (Ref: 70 - 100 mg/dL)",
+          "normalized_value": "112",
+          "unit": "mg/dL",
+          "unit_status": "EXPLICIT",
+          "confidence": 1.0,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        },
+        {
+          "concept": "E_D_DIMER",
+          "concept_name_en": "D-dimer (plasma)",
+          "raw_text": "D-dimer: 0.35 mcg/mL (Ref: < 0.50 mcg/mL)",
+          "normalized_value": "0.35",
+          "unit": "mcg/mL",
+          "unit_status": "EXPLICIT",
+          "confidence": 1.0,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        },
+        {
+          "concept": "E_VITALS_BP",
+          "concept_name_en": "Blood Pressure",
+          "raw_text": "Blood Pressure: 124/82 mmHg",
+          "normalized_value": "124/82",
+          "unit": "mmHg",
+          "unit_status": "EXPLICIT",
+          "confidence": 1.0,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        }
+      ]
+    },
+    {
+      "filename": "test_scanned_prescription.png",
+      "display_name": "Scanned Prescription (PNG)",
+      "document_type": "PRIOR_PRESCRIPTION",
+      "file_size_bytes": 8237,
+      "pages_processed": 1,
+      "extraction_method": "RapidOCR (ONNX)",
+      "latency_ms": 4618.01,
+      "total_observations_extracted": 3,
+      "unconfirmed_count": 0,
+      "unit_provenance_breakdown": {
+        "EXPLICIT": 3
+      },
+      "extracted_concepts": [
+        "E_RX_OMEPRAZOLE",
+        "E_RX_AMLODIPINE",
+        "E_VITALS_HR"
+      ],
+      "sample_extractions": [
+        {
+          "concept": "E_RX_OMEPRAZOLE",
+          "concept_name_en": "Omeprazole oral prescription",
+          "raw_text": "Rxc Omeprazole 20mg once daily before breakfast",
+          "normalized_value": "20",
+          "unit": "mg",
+          "unit_status": "EXPLICIT",
+          "confidence": 0.995,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        },
+        {
+          "concept": "E_RX_AMLODIPINE",
+          "concept_name_en": "Amlodipine oral prescription",
+          "raw_text": "Rx: Amlodipine 5mg oral daily",
+          "normalized_value": "5",
+          "unit": "mg",
+          "unit_status": "EXPLICIT",
+          "confidence": 0.96,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        },
+        {
+          "concept": "E_VITALS_HR",
+          "concept_name_en": "Heart Rate / Pulse",
+          "raw_text": "Pulse Rate: 76 bpm",
+          "normalized_value": "76",
+          "unit": "bpm",
+          "unit_status": "EXPLICIT",
+          "confidence": 0.978,
+          "requires_confirmation": false,
+          "confirmation_reason": null
+        }
+      ]
+    },
+    {
+      "filename": "test_missing_unit.png",
+      "display_name": "Vitals With Ambiguous/Missing Units (PNG)",
+      "document_type": "MEDICAL_REPORT",
+      "file_size_bytes": 4433,
+      "pages_processed": 1,
+      "extraction_method": "RapidOCR (ONNX)",
+      "latency_ms": 3480.91,
+      "total_observations_extracted": 2,
+      "unconfirmed_count": 2,
+      "unit_provenance_breakdown": {
+        "INFERRED": 2
+      },
+      "extracted_concepts": [
+        "E_VITALS_TEMP",
+        "E_VITALS_SPO2"
+      ],
+      "sample_extractions": [
+        {
+          "concept": "E_VITALS_TEMP",
+          "concept_name_en": "Core Body Temperature",
+          "raw_text": "Body Temp 104.8",
+          "normalized_value": "104.8",
+          "unit": "degF",
+          "unit_status": "INFERRED",
+          "confidence": 0.961,
+          "requires_confirmation": true,
+          "confirmation_reason": "Temperature unit missing; inferred degF from physiological range [90, 115]; Hyperpyrexia critical value requires verification"
+        },
+        {
+          "concept": "E_VITALS_SPO2",
+          "concept_name_en": "Pulse Oximetry (SpO2)",
+          "raw_text": "Pulse Oximetry. 88",
+          "normalized_value": "88",
+          "unit": "%",
+          "unit_status": "INFERRED",
+          "confidence": 0.981,
+          "requires_confirmation": true,
+          "confirmation_reason": "SpO2 unit missing; inferred % from physiological range [40, 100]; Severe hypoxemia reading requires clinical review"
+        }
+      ]
+    }
+  ]
+}

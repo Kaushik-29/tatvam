@@ -1,0 +1,135 @@
+{
+  "source_dir": "data\\datasets\\synthea\\raw\\generated_p600_seed20261101\\fhir",
+  "tag": "generated_p600_seed20261101",
+  "generated_at": "2026-11-01T05:22:13",
+  "patients_ingested": 671,
+  "records_total": 750156,
+  "duplicate_record_ids_skipped": 0,
+  "elapsed_seconds": 288.5,
+  "records_per_leaf": {
+    "allergy_history": 589,
+    "clinical_encounters/complaints": 72181,
+    "clinical_encounters/consultations": 35459,
+    "clinical_encounters/previous_symptoms": 685,
+    "demographics": 671,
+    "laboratory_observations/assessments_and_surveys": 132289,
+    "laboratory_observations/historical_trends": 13336,
+    "laboratory_observations/laboratory_results": 172364,
+    "laboratory_observations/vital_signs": 83488,
+    "medical_documents/clinical_notes": 34817,
+    "medical_documents/diagnostic_reports": 34826,
+    "medical_documents/discharge_summaries": 642,
+    "medical_history/care_plans": 2150,
+    "medical_history/conditions": 6069,
+    "medical_history/diagnoses": 7216,
+    "medical_history/immunizations": 10053,
+    "medical_history/procedures": 96026,
+    "medical_history/social_history": 16174,
+    "medication_history/current_medications": 1598,
+    "medication_history/medication_changes": 5585,
+    "medication_history/previous_medications": 23938
+  },
+  "patients_with_any_record_per_leaf": {
+    "demographics": 671,
+    "medical_history/conditions": 671,
+    "medical_history/diagnoses": 663,
+    "medical_history/procedures": 671,
+    "medical_history/immunizations": 670,
+    "medical_history/care_plans": 612,
+    "medical_history/social_history": 671,
+    "medication_history/current_medications": 442,
+    "medication_history/previous_medications": 648,
+    "medication_history/medication_changes": 650,
+    "allergy_history": 107,
+    "clinical_encounters/previous_symptoms": 262,
+    "clinical_encounters/complaints": 664,
+    "clinical_encounters/consultations": 671,
+    "laboratory_observations/laboratory_results": 671,
+    "laboratory_observations/vital_signs": 671,
+    "laboratory_observations/historical_trends": 671,
+    "laboratory_observations/assessments_and_surveys": 587,
+    "medical_documents/prescriptions": 0,
+    "medical_documents/discharge_summaries": 269,
+    "medical_documents/diagnostic_reports": 671,
+    "medical_documents/clinical_notes": 671
+  },
+  "resource_counts": {
+    "AllergyIntolerance": 589,
+    "CarePlan": 2150,
+    "CareTeam": 2150,
+    "Claim": 60995,
+    "Condition": 21872,
+    "Device": 3423,
+    "DiagnosticReport": 67515,
+    "DocumentReference": 35459,
+    "Encounter": 35459,
+    "ExplanationOfBenefit": 60995,
+    "ImagingStudy": 2770,
+    "Immunization": 10053,
+    "Medication": 9948,
+    "MedicationAdministration": 9948,
+    "MedicationRequest": 25536,
+    "Observation": 280282,
+    "Patient": 671,
+    "Procedure": 96026,
+    "Provenance": 671,
+    "SupplyDelivery": 14959
+  },
+  "mapped_counts": {
+    "AllergyIntolerance": 589,
+    "CarePlan": 2150,
+    "Condition": 21872,
+    "DiagnosticReport": 32056,
+    "DocumentReference": 35459,
+    "Encounter": 35459,
+    "ImagingStudy": 2770,
+    "Immunization": 10053,
+    "MedicationRequest": 25536,
+    "Observation": 280282,
+    "Procedure": 96026
+  },
+  "unmapped_counts": {
+    "CareTeam": {
+      "count": 2150,
+      "reason": "care-team roster"
+    },
+    "Claim": {
+      "count": 60995,
+      "reason": "billing, not clinical evidence"
+    },
+    "Device": {
+      "count": 3423,
+      "reason": "device inventory (not in the requested hierarchy)"
+    },
+    "ExplanationOfBenefit": {
+      "count": 60995,
+      "reason": "billing, not clinical evidence"
+    },
+    "Medication": {
+      "count": 9948,
+      "reason": "referenced medication definition (display copied onto MedicationRequest)"
+    },
+    "MedicationAdministration": {
+      "count": 9948,
+      "reason": "in-clinic administrations (MedicationRequest is the prescribing record)"
+    },
+    "Provenance": {
+      "count": 671,
+      "reason": "bundle-level provenance (kept as source_document reference)"
+    },
+    "SupplyDelivery": {
+      "count": 14959,
+      "reason": "supply logistics"
+    }
+  },
+  "deduplication": {
+    "DiagnosticReport_note_duplicate_of_DocumentReference": 35459
+  },
+  "issues": {
+    "multiple_unit_strings_same_concept:erythrocyte [distwidth] in blood by automated count:%|fL": 55,
+    "multiple_unit_strings_same_concept:glomerular filtration rate [volume rate/area] in serum or plasma by creatinine-based formula (mdrd)/1.73 sq m:mL/min|mL/min/{1.73_m2}": 40,
+    "multiple_unit_strings_same_concept:ph of urine by test strip:[pH]|pH": 16,
+    "multiple_unit_strings_same_concept:specific gravity of urine by test strip:{SG}|{nominal}": 16,
+    "multiple_unit_strings_same_concept:troponin i.cardiac [mass/volume] in serum or plasma by high sensitivity method:ng/L|pg/mL": 2
+  }
+}

@@ -1,0 +1,450 @@
+{
+  "evaluation_scenario_file": "results\\actions\\eval_action_scenarios.json",
+  "total_evaluation_cases": 300,
+  "action_classes": [
+    "ASK",
+    "EXPLAIN",
+    "ABSTAIN_AND_NAVIGATE",
+    "EMERGENCY_OVERRIDE"
+  ],
+  "calibration_metrics": {
+    "num_evaluated_cases": 60,
+    "average_top1_confidence": 0.9682,
+    "top1_accuracy": 1.0,
+    "multi_class_brier_score": 0.0047,
+    "top1_expected_calibration_error_gap": 0.0318,
+    "calibration_interpretation": "Model probabilities show high empirical confidence on full evidence profiles, with a small ECE gap indicating good alignment between predicted scores and observed accuracy."
+  },
+  "policies": {
+    "B0_AlwaysExplain": {
+      "accuracy": 0.3667,
+      "macro_f1_all": 0.3468,
+      "macro_f1_ordinary": 0.129,
+      "false_explanation_rate_on_abstain": 1.0,
+      "false_explanation_count": 80,
+      "abstain_ground_truth_total": 80,
+      "emergency_metrics": {
+        "true_positives": 50,
+        "false_positives": 0,
+        "true_negatives": 250,
+        "false_negatives": 0,
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      },
+      "emergency_override_sensitivity": 1.0,
+      "abstention_rate": 0.0,
+      "explanation_coverage": 0.8333,
+      "per_action_metrics": {
+        "ASK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 110
+        },
+        "EXPLAIN": {
+          "precision": 0.24,
+          "recall": 1.0,
+          "f1_score": 0.3871,
+          "support": 60
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 80
+        },
+        "EMERGENCY_OVERRIDE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 50
+        }
+      },
+      "confusion_matrix": {
+        "ASK": {
+          "ASK": 0,
+          "EXPLAIN": 110,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EXPLAIN": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "ASK": 0,
+          "EXPLAIN": 80,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EMERGENCY_OVERRIDE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 50
+        }
+      },
+      "latency_ms": {
+        "mean": 0.226,
+        "p50": 0.221,
+        "p95": 0.382
+      },
+      "category_accuracy": {
+        "CLEAN_HIGH_CONFIDENCE": 1.0,
+        "AMBIGUOUS_NEED_QUESTION": 0.0,
+        "LOW_CONFIDENCE_EXTRACTION": 0.0,
+        "OPINION_DISAGREEMENT": 0.0,
+        "MATERIAL_CONFLICT_OR_NO_QUESTION": 0.0,
+        "EMERGENCY_RED_FLAG": 1.0
+      }
+    },
+    "B1_ConflictOnly": {
+      "accuracy": 0.5567,
+      "macro_f1_all": 0.5502,
+      "macro_f1_ordinary": 0.4003,
+      "false_explanation_rate_on_abstain": 0.2875,
+      "false_explanation_count": 23,
+      "abstain_ground_truth_total": 80,
+      "emergency_metrics": {
+        "true_positives": 50,
+        "false_positives": 0,
+        "true_negatives": 250,
+        "false_negatives": 0,
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      },
+      "emergency_override_sensitivity": 1.0,
+      "abstention_rate": 0.3567,
+      "explanation_coverage": 0.4767,
+      "per_action_metrics": {
+        "ASK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 110
+        },
+        "EXPLAIN": {
+          "precision": 0.4196,
+          "recall": 1.0,
+          "f1_score": 0.5911,
+          "support": 60
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "precision": 0.5327,
+          "recall": 0.7125,
+          "f1_score": 0.6096,
+          "support": 80
+        },
+        "EMERGENCY_OVERRIDE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 50
+        }
+      },
+      "confusion_matrix": {
+        "ASK": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 50,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EXPLAIN": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "ASK": 0,
+          "EXPLAIN": 23,
+          "ABSTAIN_AND_NAVIGATE": 57,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EMERGENCY_OVERRIDE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 50
+        }
+      },
+      "latency_ms": {
+        "mean": 0.384,
+        "p50": 0.352,
+        "p95": 0.714
+      },
+      "category_accuracy": {
+        "CLEAN_HIGH_CONFIDENCE": 1.0,
+        "AMBIGUOUS_NEED_QUESTION": 0.0,
+        "LOW_CONFIDENCE_EXTRACTION": 0.0,
+        "OPINION_DISAGREEMENT": 1.0,
+        "MATERIAL_CONFLICT_OR_NO_QUESTION": 0.425,
+        "EMERGENCY_RED_FLAG": 1.0
+      }
+    },
+    "B2_SelectiveActionPolicy": {
+      "accuracy": 1.0,
+      "macro_f1_all": 1.0,
+      "macro_f1_ordinary": 1.0,
+      "false_explanation_rate_on_abstain": 0.0,
+      "false_explanation_count": 0,
+      "abstain_ground_truth_total": 80,
+      "emergency_metrics": {
+        "true_positives": 50,
+        "false_positives": 0,
+        "true_negatives": 250,
+        "false_negatives": 0,
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      },
+      "emergency_override_sensitivity": 1.0,
+      "abstention_rate": 0.2667,
+      "explanation_coverage": 0.2,
+      "per_action_metrics": {
+        "ASK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 110
+        },
+        "EXPLAIN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 60
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 80
+        },
+        "EMERGENCY_OVERRIDE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 50
+        }
+      },
+      "confusion_matrix": {
+        "ASK": {
+          "ASK": 110,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EXPLAIN": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 80,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EMERGENCY_OVERRIDE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 50
+        }
+      },
+      "latency_ms": {
+        "mean": 0.441,
+        "p50": 0.433,
+        "p95": 0.716
+      },
+      "category_accuracy": {
+        "CLEAN_HIGH_CONFIDENCE": 1.0,
+        "AMBIGUOUS_NEED_QUESTION": 1.0,
+        "LOW_CONFIDENCE_EXTRACTION": 1.0,
+        "OPINION_DISAGREEMENT": 1.0,
+        "MATERIAL_CONFLICT_OR_NO_QUESTION": 1.0,
+        "EMERGENCY_RED_FLAG": 1.0
+      }
+    },
+    "B2_Ablation_NoExtractionUncertainty": {
+      "accuracy": 0.84,
+      "macro_f1_all": 0.8588,
+      "macro_f1_ordinary": 0.8117,
+      "false_explanation_rate_on_abstain": 0.0,
+      "false_explanation_count": 0,
+      "abstain_ground_truth_total": 80,
+      "emergency_metrics": {
+        "true_positives": 50,
+        "false_positives": 0,
+        "true_negatives": 250,
+        "false_negatives": 0,
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      },
+      "emergency_override_sensitivity": 1.0,
+      "abstention_rate": 0.2667,
+      "explanation_coverage": 0.36,
+      "per_action_metrics": {
+        "ASK": {
+          "precision": 1.0,
+          "recall": 0.5636,
+          "f1_score": 0.7209,
+          "support": 110
+        },
+        "EXPLAIN": {
+          "precision": 0.5556,
+          "recall": 1.0,
+          "f1_score": 0.7143,
+          "support": 60
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 80
+        },
+        "EMERGENCY_OVERRIDE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 50
+        }
+      },
+      "confusion_matrix": {
+        "ASK": {
+          "ASK": 62,
+          "EXPLAIN": 48,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EXPLAIN": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 80,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EMERGENCY_OVERRIDE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 50
+        }
+      },
+      "latency_ms": {
+        "mean": 0.344,
+        "p50": 0.296,
+        "p95": 0.587
+      },
+      "category_accuracy": {
+        "CLEAN_HIGH_CONFIDENCE": 1.0,
+        "AMBIGUOUS_NEED_QUESTION": 1.0,
+        "LOW_CONFIDENCE_EXTRACTION": 0.04,
+        "OPINION_DISAGREEMENT": 1.0,
+        "MATERIAL_CONFLICT_OR_NO_QUESTION": 1.0,
+        "EMERGENCY_RED_FLAG": 1.0
+      }
+    },
+    "B2_Ablation_NoPredictiveUncertainty": {
+      "accuracy": 0.7233,
+      "macro_f1_all": 0.7621,
+      "macro_f1_ordinary": 0.6827,
+      "false_explanation_rate_on_abstain": 0.2875,
+      "false_explanation_count": 23,
+      "abstain_ground_truth_total": 80,
+      "emergency_metrics": {
+        "true_positives": 50,
+        "false_positives": 0,
+        "true_negatives": 250,
+        "false_negatives": 0,
+        "sensitivity": 1.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      },
+      "emergency_override_sensitivity": 1.0,
+      "abstention_rate": 0.19,
+      "explanation_coverage": 0.4767,
+      "per_action_metrics": {
+        "ASK": {
+          "precision": 1.0,
+          "recall": 0.4545,
+          "f1_score": 0.625,
+          "support": 110
+        },
+        "EXPLAIN": {
+          "precision": 0.4196,
+          "recall": 1.0,
+          "f1_score": 0.5911,
+          "support": 60
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "precision": 1.0,
+          "recall": 0.7125,
+          "f1_score": 0.8321,
+          "support": 80
+        },
+        "EMERGENCY_OVERRIDE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 50
+        }
+      },
+      "confusion_matrix": {
+        "ASK": {
+          "ASK": 50,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EXPLAIN": {
+          "ASK": 0,
+          "EXPLAIN": 60,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "ABSTAIN_AND_NAVIGATE": {
+          "ASK": 0,
+          "EXPLAIN": 23,
+          "ABSTAIN_AND_NAVIGATE": 57,
+          "EMERGENCY_OVERRIDE": 0
+        },
+        "EMERGENCY_OVERRIDE": {
+          "ASK": 0,
+          "EXPLAIN": 0,
+          "ABSTAIN_AND_NAVIGATE": 0,
+          "EMERGENCY_OVERRIDE": 50
+        }
+      },
+      "latency_ms": {
+        "mean": 0.202,
+        "p50": 0.128,
+        "p95": 0.479
+      },
+      "category_accuracy": {
+        "CLEAN_HIGH_CONFIDENCE": 1.0,
+        "AMBIGUOUS_NEED_QUESTION": 0.0,
+        "LOW_CONFIDENCE_EXTRACTION": 1.0,
+        "OPINION_DISAGREEMENT": 1.0,
+        "MATERIAL_CONFLICT_OR_NO_QUESTION": 0.425,
+        "EMERGENCY_RED_FLAG": 1.0
+      }
+    }
+  }
+}

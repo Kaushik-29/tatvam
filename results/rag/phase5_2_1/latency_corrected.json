@@ -1,0 +1,1567 @@
+{
+  "metadata": {
+    "title": "MedResolve Phase 5.2.1 Corrected Latency Benchmark",
+    "timestamp": "2026-10-30T10:00:00Z",
+    "hardware": "Intel CPU (x86_64, Windows 11)",
+    "query_sample_count": 100,
+    "timing_boundary": "Uniform boundary: total_retrieval = embedding + bm25 + faiss + rrf + internal overhead",
+    "warmup_iterations": 3,
+    "caching_policy": "FAISS index and BM25 index resident in memory; BGE-M3 model weights resident in memory; zero query embedding cache (each query embedded live on CPU)",
+    "discrepancy_resolved": "In Phase 5.2, isolated micro-benchmarks were executed in separate loops under fluctuating CPU load, yielding 332.86 ms for embedding and 211.41 ms for hybrid retrieval. In this corrected benchmark, all measurements are collected synchronously within the exact same loop on the exact same 100 queries, guaranteeing total_retrieval >= embedding + bm25 + faiss + rrf."
+  },
+  "component_breakdown": {
+    "embedding_bge_m3": {
+      "sample_count": 100,
+      "mean_ms": 369.238,
+      "median_p50_ms": 360.274,
+      "p95_ms": 447.004,
+      "min_ms": 299.826,
+      "max_ms": 495.847,
+      "std_dev_ms": 42.654
+    },
+    "lexical_bm25": {
+      "sample_count": 100,
+      "mean_ms": 1.051,
+      "median_p50_ms": 1.031,
+      "p95_ms": 1.373,
+      "min_ms": 0.737,
+      "max_ms": 1.538,
+      "std_dev_ms": 0.168
+    },
+    "vector_search_faiss": {
+      "sample_count": 100,
+      "mean_ms": 0.167,
+      "median_p50_ms": 0.156,
+      "p95_ms": 0.282,
+      "min_ms": 0.135,
+      "max_ms": 0.31,
+      "std_dev_ms": 0.036
+    },
+    "rrf_fusion": {
+      "sample_count": 100,
+      "mean_ms": 0.036,
+      "median_p50_ms": 0.033,
+      "p95_ms": 0.051,
+      "min_ms": 0.025,
+      "max_ms": 0.116,
+      "std_dev_ms": 0.012
+    },
+    "total_end_to_end_retrieval": {
+      "sample_count": 100,
+      "mean_ms": 370.511,
+      "median_p50_ms": 361.592,
+      "p95_ms": 448.54,
+      "min_ms": 300.776,
+      "max_ms": 497.539,
+      "std_dev_ms": 42.737
+    }
+  },
+  "percentage_of_total_retrieval": {
+    "embedding_share": "99.66%",
+    "lexical_bm25_share": "0.28%",
+    "vector_search_faiss_share": "0.05%",
+    "rrf_fusion_share": "0.01%"
+  },
+  "per_query_records": [
+    {
+      "query_id": "DIR_01_GERD_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "What is the medical definition and primary pathophysiological mechanism of gastroesophageal reflux disease?",
+      "embedding_bge_m3_ms": 382.015,
+      "lexical_bm25_ms": 0.886,
+      "vector_search_faiss_ms": 0.3104,
+      "rrf_fusion_ms": 0.0512,
+      "total_retrieval_ms": 383.282,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P001",
+        "DOC_MOHFW_GERD_2019_P004",
+        "DOC_MOHFW_GERD_2019_P003"
+      ]
+    },
+    {
+      "query_id": "DIR_02_GERD_ALARM_FEATURES",
+      "category": "direct_medical",
+      "query_text": "Which gastrointestinal alarm features in dyspeptic patients require urgent upper endoscopy?",
+      "embedding_bge_m3_ms": 307.024,
+      "lexical_bm25_ms": 0.761,
+      "vector_search_faiss_ms": 0.1592,
+      "rrf_fusion_ms": 0.0329,
+      "total_retrieval_ms": 307.997,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P003",
+        "DOC_MOHFW_ACS_2020_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_03_GERD_FIRST_LINE_PHARMACOTHERAPY",
+      "category": "direct_medical",
+      "query_text": "What is the recommended initial empiric pharmacological therapy for uncomplicated gastroesophageal reflux?",
+      "embedding_bge_m3_ms": 348.966,
+      "lexical_bm25_ms": 0.926,
+      "vector_search_faiss_ms": 0.1588,
+      "rrf_fusion_ms": 0.0313,
+      "total_retrieval_ms": 350.101,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_MOHFW_DIABETES_2021_P004"
+      ]
+    },
+    {
+      "query_id": "DIR_04_ACS_SPECTRUM_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "What clinical entities constitute the diagnostic spectrum of Acute Coronary Syndrome (ACS)?",
+      "embedding_bge_m3_ms": 327.961,
+      "lexical_bm25_ms": 0.965,
+      "vector_search_faiss_ms": 0.1727,
+      "rrf_fusion_ms": 0.0781,
+      "total_retrieval_ms": 329.195,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_WHO_PANIC_2019_P003",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_05_ACS_ECG_TIMELINE",
+      "category": "direct_medical",
+      "query_text": "Within how many minutes must a 12-lead electrocardiogram be performed for suspected acute myocardial ischemia?",
+      "embedding_bge_m3_ms": 423.336,
+      "lexical_bm25_ms": 0.966,
+      "vector_search_faiss_ms": 0.1579,
+      "rrf_fusion_ms": 0.1164,
+      "total_retrieval_ms": 424.595,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P004",
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_DIABETES_2021_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_06_STABLE_ANGINA_FEATURES",
+      "category": "direct_medical",
+      "query_text": "What are the clinical characteristics of stable angina pectoris regarding exertion and duration?",
+      "embedding_bge_m3_ms": 321.531,
+      "lexical_bm25_ms": 0.887,
+      "vector_search_faiss_ms": 0.1486,
+      "rrf_fusion_ms": 0.0333,
+      "total_retrieval_ms": 322.621,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P003",
+        "DOC_WHO_ASTHMA_2021_P001",
+        "DOC_MOHFW_ACS_2020_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_07_BRONCHITIS_NATURAL_HISTORY",
+      "category": "direct_medical",
+      "query_text": "What is the typical duration and predominant microbiological cause of acute bronchitis in adults?",
+      "embedding_bge_m3_ms": 317.154,
+      "lexical_bm25_ms": 1.081,
+      "vector_search_faiss_ms": 0.1712,
+      "rrf_fusion_ms": 0.0324,
+      "total_retrieval_ms": 318.457,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_MOHFW_BRONCHITIS_2021_P004"
+      ]
+    },
+    {
+      "query_id": "DIR_08_BRONCHITIS_VITAL_SIGNS",
+      "category": "direct_medical",
+      "query_text": "What physical exam findings and vital sign parameters characterize uncomplicated acute bronchitis?",
+      "embedding_bge_m3_ms": 342.065,
+      "lexical_bm25_ms": 0.883,
+      "vector_search_faiss_ms": 0.1582,
+      "rrf_fusion_ms": 0.0343,
+      "total_retrieval_ms": 343.159,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_09_ANAPHYLAXIS_MULTI_SYSTEM_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "What diagnostic criteria define acute systemic anaphylaxis involving two or more organ systems?",
+      "embedding_bge_m3_ms": 346.804,
+      "lexical_bm25_ms": 0.893,
+      "vector_search_faiss_ms": 0.1529,
+      "rrf_fusion_ms": 0.1036,
+      "total_retrieval_ms": 347.973,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P001",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P003",
+        "DOC_MOHFW_HYPERTENSION_2020_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_10_ANAPHYLAXIS_EPINEPHRINE_DOSE",
+      "category": "direct_medical",
+      "query_text": "What is the correct dose and anatomical injection site for intramuscular epinephrine in adult anaphylaxis?",
+      "embedding_bge_m3_ms": 338.182,
+      "lexical_bm25_ms": 1.314,
+      "vector_search_faiss_ms": 0.1608,
+      "rrf_fusion_ms": 0.0377,
+      "total_retrieval_ms": 339.713,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_WHO_ASTHMA_2021_P005"
+      ]
+    },
+    {
+      "query_id": "DIR_11_SYNCOPE_PATHOPHYSIOLOGY",
+      "category": "direct_medical",
+      "query_text": "What autonomic mechanisms produce transient cerebral hypoperfusion in vasovagal syncope?",
+      "embedding_bge_m3_ms": 307.729,
+      "lexical_bm25_ms": 0.737,
+      "vector_search_faiss_ms": 0.1573,
+      "rrf_fusion_ms": 0.03,
+      "total_retrieval_ms": 308.672,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P001",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_STATPEARLS_SYNCOPE_2023_P003"
+      ]
+    },
+    {
+      "query_id": "DIR_12_SYNCOPE_PHYSICAL_COUNTERPRESSURE",
+      "category": "direct_medical",
+      "query_text": "Which physical isometric counter-pressure maneuvers are recommended when syncope prodrome begins?",
+      "embedding_bge_m3_ms": 348.193,
+      "lexical_bm25_ms": 0.865,
+      "vector_search_faiss_ms": 0.1733,
+      "rrf_fusion_ms": 0.0386,
+      "total_retrieval_ms": 349.29,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P004",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_STATPEARLS_SYNCOPE_2023_P003"
+      ]
+    },
+    {
+      "query_id": "DIR_13_PANIC_ATTACK_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "How is an acute panic attack defined in primary mental health care guidelines?",
+      "embedding_bge_m3_ms": 321.766,
+      "lexical_bm25_ms": 0.924,
+      "vector_search_faiss_ms": 0.1523,
+      "rrf_fusion_ms": 0.033,
+      "total_retrieval_ms": 322.894,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P003",
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_WHO_PANIC_2019_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_14_PANIC_MANAGEMENT_VERBAL",
+      "category": "direct_medical",
+      "query_text": "What non-pharmacological verbal de-escalation technique is recommended for acute hyperventilation attacks?",
+      "embedding_bge_m3_ms": 336.075,
+      "lexical_bm25_ms": 0.797,
+      "vector_search_faiss_ms": 0.154,
+      "rrf_fusion_ms": 0.0322,
+      "total_retrieval_ms": 337.078,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P004",
+        "DOC_WHO_PANIC_2019_P002",
+        "DOC_WHO_ASTHMA_2021_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_15_HYPERTENSION_DIAGNOSTIC_THRESHOLDS",
+      "category": "direct_medical",
+      "query_text": "What office blood pressure cutoffs define adult Stage 1 and Stage 2 systemic hypertension?",
+      "embedding_bge_m3_ms": 301.493,
+      "lexical_bm25_ms": 0.875,
+      "vector_search_faiss_ms": 0.1543,
+      "rrf_fusion_ms": 0.0304,
+      "total_retrieval_ms": 302.572,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P001",
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_16_HYPERTENSIVE_CRISIS_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "What numerical systolic and diastolic readings constitute a hypertensive emergency or crisis?",
+      "embedding_bge_m3_ms": 340.735,
+      "lexical_bm25_ms": 0.867,
+      "vector_search_faiss_ms": 0.1688,
+      "rrf_fusion_ms": 0.0352,
+      "total_retrieval_ms": 341.826,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_MOHFW_HYPERTENSION_2020_P001",
+        "DOC_MOHFW_ACS_2020_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_17_HYPERTENSION_FIRST_LINE_DRUGS",
+      "category": "direct_medical",
+      "query_text": "What are the four recognized first-line pharmacological classes for adult essential hypertension?",
+      "embedding_bge_m3_ms": 335.122,
+      "lexical_bm25_ms": 0.844,
+      "vector_search_faiss_ms": 0.1585,
+      "rrf_fusion_ms": 0.031,
+      "total_retrieval_ms": 336.175,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_18_DIABETES_DIAGNOSTIC_CRITERIA",
+      "category": "direct_medical",
+      "query_text": "What fasting plasma glucose and HbA1c levels establish a definitive diagnosis of diabetes mellitus?",
+      "embedding_bge_m3_ms": 335.236,
+      "lexical_bm25_ms": 0.925,
+      "vector_search_faiss_ms": 0.1546,
+      "rrf_fusion_ms": 0.0308,
+      "total_retrieval_ms": 336.365,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P001",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_19_HYPOGLYCEMIA_DEFINITION_AND_RULE_15",
+      "category": "direct_medical",
+      "query_text": "What glucose threshold defines acute hypoglycemia and what is the Rule of 15 treatment?",
+      "embedding_bge_m3_ms": 330.291,
+      "lexical_bm25_ms": 0.963,
+      "vector_search_faiss_ms": 0.2816,
+      "rrf_fusion_ms": 0.0456,
+      "total_retrieval_ms": 331.601,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P002",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_20_DIABETES_FIRST_LINE_DRUG",
+      "category": "direct_medical",
+      "query_text": "Which oral hypoglycemic agent is the preferred initial pharmacotherapy for type 2 diabetes?",
+      "embedding_bge_m3_ms": 333.995,
+      "lexical_bm25_ms": 0.874,
+      "vector_search_faiss_ms": 0.1652,
+      "rrf_fusion_ms": 0.0355,
+      "total_retrieval_ms": 335.09,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_21_ASTHMA_PATHOPHYSIOLOGY",
+      "category": "direct_medical",
+      "query_text": "What chronic inflammatory changes and physiological alterations characterize bronchial asthma?",
+      "embedding_bge_m3_ms": 344.739,
+      "lexical_bm25_ms": 0.787,
+      "vector_search_faiss_ms": 0.1569,
+      "rrf_fusion_ms": 0.0309,
+      "total_retrieval_ms": 345.733,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_WHO_ASTHMA_2021_P004",
+        "DOC_MOHFW_BRONCHITIS_2021_P002"
+      ]
+    },
+    {
+      "query_id": "DIR_22_ASTHMA_INHALER_TECHNIQUE",
+      "category": "direct_medical",
+      "query_text": "Why is the use of a spacer device recommended with pressurized metered-dose inhalers?",
+      "embedding_bge_m3_ms": 321.017,
+      "lexical_bm25_ms": 0.865,
+      "vector_search_faiss_ms": 0.1553,
+      "rrf_fusion_ms": 0.0329,
+      "total_retrieval_ms": 322.089,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P005",
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_WHO_ASTHMA_2021_P003"
+      ]
+    },
+    {
+      "query_id": "DIR_23_PNEUMONIA_DEFINITION",
+      "category": "direct_medical",
+      "query_text": "What clinical and radiological findings define community-acquired pneumonia in adults?",
+      "embedding_bge_m3_ms": 299.826,
+      "lexical_bm25_ms": 0.747,
+      "vector_search_faiss_ms": 0.1526,
+      "rrf_fusion_ms": 0.0316,
+      "total_retrieval_ms": 300.776,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P001",
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_MOHFW_PNEUMONIA_2022_P005"
+      ]
+    },
+    {
+      "query_id": "DIR_24_PNEUMONIA_CURB65_SCORE",
+      "category": "direct_medical",
+      "query_text": "What five clinical parameters are evaluated in the CURB-65 prognostic score for pneumonia?",
+      "embedding_bge_m3_ms": 340.741,
+      "lexical_bm25_ms": 0.895,
+      "vector_search_faiss_ms": 0.1537,
+      "rrf_fusion_ms": 0.032,
+      "total_retrieval_ms": 341.84,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P002",
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_PNEUMONIA_2022_P001"
+      ]
+    },
+    {
+      "query_id": "DIR_25_PNEUMONIA_OUTPATIENT_ANTIBIOTICS",
+      "category": "direct_medical",
+      "query_text": "What is the recommended first-line oral antibiotic regimen for healthy outpatients with mild community pneumonia?",
+      "embedding_bge_m3_ms": 364.618,
+      "lexical_bm25_ms": 1.203,
+      "vector_search_faiss_ms": 0.1536,
+      "rrf_fusion_ms": 0.0333,
+      "total_retrieval_ms": 366.026,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_MOHFW_BRONCHITIS_2021_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P005"
+      ]
+    },
+    {
+      "query_id": "SYM_01_HEARTBURN_POSTPRANDIAL",
+      "category": "symptom_based",
+      "query_text": "Patient complains of burning pain behind the breastbone that worsens after heavy meals and bending forward.",
+      "embedding_bge_m3_ms": 331.793,
+      "lexical_bm25_ms": 1.083,
+      "vector_search_faiss_ms": 0.1528,
+      "rrf_fusion_ms": 0.0326,
+      "total_retrieval_ms": 333.081,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P001",
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_MOHFW_GERD_2019_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_02_REGURGITATION_SOUR_TASTE",
+      "category": "symptom_based",
+      "query_text": "Patient experiences sour fluid rising into the throat with nocturnal cough while lying flat.",
+      "embedding_bge_m3_ms": 320.426,
+      "lexical_bm25_ms": 0.964,
+      "vector_search_faiss_ms": 0.1557,
+      "rrf_fusion_ms": 0.0335,
+      "total_retrieval_ms": 321.599,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P001",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+        "DOC_WHO_ASTHMA_2021_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_03_CRUSHING_CHEST_PAIN_ARM",
+      "category": "symptom_based",
+      "query_text": "58-year-old presenting with heavy pressure like an elephant sitting on chest radiating to the left arm and jaw.",
+      "embedding_bge_m3_ms": 410.213,
+      "lexical_bm25_ms": 1.148,
+      "vector_search_faiss_ms": 0.1561,
+      "rrf_fusion_ms": 0.0353,
+      "total_retrieval_ms": 411.572,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_04_CHEST_PAIN_WITH_COLD_SWEAT",
+      "category": "symptom_based",
+      "query_text": "Sudden chest tightness accompanied by profuse cold diaphoresis, shortness of breath, and feeling of impending doom.",
+      "embedding_bge_m3_ms": 405.835,
+      "lexical_bm25_ms": 1.067,
+      "vector_search_faiss_ms": 0.159,
+      "rrf_fusion_ms": 0.0329,
+      "total_retrieval_ms": 407.114,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P002",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_WHO_ASTHMA_2021_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_05_BURNING_CHEST_RELIEVED_ANTACIDS",
+      "category": "symptom_based",
+      "query_text": "Patient has epigastric burning that improves within minutes of taking liquid antacids and worsens with coffee.",
+      "embedding_bge_m3_ms": 337.884,
+      "lexical_bm25_ms": 1.194,
+      "vector_search_faiss_ms": 0.1836,
+      "rrf_fusion_ms": 0.0346,
+      "total_retrieval_ms": 339.315,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_MOHFW_ACS_2020_P003",
+        "DOC_MOHFW_ACS_2020_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_06_DRY_COUGH_AFTER_COLD",
+      "category": "symptom_based",
+      "query_text": "Persistent hacking dry cough lasting 12 days following a mild runny nose and sore throat, with clear lung sounds.",
+      "embedding_bge_m3_ms": 371.461,
+      "lexical_bm25_ms": 1.264,
+      "vector_search_faiss_ms": 0.1562,
+      "rrf_fusion_ms": 0.0336,
+      "total_retrieval_ms": 372.933,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_WHO_ASTHMA_2021_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_07_YELLOW_PHLEGM_NO_FEVER",
+      "category": "symptom_based",
+      "query_text": "Adult with acute cough producing yellowish-green mucus but temperature is 98.4 F and oxygen is 98%.",
+      "embedding_bge_m3_ms": 388.353,
+      "lexical_bm25_ms": 0.991,
+      "vector_search_faiss_ms": 0.1571,
+      "rrf_fusion_ms": 0.0354,
+      "total_retrieval_ms": 389.555,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_WHO_ASTHMA_2021_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_08_WHEEZING_AND_CHEST_TIGHTNESS_NIGHT",
+      "category": "symptom_based",
+      "query_text": "Young adult with recurrent episodes of nocturnal wheezing, chest tightness, and shortness of breath triggered by cold air.",
+      "embedding_bge_m3_ms": 364.734,
+      "lexical_bm25_ms": 1.176,
+      "vector_search_faiss_ms": 0.1536,
+      "rrf_fusion_ms": 0.0335,
+      "total_retrieval_ms": 366.117,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P001",
+        "DOC_MOHFW_ACS_2020_P002",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_09_SILENT_CHEST_SEVERE_ASTHMA",
+      "category": "symptom_based",
+      "query_text": "Asthmatic patient struggling to complete full sentences with drowsiness, cyanosis, and absent breath sounds on auscultation.",
+      "embedding_bge_m3_ms": 363.98,
+      "lexical_bm25_ms": 1.06,
+      "vector_search_faiss_ms": 0.1517,
+      "rrf_fusion_ms": 0.034,
+      "total_retrieval_ms": 365.243,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P002",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P003"
+      ]
+    },
+    {
+      "query_id": "SYM_10_HIGH_FEVER_RUSTY_SPUTUM_CRACKLES",
+      "category": "symptom_based",
+      "query_text": "Patient presents with shaking chills, temperature of 102.5 F, pleuritic right-sided chest pain, and localized wet crackles.",
+      "embedding_bge_m3_ms": 454.119,
+      "lexical_bm25_ms": 1.052,
+      "vector_search_faiss_ms": 0.1535,
+      "rrf_fusion_ms": 0.0311,
+      "total_retrieval_ms": 455.373,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P001",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_MOHFW_ACS_2020_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_11_ACUTE_HIVES_AND_STRIDOR",
+      "category": "symptom_based",
+      "query_text": "Patient ate peanuts and developed diffuse itchy red welts, facial swelling, hoarseness, and high-pitched inspiratory sound.",
+      "embedding_bge_m3_ms": 390.676,
+      "lexical_bm25_ms": 1.042,
+      "vector_search_faiss_ms": 0.1523,
+      "rrf_fusion_ms": 0.0324,
+      "total_retrieval_ms": 391.923,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P003",
+        "DOC_WHO_ASTHMA_2021_P005",
+        "DOC_MOHFW_GERD_2019_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_12_ISOLATED_ITCHY_SKIN_WELTS",
+      "category": "symptom_based",
+      "query_text": "Individual has localized erythematous raised itchy hives on arms and torso after handling detergent, breathing normally.",
+      "embedding_bge_m3_ms": 356.135,
+      "lexical_bm25_ms": 1.036,
+      "vector_search_faiss_ms": 0.3019,
+      "rrf_fusion_ms": 0.0479,
+      "total_retrieval_ms": 357.54,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P003",
+        "DOC_MOHFW_BRONCHITIS_2021_P004",
+        "DOC_WHO_PANIC_2019_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_13_LIGHTHEADEDNESS_WARM_ROOM_PRODROME",
+      "category": "symptom_based",
+      "query_text": "Student standing during assembly felt warm, nauseous, noticed vision going black and sweaty before fainting briefly.",
+      "embedding_bge_m3_ms": 355.451,
+      "lexical_bm25_ms": 1.028,
+      "vector_search_faiss_ms": 0.3104,
+      "rrf_fusion_ms": 0.0544,
+      "total_retrieval_ms": 356.864,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_STATPEARLS_SYNCOPE_2023_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_14_COLLAPSE_DURING_EXERTION",
+      "category": "symptom_based",
+      "query_text": "Athlete suddenly collapsed while running on track without any warning lightheadedness or nausea.",
+      "embedding_bge_m3_ms": 379.916,
+      "lexical_bm25_ms": 0.906,
+      "vector_search_faiss_ms": 0.153,
+      "rrf_fusion_ms": 0.0316,
+      "total_retrieval_ms": 381.025,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P004",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_MOHFW_ACS_2020_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_15_RAPID_BREATHING_TINGLING_HANDS",
+      "category": "symptom_based",
+      "query_text": "Patient breathing very fast during heated argument with numbness around lips and tingling in fingers.",
+      "embedding_bge_m3_ms": 320.056,
+      "lexical_bm25_ms": 0.987,
+      "vector_search_faiss_ms": 0.24,
+      "rrf_fusion_ms": 0.0356,
+      "total_retrieval_ms": 321.337,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P002",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+        "DOC_WHO_PANIC_2019_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_16_SUDDEN_TERROR_HEART_RACING",
+      "category": "symptom_based",
+      "query_text": "Sudden onset of pounding heartbeat, trembling, shaking, and intense fear of losing control or dying with clear lungs.",
+      "embedding_bge_m3_ms": 391.996,
+      "lexical_bm25_ms": 1.161,
+      "vector_search_faiss_ms": 0.1535,
+      "rrf_fusion_ms": 0.0351,
+      "total_retrieval_ms": 393.365,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_WHO_PANIC_2019_P002",
+        "DOC_STATPEARLS_SYNCOPE_2023_P003"
+      ]
+    },
+    {
+      "query_id": "SYM_17_SEVERE_HEADACHE_BLURRED_VISION_BP",
+      "category": "symptom_based",
+      "query_text": "Patient with known high blood pressure has occipital throbbing headache, blurred vision, and manual BP is 210/125 mmHg.",
+      "embedding_bge_m3_ms": 446.972,
+      "lexical_bm25_ms": 1.191,
+      "vector_search_faiss_ms": 0.2985,
+      "rrf_fusion_ms": 0.0507,
+      "total_retrieval_ms": 448.531,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_MOHFW_HYPERTENSION_2020_P001",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_18_ASYMPTOMATIC_ELEVATED_BP_CHECK",
+      "category": "symptom_based",
+      "query_text": "45-year-old attending routine clinic has blood pressure 148/92 mmHg without headache, chest pain, or visual changes.",
+      "embedding_bge_m3_ms": 377.206,
+      "lexical_bm25_ms": 1.33,
+      "vector_search_faiss_ms": 0.1563,
+      "rrf_fusion_ms": 0.0343,
+      "total_retrieval_ms": 378.746,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P001",
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_19_POLYURIA_POLYDIPSIA_WEIGHT_LOSS",
+      "category": "symptom_based",
+      "query_text": "Adult complaining of excessive thirst, frequent urination waking them four times per night, and unintended 4 kg weight loss.",
+      "embedding_bge_m3_ms": 349.967,
+      "lexical_bm25_ms": 1.181,
+      "vector_search_faiss_ms": 0.157,
+      "rrf_fusion_ms": 0.0315,
+      "total_retrieval_ms": 351.355,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_HYPERTENSION_2020_P003",
+        "DOC_MOHFW_GERD_2019_P004"
+      ]
+    },
+    {
+      "query_id": "SYM_20_SHAKY_SWEATY_CONFUSED_DIABETIC",
+      "category": "symptom_based",
+      "query_text": "Diabetic on glimepiride feels shaky, irritable, heart racing, and fingerstick capillary glucose shows 54 mg/dL.",
+      "embedding_bge_m3_ms": 436.93,
+      "lexical_bm25_ms": 1.078,
+      "vector_search_faiss_ms": 0.1552,
+      "rrf_fusion_ms": 0.0309,
+      "total_retrieval_ms": 438.212,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P002",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_21_DIFFICULTY_SWALLOWING_WEIGHT_LOSS",
+      "category": "symptom_based",
+      "query_text": "Elderly patient with 6-month history of progressive solid food sticking in lower esophagus and 8 kg weight loss.",
+      "embedding_bge_m3_ms": 374.8,
+      "lexical_bm25_ms": 1.132,
+      "vector_search_faiss_ms": 0.1551,
+      "rrf_fusion_ms": 0.034,
+      "total_retrieval_ms": 376.14,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_GERD_2019_P001"
+      ]
+    },
+    {
+      "query_id": "SYM_22_COUGH_WITH_BLOOD_STREAKS",
+      "category": "symptom_based",
+      "query_text": "Smoker with acute cough notices bright red blood flecks in expectorated sputum and resting breathlessness.",
+      "embedding_bge_m3_ms": 343.991,
+      "lexical_bm25_ms": 1.006,
+      "vector_search_faiss_ms": 0.1528,
+      "rrf_fusion_ms": 0.0335,
+      "total_retrieval_ms": 345.202,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_MOHFW_BRONCHITIS_2021_P003",
+        "DOC_WHO_ASTHMA_2021_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_23_CONFUSED_ELDERLY_RAPID_BREATHING",
+      "category": "symptom_based",
+      "query_text": "72-year-old with sudden new onset disorientation, respiratory rate 32/min, and blood pressure 86/54 mmHg.",
+      "embedding_bge_m3_ms": 389.805,
+      "lexical_bm25_ms": 1.051,
+      "vector_search_faiss_ms": 0.156,
+      "rrf_fusion_ms": 0.0331,
+      "total_retrieval_ms": 391.064,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_MOHFW_HYPERTENSION_2020_P001",
+        "DOC_WHO_ASTHMA_2021_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_24_THROAT_SWELLING_BEE_STING",
+      "category": "symptom_based",
+      "query_text": "Minutes after wasp sting, patient develops lip edema, difficulty swallowing saliva, and raspy breath sounds.",
+      "embedding_bge_m3_ms": 413.228,
+      "lexical_bm25_ms": 1.132,
+      "vector_search_faiss_ms": 0.1609,
+      "rrf_fusion_ms": 0.0325,
+      "total_retrieval_ms": 414.573,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_WHO_ASTHMA_2021_P002"
+      ]
+    },
+    {
+      "query_id": "SYM_25_REPEATED_FAINTING_IN_LINE",
+      "category": "symptom_based",
+      "query_text": "Young woman faints recurrently whenever standing motionless in hot crowded stores, recovering completely upon lying down.",
+      "embedding_bge_m3_ms": 338.987,
+      "lexical_bm25_ms": 1.075,
+      "vector_search_faiss_ms": 0.1558,
+      "rrf_fusion_ms": 0.0316,
+      "total_retrieval_ms": 340.268,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P003",
+        "DOC_STATPEARLS_SYNCOPE_2023_P004",
+        "DOC_STATPEARLS_SYNCOPE_2023_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_01_BRONCHITIS_VS_PNEUMONIA_DIFFERENTIATION",
+      "category": "multi_passage",
+      "query_text": "How do clinical signs, vital signs, and antibiotic requirements differentiate viral bronchitis from bacterial pneumonia?",
+      "embedding_bge_m3_ms": 338.251,
+      "lexical_bm25_ms": 0.972,
+      "vector_search_faiss_ms": 0.1517,
+      "rrf_fusion_ms": 0.0317,
+      "total_retrieval_ms": 339.426,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_02_CARDIAC_VS_REFLUX_CHEST_PAIN",
+      "category": "multi_passage",
+      "query_text": "What clinical features distinguish acid reflux chest burning from life-threatening acute coronary syndrome?",
+      "embedding_bge_m3_ms": 336.788,
+      "lexical_bm25_ms": 0.878,
+      "vector_search_faiss_ms": 0.1539,
+      "rrf_fusion_ms": 0.0294,
+      "total_retrieval_ms": 337.872,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_WHO_ASTHMA_2021_P002",
+        "DOC_MOHFW_GERD_2019_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_03_HYPERTENSION_LIFESTYLE_AND_PHARMACOTHERAPY",
+      "category": "multi_passage",
+      "query_text": "What comprehensive strategy combining dietary lifestyle adjustments and first-line medications manages adult hypertension?",
+      "embedding_bge_m3_ms": 384.182,
+      "lexical_bm25_ms": 0.887,
+      "vector_search_faiss_ms": 0.1576,
+      "rrf_fusion_ms": 0.0294,
+      "total_retrieval_ms": 385.275,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P003",
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_GERD_2019_P004"
+      ]
+    },
+    {
+      "query_id": "MUL_04_DIABETES_GLYCEMIC_TARGETS_AND_INITIAL_DRUG",
+      "category": "multi_passage",
+      "query_text": "What are the recommended HbA1c control targets and what is the first-line oral agent chosen for type 2 diabetes?",
+      "embedding_bge_m3_ms": 353.821,
+      "lexical_bm25_ms": 1.41,
+      "vector_search_faiss_ms": 0.1606,
+      "rrf_fusion_ms": 0.034,
+      "total_retrieval_ms": 355.445,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_MOHFW_DIABETES_2021_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_05_ANAPHYLAXIS_RECOGNITION_AND_FIRST_LINE_MANAGEMENT",
+      "category": "multi_passage",
+      "query_text": "What clinical criteria define anaphylaxis and what immediate intramuscular medication must be administered without delay?",
+      "embedding_bge_m3_ms": 336.446,
+      "lexical_bm25_ms": 1.03,
+      "vector_search_faiss_ms": 0.1568,
+      "rrf_fusion_ms": 0.0313,
+      "total_retrieval_ms": 337.684,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_MOHFW_ACS_2020_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P002"
+      ]
+    },
+    {
+      "query_id": "MUL_06_VASOVAGAL_PRODROME_AND_ABORTIVE_MANEUVERS",
+      "category": "multi_passage",
+      "query_text": "What warning symptoms herald a vasovagal faint and what physical isometric counter-pressure maneuvers prevent collapse?",
+      "embedding_bge_m3_ms": 382.662,
+      "lexical_bm25_ms": 1.026,
+      "vector_search_faiss_ms": 0.1648,
+      "rrf_fusion_ms": 0.035,
+      "total_retrieval_ms": 383.908,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P004",
+        "DOC_STATPEARLS_SYNCOPE_2023_P003",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002"
+      ]
+    },
+    {
+      "query_id": "MUL_07_ASTHMA_MAINTENANCE_VS_ACUTE_RED_FLAGS",
+      "category": "multi_passage",
+      "query_text": "What controller therapy is recommended for persistent asthma and what signs indicate an acute life-threatening attack?",
+      "embedding_bge_m3_ms": 384.613,
+      "lexical_bm25_ms": 1.046,
+      "vector_search_faiss_ms": 0.3024,
+      "rrf_fusion_ms": 0.0424,
+      "total_retrieval_ms": 386.024,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P003",
+        "DOC_WHO_ASTHMA_2021_P002",
+        "DOC_WHO_ASTHMA_2021_P004"
+      ]
+    },
+    {
+      "query_id": "MUL_08_PNEUMONIA_RISK_STRATIFICATION_AND_HOSPITAL_TRANSFER",
+      "category": "multi_passage",
+      "query_text": "How is 30-day mortality risk scored in adult pneumonia and what severe complications mandate emergency transfer?",
+      "embedding_bge_m3_ms": 326.476,
+      "lexical_bm25_ms": 1.08,
+      "vector_search_faiss_ms": 0.154,
+      "rrf_fusion_ms": 0.0327,
+      "total_retrieval_ms": 327.762,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P002",
+        "DOC_WHO_ASTHMA_2021_P002",
+        "DOC_MOHFW_PNEUMONIA_2022_P003"
+      ]
+    },
+    {
+      "query_id": "MUL_09_GERD_MANAGEMENT_AND_RED_FLAG_EXCLUSION",
+      "category": "multi_passage",
+      "query_text": "When can uncomplicated GERD be treated with lifestyle and PPIs, and which alarm features mandate immediate endoscopy?",
+      "embedding_bge_m3_ms": 354.487,
+      "lexical_bm25_ms": 1.081,
+      "vector_search_faiss_ms": 0.16,
+      "rrf_fusion_ms": 0.0329,
+      "total_retrieval_ms": 355.78,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_GERD_2019_P004",
+        "DOC_MOHFW_ACS_2020_P004"
+      ]
+    },
+    {
+      "query_id": "MUL_10_ACS_PAIN_FEATURES_AND_EMERGENCY_ECG_PROTOCOL",
+      "category": "multi_passage",
+      "query_text": "What radiating chest pain characteristics suggest acute myocardial ischemia and what diagnostic test is required within 10 minutes?",
+      "embedding_bge_m3_ms": 431.311,
+      "lexical_bm25_ms": 1.482,
+      "vector_search_faiss_ms": 0.1606,
+      "rrf_fusion_ms": 0.0349,
+      "total_retrieval_ms": 433.009,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_ACS_2020_P004",
+        "DOC_MOHFW_GERD_2019_P003"
+      ]
+    },
+    {
+      "query_id": "MUL_11_ACUTE_BRONCHITIS_SYMPTOMS_AND_HOSPITAL_INDICATIONS",
+      "category": "multi_passage",
+      "query_text": "What is the typical clinical course of uncomplicated acute bronchitis and what red flags warrant acute hospital admission?",
+      "embedding_bge_m3_ms": 360.357,
+      "lexical_bm25_ms": 1.171,
+      "vector_search_faiss_ms": 0.1541,
+      "rrf_fusion_ms": 0.0328,
+      "total_retrieval_ms": 361.734,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_12_PANIC_SYMPTOMS_AND_ORGANIC_EXCLUSION",
+      "category": "multi_passage",
+      "query_text": "What physiological symptoms occur during acute hyperventilation attacks and how are medical emergencies ruled out?",
+      "embedding_bge_m3_ms": 338.826,
+      "lexical_bm25_ms": 1.037,
+      "vector_search_faiss_ms": 0.1612,
+      "rrf_fusion_ms": 0.0315,
+      "total_retrieval_ms": 340.074,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_WHO_PANIC_2019_P002",
+        "DOC_STATPEARLS_SYNCOPE_2023_P003"
+      ]
+    },
+    {
+      "query_id": "MUL_13_ASTHMA_DIFFERENTIAL_DIAGNOSIS_VS_COPD",
+      "category": "multi_passage",
+      "query_text": "What epidemiological, clinical, and spirometric differences distinguish bronchial asthma from chronic obstructive pulmonary disease?",
+      "embedding_bge_m3_ms": 383.334,
+      "lexical_bm25_ms": 0.942,
+      "vector_search_faiss_ms": 0.1552,
+      "rrf_fusion_ms": 0.0335,
+      "total_retrieval_ms": 384.484,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P004",
+        "DOC_WHO_PANIC_2019_P003",
+        "DOC_WHO_ASTHMA_2021_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_14_DIABETIC_HYPOGLYCEMIA_RECOGNITION_AND_TREATMENT",
+      "category": "multi_passage",
+      "query_text": "What glucose level defines acute hypoglycemia in diabetic patients and what structured protocol reverses neuroglycopenia?",
+      "embedding_bge_m3_ms": 406.95,
+      "lexical_bm25_ms": 0.998,
+      "vector_search_faiss_ms": 0.1556,
+      "rrf_fusion_ms": 0.0314,
+      "total_retrieval_ms": 408.155,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P002",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P001"
+      ]
+    },
+    {
+      "query_id": "MUL_15_BENIGN_SYNCOPE_PRODROME_VS_CARDIAC_SYNCOPE",
+      "category": "multi_passage",
+      "query_text": "How does the autonomic prodrome of benign vasovagal fainting contrast with high-risk cardiogenic syncope red flags?",
+      "embedding_bge_m3_ms": 369.614,
+      "lexical_bm25_ms": 1.075,
+      "vector_search_faiss_ms": 0.1634,
+      "rrf_fusion_ms": 0.0294,
+      "total_retrieval_ms": 370.903,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P003",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_MOHFW_ACS_2020_P002"
+      ]
+    },
+    {
+      "query_id": "AMB_01_CHEST_BURNING_INDIGESTION_VS_INFARCTION",
+      "category": "ambiguous",
+      "query_text": "Middle-aged patient has severe burning in the upper abdomen and lower chest after dinner; how to tell if it is indigestion or heart attack?",
+      "embedding_bge_m3_ms": 417.962,
+      "lexical_bm25_ms": 1.538,
+      "vector_search_faiss_ms": 0.1638,
+      "rrf_fusion_ms": 0.0332,
+      "total_retrieval_ms": 419.718,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_GERD_2019_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_02_ACUTE_DYSPNEA_WHEEZING_OR_PANIC",
+      "category": "ambiguous",
+      "query_text": "24-year-old student presents with acute shortness of breath, chest tightness, and rapid breathing following an exam.",
+      "embedding_bge_m3_ms": 417.386,
+      "lexical_bm25_ms": 1.04,
+      "vector_search_faiss_ms": 0.1519,
+      "rrf_fusion_ms": 0.0291,
+      "total_retrieval_ms": 418.626,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P002",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002"
+      ]
+    },
+    {
+      "query_id": "AMB_03_FAINTING_AFTER_SUDDEN_CHEST_PRESSURE",
+      "category": "ambiguous",
+      "query_text": "60-year-old collapses after feeling heavy chest discomfort and dizziness; is this vasovagal or cardiac syncope?",
+      "embedding_bge_m3_ms": 417.401,
+      "lexical_bm25_ms": 1.03,
+      "vector_search_faiss_ms": 0.16,
+      "rrf_fusion_ms": 0.0327,
+      "total_retrieval_ms": 418.644,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P003",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_STATPEARLS_SYNCOPE_2023_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_04_COUGH_FEVER_BRONCHITIS_OR_PNEUMONIA",
+      "category": "ambiguous",
+      "query_text": "Adult with productive cough and mild fever for 4 days; what criteria distinguish acute bronchitis from pneumonia?",
+      "embedding_bge_m3_ms": 393.322,
+      "lexical_bm25_ms": 1.236,
+      "vector_search_faiss_ms": 0.1557,
+      "rrf_fusion_ms": 0.0316,
+      "total_retrieval_ms": 394.765,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P001",
+        "DOC_MOHFW_PNEUMONIA_2022_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_05_CHEST_TIGHTNESS_AND_FINGER_NUMBNESS",
+      "category": "ambiguous",
+      "query_text": "Young woman experiences sudden chest tightness, trembling, and tingling in both hands; could this be coronary or hyperventilation?",
+      "embedding_bge_m3_ms": 454.732,
+      "lexical_bm25_ms": 1.171,
+      "vector_search_faiss_ms": 0.1603,
+      "rrf_fusion_ms": 0.0347,
+      "total_retrieval_ms": 456.119,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P002",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_MOHFW_ACS_2020_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_06_HIVES_ALONE_VERSUS_FULL_ANAPHYLAXIS",
+      "category": "ambiguous",
+      "query_text": "Child broke out in widespread urticarial itchy welts after eating a cookie but is laughing and has normal respirations.",
+      "embedding_bge_m3_ms": 387.184,
+      "lexical_bm25_ms": 1.174,
+      "vector_search_faiss_ms": 0.1539,
+      "rrf_fusion_ms": 0.0361,
+      "total_retrieval_ms": 388.568,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P003",
+        "DOC_MOHFW_GERD_2019_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_07_EXERTIONAL_CHEST_PRESSURE_REST_RELIEF",
+      "category": "ambiguous",
+      "query_text": "Patient notes retrosternal tightness every time they climb two flights of stairs, which subsides within 5 minutes of resting.",
+      "embedding_bge_m3_ms": 383.146,
+      "lexical_bm25_ms": 1.324,
+      "vector_search_faiss_ms": 0.1611,
+      "rrf_fusion_ms": 0.0328,
+      "total_retrieval_ms": 384.684,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P003",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002",
+        "DOC_MOHFW_ACS_2020_P004"
+      ]
+    },
+    {
+      "query_id": "AMB_08_ACUTE_COUGH_AND_SORE_THROAT_IN_SMOKER",
+      "category": "ambiguous",
+      "query_text": "Chronic smoker develops worsened cough and green sputum over one week without fever; is this asthma, COPD, or acute bronchitis?",
+      "embedding_bge_m3_ms": 495.847,
+      "lexical_bm25_ms": 1.489,
+      "vector_search_faiss_ms": 0.1566,
+      "rrf_fusion_ms": 0.0285,
+      "total_retrieval_ms": 497.539,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P001",
+        "DOC_WHO_ASTHMA_2021_P004",
+        "DOC_MOHFW_BRONCHITIS_2021_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_09_DIZZINESS_UPON_STANDING_VS_SYNCOPE",
+      "category": "ambiguous",
+      "query_text": "Elderly patient on blood pressure medication feels lightheaded upon standing from bed; is this vasovagal or medication-induced hypotension?",
+      "embedding_bge_m3_ms": 422.805,
+      "lexical_bm25_ms": 1.191,
+      "vector_search_faiss_ms": 0.1614,
+      "rrf_fusion_ms": 0.0366,
+      "total_retrieval_ms": 424.214,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P001",
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P003"
+      ]
+    },
+    {
+      "query_id": "AMB_10_SWEATING_SHAKINESS_HUNGER_IN_DIABETIC",
+      "category": "ambiguous",
+      "query_text": "Diabetic feels sudden tremors, anxiety, and diaphoresis around lunch; is this an acute panic episode or hypoglycemia?",
+      "embedding_bge_m3_ms": 438.966,
+      "lexical_bm25_ms": 1.4,
+      "vector_search_faiss_ms": 0.1567,
+      "rrf_fusion_ms": 0.0316,
+      "total_retrieval_ms": 440.573,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P002",
+        "DOC_WHO_PANIC_2019_P001",
+        "DOC_WHO_PANIC_2019_P002"
+      ]
+    },
+    {
+      "query_id": "AMB_11_ACUTE_ASTHMA_VERSUS_PNEUMONIA_IN_ADULT",
+      "category": "ambiguous",
+      "query_text": "Adult with history of allergies presents with acute wheezing, cough, and low-grade temperature; is it asthma flare or pneumonia?",
+      "embedding_bge_m3_ms": 491.074,
+      "lexical_bm25_ms": 1.188,
+      "vector_search_faiss_ms": 0.1539,
+      "rrf_fusion_ms": 0.0327,
+      "total_retrieval_ms": 492.468,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P001",
+        "DOC_WHO_ASTHMA_2021_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_12_PERSISTENT_ACID_REFLEX_DESPITE_ANTACIDS",
+      "category": "ambiguous",
+      "query_text": "Patient with retrosternal burning taking over-the-counter antacids without improvement; could this represent atypical coronary ischemia?",
+      "embedding_bge_m3_ms": 419.105,
+      "lexical_bm25_ms": 0.992,
+      "vector_search_faiss_ms": 0.1549,
+      "rrf_fusion_ms": 0.0349,
+      "total_retrieval_ms": 420.306,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_GERD_2019_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_13_FAINTING_WHILE_SITTING_DOWN",
+      "category": "ambiguous",
+      "query_text": "Patient fainted while seated resting in a chair with no antecedent nausea; is this likely vasovagal or cardiogenic?",
+      "embedding_bge_m3_ms": 428.899,
+      "lexical_bm25_ms": 1.353,
+      "vector_search_faiss_ms": 0.1622,
+      "rrf_fusion_ms": 0.0377,
+      "total_retrieval_ms": 430.472,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_SYNCOPE_2023_P002",
+        "DOC_MOHFW_ACS_2020_P003",
+        "DOC_STATPEARLS_SYNCOPE_2023_P001"
+      ]
+    },
+    {
+      "query_id": "AMB_14_THROAT_TIGHTNESS_ANXIETY_OR_ALLERGIC_ANGIOEDEMA",
+      "category": "ambiguous",
+      "query_text": "Patient reports tight throat sensation and globus sensation following emotional distress; how to rule out allergic angioedema?",
+      "embedding_bge_m3_ms": 418.412,
+      "lexical_bm25_ms": 1.088,
+      "vector_search_faiss_ms": 0.1531,
+      "rrf_fusion_ms": 0.0319,
+      "total_retrieval_ms": 419.703,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P001",
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002"
+      ]
+    },
+    {
+      "query_id": "AMB_15_CHEST_PAIN_WITH_NORMAL_INITIAL_VITALS",
+      "category": "ambiguous",
+      "query_text": "Patient with normal heart rate and blood pressure complaining of persistent dull retrosternal heaviness; can ACS be excluded?",
+      "embedding_bge_m3_ms": 364.299,
+      "lexical_bm25_ms": 1.165,
+      "vector_search_faiss_ms": 0.1538,
+      "rrf_fusion_ms": 0.0309,
+      "total_retrieval_ms": 365.667,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_ACS_2020_P001",
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_WHO_ASTHMA_2021_P002"
+      ]
+    },
+    {
+      "query_id": "OOD_01_PEDIATRIC_APPENDECTOMY",
+      "category": "out_of_domain",
+      "query_text": "What laparoscopic surgical technique and trocar placement is indicated for acute pediatric appendicitis?",
+      "embedding_bge_m3_ms": 341.244,
+      "lexical_bm25_ms": 0.985,
+      "vector_search_faiss_ms": 0.1542,
+      "rrf_fusion_ms": 0.0306,
+      "total_retrieval_ms": 342.432,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P004"
+      ]
+    },
+    {
+      "query_id": "OOD_02_ALZHEIMER_DONEPEZIL",
+      "category": "out_of_domain",
+      "query_text": "What is the titration schedule for donepezil in moderate Alzheimer disease cognitive decline?",
+      "embedding_bge_m3_ms": 304.704,
+      "lexical_bm25_ms": 0.913,
+      "vector_search_faiss_ms": 0.1564,
+      "rrf_fusion_ms": 0.0335,
+      "total_retrieval_ms": 305.826,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P003"
+      ]
+    },
+    {
+      "query_id": "OOD_03_MALARIA_ARTEMISININ",
+      "category": "out_of_domain",
+      "query_text": "What is the weight-based dosing of artemether-lumefantrine for uncomplicated Plasmodium falciparum malaria?",
+      "embedding_bge_m3_ms": 447.617,
+      "lexical_bm25_ms": 0.894,
+      "vector_search_faiss_ms": 0.1535,
+      "rrf_fusion_ms": 0.0315,
+      "total_retrieval_ms": 448.714,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_HYPERTENSION_2020_P003",
+        "DOC_MOHFW_DIABETES_2021_P004"
+      ]
+    },
+    {
+      "query_id": "OOD_04_ROTAVIRUS_VACCINE_SCHEDULE",
+      "category": "out_of_domain",
+      "query_text": "At what infant ages should the live attenuated oral rotavirus vaccine doses be administered?",
+      "embedding_bge_m3_ms": 336.168,
+      "lexical_bm25_ms": 0.938,
+      "vector_search_faiss_ms": 0.155,
+      "rrf_fusion_ms": 0.032,
+      "total_retrieval_ms": 337.311,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_WHO_PANIC_2019_P004"
+      ]
+    },
+    {
+      "query_id": "OOD_05_ACUTE_PANCREATITIS_RANSON_CRITERIA",
+      "category": "out_of_domain",
+      "query_text": "What admission lab values comprise the Ranson prognostic criteria for acute gallstone pancreatitis?",
+      "embedding_bge_m3_ms": 326.837,
+      "lexical_bm25_ms": 0.916,
+      "vector_search_faiss_ms": 0.1526,
+      "rrf_fusion_ms": 0.0328,
+      "total_retrieval_ms": 327.959,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P002",
+        "DOC_MOHFW_DIABETES_2021_P001",
+        "DOC_MOHFW_HYPERTENSION_2020_P002"
+      ]
+    },
+    {
+      "query_id": "OOD_06_RHEUMATOID_ARTHRITIS_METHOTREXATE",
+      "category": "out_of_domain",
+      "query_text": "How is oral methotrexate dosed and monitored with folic acid co-prescription in rheumatoid arthritis?",
+      "embedding_bge_m3_ms": 404.537,
+      "lexical_bm25_ms": 0.987,
+      "vector_search_faiss_ms": 0.1578,
+      "rrf_fusion_ms": 0.034,
+      "total_retrieval_ms": 405.734,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_MOHFW_BRONCHITIS_2021_P004"
+      ]
+    },
+    {
+      "query_id": "OOD_07_BIPOLAR_LITHIUM_SERUM_LEVELS",
+      "category": "out_of_domain",
+      "query_text": "What is the target therapeutic serum concentration range for lithium carbonate in acute mania maintenance?",
+      "embedding_bge_m3_ms": 358.049,
+      "lexical_bm25_ms": 1.03,
+      "vector_search_faiss_ms": 0.1504,
+      "rrf_fusion_ms": 0.0302,
+      "total_retrieval_ms": 359.278,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_WHO_PANIC_2019_P004"
+      ]
+    },
+    {
+      "query_id": "OOD_08_NEONATAL_JAUNDICE_PHOTOTHERAPY",
+      "category": "out_of_domain",
+      "query_text": "What total serum bilirubin nomogram thresholds trigger intensive phototherapy in term neonates?",
+      "embedding_bge_m3_ms": 335.324,
+      "lexical_bm25_ms": 0.827,
+      "vector_search_faiss_ms": 0.1574,
+      "rrf_fusion_ms": 0.0361,
+      "total_retrieval_ms": 336.364,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P002",
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P002"
+      ]
+    },
+    {
+      "query_id": "OOD_09_COLORECTAL_CANCER_STAGING",
+      "category": "out_of_domain",
+      "query_text": "How does TNM staging determine adjuvant chemotherapy indications in Stage II vs Stage III colon adenocarcinoma?",
+      "embedding_bge_m3_ms": 360.191,
+      "lexical_bm25_ms": 1.053,
+      "vector_search_faiss_ms": 0.1545,
+      "rrf_fusion_ms": 0.0324,
+      "total_retrieval_ms": 361.45,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_GERD_2019_P003",
+        "DOC_MOHFW_ACS_2020_P001"
+      ]
+    },
+    {
+      "query_id": "OOD_10_RENAL_CALCULI_LITHOTRIPSY",
+      "category": "out_of_domain",
+      "query_text": "What size stone in the proximal ureter requires extracorporeal shock wave lithotripsy (ESWL)?",
+      "embedding_bge_m3_ms": 406.428,
+      "lexical_bm25_ms": 0.925,
+      "vector_search_faiss_ms": 0.1557,
+      "rrf_fusion_ms": 0.0368,
+      "total_retrieval_ms": 407.563,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_MOHFW_ACS_2020_P004"
+      ]
+    },
+    {
+      "query_id": "OUT_01_BRONCHITIS_ROUTINE_ANTIBIOTICS",
+      "category": "outdated_or_trap",
+      "query_text": "Should routine oral antibiotics like azithromycin be prescribed for uncomplicated acute bronchitis with green sputum?",
+      "embedding_bge_m3_ms": 358.741,
+      "lexical_bm25_ms": 1.033,
+      "vector_search_faiss_ms": 0.1582,
+      "rrf_fusion_ms": 0.0321,
+      "total_retrieval_ms": 359.983,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P005",
+        "DOC_MOHFW_BRONCHITIS_2021_P004",
+        "DOC_MOHFW_PNEUMONIA_2022_P004"
+      ]
+    },
+    {
+      "query_id": "OUT_02_ASTHMA_SABA_MONOTHERAPY_SAFETY",
+      "category": "outdated_or_trap",
+      "query_text": "Is it safe and guideline-adherent to treat persistent adult asthma with regular short-acting albuterol alone?",
+      "embedding_bge_m3_ms": 369.279,
+      "lexical_bm25_ms": 0.994,
+      "vector_search_faiss_ms": 0.2482,
+      "rrf_fusion_ms": 0.0321,
+      "total_retrieval_ms": 370.57,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P003",
+        "DOC_MOHFW_BRONCHITIS_2021_P004",
+        "DOC_WHO_ASTHMA_2021_P004"
+      ]
+    },
+    {
+      "query_id": "OUT_03_HYPERVENTILATION_PAPER_BAG_REBREATHING",
+      "category": "outdated_or_trap",
+      "query_text": "Should a patient hyperventilating from panic breathe into a brown paper bag to stop symptoms?",
+      "embedding_bge_m3_ms": 305.623,
+      "lexical_bm25_ms": 1.225,
+      "vector_search_faiss_ms": 0.1581,
+      "rrf_fusion_ms": 0.0354,
+      "total_retrieval_ms": 307.062,
+      "retrieved_top3_ids": [
+        "DOC_WHO_PANIC_2019_P004",
+        "DOC_WHO_PANIC_2019_P003",
+        "DOC_WHO_PANIC_2019_P002"
+      ]
+    },
+    {
+      "query_id": "OUT_04_ANAPHYLAXIS_ANTIHISTAMINES_BEFORE_EPINEPHRINE",
+      "category": "outdated_or_trap",
+      "query_text": "Can oral antihistamines or corticosteroids be given as primary first-line therapy before epinephrine in anaphylaxis?",
+      "embedding_bge_m3_ms": 436.289,
+      "lexical_bm25_ms": 0.993,
+      "vector_search_faiss_ms": 0.155,
+      "rrf_fusion_ms": 0.0313,
+      "total_retrieval_ms": 437.487,
+      "retrieved_top3_ids": [
+        "DOC_STATPEARLS_ANAPHYLAXIS_2023_P004",
+        "DOC_WHO_ASTHMA_2021_P003",
+        "DOC_MOHFW_HYPERTENSION_2020_P004"
+      ]
+    },
+    {
+      "query_id": "OUT_05_HIGH_BP_RAPID_SUBLINGUAL_NIFEDIPINE",
+      "category": "outdated_or_trap",
+      "query_text": "Should asymptomatic severe high blood pressure in the clinic be acutely brought down with sublingual nifedipine?",
+      "embedding_bge_m3_ms": 340.122,
+      "lexical_bm25_ms": 1.069,
+      "vector_search_faiss_ms": 0.1559,
+      "rrf_fusion_ms": 0.0344,
+      "total_retrieval_ms": 341.4,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P002",
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_DIABETES_2021_P004"
+      ]
+    },
+    {
+      "query_id": "CTX_01_PNEUMONIA_AGE_OVER_65_MORTALITY",
+      "category": "patient_contextual",
+      "query_text": "How does a patient's age of 70 years affect CURB-65 mortality risk score and hospitalization decision in pneumonia?",
+      "embedding_bge_m3_ms": 344.66,
+      "lexical_bm25_ms": 1.057,
+      "vector_search_faiss_ms": 0.1348,
+      "rrf_fusion_ms": 0.0311,
+      "total_retrieval_ms": 345.9,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P002",
+        "DOC_MOHFW_BRONCHITIS_2021_P002",
+        "DOC_MOHFW_PNEUMONIA_2022_P003"
+      ]
+    },
+    {
+      "query_id": "CTX_02_HYPERTENSION_WITH_CONCURRENT_DIABETES",
+      "category": "patient_contextual",
+      "query_text": "Which first-line antihypertensive drug classes are preferred when an adult hypertensive patient also has type 2 diabetes?",
+      "embedding_bge_m3_ms": 400.449,
+      "lexical_bm25_ms": 1.348,
+      "vector_search_faiss_ms": 0.1684,
+      "rrf_fusion_ms": 0.0367,
+      "total_retrieval_ms": 402.02,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_HYPERTENSION_2020_P004",
+        "DOC_MOHFW_DIABETES_2021_P004",
+        "DOC_MOHFW_DIABETES_2021_P003"
+      ]
+    },
+    {
+      "query_id": "CTX_03_DIABETIC_PATIENT_ON_SULFONYLUREA_HYPO",
+      "category": "patient_contextual",
+      "query_text": "What special precautions regarding acute hypoglycemia apply to type 2 diabetic patients taking sulfonylureas?",
+      "embedding_bge_m3_ms": 343.158,
+      "lexical_bm25_ms": 0.93,
+      "vector_search_faiss_ms": 0.1549,
+      "rrf_fusion_ms": 0.0328,
+      "total_retrieval_ms": 344.296,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_DIABETES_2021_P003",
+        "DOC_MOHFW_DIABETES_2021_P002",
+        "DOC_MOHFW_DIABETES_2021_P004"
+      ]
+    },
+    {
+      "query_id": "CTX_04_PNEUMONIA_PATIENT_WITH_STRUCTURAL_LUNG_DISEASE",
+      "category": "patient_contextual",
+      "query_text": "How do underlying cardiopulmonary comorbidities or structural lung diseases modify empiric outpatient pneumonia therapy?",
+      "embedding_bge_m3_ms": 368.728,
+      "lexical_bm25_ms": 1.004,
+      "vector_search_faiss_ms": 0.1399,
+      "rrf_fusion_ms": 0.027,
+      "total_retrieval_ms": 369.918,
+      "retrieved_top3_ids": [
+        "DOC_MOHFW_PNEUMONIA_2022_P004",
+        "DOC_WHO_PANIC_2019_P003",
+        "DOC_MOHFW_PNEUMONIA_2022_P001"
+      ]
+    },
+    {
+      "query_id": "CTX_05_ASTHMA_INHALER_POOR_COORDINATION",
+      "category": "patient_contextual",
+      "query_text": "What device adaptation is required when an elderly or frail asthmatic cannot coordinate MDI actuation with inhalation?",
+      "embedding_bge_m3_ms": 365.496,
+      "lexical_bm25_ms": 1.372,
+      "vector_search_faiss_ms": 0.1678,
+      "rrf_fusion_ms": 0.0255,
+      "total_retrieval_ms": 367.08,
+      "retrieved_top3_ids": [
+        "DOC_WHO_ASTHMA_2021_P005",
+        "DOC_WHO_PANIC_2019_P004",
+        "DOC_STATPEARLS_SYNCOPE_2023_P004"
+      ]
+    }
+  ]
+}

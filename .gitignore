@@ -1,0 +1,71 @@
+# ==========================================
+# MedResolve Data Protection & Git Ignore
+# ==========================================
+
+# 1. Medical Datasets & Patient Records (Strict Protection - Never commit patient data)
+data/raw/
+data/processed/
+!data/raw/ddxplus/README.md
+# MedResolve v2 longitudinal stack: raw datasets, patient DB, uploads, secrets, tools
+data/datasets/*/raw/
+data/datasets/mimic/
+data/datasets/medical_knowledge/processed/*.jsonl
+data/medresolve.db*
+data/.jwt_secret
+data/uploads/
+data/patient_retrieval/**/*.jsonl
+tools/
+medresolve_stair_bundle.zip
+frontend/dist/
+
+# 2. Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# 3. Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# 4. Trained Model Artifacts & Serialized Objects
+models/
+*.joblib
+*.pkl
+*.pickle
+*.h5
+*.onnx
+*.pt
+*.pth
+*.bin
+
+# 5. Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+
+# 6. IDE & OS specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 7. Heavy Experiment Outputs (Preserve lightweight summary reports)
+results/*.csv
+results/*.parquet
+results/checkpoints/

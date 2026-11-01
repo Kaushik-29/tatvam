@@ -1,0 +1,542 @@
+{
+  "benchmark_name": "MedResolve Phase 5.1 RAG Comparative Evaluation (100-Scenario Cohort)",
+  "cohort_size": 100,
+  "corpus_dir": "data/knowledge_base_v2",
+  "systems": {
+    "B0_Plain": {
+      "system_mode": "B0_Plain",
+      "overall_claim_support_rate": 0.0,
+      "unsupported_claim_rate": 1.0,
+      "general_medical_evidence_support_rate": 0.0,
+      "general_medical_unsupported_rate": 1.25,
+      "patient_ledger_consistency_rate": 0.79,
+      "overall_grounding_rate": 0.158,
+      "citation_correctness_rate": 1.0,
+      "total_citations_generated": 0,
+      "total_hallucinated_citations": 0,
+      "contradiction_detection": {
+        "recall": 0.0,
+        "precision": 1.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 15,
+        "tn": 30
+      },
+      "correct_abstention_on_out_of_domain": 0.0,
+      "emergency_override_trigger_rate": 0.0,
+      "unconfirmed_extraction_ask_rate": 0.0,
+      "material_conflict_abstention_rate": 0.0,
+      "latency_ms": {
+        "mean": 0.48,
+        "p50": 0.44,
+        "p95": 0.61,
+        "breakdown": {
+          "prompt_construction_mean_ms": 0.05,
+          "retrieval_mean_ms": 385.99,
+          "model_inference_mean_ms": 0.0,
+          "verification_mean_ms": 0.43
+        }
+      },
+      "sample_records": [
+        {
+          "scenario_id": "RAG_SC_CLEAN_01_GERD_POSTPRANDIAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Retrosternal burning sensation after meals (PATIENT_REPORTED)...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 2.0077000008313917
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_02_GERD_NOCTURNAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Acid regurgitation lying supine (PATIENT_REPORTED).\nPertinent...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.34109999978682026
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_03_GERD_ANTACID_RESPONSE",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Heartburn relieved by antacids (PATIENT_REPORTED).\nPertinent ...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.3887999992002733
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_04_ACS_CRUSHING_HEAVINESS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Substernal crushing chest pain radiating to arm (PATIENT_REPO...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.4276999970898032
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_05_ACS_JAW_RADIATION",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Squeezing chest pain with jaw radiation (PATIENT_REPORTED).\nP...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.45060000411467627
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_06_ACS_EXERTIONAL_CRESCENDO",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Crescendo chest pressure on walking (PATIENT_REPORTED).\nPerti...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.4350000017439015
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_07_BRONCHITIS_VIRAL_COUGH",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Cough for 12 days after upper respiratory infection (PATIENT_...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.60710000252584
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_08_BRONCHITIS_CLEAR_SPUTUM",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Cough with clear sputum for 14 days (PATIENT_REPORTED).\nPerti...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.43089999962830916
+        }
+      ]
+    },
+    "B1_RAG": {
+      "system_mode": "B1_RAG",
+      "overall_claim_support_rate": 0.4532,
+      "unsupported_claim_rate": 0.5468,
+      "general_medical_evidence_support_rate": 0.614,
+      "general_medical_unsupported_rate": 0.7352,
+      "patient_ledger_consistency_rate": 0.775,
+      "overall_grounding_rate": 0.6365,
+      "citation_correctness_rate": 0.9867,
+      "total_citations_generated": 174,
+      "total_hallucinated_citations": 4,
+      "contradiction_detection": {
+        "recall": 0.1333,
+        "precision": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 13,
+        "tn": 30
+      },
+      "correct_abstention_on_out_of_domain": 0.7,
+      "emergency_override_trigger_rate": 0.0,
+      "unconfirmed_extraction_ask_rate": 0.0,
+      "material_conflict_abstention_rate": 0.0,
+      "latency_ms": {
+        "mean": 1.66,
+        "p50": 1.61,
+        "p95": 2.22,
+        "breakdown": {
+          "prompt_construction_mean_ms": 0.08,
+          "retrieval_mean_ms": 381.51,
+          "model_inference_mean_ms": 0.0,
+          "verification_mean_ms": 1.58
+        }
+      },
+      "sample_records": [
+        {
+          "scenario_id": "RAG_SC_CLEAN_01_GERD_POSTPRANDIAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal burning sensati...",
+          "claims_count": 6,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 1.9218000015825965
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_02_GERD_NOCTURNAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Acid regurgitation lying sup...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.608000005944632
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_03_GERD_ANTACID_RESPONSE",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Heartburn relieved by antaci...",
+          "claims_count": 6,
+          "supported_claims": 2,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6145999979926273
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_04_ACS_CRUSHING_HEAVINESS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Substernal crushing chest pa...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6239999968092889
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_05_ACS_JAW_RADIATION",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Squeezing chest pain with ja...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.588900006026961
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_06_ACS_EXERTIONAL_CRESCENDO",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Crescendo chest pressure on ...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.7582000000402331
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_07_BRONCHITIS_VIRAL_COUGH",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough for 12 days after uppe...",
+          "claims_count": 6,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 1.8274999965797178
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_08_BRONCHITIS_CLEAR_SPUTUM",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough with clear sputum for ...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6042999995988794
+        }
+      ]
+    },
+    "B2_RAG_Verified": {
+      "system_mode": "B2_RAG_Verified",
+      "overall_claim_support_rate": 0.4601,
+      "unsupported_claim_rate": 0.5399,
+      "general_medical_evidence_support_rate": 0.6243,
+      "general_medical_unsupported_rate": 0.729,
+      "patient_ledger_consistency_rate": 0.775,
+      "overall_grounding_rate": 0.6458,
+      "citation_correctness_rate": 1.0,
+      "total_citations_generated": 165,
+      "total_hallucinated_citations": 0,
+      "contradiction_detection": {
+        "recall": 1.0,
+        "precision": 1.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 30
+      },
+      "correct_abstention_on_out_of_domain": 0.7,
+      "emergency_override_trigger_rate": 0.0,
+      "unconfirmed_extraction_ask_rate": 0.0,
+      "material_conflict_abstention_rate": 0.0,
+      "latency_ms": {
+        "mean": 3.06,
+        "p50": 3.2,
+        "p95": 4.32,
+        "breakdown": {
+          "prompt_construction_mean_ms": 0.08,
+          "retrieval_mean_ms": 412.65,
+          "model_inference_mean_ms": 0.0,
+          "verification_mean_ms": 2.98
+        }
+      },
+      "sample_records": [
+        {
+          "scenario_id": "RAG_SC_CLEAN_01_GERD_POSTPRANDIAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal burning sensati...",
+          "claims_count": 6,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 3.1791000001248904
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_02_GERD_NOCTURNAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Acid regurgitation lying sup...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 3.1251000036718324
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_03_GERD_ANTACID_RESPONSE",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Heartburn relieved by antaci...",
+          "claims_count": 6,
+          "supported_claims": 2,
+          "contradicted_claims": 0,
+          "latency_ms": 3.104600000369828
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_04_ACS_CRUSHING_HEAVINESS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Substernal crushing chest pa...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 3.021799995622132
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_05_ACS_JAW_RADIATION",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Squeezing chest pain with ja...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 3.5809000037261285
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_06_ACS_EXERTIONAL_CRESCENDO",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Crescendo chest pressure on ...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 3.1980000057956204
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_07_BRONCHITIS_VIRAL_COUGH",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough for 12 days after uppe...",
+          "claims_count": 6,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 3.7349000049289316
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_08_BRONCHITIS_CLEAR_SPUTUM",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "execution_engine": "deterministic_template",
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough with clear sputum for ...",
+          "claims_count": 6,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 3.3375999992131256
+        }
+      ]
+    },
+    "B3_RAG_Policy_Integrated": {
+      "system_mode": "B3_RAG_Policy_Integrated",
+      "overall_claim_support_rate": 0.08,
+      "unsupported_claim_rate": 0.92,
+      "general_medical_evidence_support_rate": 0.1,
+      "general_medical_unsupported_rate": 1.02,
+      "patient_ledger_consistency_rate": 0.81,
+      "overall_grounding_rate": 0.0967,
+      "citation_correctness_rate": 1.0,
+      "total_citations_generated": 0,
+      "total_hallucinated_citations": 0,
+      "contradiction_detection": {
+        "recall": 1.0,
+        "precision": 1.0,
+        "tp": 15,
+        "fp": 0,
+        "fn": 0,
+        "tn": 30
+      },
+      "correct_abstention_on_out_of_domain": 1.0,
+      "emergency_override_trigger_rate": 0.9333,
+      "unconfirmed_extraction_ask_rate": 0.9,
+      "material_conflict_abstention_rate": 1.0,
+      "latency_ms": {
+        "mean": 1.63,
+        "p50": 1.58,
+        "p95": 2.2,
+        "breakdown": {
+          "prompt_construction_mean_ms": 0.37,
+          "retrieval_mean_ms": 401.03,
+          "model_inference_mean_ms": 0.0,
+          "verification_mean_ms": 1.26
+        }
+      },
+      "sample_records": [
+        {
+          "scenario_id": "RAG_SC_CLEAN_01_GERD_POSTPRANDIAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 5.076100002042949
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_02_GERD_NOCTURNAL",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.7835999969975092
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_03_GERD_ANTACID_RESPONSE",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 2.0334000000730157
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_04_ACS_CRUSHING_HEAVINESS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.7720999967423268
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_05_ACS_JAW_RADIATION",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6638000015518628
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_06_ACS_EXERTIONAL_CRESCENDO",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.7840000000433065
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_07_BRONCHITIS_VIRAL_COUGH",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6559999930905178
+        },
+        {
+          "scenario_id": "RAG_SC_CLEAN_08_BRONCHITIS_CLEAR_SPUTUM",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": true,
+          "execution_engine": "rule_abstain_and_navigate",
+          "text_snippet": "## Clinical Assessment & Navigation Notice\n\nNon-Arbitration Policy: MedResolve declines to arbitrate between conflicting medical opinions or source contradictio...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.6805999985081144
+        }
+      ]
+    }
+  },
+  "ollama_benchmark": {
+    "model": "llama3.2:3b",
+    "sample_count": 3,
+    "runs": [
+      {
+        "scenario_id": "RAG_SC_CLEAN_01_GERD_POSTPRANDIAL",
+        "total_wall_clock_ms": 27081.12,
+        "model_inference_ms": 13688.51,
+        "verification_ms": 1.62,
+        "input_tokens": 238,
+        "output_tokens": 180,
+        "engine": "ollama:llama3.2:3b"
+      },
+      {
+        "scenario_id": "RAG_SC_CLEAN_02_GERD_NOCTURNAL",
+        "total_wall_clock_ms": 17324.74,
+        "model_inference_ms": 13872.05,
+        "verification_ms": 1.55,
+        "input_tokens": 262,
+        "output_tokens": 180,
+        "engine": "ollama:llama3.2:3b"
+      },
+      {
+        "scenario_id": "RAG_SC_CLEAN_03_GERD_ANTACID_RESPONSE",
+        "total_wall_clock_ms": 16759.26,
+        "model_inference_ms": 13687.5,
+        "verification_ms": 1.54,
+        "input_tokens": 254,
+        "output_tokens": 180,
+        "engine": "ollama:llama3.2:3b"
+      }
+    ],
+    "mean_wall_clock_ms": 20388.37,
+    "mean_inference_ms": 13749.35
+  }
+}

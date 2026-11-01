@@ -1,0 +1,86 @@
+{
+  "test_suite": "MedResolve Phase 5.5 Full Workflow & Failure Mode Validation",
+  "timestamp": "2026-10-31T12:23:30Z",
+  "synthetic_patient_tested": "SYNTH_PATIENT_01",
+  "workflow_steps_completed": [
+    "1. Synthetic Patient Selection",
+    "2. Document Upload & Actual CPU OCR",
+    "3. Extraction Review",
+    "4. Evidence Ledger Update",
+    "5. User Observation Confirmation",
+    "6. User Observation Correction",
+    "7. Conflict Detection",
+    "8. Assessment Execution & Claim Verification"
+  ],
+  "fourteen_edge_failure_modes": {
+    "duplicate_upload": {
+      "status_code": 200,
+      "handled_gracefully": true,
+      "assigned_unique_doc_id": true
+    },
+    "unsupported_extension": {
+      "status_code": 400,
+      "rejected_with_400": true,
+      "detail": "Unsupported file extension '.exe'. Allowed: .jpeg, .jpg, .pdf, .png, .txt"
+    },
+    "invalid_document_signature": {
+      "status_code": 400,
+      "rejected_with_400": true,
+      "detail": "Invalid PDF file: Missing %PDF header magic bytes."
+    },
+    "oversized_file": {
+      "status_code": 400,
+      "rejected_with_400": true,
+      "detail": "File size (15729673 bytes) exceeds 15 MB limit."
+    },
+    "corrupted_pdf": {
+      "status_code": 500,
+      "error_isolated": true,
+      "detail": "Document OCR extraction failure: Failed to open file 'data\\\\uploads\\\\DOC_SYNTH_PATIENT_01_1793429568871_corrupted.pdf'."
+    },
+    "ocr_processing_error": {
+      "status_code": 500,
+      "error_isolated": true,
+      "detail": "Document OCR extraction failure: Truncated File Read"
+    },
+    "empty_or_sparse_extraction": {
+      "status_code": 200,
+      "handled_gracefully": true,
+      "observations_count": 1
+    },
+    "missing_measurement_unit": {
+      "detected": true,
+      "unit_status": "MISSING",
+      "requires_confirmation": true
+    },
+    "invalid_measurement_unit": {
+      "detected": true,
+      "unit_status": "INVALID",
+      "requires_confirmation": true
+    },
+    "user_correction": {
+      "status": "VERIFIED_IN_WORKFLOW_STEP_5",
+      "verified": true
+    },
+    "user_rejection": {
+      "status_code": 200,
+      "new_status": "REJECTED_BY_PATIENT",
+      "evidence_status": "ABSENT"
+    },
+    "unconfirmed_finding_preservation": {
+      "unconfirmed_count": 10,
+      "preserved_unconfirmed": true
+    },
+    "conflict_after_correction": {
+      "item_added": true,
+      "conflicts_count": 1
+    },
+    "emergency_override": {
+      "status_code": 200,
+      "is_emergency_override": true,
+      "execution_engine": "deterministic_emergency_preemption",
+      "safety_rule_triggered": true
+    }
+  },
+  "all_modes_verified": true
+}

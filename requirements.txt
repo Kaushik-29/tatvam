@@ -1,0 +1,23 @@
+# MedResolve — Phase 1 Requirements (CPU-friendly, Research & ML Baseline)
+# Python >= 3.10, < 3.13 recommended
+
+# Core numerical & data processing
+numpy>=1.26.0
+pandas>=2.0.0
+scipy>=1.11.0
+
+# Machine learning & evaluation
+scikit-learn>=1.4.0
+
+# Progress bars & utilities
+tqdm>=4.66.0
+joblib>=1.3.0
+pydantic>=2.8.0
+
+# Information Retrieval & RAG (Phase 5)
+sentence-transformers>=3.1.0
+faiss-cpu>=1.8.0
+rank-bm25>=0.2.2
+
+# Testing & quality assurance
+pytest>=8.0.0

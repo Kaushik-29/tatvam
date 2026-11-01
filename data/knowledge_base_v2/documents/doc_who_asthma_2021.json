@@ -1,0 +1,39 @@
+{
+  "document_id": "DOC_WHO_ASTHMA_2021",
+  "title": "WHO Package of Essential Noncommunicable Disease Interventions (PEN): Protocol for Chronic Asthma and COPD",
+  "author_or_organization": "World Health Organization (WHO)",
+  "source_url": "https://www.who.int/publications/i/item/9789240009271",
+  "publication_or_revision_date": "2021-08-10",
+  "date_uncertainty_note": "WHO technical package for low- and middle-income primary care settings.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+  "document_type": "Technical Intervention Protocol",
+  "version": "1.1",
+  "passages": [
+    {
+      "passage_id": "DOC_WHO_ASTHMA_2021_P001",
+      "section_heading": "1. Clinical Features Distinguishing Asthma",
+      "text": "Asthma is characterized by chronic airway inflammation and variable expiratory airflow limitation. Hallmark symptoms are episodic wheezing, shortness of breath, chest tightness, and cough that vary over time and in intensity. Symptoms are characteristically worse at night or early morning and are triggered by viral respiratory tract infections, cold air, physical exertion, airborne allergens, or fumes."
+    },
+    {
+      "passage_id": "DOC_WHO_ASTHMA_2021_P002",
+      "section_heading": "2. Acute Severe Asthma Exacerbation Red Flags",
+      "text": "Life-threatening acute asthma features requiring immediate emergency transfer and high-flow oxygen include: inability to complete sentences in one breath, respiratory rate > 30 breaths/min, heart rate > 120 beats/min, peak expiratory flow (PEF) < 50% of predicted or personal best, silent chest (absence of wheezing due to severe airflow obstruction), exhaustion, confusion, or central cyanosis. SABA monotherapy is inadequate in this setting."
+    },
+    {
+      "passage_id": "DOC_WHO_ASTHMA_2021_P003",
+      "section_heading": "3. Foundation of Anti-Inflammatory Therapy",
+      "text": "Modern international asthma guidelines emphasize that short-acting beta2-agonist (SABA) monotherapy without inhaled corticosteroids is unsafe and increases the risk of severe exacerbations. All adults with asthma require anti-inflammatory controller therapy with low-dose inhaled corticosteroids (ICS, e.g., budesonide or beclomethasone), either regularly as maintenance or as symptom-driven ICS-formoterol reliever therapy."
+    },
+    {
+      "passage_id": "DOC_WHO_ASTHMA_2021_P004",
+      "section_heading": "4. Differentiation from Chronic Bronchitis and COPD",
+      "text": "Differentiating asthma from COPD is critical: asthma typically starts in childhood or young adulthood, exhibits marked diurnal symptom variability, often coexists with allergic rhinitis or eczema, and demonstrates substantial bronchodilator reversibility (FEV1 improvement > 12% and > 200 mL). COPD typically presents in older adults with substantial tobacco smoking history, chronic progressive dyspnea with minimal day-to-day variability, and persistent airflow limitation."
+    },
+    {
+      "passage_id": "DOC_WHO_ASTHMA_2021_P005",
+      "section_heading": "5. Environmental and Inhaler Technique Precautions",
+      "text": "Patient education must emphasize correct metered-dose inhaler technique with a spacer device to ensure adequate pulmonary drug deposition. Common precipitants including household biomass smoke, tobacco smoke exposure, and nonsteroidal anti-inflammatory drugs (NSAIDs in aspirin-sensitive asthma) must be actively avoided."
+    }
+  ]
+}

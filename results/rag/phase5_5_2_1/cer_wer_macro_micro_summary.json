@@ -1,0 +1,183 @@
+{
+  "benchmark_phase": "Phase 5.5.2.1",
+  "reconciliation_explanation": "Reconciles previous reporting differences: Macro mean represents the arithmetic mean of individual per-document error rates. Micro rate represents the corpus-level ratio of total edit distance to total token length.",
+  "cohorts": {
+    "historical_50_documents": {
+      "all_modalities_combined": {
+        "document_count": 50,
+        "character_metrics": {
+          "total_character_edits": 1593,
+          "total_character_denominator": 19894,
+          "micro_cer": 0.0801,
+          "macro_mean_cer": 0.0776
+        },
+        "word_metrics": {
+          "total_word_edits": 1095,
+          "total_word_denominator": 3044,
+          "micro_wer": 0.3597,
+          "macro_mean_wer": 0.4086
+        },
+        "exact_matches": {
+          "exact_document_match_count": 13,
+          "exact_document_match_rate": 0.26
+        }
+      },
+      "digital_pdf_vector_text_extraction": {
+        "document_count": 15,
+        "character_metrics": {
+          "total_character_edits": 471,
+          "total_character_denominator": 7737,
+          "micro_cer": 0.0609,
+          "macro_mean_cer": 0.0423
+        },
+        "word_metrics": {
+          "total_word_edits": 68,
+          "total_word_denominator": 1208,
+          "micro_wer": 0.0563,
+          "macro_mean_wer": 0.0376
+        },
+        "exact_matches": {
+          "exact_document_match_count": 13,
+          "exact_document_match_rate": 0.8667
+        }
+      },
+      "scanned_image_ocr": {
+        "document_count": 35,
+        "character_metrics": {
+          "total_character_edits": 1122,
+          "total_character_denominator": 12157,
+          "micro_cer": 0.0923,
+          "macro_mean_cer": 0.0927
+        },
+        "word_metrics": {
+          "total_word_edits": 1027,
+          "total_word_denominator": 1836,
+          "micro_wer": 0.5594,
+          "macro_mean_wer": 0.5675
+        },
+        "exact_matches": {
+          "exact_document_match_count": 0,
+          "exact_document_match_rate": 0.0
+        }
+      }
+    },
+    "new_10_document_test_set": {
+      "all_modalities_combined": {
+        "document_count": 10,
+        "character_metrics": {
+          "total_character_edits": 488,
+          "total_character_denominator": 4304,
+          "micro_cer": 0.1134,
+          "macro_mean_cer": 0.1005
+        },
+        "word_metrics": {
+          "total_word_edits": 256,
+          "total_word_denominator": 662,
+          "micro_wer": 0.3867,
+          "macro_mean_wer": 0.4287
+        },
+        "exact_matches": {
+          "exact_document_match_count": 2,
+          "exact_document_match_rate": 0.2
+        }
+      },
+      "digital_pdf_vector_text_extraction": {
+        "document_count": 3,
+        "character_metrics": {
+          "total_character_edits": 238,
+          "total_character_denominator": 1707,
+          "micro_cer": 0.1394,
+          "macro_mean_cer": 0.1116
+        },
+        "word_metrics": {
+          "total_word_edits": 35,
+          "total_word_denominator": 269,
+          "micro_wer": 0.1301,
+          "macro_mean_wer": 0.1042
+        },
+        "exact_matches": {
+          "exact_document_match_count": 2,
+          "exact_document_match_rate": 0.6667
+        }
+      },
+      "scanned_image_ocr": {
+        "document_count": 7,
+        "character_metrics": {
+          "total_character_edits": 250,
+          "total_character_denominator": 2597,
+          "micro_cer": 0.0963,
+          "macro_mean_cer": 0.0958
+        },
+        "word_metrics": {
+          "total_word_edits": 221,
+          "total_word_denominator": 393,
+          "micro_wer": 0.5623,
+          "macro_mean_wer": 0.5678
+        },
+        "exact_matches": {
+          "exact_document_match_count": 0,
+          "exact_document_match_rate": 0.0
+        }
+      }
+    },
+    "combined_60_documents": {
+      "all_modalities_combined": {
+        "document_count": 60,
+        "character_metrics": {
+          "total_character_edits": 2081,
+          "total_character_denominator": 24198,
+          "micro_cer": 0.086,
+          "macro_mean_cer": 0.0814
+        },
+        "word_metrics": {
+          "total_word_edits": 1351,
+          "total_word_denominator": 3706,
+          "micro_wer": 0.3645,
+          "macro_mean_wer": 0.4119
+        },
+        "exact_matches": {
+          "exact_document_match_count": 15,
+          "exact_document_match_rate": 0.25
+        }
+      },
+      "digital_pdf_vector_text_extraction": {
+        "document_count": 18,
+        "character_metrics": {
+          "total_character_edits": 709,
+          "total_character_denominator": 9444,
+          "micro_cer": 0.0751,
+          "macro_mean_cer": 0.0538
+        },
+        "word_metrics": {
+          "total_word_edits": 103,
+          "total_word_denominator": 1477,
+          "micro_wer": 0.0697,
+          "macro_mean_wer": 0.0487
+        },
+        "exact_matches": {
+          "exact_document_match_count": 15,
+          "exact_document_match_rate": 0.8333
+        }
+      },
+      "scanned_image_ocr": {
+        "document_count": 42,
+        "character_metrics": {
+          "total_character_edits": 1372,
+          "total_character_denominator": 14754,
+          "micro_cer": 0.093,
+          "macro_mean_cer": 0.0933
+        },
+        "word_metrics": {
+          "total_word_edits": 1248,
+          "total_word_denominator": 2229,
+          "micro_wer": 0.5599,
+          "macro_mean_wer": 0.5676
+        },
+        "exact_matches": {
+          "exact_document_match_count": 0,
+          "exact_document_match_rate": 0.0
+        }
+      }
+    }
+  }
+}

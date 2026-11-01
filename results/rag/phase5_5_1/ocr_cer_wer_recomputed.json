@@ -1,0 +1,2056 @@
+{
+  "benchmark_phase": "Phase 5.5.1",
+  "total_unique_documents": 50,
+  "metric_definition_clarification": "Character Error Rate (CER = Total Char Edits / Total Reference Chars) and Word Error Rate (WER = Total Word Edits / Total Reference Words) are Levenshtein edit distance ratios. They are NEVER accuracy percentages. When the hypothesis contains extra inserted text (e.g. facility headers, doctor metadata, or footers present on the page but missing from an incomplete reference body), the number of edit operations readily exceeds the reference length, producing CER or WER > 1.0 (e.g. 2.1245). This does not indicate negative accuracy, but rather an insertion-heavy reference-boundary mismatch.",
+  "reconciled_approach_a_full_page_text": {
+    "description": "All human-readable visible text rendered on the document (headers, patient metadata, clinical rows, reference intervals, footers)",
+    "overall_cer": 0.0587,
+    "total_character_edits": 1191,
+    "total_character_denominator": 20288,
+    "overall_wer": 0.3338,
+    "total_word_edits": 1034,
+    "total_word_denominator": 3098,
+    "exact_match_count": 15,
+    "exact_match_rate": 0.3,
+    "category_breakdown": {
+      "digital_lab_pdf": {
+        "document_count": 10,
+        "character_error_rate": 0.0,
+        "character_edit_distance": 0,
+        "character_denominator": 5995,
+        "word_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 944,
+        "exact_document_text_matches": 10,
+        "exact_document_match_rate": 1.0
+      },
+      "clean_scanned_lab": {
+        "document_count": 10,
+        "character_error_rate": 0.046,
+        "character_edit_distance": 181,
+        "character_denominator": 3936,
+        "word_error_rate": 0.4026,
+        "word_edit_distance": 244,
+        "word_denominator": 606,
+        "exact_document_text_matches": 0,
+        "exact_document_match_rate": 0.0
+      },
+      "scanned_prescription": {
+        "document_count": 10,
+        "character_error_rate": 0.0595,
+        "character_edit_distance": 190,
+        "character_denominator": 3193,
+        "word_error_rate": 0.5762,
+        "word_edit_distance": 276,
+        "word_denominator": 479,
+        "exact_document_text_matches": 0,
+        "exact_document_match_rate": 0.0
+      },
+      "noisy_scan": {
+        "document_count": 5,
+        "character_error_rate": 0.1068,
+        "character_edit_distance": 188,
+        "character_denominator": 1761,
+        "word_error_rate": 0.8745,
+        "word_edit_distance": 237,
+        "word_denominator": 271,
+        "exact_document_text_matches": 0,
+        "exact_document_match_rate": 0.0
+      },
+      "skewed_document": {
+        "document_count": 5,
+        "character_error_rate": 0.2719,
+        "character_edit_distance": 471,
+        "character_denominator": 1732,
+        "word_error_rate": 0.5458,
+        "word_edit_distance": 143,
+        "word_denominator": 262,
+        "exact_document_text_matches": 0,
+        "exact_document_match_rate": 0.0
+      },
+      "medical_table": {
+        "document_count": 5,
+        "character_error_rate": 0.0,
+        "character_edit_distance": 0,
+        "character_denominator": 2213,
+        "word_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 332,
+        "exact_document_text_matches": 5,
+        "exact_document_match_rate": 1.0
+      },
+      "ambiguous_or_missing_unit": {
+        "document_count": 5,
+        "character_error_rate": 0.1104,
+        "character_edit_distance": 161,
+        "character_denominator": 1458,
+        "word_error_rate": 0.6569,
+        "word_edit_distance": 134,
+        "word_denominator": 204,
+        "exact_document_text_matches": 0,
+        "exact_document_match_rate": 0.0
+      }
+    }
+  },
+  "historical_phase5_5_unaligned_baseline": {
+    "description": "Body-only reference snippet vs full-page OCR output (document-region boundary mismatch)",
+    "overall_cer": 2.1245,
+    "total_character_edits": 13586,
+    "total_character_denominator": 6395,
+    "overall_wer": 2.1601,
+    "total_word_edits": 1862,
+    "total_word_denominator": 862
+  },
+  "document_records": [
+    {
+      "document_id": "DOC_AMB_01",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_01.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "LEGACY CLINICAL SLIP\nPatient: Zoya Akhtar (SYNTH-P701)\nSerum Creatinine 1.4 ",
+      "extracted_ocr_text": "LEGACYCLINICALSLIP\nClinicalDiagnostic&OutpatientServices\nPatient: Zoya Akhtar\nPatientID:SYNTH-P701\nAge/ Gender:46Y/F\nDate: 2026-03-11\nDoctor: Dr. K. Nair, MD\nINVESTIGATIONRESULTS\nSerum Creatinine\n1.4\nRef: Normal\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "LEGACY CLINICAL SLIP Clinical Diagnostic & Outpatient Services Patient: Zoya Akhtar Patient ID: SYNTH-P701 Age / Gender: 46 Y / F Date: 2026-03-11 Doctor: Dr. K. Nair, MD INVESTIGATION RESULTS Serum Creatinine 1.4 Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "legacy clinical slip clinical diagnostic & outpatient services patient: zoya akhtar patient id: synth-p701 age / gender: 46 y / f date: 2026-03-11 doctor: dr. k. nair, md investigation results serum creatinine 1.4 computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "legacyclinicalslip clinicaldiagnostic&outpatientservices patient: zoya akhtar patientid:synth-p701 age/ gender:46y/f date: 2026-03-11 doctor: dr. k. nair, md investigationresults serum creatinine 1.4 ref: normal computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 29,
+        "character_denominator": 281,
+        "character_error_rate": 0.1032,
+        "word_edit_distance": 26,
+        "word_denominator": 40,
+        "word_error_rate": 0.65,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Zoya Akhtar Date: 2026-03-11 Serum Creatinine 1.4",
+        "character_edit_distance": 218,
+        "character_denominator": 58,
+        "character_error_rate": 3.7586,
+        "word_edit_distance": 18,
+        "word_denominator": 8,
+        "word_error_rate": 2.25
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "LEGACY CLINICAL SLIP\nPatient: Zoya Akhtar (SYNTH-P701)\nSerum Creatinine 1.4 ",
+        "character_edit_distance": 205,
+        "character_denominator": 75,
+        "character_error_rate": 2.7333,
+        "word_edit_distance": 21,
+        "word_denominator": 10,
+        "word_error_rate": 2.1
+      },
+      "latency_ms": 13882.28
+    },
+    {
+      "document_id": "DOC_AMB_02",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_02.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "LEGACY CLINICAL SLIP\nPatient: Abhay Deol (SYNTH-P702)\nSerum Potassium 4.8 mEq/L",
+      "extracted_ocr_text": "LEGACYCLINICALSLIP\nClinicalDiagnostic&OutpatientServices\nPatient:Abhay Deol\nPatientID:SYNTH-P702\nAge/ Gender:53Y/M\nDate: 2026-03-12\nDoctor: Dr. K. Nair, MD\nINVESTIGATIONRESULTS\nSerum Potassium\n4.8 mEq/L\nRef 3.5 -5.0\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "LEGACY CLINICAL SLIP Clinical Diagnostic & Outpatient Services Patient: Abhay Deol Patient ID: SYNTH-P702 Age / Gender: 53 Y / M Date: 2026-03-12 Doctor: Dr. K. Nair, MD INVESTIGATION RESULTS Serum Potassium 4.8 mEq/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "legacy clinical slip clinical diagnostic & outpatient services patient: abhay deol patient id: synth-p702 age / gender: 53 y / m date: 2026-03-12 doctor: dr. k. nair, md investigation results serum potassium 4.8 meq/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "legacyclinicalslip clinicaldiagnostic&outpatientservices patient:abhay deol patientid:synth-p702 age/ gender:53y/m date: 2026-03-12 doctor: dr. k. nair, md investigationresults serum potassium 4.8 meq/l ref 3.5 -5.0 computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 29,
+        "character_denominator": 285,
+        "character_error_rate": 0.1018,
+        "word_edit_distance": 26,
+        "word_denominator": 41,
+        "word_error_rate": 0.6341,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Abhay Deol Date: 2026-03-12 Serum Potassium 4.8 mEq/L",
+        "character_edit_distance": 221,
+        "character_denominator": 62,
+        "character_error_rate": 3.5645,
+        "word_edit_distance": 22,
+        "word_denominator": 9,
+        "word_error_rate": 2.4444
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "LEGACY CLINICAL SLIP\nPatient: Abhay Deol (SYNTH-P702)\nSerum Potassium 4.8 mEq/L",
+        "character_edit_distance": 209,
+        "character_denominator": 79,
+        "character_error_rate": 2.6456,
+        "word_edit_distance": 25,
+        "word_denominator": 11,
+        "word_error_rate": 2.2727
+      },
+      "latency_ms": 13139.77
+    },
+    {
+      "document_id": "DOC_AMB_03",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_03.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "TRIAGE ASSESSMENT NOTE\nPatient: Bindu Madhavi (SYNTH-P703)\nBlood Pressure 138/88 ",
+      "extracted_ocr_text": "TRIAGEASSESSMENTNOTE\nClinicalDiagnostic&OutpatientServices\nPatient: Bindu Madhavi\nPatientID:SYNTH-P703\nAge/Gender:65Y/F\nDate: 2026-03-13\nDoctor:Dr.V.Kaushik, MD\nINVESTIGATIONRESULTS\nBlood Pressure\n138/88\nRef. Stage 1 HTN\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "TRIAGE ASSESSMENT NOTE Clinical Diagnostic & Outpatient Services Patient: Bindu Madhavi Patient ID: SYNTH-P703 Age / Gender: 65 Y / F Date: 2026-03-13 Doctor: Dr. V. Kaushik, MD INVESTIGATION RESULTS Blood Pressure 138/88 Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "triage assessment note clinical diagnostic & outpatient services patient: bindu madhavi patient id: synth-p703 age / gender: 65 y / f date: 2026-03-13 doctor: dr. v. kaushik, md investigation results blood pressure 138/88 computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "triageassessmentnote clinicaldiagnostic&outpatientservices patient: bindu madhavi patientid:synth-p703 age/gender:65y/f date: 2026-03-13 doctor:dr.v.kaushik, md investigationresults blood pressure 138/88 ref. stage 1 htn computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 38,
+        "character_denominator": 289,
+        "character_error_rate": 0.1315,
+        "word_edit_distance": 32,
+        "word_denominator": 40,
+        "word_error_rate": 0.8,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Bindu Madhavi Date: 2026-03-13 Blood Pressure 138/88",
+        "character_edit_distance": 224,
+        "character_denominator": 61,
+        "character_error_rate": 3.6721,
+        "word_edit_distance": 16,
+        "word_denominator": 8,
+        "word_error_rate": 2.0
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "TRIAGE ASSESSMENT NOTE\nPatient: Bindu Madhavi (SYNTH-P703)\nBlood Pressure 138/88 ",
+        "character_edit_distance": 209,
+        "character_denominator": 80,
+        "character_error_rate": 2.6125,
+        "word_edit_distance": 19,
+        "word_denominator": 10,
+        "word_error_rate": 1.9
+      },
+      "latency_ms": 11475.38
+    },
+    {
+      "document_id": "DOC_AMB_04",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_04.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "EMERGENCY OUTPATIENT SLIP\nPatient: Chirag Paswan (SYNTH-P704)\nFasting Blood Glucose 115.0 ",
+      "extracted_ocr_text": "EMERGENCYOUTPATIENTSLIP\nClinicalDiagnostic&OutpatientServices\nPatient: Chirag Paswan\nPatientID:SYNTH-P704\nAge/Gender:41Y/ M\nDate: 2026-03-14\nDoctor: Dr. S. Nadkarni, MD\nINVESTIGATIONRESULTS\nFasting Blood Glucose\n115.0\nRef Borderline\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "EMERGENCY OUTPATIENT SLIP Clinical Diagnostic & Outpatient Services Patient: Chirag Paswan Patient ID: SYNTH-P704 Age / Gender: 41 Y / M Date: 2026-03-14 Doctor: Dr. S. Nadkarni, MD INVESTIGATION RESULTS Fasting Blood Glucose 115.0 Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "emergency outpatient slip clinical diagnostic & outpatient services patient: chirag paswan patient id: synth-p704 age / gender: 41 y / m date: 2026-03-14 doctor: dr. s. nadkarni, md investigation results fasting blood glucose 115.0 computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "emergencyoutpatientslip clinicaldiagnostic&outpatientservices patient: chirag paswan patientid:synth-p704 age/gender:41y/ m date: 2026-03-14 doctor: dr. s. nadkarni, md investigationresults fasting blood glucose 115.0 ref borderline computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 32,
+        "character_denominator": 299,
+        "character_error_rate": 0.107,
+        "word_edit_distance": 25,
+        "word_denominator": 41,
+        "word_error_rate": 0.6098,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Chirag Paswan Date: 2026-03-14 Fasting Blood Glucose 115.0",
+        "character_edit_distance": 230,
+        "character_denominator": 67,
+        "character_error_rate": 3.4328,
+        "word_edit_distance": 18,
+        "word_denominator": 9,
+        "word_error_rate": 2.0
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "EMERGENCY OUTPATIENT SLIP\nPatient: Chirag Paswan (SYNTH-P704)\nFasting Blood Glucose 115.0 ",
+        "character_edit_distance": 213,
+        "character_denominator": 89,
+        "character_error_rate": 2.3933,
+        "word_edit_distance": 21,
+        "word_denominator": 11,
+        "word_error_rate": 1.9091
+      },
+      "latency_ms": 10654.67
+    },
+    {
+      "document_id": "DOC_AMB_05",
+      "category": "ambiguous_or_missing_unit",
+      "filename": "DOC_AMB_05.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "UNVALIDATED RESEARCH SLIP\nPatient: Damodar Das (SYNTH-P705)\nGlycated Hemoglobin HbA1c 7.1 x_unit",
+      "extracted_ocr_text": "UNVALIDATEDRESEARCHSLIP\nClinicalDiagnostic&OutpatientServices\nPatient: Damodar Das\nPatientID:SYNTH-P705\nAge/ Gender:57Y/M\nDate: 2026-03-15\nDoctor: Dr. G. Saxena, MD\nINVESTIGATIONRESULTS\nGlycated HemoglobinHbA1c\n7.1 x_unit\nRef. Unspecified\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "UNVALIDATED RESEARCH SLIP Clinical Diagnostic & Outpatient Services Patient: Damodar Das Patient ID: SYNTH-P705 Age / Gender: 57 Y / M Date: 2026-03-15 Doctor: Dr. G. Saxena, MD INVESTIGATION RESULTS Glycated Hemoglobin HbA1c 7.1 x_unit Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "unvalidated research slip clinical diagnostic & outpatient services patient: damodar das patient id: synth-p705 age / gender: 57 y / m date: 2026-03-15 doctor: dr. g. saxena, md investigation results glycated hemoglobin hba1c 7.1 x_unit computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "unvalidatedresearchslip clinicaldiagnostic&outpatientservices patient: damodar das patientid:synth-p705 age/ gender:57y/m date: 2026-03-15 doctor: dr. g. saxena, md investigationresults glycated hemoglobinhba1c 7.1 x_unit ref. unspecified computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 33,
+        "character_denominator": 304,
+        "character_error_rate": 0.1086,
+        "word_edit_distance": 25,
+        "word_denominator": 42,
+        "word_error_rate": 0.5952,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Damodar Das Date: 2026-03-15 Glycated Hemoglobin HbA1c 7.1 x_unit",
+        "character_edit_distance": 233,
+        "character_denominator": 74,
+        "character_error_rate": 3.1486,
+        "word_edit_distance": 22,
+        "word_denominator": 10,
+        "word_error_rate": 2.2
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "UNVALIDATED RESEARCH SLIP\nPatient: Damodar Das (SYNTH-P705)\nGlycated Hemoglobin HbA1c 7.1 x_unit",
+        "character_edit_distance": 216,
+        "character_denominator": 96,
+        "character_error_rate": 2.25,
+        "word_edit_distance": 25,
+        "word_denominator": 12,
+        "word_error_rate": 2.0833
+      },
+      "latency_ms": 10513.55
+    },
+    {
+      "document_id": "DOC_DIG_LAB_01",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_01.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "APEX CLINICAL LABORATORIES\nPatient: Aarav Sharma (SYNTH-P101)\nFasting Blood Glucose 112.5 mg/dL\nGlycated Hemoglobin HbA1c 7.2 %\nSerum Creatinine 1.4 mg/dL\nBlood Urea Nitrogen (BUN) 24.0 mg/dL",
+      "extracted_ocr_text": "APEX CLINICAL LABORATORIES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Aarav Sharma\nPatient ID: SYNTH-P101\nAge/Sex: 45 Y / M\nDate of Collection: 2026-03-10\nRef. Doctor: Dr. N. Mehta, MD\nStatus: Final Approved Report\nMETABOLIC PANEL REPORT\nFasting Blood Glucose\n112.5 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n7.2 %\nRef: 4.0 - 5.6 %\nSerum Creatinine\n1.4 mg/dL\nRef: 0.6 - 1.2 mg/dL\nBlood Urea Nitrogen (BUN)\n24.0 mg/dL\nRef: 7 - 20 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "APEX CLINICAL LABORATORIES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Aarav Sharma\nPatient ID: SYNTH-P101\nAge/Sex: 45 Y / M\nDate of Collection: 2026-03-10\nRef. Doctor: Dr. N. Mehta, MD\nStatus: Final Approved Report\nMETABOLIC PANEL REPORT\nFasting Blood Glucose\n112.5 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n7.2 %\nRef: 4.0 - 5.6 %\nSerum Creatinine\n1.4 mg/dL\nRef: 0.6 - 1.2 mg/dL\nBlood Urea Nitrogen (BUN)\n24.0 mg/dL\nRef: 7 - 20 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "apex clinical laboratories accredited clinical pathology & diagnostic services patient: aarav sharma patient id: synth-p101 age/sex: 45 y / m date of collection: 2026-03-10 ref. doctor: dr. n. mehta, md status: final approved report metabolic panel report fasting blood glucose 112.5 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 7.2 % ref: 4.0 - 5.6 % serum creatinine 1.4 mg/dl ref: 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 24.0 mg/dl ref: 7 - 20 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "apex clinical laboratories accredited clinical pathology & diagnostic services patient: aarav sharma patient id: synth-p101 age/sex: 45 y / m date of collection: 2026-03-10 ref. doctor: dr. n. mehta, md status: final approved report metabolic panel report fasting blood glucose 112.5 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 7.2 % ref: 4.0 - 5.6 % serum creatinine 1.4 mg/dl ref: 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 24.0 mg/dl ref: 7 - 20 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 546,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 89,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Aarav Sharma Date: 2026-03-10 Fasting Blood Glucose 112.5 mg/dL 70 - 99 mg/dL Glycated Hemoglobin HbA1c 7.2 % 4.0 - 5.6 % Serum Creatinine 1.4 mg/dL 0.6 - 1.2 mg/dL Blood Urea Nitrogen (BUN) 24.0 mg/dL 7 - 20 mg/dL",
+        "character_edit_distance": 323,
+        "character_denominator": 223,
+        "character_error_rate": 1.4484,
+        "word_edit_distance": 49,
+        "word_denominator": 41,
+        "word_error_rate": 1.1951
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "APEX CLINICAL LABORATORIES\nPatient: Aarav Sharma (SYNTH-P101)\nFasting Blood Glucose 112.5 mg/dL\nGlycated Hemoglobin HbA1c 7.2 %\nSerum Creatinine 1.4 mg/dL\nBlood Urea Nitrogen (BUN) 24.0 mg/dL",
+        "character_edit_distance": 357,
+        "character_denominator": 191,
+        "character_error_rate": 1.8691,
+        "word_edit_distance": 63,
+        "word_denominator": 27,
+        "word_error_rate": 2.3333
+      },
+      "latency_ms": 42.29
+    },
+    {
+      "document_id": "DOC_DIG_LAB_02",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_02.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "METRO DIAGNOSTICS CENTER\nPatient: Priya Venkat (SYNTH-P102)\nTotal Cholesterol 215.0 mg/dL\nTriglycerides 180.0 mg/dL\nHDL Cholesterol 42.0 mg/dL\nLDL Cholesterol 137.0 mg/dL",
+      "extracted_ocr_text": "METRO DIAGNOSTICS CENTER\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Priya Venkat\nPatient ID: SYNTH-P102\nAge/Sex: 52 Y / F\nDate of Collection: 2026-03-11\nRef. Doctor: Dr. S. Kulkarni, MD\nStatus: Final Approved Report\nLIPID PROFILE REPORT\nTotal Cholesterol\n215.0 mg/dL\nRef: < 200 mg/dL\nTriglycerides\n180.0 mg/dL\nRef: < 150 mg/dL\nHDL Cholesterol\n42.0 mg/dL\nRef: > 40 mg/dL\nLDL Cholesterol\n137.0 mg/dL\nRef: < 100 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "METRO DIAGNOSTICS CENTER\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Priya Venkat\nPatient ID: SYNTH-P102\nAge/Sex: 52 Y / F\nDate of Collection: 2026-03-11\nRef. Doctor: Dr. S. Kulkarni, MD\nStatus: Final Approved Report\nLIPID PROFILE REPORT\nTotal Cholesterol\n215.0 mg/dL\nRef: < 200 mg/dL\nTriglycerides\n180.0 mg/dL\nRef: < 150 mg/dL\nHDL Cholesterol\n42.0 mg/dL\nRef: > 40 mg/dL\nLDL Cholesterol\n137.0 mg/dL\nRef: < 100 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "metro diagnostics center accredited clinical pathology & diagnostic services patient: priya venkat patient id: synth-p102 age/sex: 52 y / f date of collection: 2026-03-11 ref. doctor: dr. s. kulkarni, md status: final approved report lipid profile report total cholesterol 215.0 mg/dl ref: < 200 mg/dl triglycerides 180.0 mg/dl ref: < 150 mg/dl hdl cholesterol 42.0 mg/dl ref: > 40 mg/dl ldl cholesterol 137.0 mg/dl ref: < 100 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "metro diagnostics center accredited clinical pathology & diagnostic services patient: priya venkat patient id: synth-p102 age/sex: 52 y / f date of collection: 2026-03-11 ref. doctor: dr. s. kulkarni, md status: final approved report lipid profile report total cholesterol 215.0 mg/dl ref: < 200 mg/dl triglycerides 180.0 mg/dl ref: < 150 mg/dl hdl cholesterol 42.0 mg/dl ref: > 40 mg/dl ldl cholesterol 137.0 mg/dl ref: < 100 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 518,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 80,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Priya Venkat Date: 2026-03-11 Total Cholesterol 215.0 mg/dL < 200 mg/dL Triglycerides 180.0 mg/dL < 150 mg/dL HDL Cholesterol 42.0 mg/dL > 40 mg/dL LDL Cholesterol 137.0 mg/dL < 100 mg/dL",
+        "character_edit_distance": 322,
+        "character_denominator": 196,
+        "character_error_rate": 1.6429,
+        "word_edit_distance": 49,
+        "word_denominator": 32,
+        "word_error_rate": 1.5312
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "METRO DIAGNOSTICS CENTER\nPatient: Priya Venkat (SYNTH-P102)\nTotal Cholesterol 215.0 mg/dL\nTriglycerides 180.0 mg/dL\nHDL Cholesterol 42.0 mg/dL\nLDL Cholesterol 137.0 mg/dL",
+        "character_edit_distance": 350,
+        "character_denominator": 170,
+        "character_error_rate": 2.0588,
+        "word_edit_distance": 59,
+        "word_denominator": 22,
+        "word_error_rate": 2.6818
+      },
+      "latency_ms": 20.06
+    },
+    {
+      "document_id": "DOC_DIG_LAB_03",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_03.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CAREPLUS PATHOLOGY LAB\nPatient: Vikram Malhotra (SYNTH-P103)\nSerum Sodium 139.0 mmol/L\nSerum Potassium 4.8 mmol/L\nSerum Creatinine 1.1 mg/dL",
+      "extracted_ocr_text": "CAREPLUS PATHOLOGY LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Vikram Malhotra\nPatient ID: SYNTH-P103\nAge/Sex: 60 Y / M\nDate of Collection: 2026-03-12\nRef. Doctor: Dr. R. Sen, MD\nStatus: Final Approved Report\nELECTROLYTE & RENAL PANEL\nSerum Sodium\n139.0 mmol/L\nRef: 135 - 145 mmol/L\nSerum Potassium\n4.8 mmol/L\nRef: 3.5 - 5.0 mmol/L\nSerum Creatinine\n1.1 mg/dL\nRef: 0.7 - 1.3 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "CAREPLUS PATHOLOGY LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Vikram Malhotra\nPatient ID: SYNTH-P103\nAge/Sex: 60 Y / M\nDate of Collection: 2026-03-12\nRef. Doctor: Dr. R. Sen, MD\nStatus: Final Approved Report\nELECTROLYTE & RENAL PANEL\nSerum Sodium\n139.0 mmol/L\nRef: 135 - 145 mmol/L\nSerum Potassium\n4.8 mmol/L\nRef: 3.5 - 5.0 mmol/L\nSerum Creatinine\n1.1 mg/dL\nRef: 0.7 - 1.3 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "careplus pathology lab accredited clinical pathology & diagnostic services patient: vikram malhotra patient id: synth-p103 age/sex: 60 y / m date of collection: 2026-03-12 ref. doctor: dr. r. sen, md status: final approved report electrolyte & renal panel serum sodium 139.0 mmol/l ref: 135 - 145 mmol/l serum potassium 4.8 mmol/l ref: 3.5 - 5.0 mmol/l serum creatinine 1.1 mg/dl ref: 0.7 - 1.3 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "careplus pathology lab accredited clinical pathology & diagnostic services patient: vikram malhotra patient id: synth-p103 age/sex: 60 y / m date of collection: 2026-03-12 ref. doctor: dr. r. sen, md status: final approved report electrolyte & renal panel serum sodium 139.0 mmol/l ref: 135 - 145 mmol/l serum potassium 4.8 mmol/l ref: 3.5 - 5.0 mmol/l serum creatinine 1.1 mg/dl ref: 0.7 - 1.3 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 486,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 77,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Vikram Malhotra Date: 2026-03-12 Serum Sodium 139.0 mmol/L 135 - 145 mmol/L Serum Potassium 4.8 mmol/L 3.5 - 5.0 mmol/L Serum Creatinine 1.1 mg/dL 0.7 - 1.3 mg/dL",
+        "character_edit_distance": 315,
+        "character_denominator": 171,
+        "character_error_rate": 1.8421,
+        "word_edit_distance": 49,
+        "word_denominator": 29,
+        "word_error_rate": 1.6897
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CAREPLUS PATHOLOGY LAB\nPatient: Vikram Malhotra (SYNTH-P103)\nSerum Sodium 139.0 mmol/L\nSerum Potassium 4.8 mmol/L\nSerum Creatinine 1.1 mg/dL",
+        "character_edit_distance": 348,
+        "character_denominator": 140,
+        "character_error_rate": 2.4857,
+        "word_edit_distance": 59,
+        "word_denominator": 19,
+        "word_error_rate": 3.1053
+      },
+      "latency_ms": 19.78
+    },
+    {
+      "document_id": "DOC_DIG_LAB_04",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_04.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "LIFECARE CLINICAL SERVICES\nPatient: Sunita Joshi (SYNTH-P104)\nHemoglobin 13.8 g/dL\nWBC Count 7200.0 /uL\nPlatelet Count 250000.0 /uL",
+      "extracted_ocr_text": "LIFECARE CLINICAL SERVICES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Sunita Joshi\nPatient ID: SYNTH-P104\nAge/Sex: 38 Y / F\nDate of Collection: 2026-03-13\nRef. Doctor: Dr. A. Verma, MD\nStatus: Final Approved Report\nCOMPLETE BLOOD COUNT REPORT\nHemoglobin\n13.8 g/dL\nRef: 12.0 - 15.5 g/dL\nWBC Count\n7200.0 /uL\nRef: 4500 - 11000 /uL\nPlatelet Count\n250000.0 /uL\nRef: 150000 - 450000 /uL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "LIFECARE CLINICAL SERVICES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Sunita Joshi\nPatient ID: SYNTH-P104\nAge/Sex: 38 Y / F\nDate of Collection: 2026-03-13\nRef. Doctor: Dr. A. Verma, MD\nStatus: Final Approved Report\nCOMPLETE BLOOD COUNT REPORT\nHemoglobin\n13.8 g/dL\nRef: 12.0 - 15.5 g/dL\nWBC Count\n7200.0 /uL\nRef: 4500 - 11000 /uL\nPlatelet Count\n250000.0 /uL\nRef: 150000 - 450000 /uL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "lifecare clinical services accredited clinical pathology & diagnostic services patient: sunita joshi patient id: synth-p104 age/sex: 38 y / f date of collection: 2026-03-13 ref. doctor: dr. a. verma, md status: final approved report complete blood count report hemoglobin 13.8 g/dl ref: 12.0 - 15.5 g/dl wbc count 7200.0 /ul ref: 4500 - 11000 /ul platelet count 250000.0 /ul ref: 150000 - 450000 /ul electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "lifecare clinical services accredited clinical pathology & diagnostic services patient: sunita joshi patient id: synth-p104 age/sex: 38 y / f date of collection: 2026-03-13 ref. doctor: dr. a. verma, md status: final approved report complete blood count report hemoglobin 13.8 g/dl ref: 12.0 - 15.5 g/dl wbc count 7200.0 /ul ref: 4500 - 11000 /ul platelet count 250000.0 /ul ref: 150000 - 450000 /ul electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 485,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 76,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Sunita Joshi Date: 2026-03-13 Hemoglobin 13.8 g/dL 12.0 - 15.5 g/dL WBC Count 7200.0 /uL 4500 - 11000 /uL Platelet Count 250000.0 /uL 150000 - 450000 /uL",
+        "character_edit_distance": 323,
+        "character_denominator": 162,
+        "character_error_rate": 1.9938,
+        "word_edit_distance": 49,
+        "word_denominator": 28,
+        "word_error_rate": 1.75
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "LIFECARE CLINICAL SERVICES\nPatient: Sunita Joshi (SYNTH-P104)\nHemoglobin 13.8 g/dL\nWBC Count 7200.0 /uL\nPlatelet Count 250000.0 /uL",
+        "character_edit_distance": 356,
+        "character_denominator": 131,
+        "character_error_rate": 2.7176,
+        "word_edit_distance": 59,
+        "word_denominator": 18,
+        "word_error_rate": 3.2778
+      },
+      "latency_ms": 14.62
+    },
+    {
+      "document_id": "DOC_DIG_LAB_05",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_05.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "TRUSTWELL BIO-LAB\nPatient: Rohan Deshmukh (SYNTH-P105)\nSerum TSH 3.4 mIU/L\nAlanine Aminotransferase (ALT) 38.0 U/L\nAspartate Aminotransferase (AST) 32.0 U/L",
+      "extracted_ocr_text": "TRUSTWELL BIO-LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Rohan Deshmukh\nPatient ID: SYNTH-P105\nAge/Sex: 49 Y / M\nDate of Collection: 2026-03-14\nRef. Doctor: Dr. M. Chawla, MD\nStatus: Final Approved Report\nHEPATIC & THYROID EVALUATION\nSerum TSH\n3.4 mIU/L\nRef: 0.4 - 4.0 mIU/L\nAlanine Aminotransferase (ALT)\n38.0 U/L\nRef: 7 - 56 U/L\nAspartate Aminotransferase (AST)\n32.0 U/L\nRef: 10 - 40 U/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "TRUSTWELL BIO-LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Rohan Deshmukh\nPatient ID: SYNTH-P105\nAge/Sex: 49 Y / M\nDate of Collection: 2026-03-14\nRef. Doctor: Dr. M. Chawla, MD\nStatus: Final Approved Report\nHEPATIC & THYROID EVALUATION\nSerum TSH\n3.4 mIU/L\nRef: 0.4 - 4.0 mIU/L\nAlanine Aminotransferase (ALT)\n38.0 U/L\nRef: 7 - 56 U/L\nAspartate Aminotransferase (AST)\n32.0 U/L\nRef: 10 - 40 U/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "trustwell bio-lab accredited clinical pathology & diagnostic services patient: rohan deshmukh patient id: synth-p105 age/sex: 49 y / m date of collection: 2026-03-14 ref. doctor: dr. m. chawla, md status: final approved report hepatic & thyroid evaluation serum tsh 3.4 miu/l ref: 0.4 - 4.0 miu/l alanine aminotransferase (alt) 38.0 u/l ref: 7 - 56 u/l aspartate aminotransferase (ast) 32.0 u/l ref: 10 - 40 u/l electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "trustwell bio-lab accredited clinical pathology & diagnostic services patient: rohan deshmukh patient id: synth-p105 age/sex: 49 y / m date of collection: 2026-03-14 ref. doctor: dr. m. chawla, md status: final approved report hepatic & thyroid evaluation serum tsh 3.4 miu/l ref: 0.4 - 4.0 miu/l alanine aminotransferase (alt) 38.0 u/l ref: 7 - 56 u/l aspartate aminotransferase (ast) 32.0 u/l ref: 10 - 40 u/l electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 497,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 78,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Rohan Deshmukh Date: 2026-03-14 Serum TSH 3.4 mIU/L 0.4 - 4.0 mIU/L Alanine Aminotransferase (ALT) 38.0 U/L 7 - 56 U/L Aspartate Aminotransferase (AST) 32.0 U/L 10 - 40 U/L",
+        "character_edit_distance": 316,
+        "character_denominator": 181,
+        "character_error_rate": 1.7459,
+        "word_edit_distance": 48,
+        "word_denominator": 31,
+        "word_error_rate": 1.5484
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "TRUSTWELL BIO-LAB\nPatient: Rohan Deshmukh (SYNTH-P105)\nSerum TSH 3.4 mIU/L\nAlanine Aminotransferase (ALT) 38.0 U/L\nAspartate Aminotransferase (AST) 32.0 U/L",
+        "character_edit_distance": 343,
+        "character_denominator": 156,
+        "character_error_rate": 2.1987,
+        "word_edit_distance": 59,
+        "word_denominator": 20,
+        "word_error_rate": 2.95
+      },
+      "latency_ms": 22.01
+    },
+    {
+      "document_id": "DOC_DIG_LAB_06",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_06.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "METROPOLIS CLINICAL LAB\nPatient: Ananya Iyer (SYNTH-P106)\nFasting Blood Glucose 145.0 mg/dL\nGlycated Hemoglobin HbA1c 8.4 %",
+      "extracted_ocr_text": "METROPOLIS CLINICAL LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Ananya Iyer\nPatient ID: SYNTH-P106\nAge/Sex: 56 Y / F\nDate of Collection: 2026-03-15\nRef. Doctor: Dr. P. Hegde, MD\nStatus: Final Approved Report\nGLUCOSE MONITORING REPORT\nFasting Blood Glucose\n145.0 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n8.4 %\nRef: < 5.7 %\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "METROPOLIS CLINICAL LAB\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Ananya Iyer\nPatient ID: SYNTH-P106\nAge/Sex: 56 Y / F\nDate of Collection: 2026-03-15\nRef. Doctor: Dr. P. Hegde, MD\nStatus: Final Approved Report\nGLUCOSE MONITORING REPORT\nFasting Blood Glucose\n145.0 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n8.4 %\nRef: < 5.7 %\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "metropolis clinical lab accredited clinical pathology & diagnostic services patient: ananya iyer patient id: synth-p106 age/sex: 56 y / f date of collection: 2026-03-15 ref. doctor: dr. p. hegde, md status: final approved report glucose monitoring report fasting blood glucose 145.0 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 8.4 % ref: < 5.7 % electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "metropolis clinical lab accredited clinical pathology & diagnostic services patient: ananya iyer patient id: synth-p106 age/sex: 56 y / f date of collection: 2026-03-15 ref. doctor: dr. p. hegde, md status: final approved report glucose monitoring report fasting blood glucose 145.0 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 8.4 % ref: < 5.7 % electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 438,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 68,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Ananya Iyer Date: 2026-03-15 Fasting Blood Glucose 145.0 mg/dL 70 - 99 mg/dL Glycated Hemoglobin HbA1c 8.4 % < 5.7 %",
+        "character_edit_distance": 313,
+        "character_denominator": 125,
+        "character_error_rate": 2.504,
+        "word_edit_distance": 47,
+        "word_denominator": 22,
+        "word_error_rate": 2.1364
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "METROPOLIS CLINICAL LAB\nPatient: Ananya Iyer (SYNTH-P106)\nFasting Blood Glucose 145.0 mg/dL\nGlycated Hemoglobin HbA1c 8.4 %",
+        "character_edit_distance": 317,
+        "character_denominator": 123,
+        "character_error_rate": 2.5772,
+        "word_edit_distance": 52,
+        "word_denominator": 17,
+        "word_error_rate": 3.0588
+      },
+      "latency_ms": 15.05
+    },
+    {
+      "document_id": "DOC_DIG_LAB_07",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_07.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "MEDSTAR PATHOLOGY\nPatient: Karthik Reddy (SYNTH-P107)\nFasting Blood Glucose 108.0 mg/dL\nTotal Cholesterol 230.0 mg/dL\nLDL Cholesterol 148.0 mg/dL\nTriglycerides 190.0 mg/dL",
+      "extracted_ocr_text": "MEDSTAR PATHOLOGY\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Karthik Reddy\nPatient ID: SYNTH-P107\nAge/Sex: 50 Y / M\nDate of Collection: 2026-03-16\nRef. Doctor: Dr. D. Bannerjee, MD\nStatus: Final Approved Report\nCARDIO-METABOLIC PANEL\nFasting Blood Glucose\n108.0 mg/dL\nRef: 70 - 99 mg/dL\nTotal Cholesterol\n230.0 mg/dL\nRef: < 200 mg/dL\nLDL Cholesterol\n148.0 mg/dL\nRef: < 100 mg/dL\nTriglycerides\n190.0 mg/dL\nRef: < 150 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "MEDSTAR PATHOLOGY\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Karthik Reddy\nPatient ID: SYNTH-P107\nAge/Sex: 50 Y / M\nDate of Collection: 2026-03-16\nRef. Doctor: Dr. D. Bannerjee, MD\nStatus: Final Approved Report\nCARDIO-METABOLIC PANEL\nFasting Blood Glucose\n108.0 mg/dL\nRef: 70 - 99 mg/dL\nTotal Cholesterol\n230.0 mg/dL\nRef: < 200 mg/dL\nLDL Cholesterol\n148.0 mg/dL\nRef: < 100 mg/dL\nTriglycerides\n190.0 mg/dL\nRef: < 150 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "medstar pathology accredited clinical pathology & diagnostic services patient: karthik reddy patient id: synth-p107 age/sex: 50 y / m date of collection: 2026-03-16 ref. doctor: dr. d. bannerjee, md status: final approved report cardio-metabolic panel fasting blood glucose 108.0 mg/dl ref: 70 - 99 mg/dl total cholesterol 230.0 mg/dl ref: < 200 mg/dl ldl cholesterol 148.0 mg/dl ref: < 100 mg/dl triglycerides 190.0 mg/dl ref: < 150 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "medstar pathology accredited clinical pathology & diagnostic services patient: karthik reddy patient id: synth-p107 age/sex: 50 y / m date of collection: 2026-03-16 ref. doctor: dr. d. bannerjee, md status: final approved report cardio-metabolic panel fasting blood glucose 108.0 mg/dl ref: 70 - 99 mg/dl total cholesterol 230.0 mg/dl ref: < 200 mg/dl ldl cholesterol 148.0 mg/dl ref: < 100 mg/dl triglycerides 190.0 mg/dl ref: < 150 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 525,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 80,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Karthik Reddy Date: 2026-03-16 Fasting Blood Glucose 108.0 mg/dL 70 - 99 mg/dL Total Cholesterol 230.0 mg/dL < 200 mg/dL LDL Cholesterol 148.0 mg/dL < 100 mg/dL Triglycerides 190.0 mg/dL < 150 mg/dL",
+        "character_edit_distance": 318,
+        "character_denominator": 207,
+        "character_error_rate": 1.5362,
+        "word_edit_distance": 47,
+        "word_denominator": 34,
+        "word_error_rate": 1.3824
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "MEDSTAR PATHOLOGY\nPatient: Karthik Reddy (SYNTH-P107)\nFasting Blood Glucose 108.0 mg/dL\nTotal Cholesterol 230.0 mg/dL\nLDL Cholesterol 148.0 mg/dL\nTriglycerides 190.0 mg/dL",
+        "character_edit_distance": 356,
+        "character_denominator": 171,
+        "character_error_rate": 2.0819,
+        "word_edit_distance": 59,
+        "word_denominator": 22,
+        "word_error_rate": 2.6818
+      },
+      "latency_ms": 28.37
+    },
+    {
+      "document_id": "DOC_DIG_LAB_08",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_08.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "APEX CLINICAL LABORATORIES\nPatient: Fatima Sheikh (SYNTH-P108)\nSerum Creatinine 1.6 mg/dL\nBlood Urea Nitrogen (BUN) 26.0 mg/dL\nSerum Potassium 4.9 mmol/L\nSerum Sodium 137.0 mmol/L",
+      "extracted_ocr_text": "APEX CLINICAL LABORATORIES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Fatima Sheikh\nPatient ID: SYNTH-P108\nAge/Sex: 62 Y / F\nDate of Collection: 2026-03-17\nRef. Doctor: Dr. N. Mehta, MD\nStatus: Final Approved Report\nRENAL MONITORING REPORT\nSerum Creatinine\n1.6 mg/dL\nRef: 0.6 - 1.2 mg/dL\nBlood Urea Nitrogen (BUN)\n26.0 mg/dL\nRef: 7 - 20 mg/dL\nSerum Potassium\n4.9 mmol/L\nRef: 3.5 - 5.0 mmol/L\nSerum Sodium\n137.0 mmol/L\nRef: 135 - 145 mmol/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+      "approach_a_full_visible": {
+        "reference_text": "APEX CLINICAL LABORATORIES\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Fatima Sheikh\nPatient ID: SYNTH-P108\nAge/Sex: 62 Y / F\nDate of Collection: 2026-03-17\nRef. Doctor: Dr. N. Mehta, MD\nStatus: Final Approved Report\nRENAL MONITORING REPORT\nSerum Creatinine\n1.6 mg/dL\nRef: 0.6 - 1.2 mg/dL\nBlood Urea Nitrogen (BUN)\n26.0 mg/dL\nRef: 7 - 20 mg/dL\nSerum Potassium\n4.9 mmol/L\nRef: 3.5 - 5.0 mmol/L\nSerum Sodium\n137.0 mmol/L\nRef: 135 - 145 mmol/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 1",
+        "normalized_reference": "apex clinical laboratories accredited clinical pathology & diagnostic services patient: fatima sheikh patient id: synth-p108 age/sex: 62 y / f date of collection: 2026-03-17 ref. doctor: dr. n. mehta, md status: final approved report renal monitoring report serum creatinine 1.6 mg/dl ref: 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 26.0 mg/dl ref: 7 - 20 mg/dl serum potassium 4.9 mmol/l ref: 3.5 - 5.0 mmol/l serum sodium 137.0 mmol/l ref: 135 - 145 mmol/l electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "normalized_hypothesis": "apex clinical laboratories accredited clinical pathology & diagnostic services patient: fatima sheikh patient id: synth-p108 age/sex: 62 y / f date of collection: 2026-03-17 ref. doctor: dr. n. mehta, md status: final approved report renal monitoring report serum creatinine 1.6 mg/dl ref: 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 26.0 mg/dl ref: 7 - 20 mg/dl serum potassium 4.9 mmol/l ref: 3.5 - 5.0 mmol/l serum sodium 137.0 mmol/l ref: 135 - 145 mmol/l electronically verified clinical report. for research demonstration only. page 1 of 1",
+        "character_edit_distance": 0,
+        "character_denominator": 543,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 87,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Fatima Sheikh Date: 2026-03-17 Serum Creatinine 1.6 mg/dL 0.6 - 1.2 mg/dL Blood Urea Nitrogen (BUN) 26.0 mg/dL 7 - 20 mg/dL Serum Potassium 4.9 mmol/L 3.5 - 5.0 mmol/L Serum Sodium 137.0 mmol/L 135 - 145 mmol/L",
+        "character_edit_distance": 324,
+        "character_denominator": 219,
+        "character_error_rate": 1.4795,
+        "word_edit_distance": 49,
+        "word_denominator": 39,
+        "word_error_rate": 1.2564
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "APEX CLINICAL LABORATORIES\nPatient: Fatima Sheikh (SYNTH-P108)\nSerum Creatinine 1.6 mg/dL\nBlood Urea Nitrogen (BUN) 26.0 mg/dL\nSerum Potassium 4.9 mmol/L\nSerum Sodium 137.0 mmol/L",
+        "character_edit_distance": 366,
+        "character_denominator": 179,
+        "character_error_rate": 2.0447,
+        "word_edit_distance": 63,
+        "word_denominator": 25,
+        "word_error_rate": 2.52
+      },
+      "latency_ms": 16.87
+    },
+    {
+      "document_id": "DOC_DIG_LAB_09",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_09.pdf",
+      "is_multi_page": true,
+      "original_ground_truth_text": "REGIONAL MEDICAL DIAGNOSTICS\nPatient: Deepak Singhania (SYNTH-P109)\nFasting Blood Glucose 126.0 mg/dL\nGlycated Hemoglobin HbA1c 7.6 %\nSerum Creatinine 1.3 mg/dL REGIONAL MEDICAL DIAGNOSTICS\nPatient: Deepak Singhania (SYNTH-P109)\nTotal Cholesterol 220.0 mg/dL\nTriglycerides 175.0 mg/dL\nHDL Cholesterol 45.0 mg/dL",
+      "extracted_ocr_text": "REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Deepak Singhania\nPatient ID: SYNTH-P109\nAge/Sex: 58 Y / M\nDate of Collection: 2026-03-18\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nMETABOLIC INVESTIGATION (PAGE 1 OF 2)\nFasting Blood Glucose\n126.0 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n7.6 %\nRef: 4.0 - 5.6 %\nSerum Creatinine\n1.3 mg/dL\nRef: 0.7 - 1.3 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 2 REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Deepak Singhania\nPatient ID: SYNTH-P109\nAge/Sex: 58 Y / M\nDate of Collection: 2026-03-18\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nLIPID PROFILE (PAGE 2 OF 2)\nTotal Cholesterol\n220.0 mg/dL\nRef: < 200 mg/dL\nTriglycerides\n175.0 mg/dL\nRef: < 150 mg/dL\nHDL Cholesterol\n45.0 mg/dL\nRef: > 40 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 2 of 2",
+      "approach_a_full_visible": {
+        "reference_text": "REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Deepak Singhania\nPatient ID: SYNTH-P109\nAge/Sex: 58 Y / M\nDate of Collection: 2026-03-18\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nMETABOLIC INVESTIGATION (PAGE 1 OF 2)\nFasting Blood Glucose\n126.0 mg/dL\nRef: 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n7.6 %\nRef: 4.0 - 5.6 %\nSerum Creatinine\n1.3 mg/dL\nRef: 0.7 - 1.3 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 2 REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Deepak Singhania\nPatient ID: SYNTH-P109\nAge/Sex: 58 Y / M\nDate of Collection: 2026-03-18\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nLIPID PROFILE (PAGE 2 OF 2)\nTotal Cholesterol\n220.0 mg/dL\nRef: < 200 mg/dL\nTriglycerides\n175.0 mg/dL\nRef: < 150 mg/dL\nHDL Cholesterol\n45.0 mg/dL\nRef: > 40 mg/dL\nElectronically verified clinical report. For research demonstration only.\nPage 2 of 2",
+        "normalized_reference": "regional medical diagnostics accredited clinical pathology & diagnostic services patient: deepak singhania patient id: synth-p109 age/sex: 58 y / m date of collection: 2026-03-18 ref. doctor: dr. t. roy, md status: final approved report metabolic investigation (page 1 of 2) fasting blood glucose 126.0 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 7.6 % ref: 4.0 - 5.6 % serum creatinine 1.3 mg/dl ref: 0.7 - 1.3 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 2 regional medical diagnostics accredited clinical pathology & diagnostic services patient: deepak singhania patient id: synth-p109 age/sex: 58 y / m date of collection: 2026-03-18 ref. doctor: dr. t. roy, md status: final approved report lipid profile (page 2 of 2) total cholesterol 220.0 mg/dl ref: < 200 mg/dl triglycerides 175.0 mg/dl ref: < 150 mg/dl hdl cholesterol 45.0 mg/dl ref: > 40 mg/dl electronically verified clinical report. for research demonstration only. page 2 of 2",
+        "normalized_hypothesis": "regional medical diagnostics accredited clinical pathology & diagnostic services patient: deepak singhania patient id: synth-p109 age/sex: 58 y / m date of collection: 2026-03-18 ref. doctor: dr. t. roy, md status: final approved report metabolic investigation (page 1 of 2) fasting blood glucose 126.0 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 7.6 % ref: 4.0 - 5.6 % serum creatinine 1.3 mg/dl ref: 0.7 - 1.3 mg/dl electronically verified clinical report. for research demonstration only. page 1 of 2 regional medical diagnostics accredited clinical pathology & diagnostic services patient: deepak singhania patient id: synth-p109 age/sex: 58 y / m date of collection: 2026-03-18 ref. doctor: dr. t. roy, md status: final approved report lipid profile (page 2 of 2) total cholesterol 220.0 mg/dl ref: < 200 mg/dl triglycerides 175.0 mg/dl ref: < 150 mg/dl hdl cholesterol 45.0 mg/dl ref: > 40 mg/dl electronically verified clinical report. for research demonstration only. page 2 of 2",
+        "character_edit_distance": 0,
+        "character_denominator": 994,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 156,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Deepak Singhania Date: 2026-03-18 Fasting Blood Glucose 126.0 mg/dL 70 - 99 mg/dL Glycated Hemoglobin HbA1c 7.6 % 4.0 - 5.6 % Serum Creatinine 1.3 mg/dL 0.7 - 1.3 mg/dL Total Cholesterol 220.0 mg/dL < 200 mg/dL Triglycerides 175.0 mg/dL < 150 mg/dL HDL Cholesterol 45.0 mg/dL > 40 mg/dL",
+        "character_edit_distance": 699,
+        "character_denominator": 295,
+        "character_error_rate": 2.3695,
+        "word_edit_distance": 106,
+        "word_denominator": 51,
+        "word_error_rate": 2.0784
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "REGIONAL MEDICAL DIAGNOSTICS\nPatient: Deepak Singhania (SYNTH-P109)\nFasting Blood Glucose 126.0 mg/dL\nGlycated Hemoglobin HbA1c 7.6 %\nSerum Creatinine 1.3 mg/dL REGIONAL MEDICAL DIAGNOSTICS\nPatient: Deepak Singhania (SYNTH-P109)\nTotal Cholesterol 220.0 mg/dL\nTriglycerides 175.0 mg/dL\nHDL Cholesterol 45.0 mg/dL",
+        "character_edit_distance": 685,
+        "character_denominator": 311,
+        "character_error_rate": 2.2026,
+        "word_edit_distance": 119,
+        "word_denominator": 39,
+        "word_error_rate": 3.0513
+      },
+      "latency_ms": 25.52
+    },
+    {
+      "document_id": "DOC_DIG_LAB_10",
+      "category": "digital_lab_pdf",
+      "filename": "DOC_DIG_LAB_10.pdf",
+      "is_multi_page": true,
+      "original_ground_truth_text": "REGIONAL MEDICAL DIAGNOSTICS\nPatient: Meera Nambiar (SYNTH-P110)\nSerum Sodium 142.0 mmol/L\nSerum Potassium 4.3 mmol/L REGIONAL MEDICAL DIAGNOSTICS\nPatient: Meera Nambiar (SYNTH-P110)\nAlanine Aminotransferase (ALT) 34.0 U/L\nAspartate Aminotransferase (AST) 28.0 U/L\nSerum TSH 2.9 mIU/L",
+      "extracted_ocr_text": "REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Meera Nambiar\nPatient ID: SYNTH-P110\nAge/Sex: 44 Y / F\nDate of Collection: 2026-03-19\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nSERUM ELECTROLYTES (PAGE 1 OF 2)\nSerum Sodium\n142.0 mmol/L\nRef: 135 - 145 mmol/L\nSerum Potassium\n4.3 mmol/L\nRef: 3.5 - 5.0 mmol/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 2 REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Meera Nambiar\nPatient ID: SYNTH-P110\nAge/Sex: 44 Y / F\nDate of Collection: 2026-03-19\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nLIVER ENZYMES & THYROID (PAGE 2 OF 2)\nAlanine Aminotransferase (ALT)\n34.0 U/L\nRef: 7 - 56 U/L\nAspartate Aminotransferase (AST)\n28.0 U/L\nRef: 10 - 40 U/L\nSerum TSH\n2.9 mIU/L\nRef: 0.4 - 4.0 mIU/L\nElectronically verified clinical report. For research demonstration only.\nPage 2 of 2",
+      "approach_a_full_visible": {
+        "reference_text": "REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Meera Nambiar\nPatient ID: SYNTH-P110\nAge/Sex: 44 Y / F\nDate of Collection: 2026-03-19\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nSERUM ELECTROLYTES (PAGE 1 OF 2)\nSerum Sodium\n142.0 mmol/L\nRef: 135 - 145 mmol/L\nSerum Potassium\n4.3 mmol/L\nRef: 3.5 - 5.0 mmol/L\nElectronically verified clinical report. For research demonstration only.\nPage 1 of 2 REGIONAL MEDICAL DIAGNOSTICS\nAccredited Clinical Pathology & Diagnostic Services\nPatient: Meera Nambiar\nPatient ID: SYNTH-P110\nAge/Sex: 44 Y / F\nDate of Collection: 2026-03-19\nRef. Doctor: Dr. T. Roy, MD\nStatus: Final Approved Report\nLIVER ENZYMES & THYROID (PAGE 2 OF 2)\nAlanine Aminotransferase (ALT)\n34.0 U/L\nRef: 7 - 56 U/L\nAspartate Aminotransferase (AST)\n28.0 U/L\nRef: 10 - 40 U/L\nSerum TSH\n2.9 mIU/L\nRef: 0.4 - 4.0 mIU/L\nElectronically verified clinical report. For research demonstration only.\nPage 2 of 2",
+        "normalized_reference": "regional medical diagnostics accredited clinical pathology & diagnostic services patient: meera nambiar patient id: synth-p110 age/sex: 44 y / f date of collection: 2026-03-19 ref. doctor: dr. t. roy, md status: final approved report serum electrolytes (page 1 of 2) serum sodium 142.0 mmol/l ref: 135 - 145 mmol/l serum potassium 4.3 mmol/l ref: 3.5 - 5.0 mmol/l electronically verified clinical report. for research demonstration only. page 1 of 2 regional medical diagnostics accredited clinical pathology & diagnostic services patient: meera nambiar patient id: synth-p110 age/sex: 44 y / f date of collection: 2026-03-19 ref. doctor: dr. t. roy, md status: final approved report liver enzymes & thyroid (page 2 of 2) alanine aminotransferase (alt) 34.0 u/l ref: 7 - 56 u/l aspartate aminotransferase (ast) 28.0 u/l ref: 10 - 40 u/l serum tsh 2.9 miu/l ref: 0.4 - 4.0 miu/l electronically verified clinical report. for research demonstration only. page 2 of 2",
+        "normalized_hypothesis": "regional medical diagnostics accredited clinical pathology & diagnostic services patient: meera nambiar patient id: synth-p110 age/sex: 44 y / f date of collection: 2026-03-19 ref. doctor: dr. t. roy, md status: final approved report serum electrolytes (page 1 of 2) serum sodium 142.0 mmol/l ref: 135 - 145 mmol/l serum potassium 4.3 mmol/l ref: 3.5 - 5.0 mmol/l electronically verified clinical report. for research demonstration only. page 1 of 2 regional medical diagnostics accredited clinical pathology & diagnostic services patient: meera nambiar patient id: synth-p110 age/sex: 44 y / f date of collection: 2026-03-19 ref. doctor: dr. t. roy, md status: final approved report liver enzymes & thyroid (page 2 of 2) alanine aminotransferase (alt) 34.0 u/l ref: 7 - 56 u/l aspartate aminotransferase (ast) 28.0 u/l ref: 10 - 40 u/l serum tsh 2.9 miu/l ref: 0.4 - 4.0 miu/l electronically verified clinical report. for research demonstration only. page 2 of 2",
+        "character_edit_distance": 0,
+        "character_denominator": 963,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 153,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Meera Nambiar Date: 2026-03-19 Serum Sodium 142.0 mmol/L 135 - 145 mmol/L Serum Potassium 4.3 mmol/L 3.5 - 5.0 mmol/L Alanine Aminotransferase (ALT) 34.0 U/L 7 - 56 U/L Aspartate Aminotransferase (AST) 28.0 U/L 10 - 40 U/L Serum TSH 2.9 mIU/L 0.4 - 4.0 mIU/L",
+        "character_edit_distance": 696,
+        "character_denominator": 267,
+        "character_error_rate": 2.6067,
+        "word_edit_distance": 107,
+        "word_denominator": 47,
+        "word_error_rate": 2.2766
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "REGIONAL MEDICAL DIAGNOSTICS\nPatient: Meera Nambiar (SYNTH-P110)\nSerum Sodium 142.0 mmol/L\nSerum Potassium 4.3 mmol/L REGIONAL MEDICAL DIAGNOSTICS\nPatient: Meera Nambiar (SYNTH-P110)\nAlanine Aminotransferase (ALT) 34.0 U/L\nAspartate Aminotransferase (AST) 28.0 U/L\nSerum TSH 2.9 mIU/L",
+        "character_edit_distance": 681,
+        "character_denominator": 284,
+        "character_error_rate": 2.3979,
+        "word_edit_distance": 119,
+        "word_denominator": 36,
+        "word_error_rate": 3.3056
+      },
+      "latency_ms": 22.19
+    },
+    {
+      "document_id": "DOC_NOISY_01",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_01.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "DISTRICT HEALTH DISPENSARY\nPatient: Kamala Bai (SYNTH-P401)\nFasting Blood Glucose 128.0 mg/dL\nSerum Creatinine 1.3 mg/dL",
+      "extracted_ocr_text": "DISTRICTHEALTHDISPENSARY\nClinicalDiagnostic.&OutpatientSeryices\nPatient:Kamala.Bai\nPatientID:SYNTH-P401\nAge/Gender:51.Y/F\nDate:2026-03-14\nDoctor:Dr.O.P:Yadav,MBBS\nINVESTIGATIONRESULTS\nFastingBloodGluicose\n128.0 mg/dL\nRef.70-99 mg/dL.\nSerum Creatinine\n1.3 mg/dL\nRef: 0.6 - 1.2 mg/dl.\nComputergenerateddiagnosticdocumentFictional syntheticrecord.",
+      "approach_a_full_visible": {
+        "reference_text": "DISTRICT HEALTH DISPENSARY Clinical Diagnostic & Outpatient Services Patient: Kamala Bai Patient ID: SYNTH-P401 Age / Gender: 51 Y / F Date: 2026-03-14 Doctor: Dr. O. P. Yadav, MBBS INVESTIGATION RESULTS Fasting Blood Glucose 128.0 mg/dL Ref: 70 - 99 mg/dL Serum Creatinine 1.3 mg/dL Ref: 0.6 - 1.2 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "district health dispensary clinical diagnostic & outpatient services patient: kamala bai patient id: synth-p401 age / gender: 51 y / f date: 2026-03-14 doctor: dr. o. p. yadav, mbbs investigation results fasting blood glucose 128.0 mg/dl ref: 70 - 99 mg/dl serum creatinine 1.3 mg/dl ref: 0.6 - 1.2 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "districthealthdispensary clinicaldiagnostic.&outpatientseryices patient:kamala.bai patientid:synth-p401 age/gender:51.y/f date:2026-03-14 doctor:dr.o.p:yadav,mbbs investigationresults fastingbloodgluicose 128.0 mg/dl ref.70-99 mg/dl. serum creatinine 1.3 mg/dl ref: 0.6 - 1.2 mg/dl. computergenerateddiagnosticdocumentfictional syntheticrecord.",
+        "character_edit_distance": 40,
+        "character_denominator": 372,
+        "character_error_rate": 0.1075,
+        "word_edit_distance": 47,
+        "word_denominator": 57,
+        "word_error_rate": 0.8246,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Kamala Bai Date: 2026-03-14 Fasting Blood Glucose 128.0 mg/dL 70 - 99 mg/dL Serum Creatinine 1.3 mg/dL 0.6 - 1.2 mg/dL",
+        "character_edit_distance": 228,
+        "character_denominator": 127,
+        "character_error_rate": 1.7953,
+        "word_edit_distance": 17,
+        "word_denominator": 22,
+        "word_error_rate": 0.7727
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "DISTRICT HEALTH DISPENSARY\nPatient: Kamala Bai (SYNTH-P401)\nFasting Blood Glucose 128.0 mg/dL\nSerum Creatinine 1.3 mg/dL",
+        "character_edit_distance": 236,
+        "character_denominator": 120,
+        "character_error_rate": 1.9667,
+        "word_edit_distance": 19,
+        "word_denominator": 16,
+        "word_error_rate": 1.1875
+      },
+      "latency_ms": 13073.83
+    },
+    {
+      "document_id": "DOC_NOISY_02",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_02.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "COMMUNITY PATHOLOGY LAB\nPatient: Laxman Rao (SYNTH-P402)\nGlycated Hemoglobin HbA1c 7.5 %\nBlood Urea Nitrogen (BUN) 22.0 mg/dL",
+      "extracted_ocr_text": "COMMUNITY.PATHOLOGYLAB\nClinicalDiagnostic&OutpatientServices\nPatient:LaxmanRao\nPatientID:SYNTH-P402\nAge/Gender:60.Y/M\nDate:2026-03-15\nDoctor:Dr.O.P.Yadav,MBBS\nINVESTIGATIONRESULTS\nGlycatedHemoglobinHbA1c\n7.5.%\nRef. 4.0 - 5.6 %\nBlood UreaNitrogen(BUN)\n22.0 mg/dL\nRef.7- 20.mg/dL\nComputergenerateddiagnosticdocument.Fictionalsyntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "COMMUNITY PATHOLOGY LAB Clinical Diagnostic & Outpatient Services Patient: Laxman Rao Patient ID: SYNTH-P402 Age / Gender: 60 Y / M Date: 2026-03-15 Doctor: Dr. O. P. Yadav, MBBS INVESTIGATION RESULTS Glycated Hemoglobin HbA1c 7.5 % Ref: 4.0 - 5.6 % Blood Urea Nitrogen (BUN) 22.0 mg/dL Ref: 7 - 20 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "community pathology lab clinical diagnostic & outpatient services patient: laxman rao patient id: synth-p402 age / gender: 60 y / m date: 2026-03-15 doctor: dr. o. p. yadav, mbbs investigation results glycated hemoglobin hba1c 7.5 % ref: 4.0 - 5.6 % blood urea nitrogen (bun) 22.0 mg/dl ref: 7 - 20 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "community.pathologylab clinicaldiagnostic&outpatientservices patient:laxmanrao patientid:synth-p402 age/gender:60.y/m date:2026-03-15 doctor:dr.o.p.yadav,mbbs investigationresults glycatedhemoglobinhba1c 7.5.% ref. 4.0 - 5.6 % blood ureanitrogen(bun) 22.0 mg/dl ref.7- 20.mg/dl computergenerateddiagnosticdocument.fictionalsyntheticrecord",
+        "character_edit_distance": 40,
+        "character_denominator": 372,
+        "character_error_rate": 0.1075,
+        "word_edit_distance": 52,
+        "word_denominator": 59,
+        "word_error_rate": 0.8814,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Laxman Rao Date: 2026-03-15 Glycated Hemoglobin HbA1c 7.5 % 4.0 - 5.6 % Blood Urea Nitrogen (BUN) 22.0 mg/dL 7 - 20 mg/dL",
+        "character_edit_distance": 224,
+        "character_denominator": 130,
+        "character_error_rate": 1.7231,
+        "word_edit_distance": 18,
+        "word_denominator": 24,
+        "word_error_rate": 0.75
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "COMMUNITY PATHOLOGY LAB\nPatient: Laxman Rao (SYNTH-P402)\nGlycated Hemoglobin HbA1c 7.5 %\nBlood Urea Nitrogen (BUN) 22.0 mg/dL",
+        "character_edit_distance": 229,
+        "character_denominator": 125,
+        "character_error_rate": 1.832,
+        "word_edit_distance": 20,
+        "word_denominator": 18,
+        "word_error_rate": 1.1111
+      },
+      "latency_ms": 14574.71
+    },
+    {
+      "document_id": "DOC_NOISY_03",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_03.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "COMMUNITY PATHOLOGY LAB\nPatient: Mohan Lal (SYNTH-P403)\nSerum Potassium 4.6 mmol/L\nSerum Sodium 140.0 mmol/L",
+      "extracted_ocr_text": "COMMUNITYPATHOLOGYLAB\nClinicalDiagnostic&OutpatientServices\nPatient:Mohan Lal\u00b7\nPatientID:SYNTH-P403\nAge/Gender:54Y/M\nDate:2026-03-16\nDoctor:Dr.N:Joshi,MD\nINVESTIGATIONRESULTS\nSerumPotassium\n4.6 mmol/L\nRef.3.5-5.0mmol/L\nSerumSodium\n140.0mmol/L\nRef 135-145 mmol/L\nComputergenerateddiagnosticdocument.Fictionalsyntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "COMMUNITY PATHOLOGY LAB Clinical Diagnostic & Outpatient Services Patient: Mohan Lal Patient ID: SYNTH-P403 Age / Gender: 54 Y / M Date: 2026-03-16 Doctor: Dr. N. Joshi, MD INVESTIGATION RESULTS Serum Potassium 4.6 mmol/L Ref: 3.5 - 5.0 mmol/L Serum Sodium 140.0 mmol/L Ref: 135 - 145 mmol/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "community pathology lab clinical diagnostic & outpatient services patient: mohan lal patient id: synth-p403 age / gender: 54 y / m date: 2026-03-16 doctor: dr. n. joshi, md investigation results serum potassium 4.6 mmol/l ref: 3.5 - 5.0 mmol/l serum sodium 140.0 mmol/l ref: 135 - 145 mmol/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "communitypathologylab clinicaldiagnostic&outpatientservices patient:mohan lal\u00b7 patientid:synth-p403 age/gender:54y/m date:2026-03-16 doctor:dr.n:joshi,md investigationresults serumpotassium 4.6 mmol/l ref.3.5-5.0mmol/l serumsodium 140.0mmol/l ref 135-145 mmol/l computergenerateddiagnosticdocument.fictionalsyntheticrecord",
+        "character_edit_distance": 41,
+        "character_denominator": 359,
+        "character_error_rate": 0.1142,
+        "word_edit_distance": 52,
+        "word_denominator": 55,
+        "word_error_rate": 0.9455,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Mohan Lal Date: 2026-03-16 Serum Potassium 4.6 mmol/L 3.5 - 5.0 mmol/L Serum Sodium 140.0 mmol/L 135 - 145 mmol/L",
+        "character_edit_distance": 217,
+        "character_denominator": 122,
+        "character_error_rate": 1.7787,
+        "word_edit_distance": 20,
+        "word_denominator": 21,
+        "word_error_rate": 0.9524
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "COMMUNITY PATHOLOGY LAB\nPatient: Mohan Lal (SYNTH-P403)\nSerum Potassium 4.6 mmol/L\nSerum Sodium 140.0 mmol/L",
+        "character_edit_distance": 224,
+        "character_denominator": 108,
+        "character_error_rate": 2.0741,
+        "word_edit_distance": 16,
+        "word_denominator": 15,
+        "word_error_rate": 1.0667
+      },
+      "latency_ms": 13083.29
+    },
+    {
+      "document_id": "DOC_NOISY_04",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_04.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "RURAL CLINIC & LAB\nPatient: Nandita Sen (SYNTH-P404)\nTotal Cholesterol 230.0 mg/dL\nTriglycerides 195.0 mg/dL",
+      "extracted_ocr_text": "RURAL CLINIC&LAB\nClinicalDiagnostic&OutpatientServices\nPatient:NanditaSen\nPatientID:SYNTH-P404\nAge/Gender:48.Y1.F\nDate:2026-03-17\nDoctor: Dr.N. Joshi, MD\nINVESTIGATION.RESULTS\nTotal Cholesterol\n230.0 mg/dL\nRef.<200 mg/dL\nTriglycerides.\n195.0 mg/dL\nRef <150 mg/dL\nComputergenerateddiagnostic'document.Fictionalsyntheticrecord.",
+      "approach_a_full_visible": {
+        "reference_text": "RURAL CLINIC & LAB Clinical Diagnostic & Outpatient Services Patient: Nandita Sen Patient ID: SYNTH-P404 Age / Gender: 48 Y / F Date: 2026-03-17 Doctor: Dr. N. Joshi, MD INVESTIGATION RESULTS Total Cholesterol 230.0 mg/dL Ref: < 200 mg/dL Triglycerides 195.0 mg/dL Ref: < 150 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "rural clinic & lab clinical diagnostic & outpatient services patient: nandita sen patient id: synth-p404 age / gender: 48 y / f date: 2026-03-17 doctor: dr. n. joshi, md investigation results total cholesterol 230.0 mg/dl ref: < 200 mg/dl triglycerides 195.0 mg/dl ref: < 150 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "rural clinic&lab clinicaldiagnostic&outpatientservices patient:nanditasen patientid:synth-p404 age/gender:48.y1.f date:2026-03-17 doctor: dr.n. joshi, md investigation.results total cholesterol 230.0 mg/dl ref.<200 mg/dl triglycerides. 195.0 mg/dl ref <150 mg/dl computergenerateddiagnostic'document.fictionalsyntheticrecord.",
+        "character_edit_distance": 32,
+        "character_denominator": 349,
+        "character_error_rate": 0.0917,
+        "word_edit_distance": 41,
+        "word_denominator": 53,
+        "word_error_rate": 0.7736,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Nandita Sen Date: 2026-03-17 Total Cholesterol 230.0 mg/dL < 200 mg/dL Triglycerides 195.0 mg/dL < 150 mg/dL",
+        "character_edit_distance": 214,
+        "character_denominator": 117,
+        "character_error_rate": 1.8291,
+        "word_edit_distance": 18,
+        "word_denominator": 18,
+        "word_error_rate": 1.0
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "RURAL CLINIC & LAB\nPatient: Nandita Sen (SYNTH-P404)\nTotal Cholesterol 230.0 mg/dL\nTriglycerides 195.0 mg/dL",
+        "character_edit_distance": 226,
+        "character_denominator": 108,
+        "character_error_rate": 2.0926,
+        "word_edit_distance": 18,
+        "word_denominator": 15,
+        "word_error_rate": 1.2
+      },
+      "latency_ms": 12443.93
+    },
+    {
+      "document_id": "DOC_NOISY_05",
+      "category": "noisy_scan",
+      "filename": "DOC_NOISY_05.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "OUTPATIENT HEALTH POST\nPatient: Omkar Nath (SYNTH-P405)\nMetformin 500.0 mg Sig: OD",
+      "extracted_ocr_text": "OUTPATIENTHEALTHPOST\nClinicalDiagnostic&OutpatientServices\nPatient:Omkar Nath\nPatientID:SYNTH-P405.\nAge/Gender:58Y/M\nDate:2026-03-18\nDoctor:Dr.P.Sen,MBBS\nINVESTIGATIONRESULTS\nRx\nMetformin\u00b7500.0mg\nSig:Take:OD for30days\nComputer.generateddiagnosticdocument.Fictionalsyntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "OUTPATIENT HEALTH POST Clinical Diagnostic & Outpatient Services Patient: Omkar Nath Patient ID: SYNTH-P405 Age / Gender: 58 Y / M Date: 2026-03-18 Doctor: Dr. P. Sen, MBBS INVESTIGATION RESULTS Rx Metformin 500.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "outpatient health post clinical diagnostic & outpatient services patient: omkar nath patient id: synth-p405 age / gender: 58 y / m date: 2026-03-18 doctor: dr. p. sen, mbbs investigation results rx metformin 500.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "outpatienthealthpost clinicaldiagnostic&outpatientservices patient:omkar nath patientid:synth-p405. age/gender:58y/m date:2026-03-18 doctor:dr.p.sen,mbbs investigationresults rx metformin\u00b7500.0mg sig:take:od for30days computer.generateddiagnosticdocument.fictionalsyntheticrecord",
+        "character_edit_distance": 35,
+        "character_denominator": 309,
+        "character_error_rate": 0.1133,
+        "word_edit_distance": 45,
+        "word_denominator": 47,
+        "word_error_rate": 0.9574,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Omkar Nath Date: 2026-03-18 Metformin 500.0 mg OD 30 days",
+        "character_edit_distance": 219,
+        "character_denominator": 66,
+        "character_error_rate": 3.3182,
+        "word_edit_distance": 13,
+        "word_denominator": 11,
+        "word_error_rate": 1.1818
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "OUTPATIENT HEALTH POST\nPatient: Omkar Nath (SYNTH-P405)\nMetformin 500.0 mg Sig: OD",
+        "character_edit_distance": 207,
+        "character_denominator": 82,
+        "character_error_rate": 2.5244,
+        "word_edit_distance": 14,
+        "word_denominator": 12,
+        "word_error_rate": 1.1667
+      },
+      "latency_ms": 13993.4
+    },
+    {
+      "document_id": "DOC_RX_01",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_01.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "SHARMA CLINIC & DIABETES CARE\nPatient: Arjun Patel (SYNTH-P301)\nMetformin 500.0 mg Sig: OD",
+      "extracted_ocr_text": "SHARMACLINIC&DIABETESCARE\nClinicalDiagnostic&OutpatientServices\nPatient: Arjun Patel\nPatientID:SYNTH-P301\nAge/ Gender:55Y/M\nDate:2026-03-18\nDoctor: Dr.A.K. Sharma, MD\nINVESTIGATIONRESULTS\nRx\nMetformin 500.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "SHARMA CLINIC & DIABETES CARE Clinical Diagnostic & Outpatient Services Patient: Arjun Patel Patient ID: SYNTH-P301 Age / Gender: 55 Y / M Date: 2026-03-18 Doctor: Dr. A. K. Sharma, MD INVESTIGATION RESULTS Rx Metformin 500.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "sharma clinic & diabetes care clinical diagnostic & outpatient services patient: arjun patel patient id: synth-p301 age / gender: 55 y / m date: 2026-03-18 doctor: dr. a. k. sharma, md investigation results rx metformin 500.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "sharmaclinic&diabetescare clinicaldiagnostic&outpatientservices patient: arjun patel patientid:synth-p301 age/ gender:55y/m date:2026-03-18 doctor: dr.a.k. sharma, md investigationresults rx metformin 500.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 20,
+        "character_denominator": 321,
+        "character_error_rate": 0.0623,
+        "word_edit_distance": 28,
+        "word_denominator": 50,
+        "word_error_rate": 0.56,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Arjun Patel Date: 2026-03-18 Metformin 500.0 mg OD 30 days",
+        "character_edit_distance": 235,
+        "character_denominator": 67,
+        "character_error_rate": 3.5075,
+        "word_edit_distance": 22,
+        "word_denominator": 11,
+        "word_error_rate": 2.0
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "SHARMA CLINIC & DIABETES CARE\nPatient: Arjun Patel (SYNTH-P301)\nMetformin 500.0 mg Sig: OD",
+        "character_edit_distance": 219,
+        "character_denominator": 90,
+        "character_error_rate": 2.4333,
+        "word_edit_distance": 26,
+        "word_denominator": 14,
+        "word_error_rate": 1.8571
+      },
+      "latency_ms": 10277.2
+    },
+    {
+      "document_id": "DOC_RX_02",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_02.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "HYPERTENSION CLINIC\nPatient: Bhavna Trivedi (SYNTH-P302)\nLisinopril 10.0 mg Sig: OD",
+      "extracted_ocr_text": "HYPERTENSIONCLINIC\nClinicalDiagnostic&OutpatientServices\nPatient: Bhavna Trivedi\nPatientID:SYNTH-P302\nAge/Gender:61Y/F\nDate: 2026-03-19\nDoctor:Dr. S. Mathur,MD\nINVESTIGATIONRESULTS\nRx\nLisinopril 10.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "HYPERTENSION CLINIC Clinical Diagnostic & Outpatient Services Patient: Bhavna Trivedi Patient ID: SYNTH-P302 Age / Gender: 61 Y / F Date: 2026-03-19 Doctor: Dr. S. Mathur, MD INVESTIGATION RESULTS Rx Lisinopril 10.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "hypertension clinic clinical diagnostic & outpatient services patient: bhavna trivedi patient id: synth-p302 age / gender: 61 y / f date: 2026-03-19 doctor: dr. s. mathur, md investigation results rx lisinopril 10.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "hypertensionclinic clinicaldiagnostic&outpatientservices patient: bhavna trivedi patientid:synth-p302 age/gender:61y/f date: 2026-03-19 doctor:dr. s. mathur,md investigationresults rx lisinopril 10.0 mg sig: take od for 30 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 19,
+        "character_denominator": 311,
+        "character_error_rate": 0.0611,
+        "word_edit_distance": 27,
+        "word_denominator": 46,
+        "word_error_rate": 0.587,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Bhavna Trivedi Date: 2026-03-19 Lisinopril 10.0 mg OD 30 days",
+        "character_edit_distance": 222,
+        "character_denominator": 70,
+        "character_error_rate": 3.1714,
+        "word_edit_distance": 17,
+        "word_denominator": 11,
+        "word_error_rate": 1.5455
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "HYPERTENSION CLINIC\nPatient: Bhavna Trivedi (SYNTH-P302)\nLisinopril 10.0 mg Sig: OD",
+        "character_edit_distance": 211,
+        "character_denominator": 83,
+        "character_error_rate": 2.5422,
+        "word_edit_distance": 20,
+        "word_denominator": 11,
+        "word_error_rate": 1.8182
+      },
+      "latency_ms": 10943.66
+    },
+    {
+      "document_id": "DOC_RX_03",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_03.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CARDIO-VASCULAR ASSOCIATES\nPatient: Chetan Bhagat (SYNTH-P303)\nLosartan 50.0 mg Sig: OD\nAtorvastatin 20.0 mg Sig: OD",
+      "extracted_ocr_text": "CARDIO-VASCULARASSOCIATES\nClinical Diagnostic&OutpatientServices\nPatient:Chetan Bhagat\nPatient ID:SYNTH-P303\nAge/Gender:59Y/ M\nDate: 2026-03-20\nDoctor: Dr. R. Singhal, MD\nINVESTIGATIONRESULTS\nRx\nLosartan 50.0 mg\nSig:Take OD for30 days\nAtorvastatin 20.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "CARDIO-VASCULAR ASSOCIATES Clinical Diagnostic & Outpatient Services Patient: Chetan Bhagat Patient ID: SYNTH-P303 Age / Gender: 59 Y / M Date: 2026-03-20 Doctor: Dr. R. Singhal, MD INVESTIGATION RESULTS Rx Losartan 50.0 mg Sig: Take OD for 30 days Atorvastatin 20.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "cardio-vascular associates clinical diagnostic & outpatient services patient: chetan bhagat patient id: synth-p303 age / gender: 59 y / m date: 2026-03-20 doctor: dr. r. singhal, md investigation results rx losartan 50.0 mg sig: take od for 30 days atorvastatin 20.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "cardio-vascularassociates clinical diagnostic&outpatientservices patient:chetan bhagat patient id:synth-p303 age/gender:59y/ m date: 2026-03-20 doctor: dr. r. singhal, md investigationresults rx losartan 50.0 mg sig:take od for30 days atorvastatin 20.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 15,
+        "character_denominator": 362,
+        "character_error_rate": 0.0414,
+        "word_edit_distance": 23,
+        "word_denominator": 55,
+        "word_error_rate": 0.4182,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Chetan Bhagat Date: 2026-03-20 Losartan 50.0 mg OD 30 days Atorvastatin 20.0 mg OD 30 days",
+        "character_edit_distance": 249,
+        "character_denominator": 99,
+        "character_error_rate": 2.5152,
+        "word_edit_distance": 27,
+        "word_denominator": 17,
+        "word_error_rate": 1.5882
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CARDIO-VASCULAR ASSOCIATES\nPatient: Chetan Bhagat (SYNTH-P303)\nLosartan 50.0 mg Sig: OD\nAtorvastatin 20.0 mg Sig: OD",
+        "character_edit_distance": 236,
+        "character_denominator": 116,
+        "character_error_rate": 2.0345,
+        "word_edit_distance": 31,
+        "word_denominator": 16,
+        "word_error_rate": 1.9375
+      },
+      "latency_ms": 11894.55
+    },
+    {
+      "document_id": "DOC_RX_04",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_04.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "FAMILY HEALTH CLINIC\nPatient: Divya Murthy (SYNTH-P304)\nAmoxicillin 500.0 mg Sig: TID",
+      "extracted_ocr_text": "FAMILYHEALTHCLINIC\nClinical Diagnostic&OutpatientServices\nPatient: Divya Murthy\nPatientID:SYNTH-P304\nAge/ Gender:32Y/F\nDate:2026-03-21\nDoctor:Dr.P.Sen,MBBS\nINVESTIGATIONRESULTS\nRx\nAmoxicillin 500.0 mg\nSig: Take TID for 7 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "FAMILY HEALTH CLINIC Clinical Diagnostic & Outpatient Services Patient: Divya Murthy Patient ID: SYNTH-P304 Age / Gender: 32 Y / F Date: 2026-03-21 Doctor: Dr. P. Sen, MBBS INVESTIGATION RESULTS Rx Amoxicillin 500.0 mg Sig: Take TID for 7 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "family health clinic clinical diagnostic & outpatient services patient: divya murthy patient id: synth-p304 age / gender: 32 y / f date: 2026-03-21 doctor: dr. p. sen, mbbs investigation results rx amoxicillin 500.0 mg sig: take tid for 7 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "familyhealthclinic clinical diagnostic&outpatientservices patient: divya murthy patientid:synth-p304 age/ gender:32y/f date:2026-03-21 doctor:dr.p.sen,mbbs investigationresults rx amoxicillin 500.0 mg sig: take tid for 7 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 21,
+        "character_denominator": 311,
+        "character_error_rate": 0.0675,
+        "word_edit_distance": 30,
+        "word_denominator": 47,
+        "word_error_rate": 0.6383,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Divya Murthy Date: 2026-03-21 Amoxicillin 500.0 mg TID 7 days",
+        "character_edit_distance": 221,
+        "character_denominator": 70,
+        "character_error_rate": 3.1571,
+        "word_edit_distance": 18,
+        "word_denominator": 11,
+        "word_error_rate": 1.6364
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "FAMILY HEALTH CLINIC\nPatient: Divya Murthy (SYNTH-P304)\nAmoxicillin 500.0 mg Sig: TID",
+        "character_edit_distance": 209,
+        "character_denominator": 85,
+        "character_error_rate": 2.4588,
+        "word_edit_distance": 19,
+        "word_denominator": 12,
+        "word_error_rate": 1.5833
+      },
+      "latency_ms": 3183.76
+    },
+    {
+      "document_id": "DOC_RX_05",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_05.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "PULMOCARE CLINIC\nPatient: Eshwar Chand (SYNTH-P305)\nAzithromycin 250.0 mg Sig: OD",
+      "extracted_ocr_text": "PULMOCARECLINIC\nClinical Diagnostic&OutpatientServices\nPatient:Eshwar Chand\nPatientID:SYNTH-P305\nAge/ Gender:46Y/M\nDate:2026-03-22\nDoctor: Dr. T. Roy, MD\nINVESTIGATIONRESULTS\nRx\nAzithromycin 250.0 mg\nSig:Take OD for 5 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "PULMOCARE CLINIC Clinical Diagnostic & Outpatient Services Patient: Eshwar Chand Patient ID: SYNTH-P305 Age / Gender: 46 Y / M Date: 2026-03-22 Doctor: Dr. T. Roy, MD INVESTIGATION RESULTS Rx Azithromycin 250.0 mg Sig: Take OD for 5 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "pulmocare clinic clinical diagnostic & outpatient services patient: eshwar chand patient id: synth-p305 age / gender: 46 y / m date: 2026-03-22 doctor: dr. t. roy, md investigation results rx azithromycin 250.0 mg sig: take od for 5 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "pulmocareclinic clinical diagnostic&outpatientservices patient:eshwar chand patientid:synth-p305 age/ gender:46y/m date:2026-03-22 doctor: dr. t. roy, md investigationresults rx azithromycin 250.0 mg sig:take od for 5 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 18,
+        "character_denominator": 305,
+        "character_error_rate": 0.059,
+        "word_edit_distance": 28,
+        "word_denominator": 46,
+        "word_error_rate": 0.6087,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Eshwar Chand Date: 2026-03-22 Azithromycin 250.0 mg OD 5 days",
+        "character_edit_distance": 219,
+        "character_denominator": 70,
+        "character_error_rate": 3.1286,
+        "word_edit_distance": 22,
+        "word_denominator": 11,
+        "word_error_rate": 2.0
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "PULMOCARE CLINIC\nPatient: Eshwar Chand (SYNTH-P305)\nAzithromycin 250.0 mg Sig: OD",
+        "character_edit_distance": 209,
+        "character_denominator": 81,
+        "character_error_rate": 2.5802,
+        "word_edit_distance": 24,
+        "word_denominator": 11,
+        "word_error_rate": 2.1818
+      },
+      "latency_ms": 3219.01
+    },
+    {
+      "document_id": "DOC_RX_06",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_06.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "ENDOCRINOLOGY CENTRE\nPatient: Farida Begum (SYNTH-P306)\nLevothyroxine 50.0 mcg Sig: OD",
+      "extracted_ocr_text": "ENDOCRINOLOGYCENTRE\nClinicalDiagnostic&OutpatientServices\nPatient: Farida Begum\nPatientID:SYNTH-P306\nAge/Gender:40Y/F\nDate:2026-03-23\nDoctor:Dr.M.Chawla, MD\nINVESTIGATIONRESULTS\nRx\nLevothyroxine 50.0 mcg\nSig: Take OD for 60 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "ENDOCRINOLOGY CENTRE Clinical Diagnostic & Outpatient Services Patient: Farida Begum Patient ID: SYNTH-P306 Age / Gender: 40 Y / F Date: 2026-03-23 Doctor: Dr. M. Chawla, MD INVESTIGATION RESULTS Rx Levothyroxine 50.0 mcg Sig: Take OD for 60 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "endocrinology centre clinical diagnostic & outpatient services patient: farida begum patient id: synth-p306 age / gender: 40 y / f date: 2026-03-23 doctor: dr. m. chawla, md investigation results rx levothyroxine 50.0 mcg sig: take od for 60 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "endocrinologycentre clinicaldiagnostic&outpatientservices patient: farida begum patientid:synth-p306 age/gender:40y/f date:2026-03-23 doctor:dr.m.chawla, md investigationresults rx levothyroxine 50.0 mcg sig: take od for 60 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 21,
+        "character_denominator": 314,
+        "character_error_rate": 0.0669,
+        "word_edit_distance": 29,
+        "word_denominator": 46,
+        "word_error_rate": 0.6304,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Farida Begum Date: 2026-03-23 Levothyroxine 50.0 mcg OD 60 days",
+        "character_edit_distance": 222,
+        "character_denominator": 72,
+        "character_error_rate": 3.0833,
+        "word_edit_distance": 17,
+        "word_denominator": 11,
+        "word_error_rate": 1.5455
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "ENDOCRINOLOGY CENTRE\nPatient: Farida Begum (SYNTH-P306)\nLevothyroxine 50.0 mcg Sig: OD",
+        "character_edit_distance": 209,
+        "character_denominator": 86,
+        "character_error_rate": 2.4302,
+        "word_edit_distance": 18,
+        "word_denominator": 11,
+        "word_error_rate": 1.6364
+      },
+      "latency_ms": 2776.86
+    },
+    {
+      "document_id": "DOC_RX_07",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_07.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CHEST CARE CLINIC\nPatient: Govind Narang (SYNTH-P307)\nSalbutamol 100.0 mcg Sig: as needed",
+      "extracted_ocr_text": "CHESTCARECLINIC\nClinicalDiagnostic&OutpatientServices\nPatient: Govind Narang\nPatient ID: SYNTH-P307\nAge/Gender:28Y/ M\nDate: 2026-03-24\nDoctor: Dr. H. Swaminathan,MD\nINVESTIGATIONRESULTS\nRx\nSalbutamol 100.0 mcg\nSig:Take asneeded for 30 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "CHEST CARE CLINIC Clinical Diagnostic & Outpatient Services Patient: Govind Narang Patient ID: SYNTH-P307 Age / Gender: 28 Y / M Date: 2026-03-24 Doctor: Dr. H. Swaminathan, MD INVESTIGATION RESULTS Rx Salbutamol 100.0 mcg Sig: Take as needed for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "chest care clinic clinical diagnostic & outpatient services patient: govind narang patient id: synth-p307 age / gender: 28 y / m date: 2026-03-24 doctor: dr. h. swaminathan, md investigation results rx salbutamol 100.0 mcg sig: take as needed for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "chestcareclinic clinicaldiagnostic&outpatientservices patient: govind narang patient id: synth-p307 age/gender:28y/ m date: 2026-03-24 doctor: dr. h. swaminathan,md investigationresults rx salbutamol 100.0 mcg sig:take asneeded for 30 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 18,
+        "character_denominator": 322,
+        "character_error_rate": 0.0559,
+        "word_edit_distance": 26,
+        "word_denominator": 48,
+        "word_error_rate": 0.5417,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Govind Narang Date: 2026-03-24 Salbutamol 100.0 mcg as needed 30 days",
+        "character_edit_distance": 227,
+        "character_denominator": 78,
+        "character_error_rate": 2.9103,
+        "word_edit_distance": 21,
+        "word_denominator": 12,
+        "word_error_rate": 1.75
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CHEST CARE CLINIC\nPatient: Govind Narang (SYNTH-P307)\nSalbutamol 100.0 mcg Sig: as needed",
+        "character_edit_distance": 219,
+        "character_denominator": 89,
+        "character_error_rate": 2.4607,
+        "word_edit_distance": 26,
+        "word_denominator": 13,
+        "word_error_rate": 2.0
+      },
+      "latency_ms": 3041.23
+    },
+    {
+      "document_id": "DOC_RX_08",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_08.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "DIABETIC SPECIALTY CLINIC\nPatient: Harishankar Shukla (SYNTH-P308)\nMetformin 1000.0 mg Sig: BD",
+      "extracted_ocr_text": "DIABETICSPECIALTYCLINIC\nClinicalDiagnostic&OutpatientServices\nPatient:Harishankar Shukla\nPatient ID: SYNTH-P308\nAge/ Gender:66Y/ M\nDate: 2026-03-25\nDoctor:Dr.A.K. Sharma, MD\nINVESTIGATIONRESULTS\nRx\nMetformin 1000.0 mg\nSig:Take BD for 30 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "DIABETIC SPECIALTY CLINIC Clinical Diagnostic & Outpatient Services Patient: Harishankar Shukla Patient ID: SYNTH-P308 Age / Gender: 66 Y / M Date: 2026-03-25 Doctor: Dr. A. K. Sharma, MD INVESTIGATION RESULTS Rx Metformin 1000.0 mg Sig: Take BD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "diabetic specialty clinic clinical diagnostic & outpatient services patient: harishankar shukla patient id: synth-p308 age / gender: 66 y / m date: 2026-03-25 doctor: dr. a. k. sharma, md investigation results rx metformin 1000.0 mg sig: take bd for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "diabeticspecialtyclinic clinicaldiagnostic&outpatientservices patient:harishankar shukla patient id: synth-p308 age/ gender:66y/ m date: 2026-03-25 doctor:dr.a.k. sharma, md investigationresults rx metformin 1000.0 mg sig:take bd for 30 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 19,
+        "character_denominator": 325,
+        "character_error_rate": 0.0585,
+        "word_edit_distance": 28,
+        "word_denominator": 48,
+        "word_error_rate": 0.5833,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Harishankar Shukla Date: 2026-03-25 Metformin 1000.0 mg BD 30 days",
+        "character_edit_distance": 232,
+        "character_denominator": 75,
+        "character_error_rate": 3.0933,
+        "word_edit_distance": 21,
+        "word_denominator": 11,
+        "word_error_rate": 1.9091
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "DIABETIC SPECIALTY CLINIC\nPatient: Harishankar Shukla (SYNTH-P308)\nMetformin 1000.0 mg Sig: BD",
+        "character_edit_distance": 218,
+        "character_denominator": 94,
+        "character_error_rate": 2.3191,
+        "word_edit_distance": 26,
+        "word_denominator": 12,
+        "word_error_rate": 2.1667
+      },
+      "latency_ms": 2741.74
+    },
+    {
+      "document_id": "DOC_RX_09",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_09.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "HEART CARE INSTITUTE\nPatient: Indira Ghosh (SYNTH-P309)\nAtorvastatin 40.0 mg Sig: OD",
+      "extracted_ocr_text": "HEARTCAREINSTITUTE\nClinical Diagnostic&OutpatientServices\nPatient: Indira Ghosh\nPatientID:SYNTH-P309\nAge/Gender:63Y/F\nDate:2026-03-26\nDoctor:Dr.R. Singhal, MD\nINVESTIGATIONRESULTS\nRx\nAtorvastatin 40.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "HEART CARE INSTITUTE Clinical Diagnostic & Outpatient Services Patient: Indira Ghosh Patient ID: SYNTH-P309 Age / Gender: 63 Y / F Date: 2026-03-26 Doctor: Dr. R. Singhal, MD INVESTIGATION RESULTS Rx Atorvastatin 40.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "heart care institute clinical diagnostic & outpatient services patient: indira ghosh patient id: synth-p309 age / gender: 63 y / f date: 2026-03-26 doctor: dr. r. singhal, md investigation results rx atorvastatin 40.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "heartcareinstitute clinical diagnostic&outpatientservices patient: indira ghosh patientid:synth-p309 age/gender:63y/f date:2026-03-26 doctor:dr.r. singhal, md investigationresults rx atorvastatin 40.0 mg sig: take od for 30 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 20,
+        "character_denominator": 313,
+        "character_error_rate": 0.0639,
+        "word_edit_distance": 28,
+        "word_denominator": 47,
+        "word_error_rate": 0.5957,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Indira Ghosh Date: 2026-03-26 Atorvastatin 40.0 mg OD 30 days",
+        "character_edit_distance": 224,
+        "character_denominator": 70,
+        "character_error_rate": 3.2,
+        "word_edit_distance": 19,
+        "word_denominator": 11,
+        "word_error_rate": 1.7273
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "HEART CARE INSTITUTE\nPatient: Indira Ghosh (SYNTH-P309)\nAtorvastatin 40.0 mg Sig: OD",
+        "character_edit_distance": 214,
+        "character_denominator": 84,
+        "character_error_rate": 2.5476,
+        "word_edit_distance": 20,
+        "word_denominator": 12,
+        "word_error_rate": 1.6667
+      },
+      "latency_ms": 2628.34
+    },
+    {
+      "document_id": "DOC_RX_10",
+      "category": "scanned_prescription",
+      "filename": "DOC_RX_10.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "HYPERTENSION CLINIC\nPatient: Javed Akhtar (SYNTH-P310)\nLisinopril 20.0 mg Sig: OD",
+      "extracted_ocr_text": "HYPERTENSIONCLINIC\nClinicalDiagnostic&OutpatientServices\nPatient: Javed Akhtar\nPatientID:SYNTH-P310\nAge/ Gender:57Y/M\nDate:2026-03-27\nDoctor:Dr. S. Mathur,MD\nINVESTIGATIONRESULTS\nRx\nLisinopril 20.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "HYPERTENSION CLINIC Clinical Diagnostic & Outpatient Services Patient: Javed Akhtar Patient ID: SYNTH-P310 Age / Gender: 57 Y / M Date: 2026-03-27 Doctor: Dr. S. Mathur, MD INVESTIGATION RESULTS Rx Lisinopril 20.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "hypertension clinic clinical diagnostic & outpatient services patient: javed akhtar patient id: synth-p310 age / gender: 57 y / m date: 2026-03-27 doctor: dr. s. mathur, md investigation results rx lisinopril 20.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "hypertensionclinic clinicaldiagnostic&outpatientservices patient: javed akhtar patientid:synth-p310 age/ gender:57y/m date:2026-03-27 doctor:dr. s. mathur,md investigationresults rx lisinopril 20.0 mg sig: take od for 30 days computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 19,
+        "character_denominator": 309,
+        "character_error_rate": 0.0615,
+        "word_edit_distance": 29,
+        "word_denominator": 46,
+        "word_error_rate": 0.6304,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Javed Akhtar Date: 2026-03-27 Lisinopril 20.0 mg OD 30 days",
+        "character_edit_distance": 223,
+        "character_denominator": 68,
+        "character_error_rate": 3.2794,
+        "word_edit_distance": 19,
+        "word_denominator": 11,
+        "word_error_rate": 1.7273
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "HYPERTENSION CLINIC\nPatient: Javed Akhtar (SYNTH-P310)\nLisinopril 20.0 mg Sig: OD",
+        "character_edit_distance": 211,
+        "character_denominator": 81,
+        "character_error_rate": 2.6049,
+        "word_edit_distance": 20,
+        "word_denominator": 11,
+        "word_error_rate": 1.8182
+      },
+      "latency_ms": 2055.16
+    },
+    {
+      "document_id": "DOC_SCN_LAB_01",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_01.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "PRIME CLINICAL PATHOLOGY\nPatient: Sanjay Das (SYNTH-P201)\nFasting Blood Glucose 142.0 mg/dL\nGlycated Hemoglobin HbA1c 8.1 %",
+      "extracted_ocr_text": "PRIMECLINICALPATHOLOGY\nClinicalDiagnostic&OutpatientServices\nPatient: Sanjay Das\nPatient ID: SYNTH-P201\nAge/ Gender:53Y/M\nDate: 2026-03-15\nDoctor: Dr. G. Saxena, MD\nINVESTIGATIONRESULTS\nFasting Blood Glucose\n142.0 mg/dL\nRef 70 - 99 mg/dL\nGlycated Hemoglobin HbA1c\n8.1 %\nRef 4.0 - 5.6 %\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "PRIME CLINICAL PATHOLOGY Clinical Diagnostic & Outpatient Services Patient: Sanjay Das Patient ID: SYNTH-P201 Age / Gender: 53 Y / M Date: 2026-03-15 Doctor: Dr. G. Saxena, MD INVESTIGATION RESULTS Fasting Blood Glucose 142.0 mg/dL Ref: 70 - 99 mg/dL Glycated Hemoglobin HbA1c 8.1 % Ref: 4.0 - 5.6 % Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "prime clinical pathology clinical diagnostic & outpatient services patient: sanjay das patient id: synth-p201 age / gender: 53 y / m date: 2026-03-15 doctor: dr. g. saxena, md investigation results fasting blood glucose 142.0 mg/dl ref: 70 - 99 mg/dl glycated hemoglobin hba1c 8.1 % ref: 4.0 - 5.6 % computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "primeclinicalpathology clinicaldiagnostic&outpatientservices patient: sanjay das patient id: synth-p201 age/ gender:53y/m date: 2026-03-15 doctor: dr. g. saxena, md investigationresults fasting blood glucose 142.0 mg/dl ref 70 - 99 mg/dl glycated hemoglobin hba1c 8.1 % ref 4.0 - 5.6 % computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 15,
+        "character_denominator": 367,
+        "character_error_rate": 0.0409,
+        "word_edit_distance": 20,
+        "word_denominator": 57,
+        "word_error_rate": 0.3509,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Sanjay Das Date: 2026-03-15 Fasting Blood Glucose 142.0 mg/dL 70 - 99 mg/dL Glycated Hemoglobin HbA1c 8.1 % 4.0 - 5.6 %",
+        "character_edit_distance": 224,
+        "character_denominator": 128,
+        "character_error_rate": 1.75,
+        "word_edit_distance": 22,
+        "word_denominator": 23,
+        "word_error_rate": 0.9565
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "PRIME CLINICAL PATHOLOGY\nPatient: Sanjay Das (SYNTH-P201)\nFasting Blood Glucose 142.0 mg/dL\nGlycated Hemoglobin HbA1c 8.1 %",
+        "character_edit_distance": 235,
+        "character_denominator": 123,
+        "character_error_rate": 1.9106,
+        "word_edit_distance": 33,
+        "word_denominator": 17,
+        "word_error_rate": 1.9412
+      },
+      "latency_ms": 4081.25
+    },
+    {
+      "document_id": "DOC_SCN_LAB_02",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_02.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "PRIME CLINICAL PATHOLOGY\nPatient: Neelam Kapoor (SYNTH-P202)\nSerum Creatinine 1.8 mg/dL\nBlood Urea Nitrogen (BUN) 28.0 mg/dL\nSerum Potassium 5.2 mmol/L",
+      "extracted_ocr_text": "PRIMECLINICALPATHOLOGY\nClinical Diagnostic&Outpatient Services\nPatient: Neelam Kapoor\nPatientID:SYNTH-P202\nAge/ Gender:64Y/F\nDate: 2026-03-16\nDoctor: Dr. G. Saxena,MD\nINVESTIGATIONRESULTS\nSerum Creatinine\n1.8 mg/dL\nRef. 0.6 - 1.2 mg/dL\nBlood Urea Nitrogen (BUN)\n28.0 mg/dL\nRef 7 - 20 mg/dL\nSerum Potassium\n5.2 mmol/L\nRef 3.5 - 5.0 mmol/L\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "PRIME CLINICAL PATHOLOGY Clinical Diagnostic & Outpatient Services Patient: Neelam Kapoor Patient ID: SYNTH-P202 Age / Gender: 64 Y / F Date: 2026-03-16 Doctor: Dr. G. Saxena, MD INVESTIGATION RESULTS Serum Creatinine 1.8 mg/dL Ref: 0.6 - 1.2 mg/dL Blood Urea Nitrogen (BUN) 28.0 mg/dL Ref: 7 - 20 mg/dL Serum Potassium 5.2 mmol/L Ref: 3.5 - 5.0 mmol/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "prime clinical pathology clinical diagnostic & outpatient services patient: neelam kapoor patient id: synth-p202 age / gender: 64 y / f date: 2026-03-16 doctor: dr. g. saxena, md investigation results serum creatinine 1.8 mg/dl ref: 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 28.0 mg/dl ref: 7 - 20 mg/dl serum potassium 5.2 mmol/l ref: 3.5 - 5.0 mmol/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "primeclinicalpathology clinical diagnostic&outpatient services patient: neelam kapoor patientid:synth-p202 age/ gender:64y/f date: 2026-03-16 doctor: dr. g. saxena,md investigationresults serum creatinine 1.8 mg/dl ref. 0.6 - 1.2 mg/dl blood urea nitrogen (bun) 28.0 mg/dl ref 7 - 20 mg/dl serum potassium 5.2 mmol/l ref 3.5 - 5.0 mmol/l computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 17,
+        "character_denominator": 420,
+        "character_error_rate": 0.0405,
+        "word_edit_distance": 24,
+        "word_denominator": 66,
+        "word_error_rate": 0.3636,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Neelam Kapoor Date: 2026-03-16 Serum Creatinine 1.8 mg/dL 0.6 - 1.2 mg/dL Blood Urea Nitrogen (BUN) 28.0 mg/dL 7 - 20 mg/dL Serum Potassium 5.2 mmol/L 3.5 - 5.0 mmol/L",
+        "character_edit_distance": 228,
+        "character_denominator": 176,
+        "character_error_rate": 1.2955,
+        "word_edit_distance": 22,
+        "word_denominator": 31,
+        "word_error_rate": 0.7097
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "PRIME CLINICAL PATHOLOGY\nPatient: Neelam Kapoor (SYNTH-P202)\nSerum Creatinine 1.8 mg/dL\nBlood Urea Nitrogen (BUN) 28.0 mg/dL\nSerum Potassium 5.2 mmol/L",
+        "character_edit_distance": 259,
+        "character_denominator": 151,
+        "character_error_rate": 1.7152,
+        "word_edit_distance": 35,
+        "word_denominator": 21,
+        "word_error_rate": 1.6667
+      },
+      "latency_ms": 2805.06
+    },
+    {
+      "document_id": "DOC_SCN_LAB_03",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_03.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "GLOBAL DIAGNOSTIC NETWORK\nPatient: Rajeshwari Pillai (SYNTH-P203)\nTotal Cholesterol 245.0 mg/dL\nTriglycerides 210.0 mg/dL\nHDL Cholesterol 38.0 mg/dL\nLDL Cholesterol 165.0 mg/dL",
+      "extracted_ocr_text": "GLOBALDIAGNOSTICNETWORK\nClinicalDiagnostic&OutpatientServices\nPatient: Rajeshwari Pillai\nPatient ID:SYNTH-P203\nAge/ Gender:47Y/F\nDate: 2026-03-17\nDoctor: Dr. B. Dasgupta, MD\nINVESTIGATIONRESULTS\nTotal Cholesterol\n245.0 mg/dL\nRef.<200 mg/dL\nTriglycerides\n210.0 mg/dL\nRef < 150 mg/dL\nHDL Cholesterol\n38.0 mg/dL\nRef > 40 mg/dL\nLDL Cholesterol\n165.0 mg/dL\nRef < 100 mg/dL\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "GLOBAL DIAGNOSTIC NETWORK Clinical Diagnostic & Outpatient Services Patient: Rajeshwari Pillai Patient ID: SYNTH-P203 Age / Gender: 47 Y / F Date: 2026-03-17 Doctor: Dr. B. Dasgupta, MD INVESTIGATION RESULTS Total Cholesterol 245.0 mg/dL Ref: < 200 mg/dL Triglycerides 210.0 mg/dL Ref: < 150 mg/dL HDL Cholesterol 38.0 mg/dL Ref: > 40 mg/dL LDL Cholesterol 165.0 mg/dL Ref: < 100 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "global diagnostic network clinical diagnostic & outpatient services patient: rajeshwari pillai patient id: synth-p203 age / gender: 47 y / f date: 2026-03-17 doctor: dr. b. dasgupta, md investigation results total cholesterol 245.0 mg/dl ref: < 200 mg/dl triglycerides 210.0 mg/dl ref: < 150 mg/dl hdl cholesterol 38.0 mg/dl ref: > 40 mg/dl ldl cholesterol 165.0 mg/dl ref: < 100 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "globaldiagnosticnetwork clinicaldiagnostic&outpatientservices patient: rajeshwari pillai patient id:synth-p203 age/ gender:47y/f date: 2026-03-17 doctor: dr. b. dasgupta, md investigationresults total cholesterol 245.0 mg/dl ref.<200 mg/dl triglycerides 210.0 mg/dl ref < 150 mg/dl hdl cholesterol 38.0 mg/dl ref > 40 mg/dl ldl cholesterol 165.0 mg/dl ref < 100 mg/dl computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 20,
+        "character_denominator": 453,
+        "character_error_rate": 0.0442,
+        "word_edit_distance": 26,
+        "word_denominator": 68,
+        "word_error_rate": 0.3824,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Rajeshwari Pillai Date: 2026-03-17 Total Cholesterol 245.0 mg/dL < 200 mg/dL Triglycerides 210.0 mg/dL < 150 mg/dL HDL Cholesterol 38.0 mg/dL > 40 mg/dL LDL Cholesterol 165.0 mg/dL < 100 mg/dL",
+        "character_edit_distance": 235,
+        "character_denominator": 201,
+        "character_error_rate": 1.1692,
+        "word_edit_distance": 24,
+        "word_denominator": 32,
+        "word_error_rate": 0.75
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "GLOBAL DIAGNOSTIC NETWORK\nPatient: Rajeshwari Pillai (SYNTH-P203)\nTotal Cholesterol 245.0 mg/dL\nTriglycerides 210.0 mg/dL\nHDL Cholesterol 38.0 mg/dL\nLDL Cholesterol 165.0 mg/dL",
+        "character_edit_distance": 264,
+        "character_denominator": 176,
+        "character_error_rate": 1.5,
+        "word_edit_distance": 36,
+        "word_denominator": 22,
+        "word_error_rate": 1.6364
+      },
+      "latency_ms": 3009.87
+    },
+    {
+      "document_id": "DOC_SCN_LAB_04",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_04.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "GLOBAL DIAGNOSTIC NETWORK\nPatient: Manish Tiwari (SYNTH-P204)\nAlanine Aminotransferase (ALT) 54.0 U/L\nAspartate Aminotransferase (AST) 48.0 U/L",
+      "extracted_ocr_text": "GLOBALDIAGNOSTICNETWORK\nClinicalDiagnostic&OutpatientServices\nPatient: Manish Tiwari\nPatient ID:SYNTH-P204\nAge/Gender:39Y/ M\nDate: 2026-03-18\nDoctor: Dr. B. Dasgupta, MD\nINVESTIGATIONRESULTS\nAlanine Aminotransferase (ALT)\n54.0 U/L\nRef. 7 - 56 U/L\nAspartate Aminotransferase (AST)\n48.0 U/L\nRef 10 - 40 U/L\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "GLOBAL DIAGNOSTIC NETWORK Clinical Diagnostic & Outpatient Services Patient: Manish Tiwari Patient ID: SYNTH-P204 Age / Gender: 39 Y / M Date: 2026-03-18 Doctor: Dr. B. Dasgupta, MD INVESTIGATION RESULTS Alanine Aminotransferase (ALT) 54.0 U/L Ref: 7 - 56 U/L Aspartate Aminotransferase (AST) 48.0 U/L Ref: 10 - 40 U/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "global diagnostic network clinical diagnostic & outpatient services patient: manish tiwari patient id: synth-p204 age / gender: 39 y / m date: 2026-03-18 doctor: dr. b. dasgupta, md investigation results alanine aminotransferase (alt) 54.0 u/l ref: 7 - 56 u/l aspartate aminotransferase (ast) 48.0 u/l ref: 10 - 40 u/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "globaldiagnosticnetwork clinicaldiagnostic&outpatientservices patient: manish tiwari patient id:synth-p204 age/gender:39y/ m date: 2026-03-18 doctor: dr. b. dasgupta, md investigationresults alanine aminotransferase (alt) 54.0 u/l ref. 7 - 56 u/l aspartate aminotransferase (ast) 48.0 u/l ref 10 - 40 u/l computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 16,
+        "character_denominator": 386,
+        "character_error_rate": 0.0415,
+        "word_edit_distance": 21,
+        "word_denominator": 57,
+        "word_error_rate": 0.3684,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Manish Tiwari Date: 2026-03-18 Alanine Aminotransferase (ALT) 54.0 U/L 7 - 56 U/L Aspartate Aminotransferase (AST) 48.0 U/L 10 - 40 U/L",
+        "character_edit_distance": 227,
+        "character_denominator": 144,
+        "character_error_rate": 1.5764,
+        "word_edit_distance": 21,
+        "word_denominator": 23,
+        "word_error_rate": 0.913
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "GLOBAL DIAGNOSTIC NETWORK\nPatient: Manish Tiwari (SYNTH-P204)\nAlanine Aminotransferase (ALT) 54.0 U/L\nAspartate Aminotransferase (AST) 48.0 U/L",
+        "character_edit_distance": 234,
+        "character_denominator": 143,
+        "character_error_rate": 1.6364,
+        "word_edit_distance": 32,
+        "word_denominator": 17,
+        "word_error_rate": 1.8824
+      },
+      "latency_ms": 2522.52
+    },
+    {
+      "document_id": "DOC_SCN_LAB_05",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_05.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "MAXIMA HEALTHCARE LAB\nPatient: Gita Sen (SYNTH-P205)\nBlood Pressure 140/90 mmHg\nHeart Rate 82.0 bpm\nFasting Blood Glucose 108.0 mg/dL",
+      "extracted_ocr_text": "MAXIMAHEALTHCARELAB\nClinicalDiagnostic&OutpatientServices\nPatient: Gita Sen\nPatientID:SYNTH-P205\nAge/ Gender:57Y/F\nDate: 2026-03-19\nDoctor: Dr. H. Swaminathan, MD\nINVESTIGATIONRESULTS\nBlood Pressure\n140/90 mmHg\nRef.<120/80 mmHg\nHeart Rate\n82.0 bpm\nRef: 60 -100 bpm\nFasting Blood Glucose\n108.0 mg/dL\nRef 70 - 99 mg/dL\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "MAXIMA HEALTHCARE LAB Clinical Diagnostic & Outpatient Services Patient: Gita Sen Patient ID: SYNTH-P205 Age / Gender: 57 Y / F Date: 2026-03-19 Doctor: Dr. H. Swaminathan, MD INVESTIGATION RESULTS Blood Pressure 140/90 mmHg Ref: < 120/80 mmHg Heart Rate 82.0 bpm Ref: 60 - 100 bpm Fasting Blood Glucose 108.0 mg/dL Ref: 70 - 99 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "maxima healthcare lab clinical diagnostic & outpatient services patient: gita sen patient id: synth-p205 age / gender: 57 y / f date: 2026-03-19 doctor: dr. h. swaminathan, md investigation results blood pressure 140/90 mmhg ref: < 120/80 mmhg heart rate 82.0 bpm ref: 60 - 100 bpm fasting blood glucose 108.0 mg/dl ref: 70 - 99 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "maximahealthcarelab clinicaldiagnostic&outpatientservices patient: gita sen patientid:synth-p205 age/ gender:57y/f date: 2026-03-19 doctor: dr. h. swaminathan, md investigationresults blood pressure 140/90 mmhg ref.<120/80 mmhg heart rate 82.0 bpm ref: 60 -100 bpm fasting blood glucose 108.0 mg/dl ref 70 - 99 mg/dl computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 20,
+        "character_denominator": 402,
+        "character_error_rate": 0.0498,
+        "word_edit_distance": 27,
+        "word_denominator": 64,
+        "word_error_rate": 0.4219,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Gita Sen Date: 2026-03-19 Blood Pressure 140/90 mmHg < 120/80 mmHg Heart Rate 82.0 bpm 60 - 100 bpm Fasting Blood Glucose 108.0 mg/dL 70 - 99 mg/dL",
+        "character_edit_distance": 231,
+        "character_denominator": 156,
+        "character_error_rate": 1.4808,
+        "word_edit_distance": 24,
+        "word_denominator": 29,
+        "word_error_rate": 0.8276
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "MAXIMA HEALTHCARE LAB\nPatient: Gita Sen (SYNTH-P205)\nBlood Pressure 140/90 mmHg\nHeart Rate 82.0 bpm\nFasting Blood Glucose 108.0 mg/dL",
+        "character_edit_distance": 255,
+        "character_denominator": 133,
+        "character_error_rate": 1.9173,
+        "word_edit_distance": 32,
+        "word_denominator": 20,
+        "word_error_rate": 1.6
+      },
+      "latency_ms": 2691.13
+    },
+    {
+      "document_id": "DOC_SCN_LAB_06",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_06.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "MAXIMA HEALTHCARE LAB\nPatient: Tariq Mansoor (SYNTH-P206)\nSerum TSH 5.8 mIU/L",
+      "extracted_ocr_text": "MAXIMAHEALTHCARELAB\nClinical Diagnostic&Outpatient Services\nPatient: Tariq Mansoor\nPatientID:SYNTH-P206\nAge/Gender:35Y/ M\nDate: 2026-03-20\nDoctor: Dr. H. Swaminathan, MD\nINVESTIGATIONRESULTS\nSerum TSH\n5.8 mlU/L\nRef 0.4 - 4.0 mlU/L\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "MAXIMA HEALTHCARE LAB Clinical Diagnostic & Outpatient Services Patient: Tariq Mansoor Patient ID: SYNTH-P206 Age / Gender: 35 Y / M Date: 2026-03-20 Doctor: Dr. H. Swaminathan, MD INVESTIGATION RESULTS Serum TSH 5.8 mIU/L Ref: 0.4 - 4.0 mIU/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "maxima healthcare lab clinical diagnostic & outpatient services patient: tariq mansoor patient id: synth-p206 age / gender: 35 y / m date: 2026-03-20 doctor: dr. h. swaminathan, md investigation results serum tsh 5.8 miu/l ref: 0.4 - 4.0 miu/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "maximahealthcarelab clinical diagnostic&outpatient services patient: tariq mansoor patientid:synth-p206 age/gender:35y/ m date: 2026-03-20 doctor: dr. h. swaminathan, md investigationresults serum tsh 5.8 mlu/l ref 0.4 - 4.0 mlu/l computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 16,
+        "character_denominator": 311,
+        "character_error_rate": 0.0514,
+        "word_edit_distance": 21,
+        "word_denominator": 46,
+        "word_error_rate": 0.4565,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Tariq Mansoor Date: 2026-03-20 Serum TSH 5.8 mIU/L 0.4 - 4.0 mIU/L",
+        "character_edit_distance": 224,
+        "character_denominator": 75,
+        "character_error_rate": 2.9867,
+        "word_edit_distance": 23,
+        "word_denominator": 13,
+        "word_error_rate": 1.7692
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "MAXIMA HEALTHCARE LAB\nPatient: Tariq Mansoor (SYNTH-P206)\nSerum TSH 5.8 mIU/L",
+        "character_edit_distance": 226,
+        "character_denominator": 77,
+        "character_error_rate": 2.9351,
+        "word_edit_distance": 28,
+        "word_denominator": 11,
+        "word_error_rate": 2.5455
+      },
+      "latency_ms": 2618.69
+    },
+    {
+      "document_id": "DOC_SCN_LAB_07",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_07.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "VITALIS PATH LAB\nPatient: Kavita Rane (SYNTH-P207)\nHemoglobin 12.4 g/dL\nFasting Blood Glucose 95.0 mg/dL\nSerum Creatinine 0.9 mg/dL",
+      "extracted_ocr_text": "VITALISPATHLAB\nClinical Diagnostic&OutpatientServices\nPatient: Kavita Rane\nPatientID:SYNTH-P207\nAge/Gender:42Y/F\nDate: 2026-03-21\nDoctor: Dr. S. Nadkarni, MD\nINVESTIGATIONRESULTS\nHemoglobin\n12.4 g/dL\nRef. 12.0 - 15.5 g/dL\nFasting Blood Glucose\n95.0 mg/dL\nRef 70 - 99 mg/dL\nSerum Creatinine\n0.9 mg/dL\nRef 0.6 - 1.2 mg/dL\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "VITALIS PATH LAB Clinical Diagnostic & Outpatient Services Patient: Kavita Rane Patient ID: SYNTH-P207 Age / Gender: 42 Y / F Date: 2026-03-21 Doctor: Dr. S. Nadkarni, MD INVESTIGATION RESULTS Hemoglobin 12.4 g/dL Ref: 12.0 - 15.5 g/dL Fasting Blood Glucose 95.0 mg/dL Ref: 70 - 99 mg/dL Serum Creatinine 0.9 mg/dL Ref: 0.6 - 1.2 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "vitalis path lab clinical diagnostic & outpatient services patient: kavita rane patient id: synth-p207 age / gender: 42 y / f date: 2026-03-21 doctor: dr. s. nadkarni, md investigation results hemoglobin 12.4 g/dl ref: 12.0 - 15.5 g/dl fasting blood glucose 95.0 mg/dl ref: 70 - 99 mg/dl serum creatinine 0.9 mg/dl ref: 0.6 - 1.2 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "vitalispathlab clinical diagnostic&outpatientservices patient: kavita rane patientid:synth-p207 age/gender:42y/f date: 2026-03-21 doctor: dr. s. nadkarni, md investigationresults hemoglobin 12.4 g/dl ref. 12.0 - 15.5 g/dl fasting blood glucose 95.0 mg/dl ref 70 - 99 mg/dl serum creatinine 0.9 mg/dl ref 0.6 - 1.2 mg/dl computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 20,
+        "character_denominator": 403,
+        "character_error_rate": 0.0496,
+        "word_edit_distance": 26,
+        "word_denominator": 64,
+        "word_error_rate": 0.4062,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Kavita Rane Date: 2026-03-21 Hemoglobin 12.4 g/dL 12.0 - 15.5 g/dL Fasting Blood Glucose 95.0 mg/dL 70 - 99 mg/dL Serum Creatinine 0.9 mg/dL 0.6 - 1.2 mg/dL",
+        "character_edit_distance": 219,
+        "character_denominator": 165,
+        "character_error_rate": 1.3273,
+        "word_edit_distance": 19,
+        "word_denominator": 29,
+        "word_error_rate": 0.6552
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "VITALIS PATH LAB\nPatient: Kavita Rane (SYNTH-P207)\nHemoglobin 12.4 g/dL\nFasting Blood Glucose 95.0 mg/dL\nSerum Creatinine 0.9 mg/dL",
+        "character_edit_distance": 258,
+        "character_denominator": 131,
+        "character_error_rate": 1.9695,
+        "word_edit_distance": 33,
+        "word_denominator": 19,
+        "word_error_rate": 1.7368
+      },
+      "latency_ms": 2828.03
+    },
+    {
+      "document_id": "DOC_SCN_LAB_08",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_08.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "VITALIS PATH LAB\nPatient: Ashok Singhal (SYNTH-P208)\nSerum Sodium 141.0 mmol/L\nSerum Potassium 4.1 mmol/L",
+      "extracted_ocr_text": "VITALISPATHLAB\nClinical Diagnostic&OutpatientServices\nPatient:Ashok Singhal\nPatientID:SYNTH-P208\nAge/Gender:68Y/ M\nDate: 2026-03-22\nDoctor: Dr. S. Nadkarni, MD\nINVESTIGATIONRESULTS\nSerum Sodium\n141.0 mmol/L\nRef.135-145 mmol/L\nSerum Potassium\n4.1 mmol/L\nRef 3.5 - 5.0 mmol/L\nComputer generated diagnostic document.Fictional syntheticrecord",
+      "approach_a_full_visible": {
+        "reference_text": "VITALIS PATH LAB Clinical Diagnostic & Outpatient Services Patient: Ashok Singhal Patient ID: SYNTH-P208 Age / Gender: 68 Y / M Date: 2026-03-22 Doctor: Dr. S. Nadkarni, MD INVESTIGATION RESULTS Serum Sodium 141.0 mmol/L Ref: 135 - 145 mmol/L Serum Potassium 4.1 mmol/L Ref: 3.5 - 5.0 mmol/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "vitalis path lab clinical diagnostic & outpatient services patient: ashok singhal patient id: synth-p208 age / gender: 68 y / m date: 2026-03-22 doctor: dr. s. nadkarni, md investigation results serum sodium 141.0 mmol/l ref: 135 - 145 mmol/l serum potassium 4.1 mmol/l ref: 3.5 - 5.0 mmol/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "vitalispathlab clinical diagnostic&outpatientservices patient:ashok singhal patientid:synth-p208 age/gender:68y/ m date: 2026-03-22 doctor: dr. s. nadkarni, md investigationresults serum sodium 141.0 mmol/l ref.135-145 mmol/l serum potassium 4.1 mmol/l ref 3.5 - 5.0 mmol/l computer generated diagnostic document.fictional syntheticrecord",
+        "character_edit_distance": 22,
+        "character_denominator": 359,
+        "character_error_rate": 0.0613,
+        "word_edit_distance": 29,
+        "word_denominator": 55,
+        "word_error_rate": 0.5273,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Ashok Singhal Date: 2026-03-22 Serum Sodium 141.0 mmol/L 135 - 145 mmol/L Serum Potassium 4.1 mmol/L 3.5 - 5.0 mmol/L",
+        "character_edit_distance": 217,
+        "character_denominator": 126,
+        "character_error_rate": 1.7222,
+        "word_edit_distance": 22,
+        "word_denominator": 21,
+        "word_error_rate": 1.0476
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "VITALIS PATH LAB\nPatient: Ashok Singhal (SYNTH-P208)\nSerum Sodium 141.0 mmol/L\nSerum Potassium 4.1 mmol/L",
+        "character_edit_distance": 239,
+        "character_denominator": 105,
+        "character_error_rate": 2.2762,
+        "word_edit_distance": 28,
+        "word_denominator": 15,
+        "word_error_rate": 1.8667
+      },
+      "latency_ms": 4002.35
+    },
+    {
+      "document_id": "DOC_SCN_LAB_09",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_09.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CITY CLINICAL ASSOCIATES\nPatient: Sarojini Devi (SYNTH-P209)\nFasting Blood Glucose 115.0 mg/dL\nSerum Creatinine 1.1 mg/dL\nSerum Sodium 138.0 mmol/L",
+      "extracted_ocr_text": "CITYCLINICALASSOCIATES\nClinicalDiagnostic&OutpatientServices\nPatient: Sarojini Devi\nPatientID:SYNTH-P209\nAge/ Gender:71Y/F\nDate: 2026-03-23\nDoctor: Dr.V. Kaushik, MD\nINVESTIGATIONRESULTS\nFasting Blood Glucose\n115.0 mg/dL\nRef: 70 - 99 mg/dL\nSerum Creatinine\n1.1 mg/dL\nRef 0.6 - 1.2 mg/dL\nSerum Sodium\n138.0 mmol/L\nRef 135 -145 mmol/L\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "CITY CLINICAL ASSOCIATES Clinical Diagnostic & Outpatient Services Patient: Sarojini Devi Patient ID: SYNTH-P209 Age / Gender: 71 Y / F Date: 2026-03-23 Doctor: Dr. V. Kaushik, MD INVESTIGATION RESULTS Fasting Blood Glucose 115.0 mg/dL Ref: 70 - 99 mg/dL Serum Creatinine 1.1 mg/dL Ref: 0.6 - 1.2 mg/dL Serum Sodium 138.0 mmol/L Ref: 135 - 145 mmol/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "city clinical associates clinical diagnostic & outpatient services patient: sarojini devi patient id: synth-p209 age / gender: 71 y / f date: 2026-03-23 doctor: dr. v. kaushik, md investigation results fasting blood glucose 115.0 mg/dl ref: 70 - 99 mg/dl serum creatinine 1.1 mg/dl ref: 0.6 - 1.2 mg/dl serum sodium 138.0 mmol/l ref: 135 - 145 mmol/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "cityclinicalassociates clinicaldiagnostic&outpatientservices patient: sarojini devi patientid:synth-p209 age/ gender:71y/f date: 2026-03-23 doctor: dr.v. kaushik, md investigationresults fasting blood glucose 115.0 mg/dl ref: 70 - 99 mg/dl serum creatinine 1.1 mg/dl ref 0.6 - 1.2 mg/dl serum sodium 138.0 mmol/l ref 135 -145 mmol/l computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 19,
+        "character_denominator": 418,
+        "character_error_rate": 0.0455,
+        "word_edit_distance": 27,
+        "word_denominator": 65,
+        "word_error_rate": 0.4154,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Sarojini Devi Date: 2026-03-23 Fasting Blood Glucose 115.0 mg/dL 70 - 99 mg/dL Serum Creatinine 1.1 mg/dL 0.6 - 1.2 mg/dL Serum Sodium 138.0 mmol/L 135 - 145 mmol/L",
+        "character_edit_distance": 228,
+        "character_denominator": 173,
+        "character_error_rate": 1.3179,
+        "word_edit_distance": 22,
+        "word_denominator": 30,
+        "word_error_rate": 0.7333
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CITY CLINICAL ASSOCIATES\nPatient: Sarojini Devi (SYNTH-P209)\nFasting Blood Glucose 115.0 mg/dL\nSerum Creatinine 1.1 mg/dL\nSerum Sodium 138.0 mmol/L",
+        "character_edit_distance": 258,
+        "character_denominator": 147,
+        "character_error_rate": 1.7551,
+        "word_edit_distance": 34,
+        "word_denominator": 20,
+        "word_error_rate": 1.7
+      },
+      "latency_ms": 2002.21
+    },
+    {
+      "document_id": "DOC_SCN_LAB_10",
+      "category": "clean_scanned_lab",
+      "filename": "DOC_SCN_LAB_10.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CITY CLINICAL ASSOCIATES\nPatient: Girish Prasad (SYNTH-P210)\nGlycated Hemoglobin HbA1c 6.9 %\nTriglycerides 165.0 mg/dL\nAlanine Aminotransferase (ALT) 29.0 U/L",
+      "extracted_ocr_text": "CITYCLINICALASSOCIATES\nClinicalDiagnostic&OutpatientServices\nPatient: Girish Prasad\nPatient ID: SYNTH-P210\nAge/ Gender:50Y/ M\nDate: 2026-03-24\nDoctor: Dr.V. Kaushik, MD\nINVESTIGATIONRESULTS\nGlycated Hemoglobin HbA1c\n6.9 %\nRef: 4.0 - 5.6 %\nTriglycerides\n165.0 mg/dL\nRef < 150 mg/dL\nAlanine Aminotransferase(ALT)\n29.0 U/L\nRef. 7 - 56 U/L\nComputer generated diagnostic document. Fictional synthetic record",
+      "approach_a_full_visible": {
+        "reference_text": "CITY CLINICAL ASSOCIATES Clinical Diagnostic & Outpatient Services Patient: Girish Prasad Patient ID: SYNTH-P210 Age / Gender: 50 Y / M Date: 2026-03-24 Doctor: Dr. V. Kaushik, MD INVESTIGATION RESULTS Glycated Hemoglobin HbA1c 6.9 % Ref: 4.0 - 5.6 % Triglycerides 165.0 mg/dL Ref: < 150 mg/dL Alanine Aminotransferase (ALT) 29.0 U/L Ref: 7 - 56 U/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "city clinical associates clinical diagnostic & outpatient services patient: girish prasad patient id: synth-p210 age / gender: 50 y / m date: 2026-03-24 doctor: dr. v. kaushik, md investigation results glycated hemoglobin hba1c 6.9 % ref: 4.0 - 5.6 % triglycerides 165.0 mg/dl ref: < 150 mg/dl alanine aminotransferase (alt) 29.0 u/l ref: 7 - 56 u/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "cityclinicalassociates clinicaldiagnostic&outpatientservices patient: girish prasad patient id: synth-p210 age/ gender:50y/ m date: 2026-03-24 doctor: dr.v. kaushik, md investigationresults glycated hemoglobin hba1c 6.9 % ref: 4.0 - 5.6 % triglycerides 165.0 mg/dl ref < 150 mg/dl alanine aminotransferase(alt) 29.0 u/l ref. 7 - 56 u/l computer generated diagnostic document. fictional synthetic record",
+        "character_edit_distance": 16,
+        "character_denominator": 417,
+        "character_error_rate": 0.0384,
+        "word_edit_distance": 23,
+        "word_denominator": 64,
+        "word_error_rate": 0.3594,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Girish Prasad Date: 2026-03-24 Glycated Hemoglobin HbA1c 6.9 % 4.0 - 5.6 % Triglycerides 165.0 mg/dL < 150 mg/dL Alanine Aminotransferase (ALT) 29.0 U/L 7 - 56 U/L",
+        "character_edit_distance": 232,
+        "character_denominator": 172,
+        "character_error_rate": 1.3488,
+        "word_edit_distance": 25,
+        "word_denominator": 29,
+        "word_error_rate": 0.8621
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CITY CLINICAL ASSOCIATES\nPatient: Girish Prasad (SYNTH-P210)\nGlycated Hemoglobin HbA1c 6.9 %\nTriglycerides 165.0 mg/dL\nAlanine Aminotransferase (ALT) 29.0 U/L",
+        "character_edit_distance": 252,
+        "character_denominator": 158,
+        "character_error_rate": 1.5949,
+        "word_edit_distance": 39,
+        "word_denominator": 20,
+        "word_error_rate": 1.95
+      },
+      "latency_ms": 2656.5
+    },
+    {
+      "document_id": "DOC_SKEW_01",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_01.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "METROPOLITAN BIO-LAB\nPatient: Pooja Hegde (SYNTH-P501)\nGlycated Hemoglobin HbA1c 6.8 %\nFasting Blood Glucose 105.0 mg/dL",
+      "extracted_ocr_text": "METROPOLITANBIO-LAB\nClinical Diagnostic& Outpatient Services\nPatient: Pooja Hegde\nAge/ Gender:43Y/F\nPatient ID: SYNTH-P501\nDoctor: Dr. R. Bannerjee, MD\nDate: 2026-03-12\nINVESTIGATION RESULTS\nGlycated Hemoglobin HbA1c\n6.8 %\nFasting Blood Glucose\nRef. 4.0 - 5.6 %\n105.0 mg/dL\nRef. 70 - 99 mg/dl\nComputergenerateddiagnostic document.Fictional synthetic record.",
+      "approach_a_full_visible": {
+        "reference_text": "METROPOLITAN BIO-LAB Clinical Diagnostic & Outpatient Services Patient: Pooja Hegde Patient ID: SYNTH-P501 Age / Gender: 43 Y / F Date: 2026-03-12 Doctor: Dr. R. Bannerjee, MD INVESTIGATION RESULTS Glycated Hemoglobin HbA1c 6.8 % Ref: 4.0 - 5.6 % Fasting Blood Glucose 105.0 mg/dL Ref: 70 - 99 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "metropolitan bio-lab clinical diagnostic & outpatient services patient: pooja hegde patient id: synth-p501 age / gender: 43 y / f date: 2026-03-12 doctor: dr. r. bannerjee, md investigation results glycated hemoglobin hba1c 6.8 % ref: 4.0 - 5.6 % fasting blood glucose 105.0 mg/dl ref: 70 - 99 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "metropolitanbio-lab clinical diagnostic& outpatient services patient: pooja hegde age/ gender:43y/f patient id: synth-p501 doctor: dr. r. bannerjee, md date: 2026-03-12 investigation results glycated hemoglobin hba1c 6.8 % fasting blood glucose ref. 4.0 - 5.6 % 105.0 mg/dl ref. 70 - 99 mg/dl computergenerateddiagnostic document.fictional synthetic record.",
+        "character_edit_distance": 101,
+        "character_denominator": 367,
+        "character_error_rate": 0.2752,
+        "word_edit_distance": 30,
+        "word_denominator": 56,
+        "word_error_rate": 0.5357,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Pooja Hegde Date: 2026-03-12 Glycated Hemoglobin HbA1c 6.8 % 4.0 - 5.6 % Fasting Blood Glucose 105.0 mg/dL 70 - 99 mg/dL",
+        "character_edit_distance": 252,
+        "character_denominator": 129,
+        "character_error_rate": 1.9535,
+        "word_edit_distance": 29,
+        "word_denominator": 23,
+        "word_error_rate": 1.2609
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "METROPOLITAN BIO-LAB\nPatient: Pooja Hegde (SYNTH-P501)\nGlycated Hemoglobin HbA1c 6.8 %\nFasting Blood Glucose 105.0 mg/dL",
+        "character_edit_distance": 241,
+        "character_denominator": 120,
+        "character_error_rate": 2.0083,
+        "word_edit_distance": 33,
+        "word_denominator": 16,
+        "word_error_rate": 2.0625
+      },
+      "latency_ms": 4260.79
+    },
+    {
+      "document_id": "DOC_SKEW_02",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_02.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "METROPOLITAN BIO-LAB\nPatient: Qadir Khan (SYNTH-P502)\nSerum Creatinine 1.5 mg/dL\nSerum Potassium 4.4 mmol/L",
+      "extracted_ocr_text": "METROPOLITAN BIO-LAB\nClinical Diagnostic&Outpatient Services\nPatient ID: SYNTH-P502\nPatient:Qadir Khan\nDate: 2026-03-13\nAge / Gender:61 Y / M\nDoctor: Dr. R. Bannerjee, MD\nINVESTIGATION RESULTS\nRef: 0.6 - 1.2 mg/dL\n1.5 mg/dL\nRef 3.5 -5.0 mmol/L\nSerum Creatinine\n4.4 mmol/L\nSerum Potassium\nComputer generated diagnostic document. Fictional synthetic record.",
+      "approach_a_full_visible": {
+        "reference_text": "METROPOLITAN BIO-LAB Clinical Diagnostic & Outpatient Services Patient: Qadir Khan Patient ID: SYNTH-P502 Age / Gender: 61 Y / M Date: 2026-03-13 Doctor: Dr. R. Bannerjee, MD INVESTIGATION RESULTS Serum Creatinine 1.5 mg/dL Ref: 0.6 - 1.2 mg/dL Serum Potassium 4.4 mmol/L Ref: 3.5 - 5.0 mmol/L Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "metropolitan bio-lab clinical diagnostic & outpatient services patient: qadir khan patient id: synth-p502 age / gender: 61 y / m date: 2026-03-13 doctor: dr. r. bannerjee, md investigation results serum creatinine 1.5 mg/dl ref: 0.6 - 1.2 mg/dl serum potassium 4.4 mmol/l ref: 3.5 - 5.0 mmol/l computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "metropolitan bio-lab clinical diagnostic&outpatient services patient id: synth-p502 patient:qadir khan date: 2026-03-13 age / gender:61 y / m doctor: dr. r. bannerjee, md investigation results ref: 0.6 - 1.2 mg/dl 1.5 mg/dl ref 3.5 -5.0 mmol/l serum creatinine 4.4 mmol/l serum potassium computer generated diagnostic document. fictional synthetic record.",
+        "character_edit_distance": 110,
+        "character_denominator": 361,
+        "character_error_rate": 0.3047,
+        "word_edit_distance": 28,
+        "word_denominator": 54,
+        "word_error_rate": 0.5185,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Qadir Khan Date: 2026-03-13 Serum Creatinine 1.5 mg/dL 0.6 - 1.2 mg/dL Serum Potassium 4.4 mmol/L 3.5 - 5.0 mmol/L",
+        "character_edit_distance": 262,
+        "character_denominator": 123,
+        "character_error_rate": 2.1301,
+        "word_edit_distance": 39,
+        "word_denominator": 21,
+        "word_error_rate": 1.8571
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "METROPOLITAN BIO-LAB\nPatient: Qadir Khan (SYNTH-P502)\nSerum Creatinine 1.5 mg/dL\nSerum Potassium 4.4 mmol/L",
+        "character_edit_distance": 265,
+        "character_denominator": 107,
+        "character_error_rate": 2.4766,
+        "word_edit_distance": 41,
+        "word_denominator": 14,
+        "word_error_rate": 2.9286
+      },
+      "latency_ms": 12985.59
+    },
+    {
+      "document_id": "DOC_SKEW_03",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_03.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "EXCEL DIAGNOSTICS\nPatient: Radha Krishnan (SYNTH-P503)\nTotal Cholesterol 210.0 mg/dL\nLDL Cholesterol 130.0 mg/dL",
+      "extracted_ocr_text": "EXCEL DIAGNOSTICS\nClinical Diagnostic&OutpatientServices\nPatient: Radha Krishnan\nAge / Gender:50Y/ F\nPatient ID: SYNTH-P503\nDoctor: Dr. S. Kulkarni, MD\nDate: 2026-03-14\nINVESTIGATION RESULTS\nTotai Cholestero!\nLDL Cholesterol\n210.0 mg/dL\nRef. <200 mg/dL\n130.0 mg/dl\nRef < 100 mg/dL\nComputer generated diagnosticdocument.Fictional syntheticrecord.",
+      "approach_a_full_visible": {
+        "reference_text": "EXCEL DIAGNOSTICS Clinical Diagnostic & Outpatient Services Patient: Radha Krishnan Patient ID: SYNTH-P503 Age / Gender: 50 Y / F Date: 2026-03-14 Doctor: Dr. S. Kulkarni, MD INVESTIGATION RESULTS Total Cholesterol 210.0 mg/dL Ref: < 200 mg/dL LDL Cholesterol 130.0 mg/dL Ref: < 100 mg/dL Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "excel diagnostics clinical diagnostic & outpatient services patient: radha krishnan patient id: synth-p503 age / gender: 50 y / f date: 2026-03-14 doctor: dr. s. kulkarni, md investigation results total cholesterol 210.0 mg/dl ref: < 200 mg/dl ldl cholesterol 130.0 mg/dl ref: < 100 mg/dl computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "excel diagnostics clinical diagnostic&outpatientservices patient: radha krishnan age / gender:50y/ f patient id: synth-p503 doctor: dr. s. kulkarni, md date: 2026-03-14 investigation results totai cholestero! ldl cholesterol 210.0 mg/dl ref. <200 mg/dl 130.0 mg/dl ref < 100 mg/dl computer generated diagnosticdocument.fictional syntheticrecord.",
+        "character_edit_distance": 101,
+        "character_denominator": 356,
+        "character_error_rate": 0.2837,
+        "word_edit_distance": 30,
+        "word_denominator": 52,
+        "word_error_rate": 0.5769,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Radha Krishnan Date: 2026-03-14 Total Cholesterol 210.0 mg/dL < 200 mg/dL LDL Cholesterol 130.0 mg/dL < 100 mg/dL",
+        "character_edit_distance": 247,
+        "character_denominator": 122,
+        "character_error_rate": 2.0246,
+        "word_edit_distance": 30,
+        "word_denominator": 19,
+        "word_error_rate": 1.5789
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "EXCEL DIAGNOSTICS\nPatient: Radha Krishnan (SYNTH-P503)\nTotal Cholesterol 210.0 mg/dL\nLDL Cholesterol 130.0 mg/dL",
+        "character_edit_distance": 249,
+        "character_denominator": 112,
+        "character_error_rate": 2.2232,
+        "word_edit_distance": 32,
+        "word_denominator": 14,
+        "word_error_rate": 2.2857
+      },
+      "latency_ms": 17996.23
+    },
+    {
+      "document_id": "DOC_SKEW_04",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_04.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "EXCEL CLINIC\nPatient: Shailesh Verma (SYNTH-P504)\nLisinopril 10.0 mg Sig: OD",
+      "extracted_ocr_text": "EXCEL CLINIC\nClinical Diagnostic&Outpatient Services\nPatientID:SYNTH-P504\nPatient:ShaileshVerma\nDate: 2026-03-15\nAge/Gender:56Y/ M\nDoctor: Dr\u3001S. Kulkarni, MD\nINVESTIGATIONRESULTS\nRx\nLisinopril 10.0 mg\nSig: Take OD for 30 days\nComputer generated diagnostic document.Fictional synthetic record.",
+      "approach_a_full_visible": {
+        "reference_text": "EXCEL CLINIC Clinical Diagnostic & Outpatient Services Patient: Shailesh Verma Patient ID: SYNTH-P504 Age / Gender: 56 Y / M Date: 2026-03-15 Doctor: Dr. S. Kulkarni, MD INVESTIGATION RESULTS Rx Lisinopril 10.0 mg Sig: Take OD for 30 days Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "excel clinic clinical diagnostic & outpatient services patient: shailesh verma patient id: synth-p504 age / gender: 56 y / m date: 2026-03-15 doctor: dr. s. kulkarni, md investigation results rx lisinopril 10.0 mg sig: take od for 30 days computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "excel clinic clinical diagnostic&outpatient services patientid:synth-p504 patient:shaileshverma date: 2026-03-15 age/gender:56y/ m doctor: dr\u3001s. kulkarni, md investigationresults rx lisinopril 10.0 mg sig: take od for 30 days computer generated diagnostic document.fictional synthetic record.",
+        "character_edit_distance": 65,
+        "character_denominator": 306,
+        "character_error_rate": 0.2124,
+        "word_edit_distance": 23,
+        "word_denominator": 46,
+        "word_error_rate": 0.5,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Shailesh Verma Date: 2026-03-15 Lisinopril 10.0 mg OD 30 days",
+        "character_edit_distance": 224,
+        "character_denominator": 70,
+        "character_error_rate": 3.2,
+        "word_edit_distance": 24,
+        "word_denominator": 11,
+        "word_error_rate": 2.1818
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "EXCEL CLINIC\nPatient: Shailesh Verma (SYNTH-P504)\nLisinopril 10.0 mg Sig: OD",
+        "character_edit_distance": 227,
+        "character_denominator": 76,
+        "character_error_rate": 2.9868,
+        "word_edit_distance": 25,
+        "word_denominator": 11,
+        "word_error_rate": 2.2727
+      },
+      "latency_ms": 9859.84
+    },
+    {
+      "document_id": "DOC_SKEW_05",
+      "category": "skewed_document",
+      "filename": "DOC_SKEW_05.png",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CITY CARDIAC CARE\nPatient: Tarun Mehra (SYNTH-P505)\nBlood Pressure 135/85 mmHg\nHeart Rate 76.0 bpm",
+      "extracted_ocr_text": "CITY CARDIAC CARE\nClinical Diagnostic&OutpatientServices\nPatient: Tarun Mehra\nAge/ Gender: 62Y / M\nPatient ID: SYNTH-P505\nDoctor: Dr. A. Verma, MD\nDate: 2026-03-16\nINVESTIGATIONRESULTS\nBloodPressure\nHeart Rate\n135/85mmHg\nRef: <120/80 mmHg\n76.0 bpm\nRef. 60 ~100 bpm\nComputer generated diagnostic documentFictional syntheticrecord.",
+      "approach_a_full_visible": {
+        "reference_text": "CITY CARDIAC CARE Clinical Diagnostic & Outpatient Services Patient: Tarun Mehra Patient ID: SYNTH-P505 Age / Gender: 62 Y / M Date: 2026-03-16 Doctor: Dr. A. Verma, MD INVESTIGATION RESULTS Blood Pressure 135/85 mmHg Ref: < 120/80 mmHg Heart Rate 76.0 bpm Ref: 60 - 100 bpm Computer generated diagnostic document. Fictional synthetic record.",
+        "normalized_reference": "city cardiac care clinical diagnostic & outpatient services patient: tarun mehra patient id: synth-p505 age / gender: 62 y / m date: 2026-03-16 doctor: dr. a. verma, md investigation results blood pressure 135/85 mmhg ref: < 120/80 mmhg heart rate 76.0 bpm ref: 60 - 100 bpm computer generated diagnostic document. fictional synthetic record.",
+        "normalized_hypothesis": "city cardiac care clinical diagnostic&outpatientservices patient: tarun mehra age/ gender: 62y / m patient id: synth-p505 doctor: dr. a. verma, md date: 2026-03-16 investigationresults bloodpressure heart rate 135/85mmhg ref: <120/80 mmhg 76.0 bpm ref. 60 ~100 bpm computer generated diagnostic documentfictional syntheticrecord.",
+        "character_edit_distance": 94,
+        "character_denominator": 342,
+        "character_error_rate": 0.2749,
+        "word_edit_distance": 32,
+        "word_denominator": 54,
+        "word_error_rate": 0.5926,
+        "exact_match": false
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Tarun Mehra Date: 2026-03-16 Blood Pressure 135/85 mmHg < 120/80 mmHg Heart Rate 76.0 bpm 60 - 100 bpm",
+        "character_edit_distance": 242,
+        "character_denominator": 111,
+        "character_error_rate": 2.1802,
+        "word_edit_distance": 34,
+        "word_denominator": 20,
+        "word_error_rate": 1.7
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CITY CARDIAC CARE\nPatient: Tarun Mehra (SYNTH-P505)\nBlood Pressure 135/85 mmHg\nHeart Rate 76.0 bpm",
+        "character_edit_distance": 244,
+        "character_denominator": 98,
+        "character_error_rate": 2.4898,
+        "word_edit_distance": 32,
+        "word_denominator": 15,
+        "word_error_rate": 2.1333
+      },
+      "latency_ms": 10007.53
+    },
+    {
+      "document_id": "DOC_TBL_01",
+      "category": "medical_table",
+      "filename": "DOC_TBL_01.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "APEX PATHOLOGY LABORATORY\nPatient: Usha Narayanan (SYNTH-P601)\nFasting Blood Glucose 118.0 mg/dL\nBlood Urea Nitrogen (BUN) 19.0 mg/dL\nSerum Creatinine 1.2 mg/dL\nSerum Sodium 142.0 mmol/L\nSerum Potassium 4.5 mmol/L",
+      "extracted_ocr_text": "APEX PATHOLOGY LABORATORY\nDepartment of Clinical Biochemistry\nPatient Name: Usha Narayanan\nSample ID: SYNTH-P601\nDate of Collection: 2026-03-20\nDoctor: Dr. V. Gupta, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nFasting Blood Glucose\n118.0\nmg/dL\n70 - 99\nBlood Urea Nitrogen (BUN)\n19.0\nmg/dL\n7 - 20\nSerum Creatinine\n1.2\nmg/dL\n0.6 - 1.2\nSerum Sodium\n142.0\nmmol/L\n135 - 145\nSerum Potassium\n4.5\nmmol/L\n3.5 - 5.0\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+      "approach_a_full_visible": {
+        "reference_text": "APEX PATHOLOGY LABORATORY\nDepartment of Clinical Biochemistry\nPatient Name: Usha Narayanan\nSample ID: SYNTH-P601\nDate of Collection: 2026-03-20\nDoctor: Dr. V. Gupta, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nFasting Blood Glucose\n118.0\nmg/dL\n70 - 99\nBlood Urea Nitrogen (BUN)\n19.0\nmg/dL\n7 - 20\nSerum Creatinine\n1.2\nmg/dL\n0.6 - 1.2\nSerum Sodium\n142.0\nmmol/L\n135 - 145\nSerum Potassium\n4.5\nmmol/L\n3.5 - 5.0\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+        "normalized_reference": "apex pathology laboratory department of clinical biochemistry patient name: usha narayanan sample id: synth-p601 date of collection: 2026-03-20 doctor: dr. v. gupta, md test investigation observed value unit reference range fasting blood glucose 118.0 mg/dl 70 - 99 blood urea nitrogen (bun) 19.0 mg/dl 7 - 20 serum creatinine 1.2 mg/dl 0.6 - 1.2 serum sodium 142.0 mmol/l 135 - 145 serum potassium 4.5 mmol/l 3.5 - 5.0 end of report. all laboratory assays calibrated against standard reference serums.",
+        "normalized_hypothesis": "apex pathology laboratory department of clinical biochemistry patient name: usha narayanan sample id: synth-p601 date of collection: 2026-03-20 doctor: dr. v. gupta, md test investigation observed value unit reference range fasting blood glucose 118.0 mg/dl 70 - 99 blood urea nitrogen (bun) 19.0 mg/dl 7 - 20 serum creatinine 1.2 mg/dl 0.6 - 1.2 serum sodium 142.0 mmol/l 135 - 145 serum potassium 4.5 mmol/l 3.5 - 5.0 end of report. all laboratory assays calibrated against standard reference serums.",
+        "character_edit_distance": 0,
+        "character_denominator": 502,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 79,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Usha Narayanan Date: 2026-03-20 Fasting Blood Glucose 118.0 mg/dL 70 - 99 Blood Urea Nitrogen (BUN) 19.0 mg/dL 7 - 20 Serum Creatinine 1.2 mg/dL 0.6 - 1.2 Serum Sodium 142.0 mmol/L 135 - 145 Serum Potassium 4.5 mmol/L 3.5 - 5.0",
+        "character_edit_distance": 266,
+        "character_denominator": 236,
+        "character_error_rate": 1.1271,
+        "word_edit_distance": 38,
+        "word_denominator": 43,
+        "word_error_rate": 0.8837
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "APEX PATHOLOGY LABORATORY\nPatient: Usha Narayanan (SYNTH-P601)\nFasting Blood Glucose 118.0 mg/dL\nBlood Urea Nitrogen (BUN) 19.0 mg/dL\nSerum Creatinine 1.2 mg/dL\nSerum Sodium 142.0 mmol/L\nSerum Potassium 4.5 mmol/L",
+        "character_edit_distance": 291,
+        "character_denominator": 213,
+        "character_error_rate": 1.3662,
+        "word_edit_distance": 51,
+        "word_denominator": 30,
+        "word_error_rate": 1.7
+      },
+      "latency_ms": 61.11
+    },
+    {
+      "document_id": "DOC_TBL_02",
+      "category": "medical_table",
+      "filename": "DOC_TBL_02.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "APEX PATHOLOGY LABORATORY\nPatient: Vijay Shankar (SYNTH-P602)\nTotal Cholesterol 225.0 mg/dL\nTriglycerides 175.0 mg/dL\nHDL Cholesterol 45.0 mg/dL\nLDL Cholesterol 145.0 mg/dL",
+      "extracted_ocr_text": "APEX PATHOLOGY LABORATORY\nDepartment of Clinical Biochemistry\nPatient Name: Vijay Shankar\nSample ID: SYNTH-P602\nDate of Collection: 2026-03-21\nDoctor: Dr. V. Gupta, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nTotal Cholesterol\n225.0\nmg/dL\n< 200\nTriglycerides\n175.0\nmg/dL\n< 150\nHDL Cholesterol\n45.0\nmg/dL\n> 40\nLDL Cholesterol\n145.0\nmg/dL\n< 100\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+      "approach_a_full_visible": {
+        "reference_text": "APEX PATHOLOGY LABORATORY\nDepartment of Clinical Biochemistry\nPatient Name: Vijay Shankar\nSample ID: SYNTH-P602\nDate of Collection: 2026-03-21\nDoctor: Dr. V. Gupta, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nTotal Cholesterol\n225.0\nmg/dL\n< 200\nTriglycerides\n175.0\nmg/dL\n< 150\nHDL Cholesterol\n45.0\nmg/dL\n> 40\nLDL Cholesterol\n145.0\nmg/dL\n< 100\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+        "normalized_reference": "apex pathology laboratory department of clinical biochemistry patient name: vijay shankar sample id: synth-p602 date of collection: 2026-03-21 doctor: dr. v. gupta, md test investigation observed value unit reference range total cholesterol 225.0 mg/dl < 200 triglycerides 175.0 mg/dl < 150 hdl cholesterol 45.0 mg/dl > 40 ldl cholesterol 145.0 mg/dl < 100 end of report. all laboratory assays calibrated against standard reference serums.",
+        "normalized_hypothesis": "apex pathology laboratory department of clinical biochemistry patient name: vijay shankar sample id: synth-p602 date of collection: 2026-03-21 doctor: dr. v. gupta, md test investigation observed value unit reference range total cholesterol 225.0 mg/dl < 200 triglycerides 175.0 mg/dl < 150 hdl cholesterol 45.0 mg/dl > 40 ldl cholesterol 145.0 mg/dl < 100 end of report. all laboratory assays calibrated against standard reference serums.",
+        "character_edit_distance": 0,
+        "character_denominator": 439,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 64,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Vijay Shankar Date: 2026-03-21 Total Cholesterol 225.0 mg/dL < 200 Triglycerides 175.0 mg/dL < 150 HDL Cholesterol 45.0 mg/dL > 40 LDL Cholesterol 145.0 mg/dL < 100",
+        "character_edit_distance": 266,
+        "character_denominator": 173,
+        "character_error_rate": 1.5376,
+        "word_edit_distance": 38,
+        "word_denominator": 28,
+        "word_error_rate": 1.3571
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "APEX PATHOLOGY LABORATORY\nPatient: Vijay Shankar (SYNTH-P602)\nTotal Cholesterol 225.0 mg/dL\nTriglycerides 175.0 mg/dL\nHDL Cholesterol 45.0 mg/dL\nLDL Cholesterol 145.0 mg/dL",
+        "character_edit_distance": 269,
+        "character_denominator": 172,
+        "character_error_rate": 1.564,
+        "word_edit_distance": 44,
+        "word_denominator": 22,
+        "word_error_rate": 2.0
+      },
+      "latency_ms": 17.84
+    },
+    {
+      "document_id": "DOC_TBL_03",
+      "category": "medical_table",
+      "filename": "DOC_TBL_03.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "BIO-METRIC DIAGNOSTIC HUB\nPatient: Wasim Akram (SYNTH-P603)\nHemoglobin 14.2 g/dL\nWBC Count 6800.0 /uL\nPlatelet Count 240000.0 /uL",
+      "extracted_ocr_text": "BIO-METRIC DIAGNOSTIC HUB\nDepartment of Clinical Biochemistry\nPatient Name: Wasim Akram\nSample ID: SYNTH-P603\nDate of Collection: 2026-03-22\nDoctor: Dr. M. Chawla, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nHemoglobin\n14.2\ng/dL\n13.0 - 17.0\nWBC Count\n6800.0\n/uL\n4000 - 11000\nPlatelet Count\n240000.0\n/uL\n150000 - 450000\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+      "approach_a_full_visible": {
+        "reference_text": "BIO-METRIC DIAGNOSTIC HUB\nDepartment of Clinical Biochemistry\nPatient Name: Wasim Akram\nSample ID: SYNTH-P603\nDate of Collection: 2026-03-22\nDoctor: Dr. M. Chawla, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nHemoglobin\n14.2\ng/dL\n13.0 - 17.0\nWBC Count\n6800.0\n/uL\n4000 - 11000\nPlatelet Count\n240000.0\n/uL\n150000 - 450000\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+        "normalized_reference": "bio-metric diagnostic hub department of clinical biochemistry patient name: wasim akram sample id: synth-p603 date of collection: 2026-03-22 doctor: dr. m. chawla, md test investigation observed value unit reference range hemoglobin 14.2 g/dl 13.0 - 17.0 wbc count 6800.0 /ul 4000 - 11000 platelet count 240000.0 /ul 150000 - 450000 end of report. all laboratory assays calibrated against standard reference serums.",
+        "normalized_hypothesis": "bio-metric diagnostic hub department of clinical biochemistry patient name: wasim akram sample id: synth-p603 date of collection: 2026-03-22 doctor: dr. m. chawla, md test investigation observed value unit reference range hemoglobin 14.2 g/dl 13.0 - 17.0 wbc count 6800.0 /ul 4000 - 11000 platelet count 240000.0 /ul 150000 - 450000 end of report. all laboratory assays calibrated against standard reference serums.",
+        "character_edit_distance": 0,
+        "character_denominator": 415,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 61,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Wasim Akram Date: 2026-03-22 Hemoglobin 14.2 g/dL 13.0 - 17.0 WBC Count 6800.0 /uL 4000 - 11000 Platelet Count 240000.0 /uL 150000 - 450000",
+        "character_edit_distance": 267,
+        "character_denominator": 148,
+        "character_error_rate": 1.8041,
+        "word_edit_distance": 38,
+        "word_denominator": 25,
+        "word_error_rate": 1.52
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "BIO-METRIC DIAGNOSTIC HUB\nPatient: Wasim Akram (SYNTH-P603)\nHemoglobin 14.2 g/dL\nWBC Count 6800.0 /uL\nPlatelet Count 240000.0 /uL",
+        "character_edit_distance": 288,
+        "character_denominator": 129,
+        "character_error_rate": 2.2326,
+        "word_edit_distance": 45,
+        "word_denominator": 18,
+        "word_error_rate": 2.5
+      },
+      "latency_ms": 16.3
+    },
+    {
+      "document_id": "DOC_TBL_04",
+      "category": "medical_table",
+      "filename": "DOC_TBL_04.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "BIO-METRIC DIAGNOSTIC HUB\nPatient: Xavier D'Souza (SYNTH-P604)\nAlanine Aminotransferase (ALT) 42.0 U/L\nAspartate Aminotransferase (AST) 36.0 U/L\nSerum TSH 2.8 mIU/L",
+      "extracted_ocr_text": "BIO-METRIC DIAGNOSTIC HUB\nDepartment of Clinical Biochemistry\nPatient Name: Xavier D'Souza\nSample ID: SYNTH-P604\nDate of Collection: 2026-03-23\nDoctor: Dr. M. Chawla, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nAlanine Aminotransferase (ALT)\n42.0\nU/L\n7 - 56\nAspartate Aminotransferase (AST)\n36.0\nU/L\n10 - 40\nSerum TSH\n2.8\nmIU/L\n0.4 - 4.0\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+      "approach_a_full_visible": {
+        "reference_text": "BIO-METRIC DIAGNOSTIC HUB\nDepartment of Clinical Biochemistry\nPatient Name: Xavier D'Souza\nSample ID: SYNTH-P604\nDate of Collection: 2026-03-23\nDoctor: Dr. M. Chawla, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nAlanine Aminotransferase (ALT)\n42.0\nU/L\n7 - 56\nAspartate Aminotransferase (AST)\n36.0\nU/L\n10 - 40\nSerum TSH\n2.8\nmIU/L\n0.4 - 4.0\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+        "normalized_reference": "bio-metric diagnostic hub department of clinical biochemistry patient name: xavier d'souza sample id: synth-p604 date of collection: 2026-03-23 doctor: dr. m. chawla, md test investigation observed value unit reference range alanine aminotransferase (alt) 42.0 u/l 7 - 56 aspartate aminotransferase (ast) 36.0 u/l 10 - 40 serum tsh 2.8 miu/l 0.4 - 4.0 end of report. all laboratory assays calibrated against standard reference serums.",
+        "normalized_hypothesis": "bio-metric diagnostic hub department of clinical biochemistry patient name: xavier d'souza sample id: synth-p604 date of collection: 2026-03-23 doctor: dr. m. chawla, md test investigation observed value unit reference range alanine aminotransferase (alt) 42.0 u/l 7 - 56 aspartate aminotransferase (ast) 36.0 u/l 10 - 40 serum tsh 2.8 miu/l 0.4 - 4.0 end of report. all laboratory assays calibrated against standard reference serums.",
+        "character_edit_distance": 0,
+        "character_denominator": 434,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 64,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Xavier D'Souza Date: 2026-03-23 Alanine Aminotransferase (ALT) 42.0 U/L 7 - 56 Aspartate Aminotransferase (AST) 36.0 U/L 10 - 40 Serum TSH 2.8 mIU/L 0.4 - 4.0",
+        "character_edit_distance": 267,
+        "character_denominator": 167,
+        "character_error_rate": 1.5988,
+        "word_edit_distance": 38,
+        "word_denominator": 28,
+        "word_error_rate": 1.3571
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "BIO-METRIC DIAGNOSTIC HUB\nPatient: Xavier D'Souza (SYNTH-P604)\nAlanine Aminotransferase (ALT) 42.0 U/L\nAspartate Aminotransferase (AST) 36.0 U/L\nSerum TSH 2.8 mIU/L",
+        "character_edit_distance": 272,
+        "character_denominator": 164,
+        "character_error_rate": 1.6585,
+        "word_edit_distance": 45,
+        "word_denominator": 21,
+        "word_error_rate": 2.1429
+      },
+      "latency_ms": 14.97
+    },
+    {
+      "document_id": "DOC_TBL_05",
+      "category": "medical_table",
+      "filename": "DOC_TBL_05.pdf",
+      "is_multi_page": false,
+      "original_ground_truth_text": "CENTRAL CLINICAL SERVICES\nPatient: Yamini Mohan (SYNTH-P605)\nFasting Blood Glucose 135.0 mg/dL\nGlycated Hemoglobin HbA1c 7.8 %\nSerum Creatinine 1.4 mg/dL",
+      "extracted_ocr_text": "CENTRAL CLINICAL SERVICES\nDepartment of Clinical Biochemistry\nPatient Name: Yamini Mohan\nSample ID: SYNTH-P605\nDate of Collection: 2026-03-24\nDoctor: Dr. R. Sen, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nFasting Blood Glucose\n135.0\nmg/dL\n70 - 99\nGlycated Hemoglobin HbA1c\n7.8\n%\n4.0 - 5.6\nSerum Creatinine\n1.4\nmg/dL\n0.6 - 1.2\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+      "approach_a_full_visible": {
+        "reference_text": "CENTRAL CLINICAL SERVICES\nDepartment of Clinical Biochemistry\nPatient Name: Yamini Mohan\nSample ID: SYNTH-P605\nDate of Collection: 2026-03-24\nDoctor: Dr. R. Sen, MD\nTEST INVESTIGATION\nOBSERVED VALUE\nUNIT\nREFERENCE RANGE\nFasting Blood Glucose\n135.0\nmg/dL\n70 - 99\nGlycated Hemoglobin HbA1c\n7.8\n%\n4.0 - 5.6\nSerum Creatinine\n1.4\nmg/dL\n0.6 - 1.2\nEnd of report. All laboratory assays calibrated against standard reference serums.",
+        "normalized_reference": "central clinical services department of clinical biochemistry patient name: yamini mohan sample id: synth-p605 date of collection: 2026-03-24 doctor: dr. r. sen, md test investigation observed value unit reference range fasting blood glucose 135.0 mg/dl 70 - 99 glycated hemoglobin hba1c 7.8 % 4.0 - 5.6 serum creatinine 1.4 mg/dl 0.6 - 1.2 end of report. all laboratory assays calibrated against standard reference serums.",
+        "normalized_hypothesis": "central clinical services department of clinical biochemistry patient name: yamini mohan sample id: synth-p605 date of collection: 2026-03-24 doctor: dr. r. sen, md test investigation observed value unit reference range fasting blood glucose 135.0 mg/dl 70 - 99 glycated hemoglobin hba1c 7.8 % 4.0 - 5.6 serum creatinine 1.4 mg/dl 0.6 - 1.2 end of report. all laboratory assays calibrated against standard reference serums.",
+        "character_edit_distance": 0,
+        "character_denominator": 423,
+        "character_error_rate": 0.0,
+        "word_edit_distance": 0,
+        "word_denominator": 64,
+        "word_error_rate": 0.0,
+        "exact_match": true
+      },
+      "approach_b_clinical_region": {
+        "reference_text": "Patient: Yamini Mohan Date: 2026-03-24 Fasting Blood Glucose 135.0 mg/dL 70 - 99 Glycated Hemoglobin HbA1c 7.8 % 4.0 - 5.6 Serum Creatinine 1.4 mg/dL 0.6 - 1.2",
+        "character_edit_distance": 264,
+        "character_denominator": 159,
+        "character_error_rate": 1.6604,
+        "word_edit_distance": 38,
+        "word_denominator": 28,
+        "word_error_rate": 1.3571
+      },
+      "phase5_5_unaligned_baseline": {
+        "reference_text": "CENTRAL CLINICAL SERVICES\nPatient: Yamini Mohan (SYNTH-P605)\nFasting Blood Glucose 135.0 mg/dL\nGlycated Hemoglobin HbA1c 7.8 %\nSerum Creatinine 1.4 mg/dL",
+        "character_edit_distance": 272,
+        "character_denominator": 153,
+        "character_error_rate": 1.7778,
+        "word_edit_distance": 45,
+        "word_denominator": 21,
+        "word_error_rate": 2.1429
+      },
+      "latency_ms": 14.92
+    }
+  ]
+}

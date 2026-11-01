@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "benchmark_name": "MedResolve 100-Query Medical Retrieval Benchmark",
+    "target_corpus": "Knowledge Base Version 2 (10 Guidelines, 42 Passages)",
+    "total_queries": 100,
+    "in_domain_evaluable_queries_count": 90,
+    "out_of_domain_negative_controls_count": 10
+  },
+  "denominators_documented": {
+    "in_domain_recall_and_mrr_denominator": 90,
+    "out_of_domain_abstention_denominator": 10,
+    "zero_hit_rate_denominator": 90,
+    "improper_mixed_denominator_note": "Dividing in-domain hits by 100 artificially penalizes recall by 10%, because OOD queries intentionally have no valid passages in the corpus."
+  },
+  "methods_summary": {
+    "lexical": {
+      "mrr": {
+        "value": 0.7569,
+        "numerator": 68.1167,
+        "denominator": 90,
+        "formula": "sum(reciprocal_ranks) / 90"
+      },
+      "recall_at_1": {
+        "value": 0.5444,
+        "mean_percentage": "54.44%",
+        "binary_hit_count": "58/90 (64.44%)",
+        "denominator": 90
+      },
+      "recall_at_3": {
+        "value": 0.7667,
+        "mean_percentage": "76.67%",
+        "binary_hit_count": "76/90 (84.44%)",
+        "denominator": 90
+      },
+      "recall_at_5": {
+        "value": 0.8556,
+        "mean_percentage": "85.56%",
+        "binary_hit_count": "84/90 (93.33%)",
+        "denominator": 90
+      },
+      "precision_at_1": {
+        "value": 0.6444,
+        "denominator": 90
+      },
+      "precision_at_3": {
+        "value": 0.3111,
+        "denominator": 90
+      },
+      "precision_at_5": {
+        "value": 0.2111,
+        "denominator": 90
+      },
+      "zero_hit_rate": {
+        "rate": 0.0667,
+        "count_and_fraction": "6/90 (6.67%)",
+        "denominator": 90
+      },
+      "negative_control_abstention": {
+        "rate": 0.3,
+        "count_and_fraction": "3/10 (30.00%)",
+        "denominator": 10
+      },
+      "per_category_breakdown": {
+        "direct_medical": {
+          "count": 25,
+          "mrr": 0.84,
+          "recall_at_1": "76.00%",
+          "recall_at_3": "88.00%",
+          "recall_at_5": "96.00%",
+          "zero_hits": "1/25"
+        },
+        "symptom_based": {
+          "count": 25,
+          "mrr": 0.7347,
+          "recall_at_1": "58.00%",
+          "recall_at_3": "82.00%",
+          "recall_at_5": "94.00%",
+          "zero_hits": "1/25"
+        },
+        "multi_passage": {
+          "count": 15,
+          "mrr": 0.8889,
+          "recall_at_1": "46.67%",
+          "recall_at_3": "70.00%",
+          "recall_at_5": "73.33%",
+          "zero_hits": "1/15"
+        },
+        "ambiguous": {
+          "count": 15,
+          "mrr": 0.5722,
+          "recall_at_1": "23.33%",
+          "recall_at_3": "46.67%",
+          "recall_at_5": "63.33%",
+          "zero_hits": "2/15"
+        },
+        "outdated_or_trap": {
+          "count": 5,
+          "mrr": 0.8,
+          "recall_at_1": "60.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/5"
+        },
+        "patient_contextual": {
+          "count": 5,
+          "mrr": 0.5667,
+          "recall_at_1": "40.00%",
+          "recall_at_3": "80.00%",
+          "recall_at_5": "80.00%",
+          "zero_hits": "1/5"
+        }
+      }
+    },
+    "dense": {
+      "mrr": {
+        "value": 0.8152,
+        "numerator": 73.3667,
+        "denominator": 90,
+        "formula": "sum(reciprocal_ranks) / 90"
+      },
+      "recall_at_1": {
+        "value": 0.6333,
+        "mean_percentage": "63.33%",
+        "binary_hit_count": "66/90 (73.33%)",
+        "denominator": 90
+      },
+      "recall_at_3": {
+        "value": 0.85,
+        "mean_percentage": "85.00%",
+        "binary_hit_count": "80/90 (88.89%)",
+        "denominator": 90
+      },
+      "recall_at_5": {
+        "value": 0.8944,
+        "mean_percentage": "89.44%",
+        "binary_hit_count": "83/90 (92.22%)",
+        "denominator": 90
+      },
+      "precision_at_1": {
+        "value": 0.7333,
+        "denominator": 90
+      },
+      "precision_at_3": {
+        "value": 0.3593,
+        "denominator": 90
+      },
+      "precision_at_5": {
+        "value": 0.2311,
+        "denominator": 90
+      },
+      "zero_hit_rate": {
+        "rate": 0.0778,
+        "count_and_fraction": "7/90 (7.78%)",
+        "denominator": 90
+      },
+      "negative_control_abstention": {
+        "rate": 0.9,
+        "count_and_fraction": "9/10 (90.00%)",
+        "denominator": 10
+      },
+      "per_category_breakdown": {
+        "direct_medical": {
+          "count": 25,
+          "mrr": 0.9733,
+          "recall_at_1": "96.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/25"
+        },
+        "symptom_based": {
+          "count": 25,
+          "mrr": 0.62,
+          "recall_at_1": "48.00%",
+          "recall_at_3": "72.00%",
+          "recall_at_5": "78.00%",
+          "zero_hits": "5/25"
+        },
+        "multi_passage": {
+          "count": 15,
+          "mrr": 0.9333,
+          "recall_at_1": "46.67%",
+          "recall_at_3": "93.33%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/15"
+        },
+        "ambiguous": {
+          "count": 15,
+          "mrr": 0.6689,
+          "recall_at_1": "33.33%",
+          "recall_at_3": "63.33%",
+          "recall_at_5": "73.33%",
+          "zero_hits": "2/15"
+        },
+        "outdated_or_trap": {
+          "count": 5,
+          "mrr": 0.9,
+          "recall_at_1": "80.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/5"
+        },
+        "patient_contextual": {
+          "count": 5,
+          "mrr": 1.0,
+          "recall_at_1": "100.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/5"
+        }
+      }
+    },
+    "hybrid": {
+      "mrr": {
+        "value": 0.8485,
+        "numerator": 76.3667,
+        "denominator": 90,
+        "formula": "sum(reciprocal_ranks) / 90"
+      },
+      "recall_at_1": {
+        "value": 0.6722,
+        "mean_percentage": "67.22%",
+        "binary_hit_count": "70/90 (77.78%)",
+        "denominator": 90
+      },
+      "recall_at_3": {
+        "value": 0.8667,
+        "mean_percentage": "86.67%",
+        "binary_hit_count": "83/90 (92.22%)",
+        "denominator": 90
+      },
+      "recall_at_5": {
+        "value": 0.9222,
+        "mean_percentage": "92.22%",
+        "binary_hit_count": "86/90 (95.56%)",
+        "denominator": 90
+      },
+      "precision_at_1": {
+        "value": 0.7778,
+        "denominator": 90
+      },
+      "precision_at_3": {
+        "value": 0.3593,
+        "denominator": 90
+      },
+      "precision_at_5": {
+        "value": 0.2356,
+        "denominator": 90
+      },
+      "zero_hit_rate": {
+        "rate": 0.0444,
+        "count_and_fraction": "4/90 (4.44%)",
+        "denominator": 90
+      },
+      "negative_control_abstention": {
+        "rate": 0.0,
+        "count_and_fraction": "0/10 (0.00%)",
+        "denominator": 10
+      },
+      "per_category_breakdown": {
+        "direct_medical": {
+          "count": 25,
+          "mrr": 0.9233,
+          "recall_at_1": "88.00%",
+          "recall_at_3": "96.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/25"
+        },
+        "symptom_based": {
+          "count": 25,
+          "mrr": 0.8033,
+          "recall_at_1": "72.00%",
+          "recall_at_3": "88.00%",
+          "recall_at_5": "92.00%",
+          "zero_hits": "2/25"
+        },
+        "multi_passage": {
+          "count": 15,
+          "mrr": 0.9222,
+          "recall_at_1": "46.67%",
+          "recall_at_3": "90.00%",
+          "recall_at_5": "93.33%",
+          "zero_hits": "0/15"
+        },
+        "ambiguous": {
+          "count": 15,
+          "mrr": 0.6911,
+          "recall_at_1": "36.67%",
+          "recall_at_3": "56.67%",
+          "recall_at_5": "73.33%",
+          "zero_hits": "2/15"
+        },
+        "outdated_or_trap": {
+          "count": 5,
+          "mrr": 0.9,
+          "recall_at_1": "80.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/5"
+        },
+        "patient_contextual": {
+          "count": 5,
+          "mrr": 0.9,
+          "recall_at_1": "80.00%",
+          "recall_at_3": "100.00%",
+          "recall_at_5": "100.00%",
+          "zero_hits": "0/5"
+        }
+      }
+    }
+  }
+}

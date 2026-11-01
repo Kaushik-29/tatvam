@@ -1,0 +1,66 @@
+{
+  "trace_metadata": {
+    "title": "MedResolve End-to-End Evidence Ledger Lifecycle Trace",
+    "phase": "5.4",
+    "patient_id": "SYNTH_PATIENT_01",
+    "timestamp": "2026-10-31T11:16:36Z",
+    "total_steps": 7
+  },
+  "trace_events": [
+    {
+      "step": 1,
+      "action": "FETCH_PATIENT_INITIAL_STATE",
+      "patient_id": "SYNTH_PATIENT_01",
+      "name": "Arjun Mehta (Synthetic Demo)",
+      "initial_evidence_count": 5
+    },
+    {
+      "step": 2,
+      "action": "UPLOAD_DOCUMENT_AND_RUN_OCR",
+      "document_id": "DOC_SYNTH_PATIENT_01_1793425590498",
+      "extraction_engine": "PyMuPDF (Direct Text)",
+      "observations_extracted": 4,
+      "unconfirmed_items_added": 4
+    },
+    {
+      "step": 3,
+      "action": "VERIFY_UNCONFIRMED_LEDGER_ENTRY",
+      "evidence_id": "ev_ocr_DOC_SYNTH_PATIENT_01_1793425590498_1",
+      "concept": "E_HEMOGLOBIN",
+      "original_raw_value": "Hemoglobin: 14.2 g/dL (Ref: 12.0 - 16.0 g/dL)",
+      "normalized_value": "14.2",
+      "user_confirmation_status": "UNCONFIRMED",
+      "notes": "{\"unit_status\": \"EXPLICIT\", \"requires_confirmation\": false, \"reason\": null, \"reference_range\": \"12.0 - 16.0\", \"document_date\": null}"
+    },
+    {
+      "step": 4,
+      "action": "USER_CORRECT_LEDGER_ITEM",
+      "evidence_id": "ev_ocr_DOC_SYNTH_PATIENT_01_1793425590498_1",
+      "updated_normalized_value": "14.5",
+      "updated_confirmation_status": "CONFIRMED_BY_PATIENT",
+      "provenance_notes": "User corrected: '14.2' (g/dL) -> '14.5' (g/dL) [Original raw text: 'Hemoglobin: 14.2 g/dL (Ref: 12.0 - 16.0 g/dL)']. Verified against stamped hospital seal"
+    },
+    {
+      "step": 5,
+      "action": "RUN_CONFLICT_DETECTOR",
+      "total_conflicts_detected": 0,
+      "material_conflicts_count": 0
+    },
+    {
+      "step": 6,
+      "action": "RETRIEVE_GUIDELINE_PASSAGES",
+      "passages_retrieved": 2,
+      "top_citation": "Standard Treatment Guidelines: Management of Systemic Hypertension in Adults at Primary and Secondary Care (Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India, 2020-09-14) [DOC_MOHFW_HYPERTENSION_2020_P001]",
+      "top_passage_score": 0.032
+    },
+    {
+      "step": 7,
+      "action": "EXECUTE_ASSESSMENT_PIPELINE",
+      "assessment_id": "asmt_1793425596532",
+      "workflow_stage": "COMPLETED",
+      "selected_action": "EXPLAIN",
+      "generation_latency_seconds": 0.156,
+      "is_emergency_override": false
+    }
+  ]
+}

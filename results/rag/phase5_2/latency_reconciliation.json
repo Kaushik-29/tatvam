@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "title": "MedResolve Phase 5.2 Latency Reconciliation Audit",
+    "timestamp": "2026-10-30T09:15:00Z",
+    "hardware": "Intel CPU (x86_64, Windows 11)",
+    "iterations_per_component": 20,
+    "ollama_model": "llama3.2:3b (Q4_K_M)",
+    "embedding_model": "BAAI/bge-m3"
+  },
+  "discrepancy_investigation": {
+    "reported_figure_1": "243.35 ms (Hybrid Retrieval Latency in 100-Query Benchmark)",
+    "reported_figure_2": "1.32 ms (Retrieval in Deterministic Pipeline Breakdown)",
+    "reported_figure_3": "381.51 - 412.65 ms (Retrieval in 100-Scenario Comparative Results JSON)",
+    "root_cause_explanation": "The 1.32 ms figure cited in Phase 5.1's narrative report was the BM25 LEXICAL RETRIEVAL LATENCY ALONE. In the narrative breakdown table, it was erroneously labeled 'Hybrid Retrieval: 1.32 ms [BM25 sub-index cached]'. In reality, hybrid retrieval requires neural query embedding via BGE-M3 on CPU (~240 - 410 ms) before FAISS and BM25 can be fused. The 100-scenario JSON correctly recorded actual retrieval_mean_ms as 381.51 - 412.65 ms. Thus, 1.32 ms represents lexical search alone, while ~240-410 ms represents genuine neural hybrid retrieval."
+  },
+  "component_benchmarks_ms": {
+    "query_embedding_bge_m3": {
+      "cold_ms": 871.63,
+      "mean_ms": 332.86,
+      "p50_ms": 319.06,
+      "p95_ms": 381.37,
+      "min_ms": 308.37,
+      "max_ms": 385.32,
+      "percentage_of_hybrid": "157.4%"
+    },
+    "lexical_retrieval_bm25": {
+      "cold_ms": 1.06,
+      "mean_ms": 0.64,
+      "p50_ms": 0.59,
+      "p95_ms": 0.89,
+      "min_ms": 0.55,
+      "max_ms": 0.99,
+      "percentage_of_hybrid": "0.3%"
+    },
+    "dense_vector_search_faiss": {
+      "cold_ms": 0.27,
+      "mean_ms": 0.038,
+      "p50_ms": 0.035,
+      "p95_ms": 0.051,
+      "min_ms": 0.031,
+      "max_ms": 0.075,
+      "note": "Vector search alone on 42-passage index given precomputed query embedding"
+    },
+    "rrf_fusion_alone": {
+      "mean_ms": 0.01,
+      "p50_ms": 0.008,
+      "p95_ms": 0.015,
+      "note": "Rank aggregation and sorting across 2 candidate lists"
+    },
+    "total_hybrid_retrieval": {
+      "cold_ms": 327.78,
+      "mean_ms": 211.41,
+      "p50_ms": 156.36,
+      "p95_ms": 376.8,
+      "min_ms": 106.13,
+      "max_ms": 381.47
+    },
+    "claim_verification": {
+      "cold_ms": 1.34,
+      "mean_ms": 0.28,
+      "p50_ms": 0.26,
+      "p95_ms": 0.32,
+      "min_ms": 0.26,
+      "max_ms": 0.36
+    },
+    "deterministic_template_generation": {
+      "mean_ms": 1.28,
+      "p50_ms": 1.28,
+      "p95_ms": 1.4
+    }
+  },
+  "real_ollama_llm_benchmarks": {
+    "available": true,
+    "runs": [
+      {
+        "label": "GERD Postprandial",
+        "wall_clock_ms": 21403.96,
+        "wall_clock_sec": 21.4,
+        "prompt_eval_ms": 718.68,
+        "eval_ms": 13246.32,
+        "input_tokens": 43,
+        "output_tokens": 180,
+        "tokens_per_sec": 13.59,
+        "response_snippet": "Based on the patient's report of burning chest discomfort after meals, the following assessment and initial recommendati..."
+      },
+      {
+        "label": "Acute Bronchitis",
+        "wall_clock_ms": 13711.99,
+        "wall_clock_sec": 13.71,
+        "prompt_eval_ms": 585.65,
+        "eval_ms": 13048.91,
+        "input_tokens": 50,
+        "output_tokens": 180,
+        "tokens_per_sec": 13.79,
+        "response_snippet": "Based on the current evidence, a patient with 10 days of cough and clear sputum, normal vitals, is unlikely to require a..."
+      },
+      {
+        "label": "Dyspepsia Alarm Features",
+        "wall_clock_ms": 13416.62,
+        "wall_clock_sec": 13.42,
+        "prompt_eval_ms": 472.19,
+        "eval_ms": 12887.32,
+        "input_tokens": 44,
+        "output_tokens": 180,
+        "tokens_per_sec": 13.97,
+        "response_snippet": "For a patient with heartburn and unintended weight loss, the clinical guidelines for the urgency of endoscopy are as fol..."
+      }
+    ],
+    "mean_wall_clock_sec": 16.18,
+    "mean_tokens_per_sec": 13.78
+  },
+  "end_to_end_pipeline_comparison": {
+    "pipeline_A_deterministic_with_lexical": {
+      "execution_engine": "deterministic_template",
+      "retrieval_method": "lexical_bm25",
+      "retrieval_ms": 0.64,
+      "inference_ms": 0.0,
+      "verification_ms": 0.28,
+      "total_wall_ms": 1.01
+    },
+    "pipeline_B_deterministic_with_hybrid": {
+      "execution_engine": "deterministic_template",
+      "retrieval_method": "hybrid_bge_m3_rrf",
+      "retrieval_ms": 211.41,
+      "inference_ms": 0.0,
+      "verification_ms": 0.28,
+      "total_wall_ms": 211.79
+    },
+    "pipeline_C_real_ollama_with_hybrid": {
+      "execution_engine": "ollama:llama3.2:3b",
+      "retrieval_method": "hybrid_bge_m3_rrf",
+      "retrieval_ms": 211.41,
+      "inference_ms": 16177.52,
+      "verification_ms": 0.28,
+      "total_wall_sec": 16.39,
+      "inference_share_of_latency": "98.7%"
+    }
+  }
+}

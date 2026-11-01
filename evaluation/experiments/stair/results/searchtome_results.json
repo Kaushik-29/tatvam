@@ -1,0 +1,443 @@
+{
+  "generated_at": "2026-11-01T07:27:06",
+  "validation": {
+    "release": "huggingface.co/datasets/meghanadh/SearchTome (official link in arXiv:2609.03874v2)",
+    "label": "OFFICIAL RELEASE \u2014 reduced (one book per domain), differs from paper Table 1",
+    "domains": {
+      "education": {
+        "book": "Action Research",
+        "leaves": 8,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 308,
+            "gold_valid": 308,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 8
+          },
+          "dev": {
+            "queries": 86,
+            "gold_valid": 86,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 8
+          },
+          "test": {
+            "queries": 437,
+            "gold_valid": 437,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 8
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 1,
+          "train\u2229dev": 0,
+          "dev\u2229test": 0
+        }
+      },
+      "finance": {
+        "book": "Principles of Financial Accounting",
+        "leaves": 86,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 940,
+            "gold_valid": 940,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 81
+          },
+          "dev": {
+            "queries": 180,
+            "gold_valid": 180,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 60
+          },
+          "test": {
+            "queries": 1214,
+            "gold_valid": 1214,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 83
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 0,
+          "train\u2229dev": 0,
+          "dev\u2229test": 0
+        }
+      },
+      "law": {
+        "book": "Introduction to Intellectual Property",
+        "leaves": 47,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 591,
+            "gold_valid": 591,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 46
+          },
+          "dev": {
+            "queries": 152,
+            "gold_valid": 152,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 37
+          },
+          "test": {
+            "queries": 820,
+            "gold_valid": 820,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 46
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 0,
+          "train\u2229dev": 0,
+          "dev\u2229test": 0
+        }
+      },
+      "medicine": {
+        "book": "Nursing Assistant",
+        "leaves": 121,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 1473,
+            "gold_valid": 1473,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 114
+          },
+          "dev": {
+            "queries": 346,
+            "gold_valid": 346,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 82
+          },
+          "test": {
+            "queries": 1996,
+            "gold_valid": 1996,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 116
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 5,
+          "train\u2229dev": 2,
+          "dev\u2229test": 0
+        }
+      },
+      "natural_sciences": {
+        "book": "Introduction to Soil Science",
+        "leaves": 34,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 435,
+            "gold_valid": 435,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 34
+          },
+          "dev": {
+            "queries": 94,
+            "gold_valid": 94,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 29
+          },
+          "test": {
+            "queries": 579,
+            "gold_valid": 579,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 34
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 0,
+          "train\u2229dev": 0,
+          "dev\u2229test": 0
+        }
+      },
+      "social_sciences": {
+        "book": "Foundations of Aural Skills",
+        "leaves": 117,
+        "duplicate_titles": 0,
+        "empty_content_leaves": 0,
+        "splits": {
+          "train": {
+            "queries": 658,
+            "gold_valid": 658,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 99
+          },
+          "dev": {
+            "queries": 198,
+            "gold_valid": 198,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 77
+          },
+          "test": {
+            "queries": 959,
+            "gold_valid": 959,
+            "unanswerable": 0,
+            "unanswerable_ids": [],
+            "leaves_covered": 102
+          }
+        },
+        "query_text_overlap": {
+          "train\u2229test": 0,
+          "train\u2229dev": 0,
+          "dev\u2229test": 0
+        }
+      }
+    },
+    "raw_file_sha256": {
+      "education/corpus.jsonl": "33c1701fc870b7978d7b3a8b754b9cf0ee62432e98e10bcec6219a2d2767969b",
+      "education/dev.jsonl": "7e66e32c7ec7460ec60eca42ee95234b359318221eb9b335fab8805c9ff95a0b",
+      "education/test.jsonl": "88773cf2bae4d81f4f2e8092eb57a476ae274b2930c5f3ff570d8ea022974dc7",
+      "education/train.jsonl": "70ab6df54c6cc959299348f0b6c4954315dcb3a619e6e7e63fc66032363a9b46",
+      "finance/corpus.jsonl": "0a1ef89aaa2d4f2a983ea2538443981be92a4284a18fd6cd41395cc7902f4597",
+      "finance/dev.jsonl": "9e0ab5db603b18813ed62bf901202b8eddd863b35e36f2f4b3fb0c9b45f089ac",
+      "finance/test.jsonl": "c82ad05946727b6bf56d71039264a520159e362eab4460ae6217fa030414aeaa",
+      "finance/train.jsonl": "ff702d5db7d9f086f3d328c4ab7aae4f4bd3552a295c789212b3248da71527d6",
+      "law/corpus.jsonl": "a7920f15cfe5fd06f7f5075c856625b310d03e3f563882ab705d3164f18e3aa4",
+      "law/dev.jsonl": "476eb796842b7a05bb8f58b600da683a42ba7bf71456d90fd4acc7c7ed48bb73",
+      "law/test.jsonl": "65ecae97ca23052c0a0466ab60a40fa9ca0e24aa99b6947e311aed1327ebf59b",
+      "law/train.jsonl": "e0c83f2154a60e170cdbed790b88f48cf653a393b8cc78322ae9e3c52ea1df23",
+      "medicine/corpus.jsonl": "a45b98525f2623b7d9599aacf24874a677f2ac6ef1715acb130a69442d8fe6d4",
+      "medicine/dev.jsonl": "38f70ff7397bfd7e05e25d920662d6520ca8f97ab60dc0b00f11d9a19e6e62ac",
+      "medicine/test.jsonl": "329b8a2cc3b392ee9358373694ce1ae097cb50c5c6a6fee3664239adcd7265dd",
+      "medicine/train.jsonl": "da1f2960646ef13b3704d11827711b0696399ca2b8db8894c93fa1b6ce2bd2f1",
+      "natural_sciences/corpus.jsonl": "366df2e3022099a753ace6c11dd999e4fc51d3035cbef68e42fd372e257f48ba",
+      "natural_sciences/dev.jsonl": "c9d1a076be4d8ac41aa0f966d25752c4ebe90926fdd69d0f11d474a0e9a90d8e",
+      "natural_sciences/test.jsonl": "7bc9804bfd6d63f169e9da3e455d98da2da462f0d583b394c3cf83000223fcbc",
+      "natural_sciences/train.jsonl": "108d1e97711bd87bace3f840b8329eb1e376379f15d91f6ee54c8941494e3ac5",
+      "social_sciences/corpus.jsonl": "89150e6cc66f4c58997c470d6cee6e2d37491d64e3fdef54d42fa808710449d3",
+      "social_sciences/dev.jsonl": "e54dd3b902c9b4c8817be4514520da18663e5fd0ec456486e3c9d1a3a636bebe",
+      "social_sciences/test.jsonl": "4dfe8e7404187742b9645aac993e170c9a833825cb0623cdb4c9c7e961708b1f",
+      "social_sciences/train.jsonl": "8789dc9a8d909afa4c0a7955645ec50d6d2553cadfcf525d2b54d6cf9413efa9"
+    }
+  },
+  "stair_zero_shot_base_lm": {
+    "domain": "medicine",
+    "n": 60,
+    "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "constrained": true,
+    "recall@1": 0.05,
+    "recall@3": 0.1,
+    "hits@1": 3,
+    "hits@3": 6,
+    "seconds_per_query": 48.98793879350026,
+    "invalid_path_rate": 0.0,
+    "note": "Out-of-the-box (no fine-tuning) baseline, analogous to the paper's 'Mistral out of the box'."
+  },
+  "ollama_free_generation": {
+    "domain": "medicine",
+    "n": 30,
+    "model": "llama3.2:3b",
+    "constrained": false,
+    "invalid_path_rate": 0.6666666666666666,
+    "exact_match": 0.1,
+    "invalid": 20,
+    "seconds_per_query": 5.4415612856547035,
+    "examples": [
+      {
+        "query": "Why is it recommended that the nursing assistant's fingers be positioned with the palms facing upwards under the gait belt to ensure appropriate assistance?",
+        "output": "8.9",
+        "valid": false,
+        "gold": "8.5 Assisting With Ambulation"
+      },
+      {
+        "query": "How do certain types of food affect individuals with dementia or developmental disorders in terms of their ability to eat and swallow?",
+        "output": "10.6",
+        "valid": false,
+        "gold": "10.6 Promoting Nutritional Intake"
+      },
+      {
+        "query": "How should your hands and forearms be positioned while washing with soap and water, as per the guidelines?",
+        "output": "4.8",
+        "valid": false,
+        "gold": "4.8 Skills Checklist: Hand Hygiene With Soap and Water"
+      },
+      {
+        "query": "What are the signs or symptoms of neglect that should be reported to the nurse?",
+        "output": "7",
+        "valid": false,
+        "gold": "2.2 Ethical and Legal Responsibilities of the Nursing Assistant"
+      },
+      {
+        "query": "How does a device called a pulse oximeter determine the amount of oxygen in someone's blood?",
+        "output": "7",
+        "valid": false,
+        "gold": "7.4 Obtaining Vital Signs"
+      },
+      {
+        "query": "How much lotion should be applied when carrying out the 5.16 Skills Checklist: Skin Care?",
+        "output": "5",
+        "valid": false,
+        "gold": "5.16 Skills Checklist: Skin Care"
+      },
+      {
+        "query": "Can you list some residential options for individuals with dementia or developmental disabilities who enjoy socializing with others?",
+        "output": "Chapter 10",
+        "valid": false,
+        "gold": "10.7 Caregiver Role Strain"
+      },
+      {
+        "query": "What disorder is depicted in the YouTube video titled 'See What I See: Cataracts'?",
+        "output": "11",
+        "valid": false,
+        "gold": "9.7 Assisting With Sensory Deficits"
+      },
+      {
+        "query": "Which tests are conducted on patients displaying signs of a potential urinary tract infection?",
+        "output": "7.7 Measuring Intake and Output",
+        "valid": true,
+        "gold": "5.8 Assistance With Toileting"
+      },
+      {
+        "query": "Why are checklists and flowsheets utilized in the documentation method known as CBE?",
+        "output": "7.2 Documenting and Reporting Data",
+        "valid": true,
+        "gold": "7.2 Documenting and Reporting Data"
+      }
+    ]
+  },
+  "paper_reference_numbers_not_comparable": {
+    "STAIR R@1": 0.826,
+    "DSI R@1": 0.769,
+    "BM25 R@1": 0.595,
+    "DPR R@1": 0.687,
+    "Mistral OOB R@1": 0.138,
+    "note": "Paper averages over 18 books; this release has 6 books (3 differ from the paper). Do not compare directly."
+  },
+  "fine_tuned_stair_searchtome": "NOT RUN LOCALLY: CPU-only hardware. Use models/stair_clinical/configs/stair_cloud_gpu_training.ipynb.",
+  "flat_baselines_test": {
+    "education": {
+      "n_test": 437,
+      "bm25": {
+        "r@1": 0.5194508009153318,
+        "r@3": 0.8077803203661327,
+        "ndcg@3": 0.6884832255067069
+      },
+      "dense_bge_m3": {
+        "r@1": 0.3890160183066362,
+        "r@3": 0.7254004576659039,
+        "ndcg@3": 0.5850720070529636
+      },
+      "hybrid_rrf": {
+        "r@1": 0.5011441647597255,
+        "r@3": 0.8558352402745996,
+        "ndcg@3": 0.7099487966247203
+      }
+    },
+    "finance": {
+      "n_test": 1214,
+      "bm25": {
+        "r@1": 0.5238879736408567,
+        "r@3": 0.7635914332784185,
+        "ndcg@3": 0.6630448318692664
+      },
+      "dense_bge_m3": {
+        "r@1": 0.3187808896210873,
+        "r@3": 0.5271828665568369,
+        "ndcg@3": 0.44045355854907486
+      },
+      "hybrid_rrf": {
+        "r@1": 0.4110378912685338,
+        "r@3": 0.6532125205930808,
+        "ndcg@3": 0.5526166830136549
+      }
+    },
+    "law": {
+      "n_test": 820,
+      "bm25": {
+        "r@1": 0.7670731707317073,
+        "r@3": 0.9024390243902439,
+        "ndcg@3": 0.8481684137804908
+      },
+      "dense_bge_m3": {
+        "r@1": 0.3878048780487805,
+        "r@3": 0.6109756097560975,
+        "ndcg@3": 0.5185506956446042
+      },
+      "hybrid_rrf": {
+        "r@1": 0.5817073170731707,
+        "r@3": 0.8036585365853659,
+        "ndcg@3": 0.7104063446907711
+      }
+    },
+    "medicine": {
+      "n_test": 1996,
+      "bm25": {
+        "r@1": 0.6778557114228457,
+        "r@3": 0.8582164328657315,
+        "ndcg@3": 0.7846318775819551
+      },
+      "dense_bge_m3": {
+        "r@1": 0.4709418837675351,
+        "r@3": 0.6487975951903807,
+        "ndcg@3": 0.5738417021596793
+      },
+      "hybrid_rrf": {
+        "r@1": 0.5986973947895792,
+        "r@3": 0.8031062124248497,
+        "ndcg@3": 0.719334298974741
+      }
+    },
+    "natural_sciences": {
+      "n_test": 579,
+      "bm25": {
+        "r@1": 0.7184801381692574,
+        "r@3": 0.8652849740932642,
+        "ndcg@3": 0.8065810604182125
+      },
+      "dense_bge_m3": {
+        "r@1": 0.5544041450777202,
+        "r@3": 0.7512953367875648,
+        "ndcg@3": 0.6698095535714328
+      },
+      "hybrid_rrf": {
+        "r@1": 0.689119170984456,
+        "r@3": 0.8514680483592401,
+        "ndcg@3": 0.7856705064643514
+      }
+    },
+    "social_sciences": {
+      "n_test": 959,
+      "bm25": {
+        "r@1": 0.49635036496350365,
+        "r@3": 0.7017726798748697,
+        "ndcg@3": 0.6180388276813689
+      },
+      "dense_bge_m3": {
+        "r@1": 0.48279457768508866,
+        "r@3": 0.6392075078206465,
+        "ndcg@3": 0.575199889855508
+      },
+      "hybrid_rrf": {
+        "r@1": 0.5224191866527633,
+        "r@3": 0.7101147028154328,
+        "ndcg@3": 0.6325137024765422
+      }
+    }
+  }
+}

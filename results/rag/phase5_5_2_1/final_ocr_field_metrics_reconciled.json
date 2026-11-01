@@ -1,0 +1,439 @@
+{
+  "benchmark_phase": "Phase 5.5.2.1",
+  "accounting_integrity_verified": true,
+  "single_counting_verified": true,
+  "historical_50_benchmark_cohort": {
+    "cohort_name": "Historical 50-Document Benchmark",
+    "document_count": 50,
+    "micro_metrics": {
+      "expected_fields": 116,
+      "extracted_fields": 108,
+      "true_positives": 91,
+      "false_positives": 17,
+      "false_negatives": 25,
+      "precision": 0.8426,
+      "recall": 0.7845,
+      "f1_score": 0.8125,
+      "exact_value_match_rate_overall": 0.7672,
+      "exact_value_matches": 89,
+      "exact_value_match_rate_among_tp": 0.978,
+      "exact_unit_match_rate": 0.6207,
+      "exact_unit_matches": 72,
+      "med_name_matches": 12,
+      "med_dosage_matches": 12
+    },
+    "macro_metrics_by_document": {
+      "precision": 0.8227,
+      "recall": 0.776,
+      "f1_score": 0.792
+    }
+  },
+  "untouched_10_heldout_cohort": {
+    "cohort_name": "Phase 5.5.2 Untouched Held-Out Test Set",
+    "document_count": 10,
+    "micro_metrics": {
+      "expected_fields": 27,
+      "extracted_fields": 23,
+      "true_positives": 19,
+      "false_positives": 4,
+      "false_negatives": 8,
+      "precision": 0.8261,
+      "recall": 0.7037,
+      "f1_score": 0.76,
+      "exact_value_match_rate_overall": 0.7037,
+      "exact_value_matches": 19,
+      "exact_value_match_rate_among_tp": 1.0,
+      "exact_unit_match_rate": 0.5185,
+      "exact_unit_matches": 14,
+      "med_name_matches": 2,
+      "med_dosage_matches": 2
+    },
+    "macro_metrics_by_document": {
+      "precision": 0.6917,
+      "recall": 0.675,
+      "f1_score": 0.6817
+    }
+  },
+  "combined_60_document_total": {
+    "cohort_name": "Combined 60-Document Suite",
+    "document_count": 60,
+    "micro_metrics": {
+      "expected_fields": 143,
+      "extracted_fields": 131,
+      "true_positives": 110,
+      "false_positives": 21,
+      "false_negatives": 33,
+      "precision": 0.8397,
+      "recall": 0.7692,
+      "f1_score": 0.8029,
+      "exact_value_match_rate_overall": 0.7552,
+      "exact_value_matches": 108,
+      "exact_value_match_rate_among_tp": 0.9818,
+      "exact_unit_match_rate": 0.6014,
+      "exact_unit_matches": 86,
+      "med_name_matches": 14,
+      "med_dosage_matches": 14
+    },
+    "macro_metrics_by_document": {
+      "precision": 0.8008,
+      "recall": 0.7592,
+      "f1_score": 0.7736
+    }
+  },
+  "error_breakdown": {
+    "total_incorrect_or_missed_fields": 35,
+    "incorrect_field_records": [
+      {
+        "document_id": "DOC_DIG_LAB_01",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 112.5,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_DIG_LAB_04",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "WBC Count",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 7200.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_DIG_LAB_04",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Platelet Count",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 250000.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_DIG_LAB_06",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 145.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_DIG_LAB_07",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 108.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_DIG_LAB_09",
+        "dataset": "historical_50_benchmark",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 126.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_01",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 142.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_05",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Blood Pressure",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": "140/90",
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_05",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Heart Rate",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 82.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_05",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 108.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_07",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 95.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SCN_LAB_09",
+        "dataset": "historical_50_benchmark",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 115.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_NOISY_01",
+        "dataset": "historical_50_benchmark",
+        "category": "noisy_scan",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 128.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_NOISY_02",
+        "dataset": "historical_50_benchmark",
+        "category": "noisy_scan",
+        "field_identifier": "Blood Urea Nitrogen (BUN)",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 22.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_NOISY_05",
+        "dataset": "historical_50_benchmark",
+        "category": "noisy_scan",
+        "field_identifier": "metformin_500.0mg",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 500.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SKEW_01",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 105.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SKEW_02",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "Serum Creatinine",
+        "error_type": "NUMERIC_TRANSCRIPTION_MISMATCH",
+        "expected_value": 1.5,
+        "extracted_value": "4.4",
+        "raw_ocr_snippet": "Ref 3.5 -5.0 mmol/L Serum Creatinine 4.4 mmol/L"
+      },
+      {
+        "document_id": "DOC_SKEW_02",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "Serum Potassium",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 4.4,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SKEW_03",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "LDL Cholesterol",
+        "error_type": "NUMERIC_TRANSCRIPTION_MISMATCH",
+        "expected_value": 130.0,
+        "extracted_value": "210.0",
+        "raw_ocr_snippet": "Totai Cholestero! LDL Cholesterol 210.0 mg/dL"
+      },
+      {
+        "document_id": "DOC_SKEW_05",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "Blood Pressure",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": "135/85",
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_SKEW_05",
+        "dataset": "historical_50_benchmark",
+        "category": "skewed_document",
+        "field_identifier": "Heart Rate",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 76.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_TBL_01",
+        "dataset": "historical_50_benchmark",
+        "category": "medical_table",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 118.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_TBL_03",
+        "dataset": "historical_50_benchmark",
+        "category": "medical_table",
+        "field_identifier": "WBC Count",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 6800.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_TBL_03",
+        "dataset": "historical_50_benchmark",
+        "category": "medical_table",
+        "field_identifier": "Platelet Count",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 240000.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_TBL_05",
+        "dataset": "historical_50_benchmark",
+        "category": "medical_table",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 135.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_AMB_03",
+        "dataset": "historical_50_benchmark",
+        "category": "ambiguous_or_missing_unit",
+        "field_identifier": "Blood Pressure",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": "138/88",
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_AMB_04",
+        "dataset": "historical_50_benchmark",
+        "category": "ambiguous_or_missing_unit",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 115.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_01",
+        "dataset": "untouched_held_out_partition",
+        "category": "digital_lab_pdf",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 108.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_04",
+        "dataset": "untouched_held_out_partition",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Total Leucocyte Count (WBC)",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 7200,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_04",
+        "dataset": "untouched_held_out_partition",
+        "category": "clean_scanned_lab",
+        "field_identifier": "Platelet Count",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 240000,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_07",
+        "dataset": "untouched_held_out_partition",
+        "category": "noisy_scan",
+        "field_identifier": "Alanine Aminotransferase (ALT)",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 45.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_07",
+        "dataset": "untouched_held_out_partition",
+        "category": "noisy_scan",
+        "field_identifier": "Aspartate Aminotransferase (AST)",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 38.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_08",
+        "dataset": "untouched_held_out_partition",
+        "category": "skewed_document",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 135.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_08",
+        "dataset": "untouched_held_out_partition",
+        "category": "skewed_document",
+        "field_identifier": "Glycated Hemoglobin HbA1c",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 7.4,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      },
+      {
+        "document_id": "DOC_UNTOUCHED_09",
+        "dataset": "untouched_held_out_partition",
+        "category": "medical_table",
+        "field_identifier": "Fasting Blood Glucose",
+        "error_type": "MISSED_FIELD_IN_EXTRACTION",
+        "expected_value": 110.0,
+        "extracted_value": null,
+        "raw_ocr_snippet": null
+      }
+    ]
+  },
+  "ground_truth_classification": "Generator-Derived, Engine-Independent Ground Truth"
+}

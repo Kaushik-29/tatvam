@@ -1,0 +1,49 @@
+{
+  "total_claims_b3": 457,
+  "raw_legacy_distribution": {
+    "legacy_general_medical_claims": 369,
+    "legacy_supported_count": 100,
+    "legacy_general_medical_support_rate": "27.10% (100/369)",
+    "legacy_patient_specific_findings": 88,
+    "legacy_patient_consistency_rate": "70.45% (62/88)",
+    "legacy_overall_grounding_rate": "35.45% (162/457)"
+  },
+  "granular_category_breakdown": {
+    "general_medical_claims": {
+      "count": 279,
+      "evaluation_criterion": "Verification against retrieved medical guidelines (MOHFW/StatPearls/BTS/ESC) via lexical token overlap and contradiction pattern matching."
+    },
+    "patient_specific_findings": {
+      "count": 88,
+      "evaluation_criterion": "Verification against confirmed items in patient's structured EvidenceLedger (concept match, presence status, confirmed state)."
+    },
+    "clarification_questions": {
+      "count": 18,
+      "evaluation_criterion": "Task utility evaluation: verifies question targets unconfirmed or ambiguous ledger evidence without declaring unverified facts."
+    },
+    "emergency_directives": {
+      "count": 25,
+      "evaluation_criterion": "Clinical safety protocol evaluation: verified against ESI / WHO ETAT red-flag guidelines for life-threatening presentations."
+    },
+    "referral_navigation_directives": {
+      "count": 0,
+      "evaluation_criterion": "Non-arbitration protocol: ensures system abstains from declaring clinical truth between discordant clinician opinions."
+    },
+    "disclaimers": {
+      "count": 10,
+      "evaluation_criterion": "Regulatory & research transparency: confirms presence of non-diagnostic research prototype disclaimer."
+    },
+    "other_system_statements": {
+      "count": 37,
+      "evaluation_criterion": "Syntactic integrity & document formatting validity."
+    }
+  },
+  "revised_evidence_support_reproduction": {
+    "numerator": 100,
+    "denominator": 146,
+    "calculated_percentage": "68.5%",
+    "exact_formula": "100 / 146 = 0.6849",
+    "exclusion_criteria": "Excluded 173 non-clinical system-generated directives (50 emergency alert directives, 60 non-arbitration disclaimers, 18 unconfirmed OCR clarification questions, 32 boilerplate negative summaries, and 13 system framing headers) that were misclassified as general medical claims by the naive line segmenter and evaluated against disease literature.",
+    "scientific_note": "Lexical token overlap is an automated heuristic matching bidirectional lemmatized sets. It does NOT represent clinical NLI or formal semantic entailment."
+  }
+}

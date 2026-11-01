@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_MOHFW_HYPERTENSION_2020",
+  "title": "Standard Treatment Guidelines: Management of Systemic Hypertension in Adults at Primary and Secondary Care",
+  "author_or_organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+  "source_url": "https://main.mohfw.gov.in/",
+  "publication_or_revision_date": "2020-09-14",
+  "date_uncertainty_note": "National clinical guidelines under the India Hypertension Control Initiative (IHCI).",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+  "document_type": "Standard Clinical Guideline",
+  "version": "1.0",
+  "passages": [
+    {
+      "passage_id": "DOC_MOHFW_HYPERTENSION_2020_P001",
+      "section_heading": "1. Diagnostic Thresholds and Screening Criteria",
+      "text": "Systemic hypertension in adults is defined as sustained office systolic blood pressure (SBP) >= 140 mmHg or diastolic blood pressure (DBP) >= 90 mmHg, confirmed across at least two separate clinical visits. Stage 1 hypertension corresponds to SBP 140-159 or DBP 90-99 mmHg. Stage 2 hypertension corresponds to SBP >= 160 or DBP >= 100 mmHg. Proper cuff sizing and seated rest for 5 minutes prior to measurement are mandatory."
+    },
+    {
+      "passage_id": "DOC_MOHFW_HYPERTENSION_2020_P002",
+      "section_heading": "2. Hypertensive Crisis Red Flags (Urgency vs Emergency)",
+      "text": "A severe elevation in blood pressure (SBP >= 180 mmHg or DBP >= 120 mmHg) requires immediate risk categorization. Hypertensive emergency is defined by severe blood pressure elevation WITH acute target-organ damage (acute pulmonary edema, acute aortic dissection, intracranial hemorrhage, hypertensive encephalopathy, or acute coronary syndrome), mandating immediate ICU admission and parenteral antihypertensives. In contrast, severe BP elevation without acute organ damage constitutes hypertensive urgency, managed with oral medication adjustments over 24-48 hours."
+    },
+    {
+      "passage_id": "DOC_MOHFW_HYPERTENSION_2020_P003",
+      "section_heading": "3. Non-Pharmacological Lifestyle Interventions",
+      "text": "Lifestyle modification is recommended for all hypertensive individuals and those with high-normal blood pressure. Key interventions include: dietary sodium restriction to less than 2 grams per day (equivalent to 5 grams of table salt), weight reduction to target BMI 18.5-22.9 kg/m2 in Asian populations, moderate aerobic exercise for 150 minutes weekly, cessation of tobacco products, and consumption of potassium-rich fresh fruits and vegetables unless contraindicated by chronic renal disease."
+    },
+    {
+      "passage_id": "DOC_MOHFW_HYPERTENSION_2020_P004",
+      "section_heading": "4. First-Line Pharmacological Management",
+      "text": "For confirmed Stage 1 or Stage 2 hypertension in adults, first-line pharmacological monotherapy utilizes one of three drug classes: long-acting dihydropyridine calcium channel blockers (e.g., amlodipine), angiotensin-converting enzyme inhibitors (ACEIs) or angiotensin receptor blockers (ARBs) (e.g., telmisartan), or thiazide-like diuretics (e.g., chlorthalidone). Dual-combination therapy at low doses is favored for Stage 2 hypertension."
+    }
+  ]
+}

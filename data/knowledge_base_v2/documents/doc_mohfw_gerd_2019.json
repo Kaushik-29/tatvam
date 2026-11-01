@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_MOHFW_GERD_2019",
+  "title": "Standard Treatment Guidelines: Medical Management of Dyspepsia and Gastroesophageal Reflux Disease (GERD)",
+  "author_or_organization": "National Health Portal (NHP), Ministry of Health and Family Welfare, Government of India",
+  "source_url": "https://www.nhp.gov.in/disease/digestive-system/gastroesophageal-reflux-disease-gerd",
+  "publication_or_revision_date": "2019-08-12",
+  "date_uncertainty_note": "Guideline revision date verified from official NHP clinical release portal.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Open Government Data (OGD) License India (Public clinical management guidance)",
+  "document_type": "Standard Treatment Guideline",
+  "version": "1.2",
+  "passages": [
+    {
+      "passage_id": "DOC_MOHFW_GERD_2019_P001",
+      "section_heading": "1. Clinical Presentation & Symptom Characteristics",
+      "text": "Gastroesophageal Reflux Disease (GERD) is characterized by backward flow of gastric acid into the esophagus. Classic presenting symptoms include pyrosis (retrosternal burning sensation, commonly termed heartburn) and acid regurgitation of sour or bitter fluid into the mouth. Symptoms are typically exacerbated after meals, upon bending forward, or while lying flat in a supine position. Nocturnal symptoms frequently disrupt sleep."
+    },
+    {
+      "passage_id": "DOC_MOHFW_GERD_2019_P002",
+      "section_heading": "2. Alarm Features and Red Flags",
+      "text": "The presence of alarm features warrants immediate specialist gastroenterological consultation and upper gastrointestinal endoscopy to rule out malignancy or strictures. Red-flag alarm features include: progressive dysphagia (difficulty swallowing), odynophagia (painful swallowing), unintentional weight loss, persistent or recurrent vomiting, evidence of gastrointestinal bleeding (hematemesis or coffee-ground vomiting, melena), unexplained iron-deficiency anemia, and symptom onset after age 50."
+    },
+    {
+      "passage_id": "DOC_MOHFW_GERD_2019_P003",
+      "section_heading": "3. Differential Diagnosis: Reflux versus Cardiac Ischemia",
+      "text": "Differentiating esophageal retrosternal burning from acute coronary syndrome is critical in clinical assessment. GERD symptoms are burning in quality, frequently related to food ingestion or recumbency, relieved by antacids, and not precipitated by physical exertion. In contrast, cardiac ischemia typically presents as heavy retrosternal pressure or tightness, radiates to the left arm, neck, or lower jaw, is triggered by physical exertion or emotional stress, and is frequently accompanied by dyspnea, cold diaphoresis, or presyncope. Any atypical or exertional chest pain must undergo prompt cardiac evaluation before attributing it to gastrointestinal reflux."
+    },
+    {
+      "passage_id": "DOC_MOHFW_GERD_2019_P004",
+      "section_heading": "4. Initial Conservative and Medical Management",
+      "text": "For patients presenting with typical reflux symptoms without alarm features, initial care includes lifestyle modifications: weight optimization, avoiding recumbency within 3 hours postprandially, elevating the head of the bed by 15 cm, and avoiding dietary triggers such as excess caffeine, alcohol, and fatty foods. Empiric medical therapy consists of an 4 to 8 week trial of standard-dose oral proton pump inhibitors (PPIs) taken 30 minutes before the first meal of the day."
+    }
+  ]
+}

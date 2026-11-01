@@ -1,0 +1,104 @@
+{
+  "benchmark_phase": "Phase 5.5.2",
+  "cer_vs_wer_divergence_investigation": {
+    "phenomenon_description": "Word Error Rate (WER ~33.4%) is substantially higher than Character Error Rate (CER ~5.9%) across scanned document categories.",
+    "underlying_causes": [
+      {
+        "factor": "Word Segmentation & Unit Attachment",
+        "explanation": "RapidOCR frequently transcribes clinical values with varied whitespace adjacent to units (e.g. '112.5 mg/dL' vs '112.5mg/dL' or 'mg / dL'). A missing single space contributes only 1 character edit (CER impact < 0.2%), but causes token deletion + substitution in WER, contributing 100% word error for that pair."
+      },
+      {
+        "factor": "Whole-Word Levenshtein Penalty",
+        "explanation": "Any single character substitution (e.g. 'cholesterol' transcribed as 'cholestero1') invalidates the entire word. The word edit distance is 1 on a 1-word reference (100% word error), while the character edit distance is only 1/11 (9.1%)."
+      },
+      {
+        "factor": "Punctuation & Delimiter Binding",
+        "explanation": "Colons, dashes, and parenthetical reference intervals ('Patient:', 'Ref: 70 - 99') frequently merge with adjacent strings in bounding box clustering, altering token boundaries."
+      },
+      {
+        "factor": "Multi-Column & Table Bounding Box Flow",
+        "explanation": "In medical tables, bounding boxes detected column-by-column or row-by-row can shift linear sequence order, causing a cascade of word insertions and deletions even when every character is transcribed."
+      }
+    ],
+    "clinical_implication": "For medical document processing, Character Error Rate (CER) and structured field extraction F1 are far more representative of information capture than WER, because clinical regex parsers use flexible whitespace matching (\\s*) and boundary-tolerant sliding windows rather than exact word token matching."
+  },
+  "category_metrics_independent_reference": {
+    "ambiguous_or_missing_unit": {
+      "document_count": 6,
+      "character_error_rate": 0.0618,
+      "character_edit_distance": 113,
+      "character_denominator": 1829,
+      "word_error_rate": 0.5977,
+      "word_edit_distance": 156,
+      "word_denominator": 261,
+      "exact_document_matches": 0,
+      "exact_match_rate": 0.0
+    },
+    "clean_scanned_lab": {
+      "document_count": 12,
+      "character_error_rate": 0.0469,
+      "character_edit_distance": 227,
+      "character_denominator": 4839,
+      "word_error_rate": 0.4089,
+      "word_edit_distance": 303,
+      "word_denominator": 741,
+      "exact_document_matches": 0,
+      "exact_match_rate": 0.0
+    },
+    "digital_lab_pdf": {
+      "document_count": 12,
+      "character_error_rate": 0.1043,
+      "character_edit_distance": 709,
+      "character_denominator": 6796,
+      "word_error_rate": 0.0955,
+      "word_edit_distance": 103,
+      "word_denominator": 1079,
+      "exact_document_matches": 9,
+      "exact_match_rate": 0.75
+    },
+    "medical_table": {
+      "document_count": 6,
+      "character_error_rate": 0.0,
+      "character_edit_distance": 0,
+      "character_denominator": 2648,
+      "word_error_rate": 0.0,
+      "word_edit_distance": 0,
+      "word_denominator": 398,
+      "exact_document_matches": 6,
+      "exact_match_rate": 1.0
+    },
+    "noisy_scan": {
+      "document_count": 6,
+      "character_error_rate": 0.1069,
+      "character_edit_distance": 230,
+      "character_denominator": 2152,
+      "word_error_rate": 0.8792,
+      "word_edit_distance": 291,
+      "word_denominator": 331,
+      "exact_document_matches": 0,
+      "exact_match_rate": 0.0
+    },
+    "scanned_prescription": {
+      "document_count": 12,
+      "character_error_rate": 0.0589,
+      "character_edit_distance": 225,
+      "character_denominator": 3821,
+      "word_error_rate": 0.5617,
+      "word_edit_distance": 323,
+      "word_denominator": 575,
+      "exact_document_matches": 0,
+      "exact_match_rate": 0.0
+    },
+    "skewed_document": {
+      "document_count": 6,
+      "character_error_rate": 0.2731,
+      "character_edit_distance": 577,
+      "character_denominator": 2113,
+      "word_error_rate": 0.5452,
+      "word_edit_distance": 175,
+      "word_denominator": 321,
+      "exact_document_matches": 0,
+      "exact_match_rate": 0.0
+    }
+  }
+}

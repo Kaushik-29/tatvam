@@ -1,0 +1,55 @@
+{
+  "run_manifest_version": "1.0.0",
+  "created_timestamp": "2026-11-01T01:10:59Z",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "datasets": {
+    "eval_scenarios_sha256": "b0629b3d8fe3fce74f03cc7235a9523b25f3fd6fa58994fff32751c85ba012c8",
+    "dev_scenarios_sha256": "28f83b662dd4820a356f1fe6431af239ff9485c54aed04bddd727a1180bb0981",
+    "eval_scenarios_manifest_sha256": "808298720c78abfe72caf990f7f2a24e51b602f9b9272b81e1987082f5aff224"
+  },
+  "source_hashes": {
+    "backend/ocr_service.py": "38b1deac035263a7d4d20b4b67319f79472219c2b7efdd7a4181989b0fc47a82",
+    "experiments/phase6/evaluator.py": "4cef553d2ae83400b3d4fb6ff156bdac9f00f6b843fd29199fe80c429e9784c4",
+    "experiments/phase6/benchmark_runner.py": "93656ae2f0bbfbafc4c957bd16cc4dc17b92544b1b99158ff8260eba4ceb91c8",
+    "experiments/evidence_ledger.py": "8c8c81234e3152586729251e55cd1e99edf46f60dd0cd55144ef914da7e3a5b4",
+    "experiments/conflict_detector.py": "093512b72a6505dbd6c19b7c499e57e5fc9fccfdb76d95571929b8b3fb510392",
+    "experiments/conflict_taxonomy.py": "01561f9fd3184ffe4a97646a02bca2d93561532eccc2eb5dc38feee47fc42566",
+    "experiments/action_policy.py": "3d83ba6beb0d7ece4e8859450e71a95981d3388179161b14c6cfbf8c8a67c4d0"
+  },
+  "prompt_template_hashes": {
+    "b0_prompt_template_sha256": "85b2c27bf1bd41abb440b8654c9c5eef3d2d782026a5ca0854d0825c53f70e42",
+    "b1_prompt_template_sha256": "c83b016521787b84c92b03ed3cf1845eb8e94a4830234d84667d8b705783fd83",
+    "b2_prompt_template_sha256": "21c39645d555edfd042d1b8287ce7c1254f42c03f816f3669a0283f7c4f1b7e9",
+    "b3_prompt_template_sha256": "72a6f5d76aed9cf4dc9ac0018ead15b1450f5e6f4bf7fb1023ddedf6b09a8a3a"
+  },
+  "knowledge_corpus": {
+    "knowledge_manifest_sha256": "dbd385a38af97adbb95314767d1d0826c62922c722e56ae7a40bf49175d58e8b",
+    "passage_ids_sha256": "1536f5db9af0b114148545e8af47177d6188fe69d3185f1ee628ae40151bebf6",
+    "total_passages": 24
+  },
+  "execution_environment": {
+    "python_version": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "ollama_api": "http://127.0.0.1:11434/api/generate",
+    "ollama_version": "0.40.13",
+    "model_name": "llama3.2:3b",
+    "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "temperature": 0.0,
+    "top_p": 0.9,
+    "max_tokens": 75,
+    "random_seed": 42
+  },
+  "package_versions": {
+    "pydantic": "2.10.6",
+    "fastapi": "0.115.11",
+    "numpy": "2.2.3",
+    "scipy": "1.15.2"
+  },
+  "protocol_governance": {
+    "statistical_analysis_plan_version": "2.1.0",
+    "experimental_protocol_version": "2.1.0",
+    "metric_definitions_version": "2.1.0",
+    "component_capability_audit_version": "2.1.0"
+  }
+}

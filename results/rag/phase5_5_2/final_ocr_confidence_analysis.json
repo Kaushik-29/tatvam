@@ -1,0 +1,48 @@
+{
+  "benchmark_phase": "Phase 5.5.2",
+  "approved_terminology": "Confidence Separation Between Correct and Incorrect Detections",
+  "optical_confidence_separation": {
+    "correctly_detected_extractions": {
+      "sample_count": 108,
+      "mean_optical_confidence": 0.9793
+    },
+    "incorrect_or_false_positive_extractions": {
+      "sample_count": 23,
+      "mean_optical_confidence": 0.9789
+    },
+    "confidence_separation_difference": 0.0004,
+    "missed_extractions_count": 33,
+    "missed_extractions_handling": "Recorded as missing bounding boxes with optical_confidence = None (no artificial zero imputation)"
+  },
+  "empirical_reliability_bins": [
+    {
+      "confidence_bin": "[0.50, 0.70)",
+      "observation_count": 0,
+      "mean_optical_confidence": 0.0,
+      "observed_value_accuracy": 0.0,
+      "observed_unit_accuracy": 0.0
+    },
+    {
+      "confidence_bin": "[0.70, 0.85)",
+      "observation_count": 0,
+      "mean_optical_confidence": 0.0,
+      "observed_value_accuracy": 0.0,
+      "observed_unit_accuracy": 0.0
+    },
+    {
+      "confidence_bin": "[0.85, 0.95)",
+      "observation_count": 22,
+      "mean_optical_confidence": 0.924,
+      "observed_value_accuracy": 0.8182,
+      "observed_unit_accuracy": 0.8182
+    },
+    {
+      "confidence_bin": "[0.95, 1.00]",
+      "observation_count": 109,
+      "mean_optical_confidence": 0.9903,
+      "observed_value_accuracy": 0.8257,
+      "observed_unit_accuracy": 0.6422
+    }
+  ],
+  "clinical_trustworthiness_statement": "RapidOCR confidence scores reflect bounding-box pixel contrast and character edge sharpness. High optical confidence (>0.95) occurs on clean synthetic text even when parsed into an incorrect concept or when units are missing. RapidOCR confidence alone must NEVER be used to certify clinical validity. MedResolve enforces explicit human-in-the-loop OCR review for unconfirmed and low-confidence items."
+}

@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "evaluation_phase": "Phase 5.5",
+    "date": "2026-10-31",
+    "evaluator": "MedResolve Research Suite",
+    "total_documents": 50,
+    "categories_evaluated": 7,
+    "pipeline_architecture": "PyMuPDF Direct Digital Text + RapidOCR ONNX Runtime CPU"
+  },
+  "ocr_transcription_metrics": {
+    "character_error_rate": {
+      "value": 2.1245,
+      "numerator_char_edits": 13586,
+      "denominator_char_count": 6395
+    },
+    "word_error_rate": {
+      "value": 2.1601,
+      "numerator_word_edits": 1862,
+      "denominator_word_count": 862
+    },
+    "exact_document_match_rate": {
+      "value": 0.0,
+      "numerator_exact_matches": 0,
+      "denominator_documents": 50
+    }
+  },
+  "structured_extraction_metrics": {
+    "field_precision": {
+      "value": 0.8426,
+      "numerator_tp": 91,
+      "denominator_tp_plus_fp": 108
+    },
+    "field_recall": {
+      "value": 0.7845,
+      "numerator_tp": 91,
+      "denominator_tp_plus_fn": 116
+    },
+    "field_f1_score": {
+      "value": 0.8125
+    },
+    "exact_value_match_rate": {
+      "value": 0.7672,
+      "numerator_correct_values": 89,
+      "denominator_expected_fields": 116
+    },
+    "exact_unit_match_rate": {
+      "value": 0.6207,
+      "numerator_correct_units": 72,
+      "denominator_expected_fields": 116
+    },
+    "medication_name_match_rate": {
+      "value": 0.9231,
+      "numerator_name_matches": 12,
+      "denominator_medications": 13
+    },
+    "medication_dosage_accuracy": {
+      "value": 0.9231,
+      "numerator_dosage_matches": 12,
+      "denominator_medications": 13
+    }
+  },
+  "category_summary_table": [
+    {
+      "category": "ambiguous_or_missing_unit",
+      "doc_count": 5,
+      "cer": 2.5107,
+      "wer": 2.0556,
+      "field_f1": 0.6,
+      "exact_value_acc": 0.6,
+      "mean_latency_ms": 11112.95
+    },
+    {
+      "category": "digital_lab_pdf",
+      "doc_count": 10,
+      "cer": 2.2408,
+      "wer": 2.902,
+      "field_f1": 0.8533,
+      "exact_value_acc": 0.8421,
+      "mean_latency_ms": 27.58
+    },
+    {
+      "category": "noisy_scan",
+      "doc_count": 5,
+      "cer": 2.0663,
+      "wer": 1.1447,
+      "field_f1": 0.8,
+      "exact_value_acc": 0.6667,
+      "mean_latency_ms": 12125.2
+    },
+    {
+      "category": "scanned_prescription",
+      "doc_count": 10,
+      "cer": 2.4241,
+      "wer": 1.8699,
+      "field_f1": 1.0,
+      "exact_value_acc": 1.0,
+      "mean_latency_ms": 9844.2
+    },
+    {
+      "category": "clean_scanned_lab",
+      "doc_count": 10,
+      "cer": 1.8452,
+      "wer": 1.8132,
+      "field_f1": 0.7692,
+      "exact_value_acc": 0.7692,
+      "mean_latency_ms": 10902.11
+    },
+    {
+      "category": "skewed_document",
+      "doc_count": 5,
+      "cer": 2.3899,
+      "wer": 2.3286,
+      "field_f1": 0.6667,
+      "exact_value_acc": 0.3333,
+      "mean_latency_ms": 12849.12
+    },
+    {
+      "category": "medical_table",
+      "doc_count": 5,
+      "cer": 1.6751,
+      "wer": 2.0536,
+      "field_f1": 0.8,
+      "exact_value_acc": 0.7778,
+      "mean_latency_ms": 35.09
+    }
+  ]
+}

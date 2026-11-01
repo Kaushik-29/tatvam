@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-10-29 20:04:45 UTC",
+  "detector_class": "RuleBasedConflictDetector",
+  "low_confidence_threshold": 0.7,
+  "development_cohort": {
+    "cohort_name": "dev",
+    "total_cases_evaluated": 500,
+    "clean_cases_total": 80,
+    "clean_cases_correct": 80,
+    "clean_specificity": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "evaluation_duration_seconds": 0.076,
+    "category_metrics": {
+      "VALUE_OR_UNIT_DISCREPANCY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "TEMPORAL_DISCREPANCY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "SOURCE_STATEMENT_DISAGREEMENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "LOW_CONFIDENCE_EXTRACTION": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "MISSING_INFORMATION": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "ENTERED_OPINION_DISAGREEMENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      }
+    },
+    "false_positive_count": 0,
+    "false_negative_count": 0,
+    "sample_false_positives": [],
+    "sample_false_negatives": []
+  },
+  "evaluation_cohort": {
+    "cohort_name": "eval",
+    "total_cases_evaluated": 500,
+    "clean_cases_total": 80,
+    "clean_cases_correct": 80,
+    "clean_specificity": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "evaluation_duration_seconds": 0.095,
+    "category_metrics": {
+      "VALUE_OR_UNIT_DISCREPANCY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "TEMPORAL_DISCREPANCY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "SOURCE_STATEMENT_DISAGREEMENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "LOW_CONFIDENCE_EXTRACTION": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "MISSING_INFORMATION": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      },
+      "ENTERED_OPINION_DISAGREEMENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "true_positives": 70,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "support": 70
+      }
+    },
+    "false_positive_count": 0,
+    "false_negative_count": 0,
+    "sample_false_positives": [],
+    "sample_false_negatives": []
+  }
+}

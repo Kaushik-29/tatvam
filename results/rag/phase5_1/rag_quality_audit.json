@@ -1,0 +1,353 @@
+{
+  "audit_timestamp": "2026-10-30T02:45:16Z",
+  "corpus_audit": {
+    "v1": {
+      "manifest_path": "data\\knowledge_base\\knowledge_manifest.json",
+      "total_documents": 6,
+      "total_passages": 24,
+      "short_passages_under_25_words": 0,
+      "license_findings": [
+        {
+          "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+          "finding": "Inaccurate Public Domain Attribution in v1 (StatPearls is copyrighted by StatPearls Publishing LLC; NCBI Bookshelf permits educational/research access, not public domain)",
+          "severity": "HIGH"
+        },
+        {
+          "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+          "finding": "Inaccurate Public Domain Attribution in v1 (StatPearls is copyrighted by StatPearls Publishing LLC; NCBI Bookshelf permits educational/research access, not public domain)",
+          "severity": "HIGH"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC_MOHFW_GERD_2019",
+          "title": "Standard Treatment Guidelines: Medical Management of Dyspepsia and Gastroesophageal Reflux Disease (GERD)",
+          "organization": "National Health Portal (NHP), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://www.nhp.gov.in/disease/digestive-system/gastroesophageal-reflux-disease-gerd",
+          "publication_date": "2019-08-12",
+          "license": "Open Government Data (OGD) License India (Public clinical management guidance)",
+          "passage_count": 4,
+          "mean_words_per_passage": 69.5,
+          "min_words_per_passage": 56,
+          "max_words_per_passage": 91
+        },
+        {
+          "document_id": "DOC_MOHFW_ACS_2020",
+          "title": "Standard Treatment Guidelines for Secondary Care: Acute Coronary Syndrome and Ischemic Heart Disease",
+          "organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2020-02-15",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.2,
+          "min_words_per_passage": 40,
+          "max_words_per_passage": 65
+        },
+        {
+          "document_id": "DOC_MOHFW_BRONCHITIS_2021",
+          "title": "Clinical Guidance for Management of Adult Patients with Acute Respiratory Symptoms and Acute Bronchitis",
+          "organization": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2021-05-17",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.8,
+          "min_words_per_passage": 45,
+          "max_words_per_passage": 64
+        },
+        {
+          "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+          "title": "Anaphylaxis Assessment, Recognition, and Immediate Care",
+          "organization": "StatPearls Publishing / National Center for Biotechnology Information (NCBI Bookshelf)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK441865/",
+          "publication_date": "2023-01-29",
+          "license": "Public Domain / Permitted Non-Commercial Educational Reuse (NCBI Bookshelf)",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.8,
+          "min_words_per_passage": 40,
+          "max_words_per_passage": 67
+        },
+        {
+          "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+          "title": "Vasovagal Syncope Clinical Evaluation and Differential Diagnosis",
+          "organization": "StatPearls Publishing / National Center for Biotechnology Information (NCBI Bookshelf)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK537248/",
+          "publication_date": "2023-05-01",
+          "license": "Public Domain / Permitted Non-Commercial Educational Reuse (NCBI Bookshelf)",
+          "passage_count": 4,
+          "mean_words_per_passage": 59.2,
+          "min_words_per_passage": 47,
+          "max_words_per_passage": 67
+        },
+        {
+          "document_id": "DOC_WHO_PANIC_2019",
+          "title": "Clinical Protocol for Acute Hyperventilation Syndrome and Panic Disorder in Primary Care",
+          "organization": "World Health Organization (WHO) / Directorate General of Health Services, MoHFW",
+          "source_url": "https://www.who.int/mental_health/mhgap/",
+          "publication_date": "2019-11-20",
+          "license": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+          "passage_count": 4,
+          "mean_words_per_passage": 54.5,
+          "min_words_per_passage": 43,
+          "max_words_per_passage": 67
+        }
+      ]
+    },
+    "v2": {
+      "manifest_path": "data\\knowledge_base_v2\\knowledge_manifest.json",
+      "total_documents": 10,
+      "total_passages": 42,
+      "short_passages_under_25_words": 0,
+      "license_findings": [],
+      "documents": [
+        {
+          "document_id": "DOC_MOHFW_GERD_2019",
+          "title": "Standard Treatment Guidelines: Medical Management of Dyspepsia and Gastroesophageal Reflux Disease (GERD)",
+          "organization": "National Health Portal (NHP), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://www.nhp.gov.in/disease/digestive-system/gastroesophageal-reflux-disease-gerd",
+          "publication_date": "2019-08-12",
+          "license": "Open Government Data (OGD) License India (Public clinical management guidance)",
+          "passage_count": 4,
+          "mean_words_per_passage": 69.5,
+          "min_words_per_passage": 56,
+          "max_words_per_passage": 91
+        },
+        {
+          "document_id": "DOC_MOHFW_ACS_2020",
+          "title": "Standard Treatment Guidelines for Secondary Care: Acute Coronary Syndrome and Ischemic Heart Disease",
+          "organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2020-02-15",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.2,
+          "min_words_per_passage": 40,
+          "max_words_per_passage": 65
+        },
+        {
+          "document_id": "DOC_MOHFW_BRONCHITIS_2021",
+          "title": "Clinical Guidance for Management of Adult Patients with Acute Respiratory Symptoms and Acute Bronchitis",
+          "organization": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2021-05-17",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.8,
+          "min_words_per_passage": 45,
+          "max_words_per_passage": 64
+        },
+        {
+          "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+          "title": "Anaphylaxis Assessment, Recognition, and Immediate Care",
+          "organization": "StatPearls Publishing LLC / National Center for Biotechnology Information (NCBI Bookshelf)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK441865/",
+          "publication_date": "2023-01-29",
+          "license": "Copyright \u00a9 2023 StatPearls Publishing LLC. Distributed under NCBI Bookshelf Free Access Terms (Permitted for educational and research use; not public domain)",
+          "passage_count": 4,
+          "mean_words_per_passage": 53.8,
+          "min_words_per_passage": 40,
+          "max_words_per_passage": 67
+        },
+        {
+          "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+          "title": "Vasovagal Syncope Clinical Evaluation and Differential Diagnosis",
+          "organization": "StatPearls Publishing LLC / National Center for Biotechnology Information (NCBI Bookshelf)",
+          "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK537248/",
+          "publication_date": "2023-05-01",
+          "license": "Copyright \u00a9 2023 StatPearls Publishing LLC. Distributed under NCBI Bookshelf Free Access Terms (Permitted for educational and research use; not public domain)",
+          "passage_count": 4,
+          "mean_words_per_passage": 59.2,
+          "min_words_per_passage": 47,
+          "max_words_per_passage": 67
+        },
+        {
+          "document_id": "DOC_WHO_PANIC_2019",
+          "title": "Clinical Protocol for Acute Hyperventilation Syndrome and Panic Disorder in Primary Care",
+          "organization": "World Health Organization (WHO) / Directorate General of Health Services, MoHFW",
+          "source_url": "https://www.who.int/mental_health/mhgap/",
+          "publication_date": "2019-11-20",
+          "license": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+          "passage_count": 4,
+          "mean_words_per_passage": 54.5,
+          "min_words_per_passage": 43,
+          "max_words_per_passage": 67
+        },
+        {
+          "document_id": "DOC_MOHFW_HYPERTENSION_2020",
+          "title": "Standard Treatment Guidelines: Management of Systemic Hypertension in Adults at Primary and Secondary Care",
+          "organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2020-09-14",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 66.2,
+          "min_words_per_passage": 53,
+          "max_words_per_passage": 73
+        },
+        {
+          "document_id": "DOC_MOHFW_DIABETES_2021",
+          "title": "Standard Treatment Guidelines: Clinical Practice Guidelines for Management of Type 2 Diabetes Mellitus",
+          "organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2021-03-25",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 4,
+          "mean_words_per_passage": 73.2,
+          "min_words_per_passage": 62,
+          "max_words_per_passage": 85
+        },
+        {
+          "document_id": "DOC_WHO_ASTHMA_2021",
+          "title": "WHO Package of Essential Noncommunicable Disease Interventions (PEN): Protocol for Chronic Asthma and COPD",
+          "organization": "World Health Organization (WHO)",
+          "source_url": "https://www.who.int/publications/i/item/9789240009271",
+          "publication_date": "2021-08-10",
+          "license": "CC BY-NC-SA 3.0 IGO (WHO Open Access Guidelines)",
+          "passage_count": 5,
+          "mean_words_per_passage": 53.4,
+          "min_words_per_passage": 39,
+          "max_words_per_passage": 62
+        },
+        {
+          "document_id": "DOC_MOHFW_PNEUMONIA_2022",
+          "title": "Clinical Practice Guidelines for Community-Acquired Pneumonia in Adults: Diagnosis, Risk Stratification, and Antimicrobial Therapy",
+          "organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+          "source_url": "https://main.mohfw.gov.in/",
+          "publication_date": "2022-04-18",
+          "license": "Open Government Data (OGD) License India",
+          "passage_count": 5,
+          "mean_words_per_passage": 63.4,
+          "min_words_per_passage": 56,
+          "max_words_per_passage": 87
+        }
+      ]
+    }
+  },
+  "claim_decomposition_and_support_rate_audit": {
+    "raw_text": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal burning sensation after meals (PATIENT_REPORTED).\nPertinent negatives documented: None recorded. Top discussion consideration: Gastroesophageal Reflux Disease.\n\n### 2. Clinical Reference Guidance\nAccording to clinical reference guidelines [DOC_MOHFW_GERD_2019_P003], Differentiating esophageal retrosternal burning from acute coronary syndrome is critical in clinical assessment. [DOC_MOHFW_GERD_2019_P003]\nFurthermore, clinical guidance emphasizes that gastroesophageal reflux disease (gerd) is characterized by backward flow of gastric acid into the esophagus. [DOC_MOHFW_GERD_2019_P001]\n\n### 3. Safety Guidance & Limitations\nIf acute red flags develop (e.g., severe resting shortness of breath, unexplained fainting, or persistent severe pain), immediate in-person medical evaluation is required.\n\n*Disclaimer: MedResolve provides bounded evidence summaries for patient navigation and does not make definitive diagnostic determinations.*",
+    "total_claims_in_phase5": 11,
+    "formatting_artifacts_count": 7,
+    "patient_findings_in_ref_denom_count": 1,
+    "genuine_medical_claims_count": 3,
+    "reported_support_rate": 0.4545,
+    "reported_unsupported_rate": 0.5455,
+    "true_genuine_medical_claim_support_rate": 1.6667,
+    "failure_categorization": {
+      "1_retrieval_failure": [],
+      "2_missing_source_coverage": [],
+      "3_unsupported_model_generated_claims": [],
+      "4_incorrect_claim_decomposition": [
+        {
+          "claim_id": "CLAIM_001",
+          "text": "Documented Patient Observations",
+          "reason": "Markdown sub-heading was severed by numbered dot regex split and treated as an atomic claim."
+        },
+        {
+          "claim_id": "CLAIM_005",
+          "text": "Clinical Reference Guidance",
+          "reason": "Markdown sub-heading was severed by numbered dot regex split and treated as an atomic claim."
+        },
+        {
+          "claim_id": "CLAIM_007",
+          "text": "[DOC_MOHFW_GERD_2019_P003]",
+          "reason": "Trailing citation was severed by regex sentence split and treated as an independent atomic claim."
+        },
+        {
+          "claim_id": "CLAIM_009",
+          "text": "[DOC_MOHFW_GERD_2019_P001]",
+          "reason": "Trailing citation was severed by regex sentence split and treated as an independent atomic claim."
+        },
+        {
+          "claim_id": "CLAIM_010",
+          "text": "Safety Guidance & Limitations",
+          "reason": "Markdown sub-heading was severed by numbered dot regex split and treated as an atomic claim."
+        }
+      ],
+      "5_incorrect_entailment_or_contradiction_classification": [],
+      "6_patient_ledger_inconsistency": [],
+      "7_citation_mismatch": [],
+      "8_evaluation_or_metric_definition_problems": [
+        {
+          "claim_id": "CLAIM_002",
+          "text": "The patient presents with verified findings: Retrosternal burning sensation after meals (PATIENT_REPORTED).",
+          "reason": "Patient observation evaluated under reference entailment denominator instead of patient consistency."
+        },
+        {
+          "claim_id": "CLAIM_003",
+          "text": "Pertinent negatives documented: None recorded.",
+          "reason": "Boilerplate/negative finding text evaluated against clinical reference passages where it does not belong."
+        },
+        {
+          "claim_id": "CLAIM_004",
+          "text": "Top discussion consideration: Gastroesophageal Reflux Disease.",
+          "reason": "Boilerplate/negative finding text evaluated against clinical reference passages where it does not belong."
+        }
+      ]
+    }
+  },
+  "llm_invocation_and_latency_audit": {
+    "phase5_methodology": "Template-based / Rule-based string synthesis (no LLM call executed; reported latency < 3 ms represented in-memory string formatting).",
+    "ollama_server_online": true,
+    "installed_models": [
+      "llama3.2:3b",
+      "qwen3:4b"
+    ],
+    "tested_model": "llama3.2:3b",
+    "measurements": [
+      {
+        "label": "Cold Start Query",
+        "query": "Vasovagal syncope presentation and autonomic prodrome features.",
+        "model_name": "llama3.2:3b",
+        "prompt_construction_ms": 0.02,
+        "retrieval_latency_ms": 823.44,
+        "model_inference_latency_ms": 21913.47,
+        "model_prompt_eval_ms": 4410.72,
+        "model_token_eval_ms": 9082.82,
+        "verification_latency_ms": 0.96,
+        "total_wall_clock_ms": 22737.88,
+        "input_tokens": 294,
+        "output_tokens": 120,
+        "tokens_per_second": 5.48,
+        "generated_text_snippet": "Vasovagal syncope is characterized by a clear autonomic prodrome, typically including lightheadedness, nausea, facial pallor, diaphoresis, blurred or ...",
+        "claims_extracted": 3,
+        "supported_claims": 3
+      },
+      {
+        "label": "Warm Query 1",
+        "query": "Differentiating gastroesophageal reflux from cardiac chest pain.",
+        "model_name": "llama3.2:3b",
+        "prompt_construction_ms": 0.02,
+        "retrieval_latency_ms": 389.04,
+        "model_inference_latency_ms": 15809.98,
+        "model_prompt_eval_ms": 4591.77,
+        "model_token_eval_ms": 9056.57,
+        "verification_latency_ms": 0.93,
+        "total_wall_clock_ms": 16199.97,
+        "input_tokens": 345,
+        "output_tokens": 120,
+        "tokens_per_second": 7.59,
+        "generated_text_snippet": "Gastroesophageal Reflux Disease (GERD) is characterized by the backward flow of gastric acid into the esophagus, typically resulting in a burning sens...",
+        "claims_extracted": 3,
+        "supported_claims": 3
+      },
+      {
+        "label": "Warm Query 2",
+        "query": "Acute bronchitis red flags requiring immediate hospitalization.",
+        "model_name": "llama3.2:3b",
+        "prompt_construction_ms": 0.02,
+        "retrieval_latency_ms": 352.12,
+        "model_inference_latency_ms": 13557.0,
+        "model_prompt_eval_ms": 4146.19,
+        "model_token_eval_ms": 7264.06,
+        "verification_latency_ms": 0.61,
+        "total_wall_clock_ms": 13909.75,
+        "input_tokens": 313,
+        "output_tokens": 95,
+        "tokens_per_second": 7.01,
+        "generated_text_snippet": "Acute bronchitis red flags requiring immediate hospitalization include severe hemodynamic instability (shock, systolic BP < 90 mmHg) [DOC_MOHFW_PNEUMO...",
+        "claims_extracted": 1,
+        "supported_claims": 1
+      }
+    ]
+  }
+}

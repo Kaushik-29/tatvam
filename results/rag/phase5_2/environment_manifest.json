@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-10-30T09:07:00Z",
+  "phase": "5.2",
+  "audit_objective": "Evaluation Integrity and Reproducibility Audit",
+  "hardware_and_os": {
+    "os_system": "Windows",
+    "os_version": "10.0.26100",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1",
+    "python_version": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+  },
+  "random_seeds": {
+    "global_reproducibility_seed": 42,
+    "numpy_seed": 42,
+    "python_random_seed": 42,
+    "torch_manual_seed": 42
+  },
+  "version_control": {
+    "git_branch": "master",
+    "working_tree_state": "initial_uncommitted_working_tree",
+    "preserved_prior_results": [
+      "results/baselines/",
+      "results/conflicts/",
+      "results/policy/",
+      "results/rag/phase5_1/"
+    ]
+  },
+  "package_versions": {
+    "torch": "2.13.0+cpu",
+    "sentence_transformers": "3.1.1",
+    "faiss_cpu": "1.15.1",
+    "rank_bm25": "0.2.2",
+    "pydantic": "2.9.2",
+    "scikit_learn": "1.4.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "pytest": "9.1.1"
+  },
+  "ollama_runtime": {
+    "service_url": "http://localhost:11434",
+    "ollama_version": "0.40.12",
+    "target_model": "llama3.2:3b",
+    "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "parameter_size": "3.2B",
+    "quantization_level": "Q4_K_M",
+    "format": "gguf",
+    "family": "llama",
+    "runner": "ggml",
+    "context_length": 131072,
+    "embedding_length": 3072,
+    "secondary_available_model": "qwen3:4b (digest: 359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7, 4.0B, Q4_K_M)"
+  },
+  "knowledge_corpus_manifest": {
+    "active_version": "v2",
+    "corpus_path": "data/knowledge_base_v2",
+    "total_guidelines": 10,
+    "total_passages": 42,
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_dimension": 1024,
+    "index_path": "data/knowledge_base_v2/index",
+    "documents": [
+      {
+        "document_id": "DOC_MOHFW_GERD_2019",
+        "title": "Standard Treatment Guidelines: Gastroesophageal Reflux Disease",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2019,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_MOHFW_BRONCHITIS_2021",
+        "title": "Standard Treatment Guidelines: Acute Bronchitis and Bronchial Asthma",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2021,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_MOHFW_TENSION_HEADACHE_2019",
+        "title": "Standard Treatment Guidelines: Tension Type Headache",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2019,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_STATPEARLS_ANAPHYLAXIS_2023",
+        "title": "Anaphylaxis: Clinical Review and Management Protocols",
+        "publisher": "StatPearls Publishing LLC (via NCBI Bookshelf NBK431070)",
+        "publication_year": 2023,
+        "license": "Copyright © 2023 StatPearls Publishing LLC. Distributed under NCBI Bookshelf Free Access Terms (Permitted for educational and research use; not public domain)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+        "title": "Vasovagal Syncope and Reflex Syncopal Syndromes",
+        "publisher": "StatPearls Publishing LLC (via NCBI Bookshelf NBK537332)",
+        "publication_year": 2023,
+        "license": "Copyright © 2023 StatPearls Publishing LLC. Distributed under NCBI Bookshelf Free Access Terms (Permitted for educational and research use; not public domain)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_WHO_CHEST_PAIN_2020",
+        "title": "Package of Essential Noncommunicable Disease Interventions (WHO PEN): Acute Chest Pain Protocols",
+        "publisher": "World Health Organization",
+        "publication_year": 2020,
+        "license": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (CC BY-NC-SA 3.0 IGO)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_MOHFW_HYPERTENSION_2020",
+        "title": "Standard Treatment Guidelines: Essential Hypertension Management",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2020,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_MOHFW_DIABETES_2021",
+        "title": "Standard Treatment Guidelines: Type 2 Diabetes Mellitus in Adults",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2021,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 5
+      },
+      {
+        "document_id": "DOC_WHO_ASTHMA_PEN_2021",
+        "title": "WHO PEN Protocol 2: Management of Asthma and Chronic Obstructive Pulmonary Disease",
+        "publisher": "World Health Organization",
+        "publication_year": 2021,
+        "license": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (CC BY-NC-SA 3.0 IGO)",
+        "passages": 4
+      },
+      {
+        "document_id": "DOC_MOHFW_CAP_2022",
+        "title": "Standard Treatment Guidelines: Community-Acquired Pneumonia in Adults",
+        "publisher": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "publication_year": 2022,
+        "license": "Government Open Data License - India (GODL-India)",
+        "passages": 5
+      }
+    ]
+  }
+}

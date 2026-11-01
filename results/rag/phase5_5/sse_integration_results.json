@@ -1,0 +1,74 @@
+{
+  "test_name": "MedResolve Phase 5.5 Real SSE Streaming Integration Test",
+  "timestamp": "2026-10-31T12:20:43Z",
+  "tested_endpoints": [
+    "GET /api/assess-stream/{patient_id}"
+  ],
+  "scenarios_passed": 3,
+  "total_scenarios": 3,
+  "criteria_verification": {
+    "content_type_event_stream": true,
+    "actual_event_stream_connection": true,
+    "intake_event_emitted": true,
+    "evidence_ledger_event_emitted": true,
+    "conflict_detection_event_emitted": true,
+    "knowledge_retrieval_event_emitted": true,
+    "generation_buffered_event_emitted": true,
+    "claim_verification_event_emitted": true,
+    "final_result_event_emitted": true,
+    "completion_event_emitted": true,
+    "unverified_medical_content_never_published_early": true,
+    "emergency_preempts_ordinary_generation": true,
+    "ollama_invocation_strictly_suppressed_in_emergency": true,
+    "deterministic_safety_result_returned": true,
+    "client_error_isolation_404": true
+  },
+  "scenario_details": {
+    "in_domain_scenario": {
+      "patient_id": "SYNTH_PATIENT_01",
+      "status_code": 200,
+      "content_type": "text/event-stream; charset=utf-8",
+      "events_received_count": 8,
+      "event_names": [
+        "intake",
+        "evidence_ledger",
+        "conflict_detection",
+        "knowledge_retrieval",
+        "generation_buffered",
+        "claim_verification",
+        "final_result",
+        "completion"
+      ],
+      "sequence_valid": true,
+      "unverified_content_buffered": true,
+      "final_action": "EXPLAIN",
+      "stream_latency_seconds": 13.575
+    },
+    "emergency_override_scenario": {
+      "patient_id": "SYNTH_PATIENT_07",
+      "status_code": 200,
+      "content_type": "text/event-stream; charset=utf-8",
+      "events_received_count": 5,
+      "event_names": [
+        "intake",
+        "evidence_ledger",
+        "conflict_detection",
+        "emergency_override",
+        "completion"
+      ],
+      "sequence_valid": true,
+      "llm_generation_suppressed": true,
+      "safety_dispatch_present": true,
+      "red_flags_identified": [
+        "Critical acute upper airway compromise: patient presents with inspiratory stridor or acute suffocation sensation.",
+        "Suspected acute anaphylaxis: acute swelling combined with respiratory compromise."
+      ],
+      "stream_latency_seconds": 0.209
+    },
+    "error_isolation_scenario": {
+      "patient_id": "P9999_NONEXISTENT",
+      "status_code": 404,
+      "detail": "Synthetic patient 'P9999_NONEXISTENT' not found."
+    }
+  }
+}

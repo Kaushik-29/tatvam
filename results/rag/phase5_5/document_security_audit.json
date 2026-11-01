@@ -1,0 +1,53 @@
+{
+  "audit_name": "MedResolve Phase 5.5 Document Security & File-Processing Audit",
+  "audit_date": "2026-10-31T12:23:30Z",
+  "tested_platform": "FastAPI Synthetic Healthcare Research Prototype",
+  "verification_items": {
+    "upload_size_limit_15mb": {
+      "enforced": true,
+      "max_size_bytes": 15728640,
+      "rejection_status": 400,
+      "rejection_message": "File size (16777221 bytes) exceeds 15 MB limit."
+    },
+    "file_signature_magic_bytes": {
+      "enforced": true,
+      "validated_formats": [
+        "%PDF (PDF)",
+        "\\x89PNG (PNG)",
+        "\\xff\\xd8 (JPEG)"
+      ],
+      "anti_spoofing_status": 400,
+      "rejection_message": "Invalid PDF file: Missing %PDF header magic bytes."
+    },
+    "filename_sanitization_and_path_traversal": {
+      "enforced": false,
+      "regex_sanitization": "re.sub(r'[^a-zA-Z0-9_\\-\\.]', '_', Path(filename).name)",
+      "storage_directory": "data/uploads (strictly controlled isolated folder)",
+      "traversal_attempt_result": "Sanitized and stored safely in upload sandbox"
+    },
+    "cross_patient_document_isolation": {
+      "enforced": true,
+      "test_method": "Access SYNTH_PATIENT_01 document using SYNTH_PATIENT_02 identity",
+      "json_endpoint_status": 404,
+      "file_endpoint_status": 404,
+      "isolation_policy": "Strict patient_id equality check; returns 404 if patient mismatch"
+    },
+    "secret_and_credential_isolation": {
+      "enforced": true,
+      "checked_tokens": [
+        "SECRET_KEY",
+        "AWS_SECRET",
+        "TOKEN",
+        "PASSWORD",
+        "DATABASE_URL"
+      ],
+      "leak_detected": false
+    },
+    "safe_pdf_and_image_sandboxing": {
+      "enforced": true,
+      "pdf_engine": "PyMuPDF fitz with error isolation",
+      "image_engine": "RapidOCR ONNX Runtime CPU with boundary validation"
+    }
+  },
+  "academic_prototype_security_disclaimer": "MedResolve document processing is evaluated as an investigational academic prototype. For production clinical EHR deployment, additional controls including HIPAA-compliant at-rest encryption (AES-256-GCM), mTLS, authenticated RBAC JWT sessions, and clamav anti-malware pipeline integration would be mandatory."
+}

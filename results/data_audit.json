@@ -1,0 +1,387 @@
+{
+  "audit_timestamp": "2026-10-29 19:24:07 UTC",
+  "status": "COMPLETED",
+  "dataset_name": "DDXPlus (Mila / IQIA release)",
+  "file_integrity": {
+    "raw_dir": "data\\raw\\ddxplus",
+    "raw_files_detected": [
+      {
+        "file": "release_conditions.json",
+        "size_bytes": 26793
+      },
+      {
+        "file": "release_evidences.json",
+        "size_bytes": 198524
+      },
+      {
+        "file": "release_train_patients.zip",
+        "size_bytes": 140923730
+      },
+      {
+        "file": "release_validate_patients.zip",
+        "size_bytes": 18706053
+      },
+      {
+        "file": "release_test_patients.zip",
+        "size_bytes": 18986243
+      },
+      {
+        "file": "README.md",
+        "size_bytes": 7617
+      }
+    ],
+    "raw_files_missing": [],
+    "extracted_files_detected": [
+      {
+        "file": "train/release_train_patients.csv",
+        "size_bytes": 670584506
+      },
+      {
+        "file": "validate/release_validate_patients.csv",
+        "size_bytes": 87371169
+      },
+      {
+        "file": "test/release_test_patients.csv",
+        "size_bytes": 88582473
+      }
+    ],
+    "extracted_files_missing": [],
+    "all_raw_files_present": true,
+    "all_extracted_files_present": true
+  },
+  "metadata_summary": {
+    "num_conditions": 49,
+    "num_evidences": 223,
+    "evidence_type_breakdown": {
+      "binary (B)": 208,
+      "categorical (C)": 10,
+      "multi_choice (M)": 5
+    },
+    "antecedents_count": 113,
+    "symptoms_count": 110,
+    "total_encoded_evidence_tokens": 972,
+    "condition_severities_distribution": {
+      "1": 5,
+      "2": 12,
+      "3": 17,
+      "4": 12,
+      "5": 3
+    }
+  },
+  "split_statistics": {
+    "validate": {
+      "record_count": 132448,
+      "file_size_bytes": 87371169,
+      "columns": [
+        "AGE",
+        "DIFFERENTIAL_DIAGNOSIS",
+        "SEX",
+        "PATHOLOGY",
+        "EVIDENCES",
+        "INITIAL_EVIDENCE"
+      ],
+      "schema_valid": true,
+      "age_range": [
+        0,
+        109
+      ],
+      "sex_distribution": {
+        "F": 68133,
+        "M": 64315
+      },
+      "null_values_per_column": {
+        "AGE": 0,
+        "DIFFERENTIAL_DIAGNOSIS": 0,
+        "SEX": 0,
+        "PATHOLOGY": 0,
+        "EVIDENCES": 0,
+        "INITIAL_EVIDENCE": 0
+      }
+    },
+    "test": {
+      "record_count": 134529,
+      "file_size_bytes": 88582473,
+      "columns": [
+        "AGE",
+        "DIFFERENTIAL_DIAGNOSIS",
+        "SEX",
+        "PATHOLOGY",
+        "EVIDENCES",
+        "INITIAL_EVIDENCE"
+      ],
+      "schema_valid": true,
+      "age_range": [
+        0,
+        109
+      ],
+      "sex_distribution": {
+        "F": 69342,
+        "M": 65187
+      },
+      "null_values_per_column": {
+        "AGE": 0,
+        "DIFFERENTIAL_DIAGNOSIS": 0,
+        "SEX": 0,
+        "PATHOLOGY": 0,
+        "EVIDENCES": 0,
+        "INITIAL_EVIDENCE": 0
+      }
+    },
+    "train": {
+      "record_count": 1025602,
+      "file_size_bytes": 670584506,
+      "columns": [
+        "AGE",
+        "DIFFERENTIAL_DIAGNOSIS",
+        "SEX",
+        "PATHOLOGY",
+        "EVIDENCES",
+        "INITIAL_EVIDENCE"
+      ],
+      "schema_valid": true,
+      "age_range": [
+        0,
+        109
+      ],
+      "sex_distribution": {
+        "M": 497804,
+        "F": 527798
+      },
+      "null_values_per_column": {
+        "AGE": 0,
+        "DIFFERENTIAL_DIAGNOSIS": 0,
+        "SEX": 0,
+        "PATHOLOGY": 0,
+        "EVIDENCES": 0,
+        "INITIAL_EVIDENCE": 0
+      }
+    }
+  },
+  "pathology_distribution": {
+    "validate": {
+      "unique_pathologies_present": 49,
+      "all_49_conditions_covered": true,
+      "top_5_frequent": [
+        [
+          "URTI",
+          8656
+        ],
+        [
+          "Viral pharyngitis",
+          8246
+        ],
+        [
+          "Anemia",
+          6903
+        ],
+        [
+          "HIV (initial infection)",
+          3852
+        ],
+        [
+          "Anaphylaxis",
+          3754
+        ]
+      ],
+      "bottom_5_frequent": [
+        [
+          "Larygospasm",
+          668
+        ],
+        [
+          "Whooping cough",
+          545
+        ],
+        [
+          "Croup",
+          267
+        ],
+        [
+          "Ebola",
+          90
+        ],
+        [
+          "Bronchiolitis",
+          28
+        ]
+      ],
+      "most_common_class": [
+        "URTI",
+        8656
+      ],
+      "least_common_class": [
+        "Bronchiolitis",
+        28
+      ]
+    },
+    "test": {
+      "unique_pathologies_present": 49,
+      "all_49_conditions_covered": true,
+      "top_5_frequent": [
+        [
+          "URTI",
+          8743
+        ],
+        [
+          "Viral pharyngitis",
+          8334
+        ],
+        [
+          "Anemia",
+          6842
+        ],
+        [
+          "HIV (initial infection)",
+          3919
+        ],
+        [
+          "Anaphylaxis",
+          3799
+        ]
+      ],
+      "bottom_5_frequent": [
+        [
+          "Spontaneous rib fracture",
+          778
+        ],
+        [
+          "Whooping cough",
+          549
+        ],
+        [
+          "Croup",
+          344
+        ],
+        [
+          "Ebola",
+          100
+        ],
+        [
+          "Bronchiolitis",
+          36
+        ]
+      ],
+      "most_common_class": [
+        "URTI",
+        8743
+      ],
+      "least_common_class": [
+        "Bronchiolitis",
+        36
+      ]
+    },
+    "train": {
+      "unique_pathologies_present": 49,
+      "all_49_conditions_covered": true,
+      "top_5_frequent": [
+        [
+          "URTI",
+          64368
+        ],
+        [
+          "Viral pharyngitis",
+          61642
+        ],
+        [
+          "Anemia",
+          50665
+        ],
+        [
+          "HIV (initial infection)",
+          29013
+        ],
+        [
+          "Localized edema",
+          27825
+        ]
+      ],
+      "bottom_5_frequent": [
+        [
+          "Whooping cough",
+          6070
+        ],
+        [
+          "Spontaneous rib fracture",
+          5712
+        ],
+        [
+          "Croup",
+          2852
+        ],
+        [
+          "Ebola",
+          718
+        ],
+        [
+          "Bronchiolitis",
+          261
+        ]
+      ],
+      "most_common_class": [
+        "URTI",
+        64368
+      ],
+      "least_common_class": [
+        "Bronchiolitis",
+        261
+      ]
+    }
+  },
+  "differential_diagnosis_analysis": {
+    "validate": {
+      "sample_size_audited": 10000,
+      "avg_differential_candidates": 9.3187,
+      "min_differential_candidates": 1,
+      "max_differential_candidates": 31,
+      "diff_top1_accuracy": 0.7288,
+      "diff_top3_accuracy": 0.9289,
+      "avg_evidences_per_patient": 20.158,
+      "min_evidences_per_patient": 3,
+      "max_evidences_per_patient": 43
+    },
+    "test": {
+      "sample_size_audited": 10000,
+      "avg_differential_candidates": 9.146,
+      "min_differential_candidates": 1,
+      "max_differential_candidates": 33,
+      "diff_top1_accuracy": 0.7351,
+      "diff_top3_accuracy": 0.9276,
+      "avg_evidences_per_patient": 19.9855,
+      "min_evidences_per_patient": 2,
+      "max_evidences_per_patient": 44
+    },
+    "train": {
+      "sample_size_audited": 10000,
+      "avg_differential_candidates": 9.0618,
+      "min_differential_candidates": 1,
+      "max_differential_candidates": 31,
+      "diff_top1_accuracy": 0.7387,
+      "diff_top3_accuracy": 0.93,
+      "avg_evidences_per_patient": 19.1909,
+      "min_evidences_per_patient": 2,
+      "max_evidences_per_patient": 43
+    }
+  },
+  "evidence_statistics": {},
+  "data_quality_and_hygiene": {
+    "duplicate_records_in_50k_sample": 41,
+    "missing_values_detected": 0,
+    "target_leakage_risk_detected": false,
+    "target_leakage_note": "PATHOLOGY and DIFFERENTIAL_DIAGNOSIS strictly isolated from model features."
+  },
+  "memory_and_dimensions": {
+    "total_records_all_splits": 1292579,
+    "total_uncompressed_bytes": 846538148,
+    "total_uncompressed_mb": 807.32,
+    "feature_matrix_columns": 974,
+    "feature_breakdown": {
+      "demographic_features": 2,
+      "evidence_features": 972
+    },
+    "target_classes": 49,
+    "dev_subset_50k_sparse_memory_mb": 8.26,
+    "dev_subset_50k_dense_equivalent_mb": 185.78,
+    "sparsity_percentage": 97.83
+  },
+  "execution_time_seconds": 86.99
+}

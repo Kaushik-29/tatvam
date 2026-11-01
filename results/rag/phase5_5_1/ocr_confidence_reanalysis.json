@@ -1,0 +1,52 @@
+{
+  "benchmark_phase": "Phase 5.5.1",
+  "metric_terminology_correction": {
+    "superseded_term": "Calibration Gap",
+    "approved_reproducible_term": "Confidence Separation Between Correct and Incorrect Detections",
+    "justification": "RapidOCR outputs scalar optical contrast/sharpness scores for detected text bounding boxes. Missed ground truth fields (false negatives) have NO detected bounding box; assigning them an artificial confidence of 0.0 is an invalid mathematical imputation that produces an artificial 'calibration gap'. Furthermore, bounding box sharpness does not measure medical correctness or semantic plausibility."
+  },
+  "optical_confidence_separation": {
+    "correctly_detected_fields": {
+      "count": 89,
+      "mean_optical_confidence": 0.9787
+    },
+    "incorrectly_detected_or_false_positive_fields": {
+      "count": 19,
+      "mean_optical_confidence": 0.9808
+    },
+    "confidence_separation_difference": -0.0021,
+    "missed_ground_truth_fields_count": 25,
+    "missed_fields_handling": "Recorded as missing bounding boxes with optical_confidence = None (no artificial zero imputation)"
+  },
+  "reliability_bins": [
+    {
+      "confidence_bin": "[0.50, 0.70)",
+      "observation_count": 0,
+      "mean_optical_confidence": 0.0,
+      "observed_value_accuracy": 0.0,
+      "observed_unit_accuracy": 0.0
+    },
+    {
+      "confidence_bin": "[0.70, 0.85)",
+      "observation_count": 0,
+      "mean_optical_confidence": 0.0,
+      "observed_value_accuracy": 0.0,
+      "observed_unit_accuracy": 0.0
+    },
+    {
+      "confidence_bin": "[0.85, 0.95)",
+      "observation_count": 17,
+      "mean_optical_confidence": 0.9216,
+      "observed_value_accuracy": 0.8824,
+      "observed_unit_accuracy": 0.8824
+    },
+    {
+      "confidence_bin": "[0.95, 1.00]",
+      "observation_count": 91,
+      "mean_optical_confidence": 0.9898,
+      "observed_value_accuracy": 0.8132,
+      "observed_unit_accuracy": 0.6374
+    }
+  ],
+  "calibration_validity_statement": "Expected Calibration Error (ECE) and Brier scores are defined for calibrated probability distributions over well-defined label spaces. Because RapidOCR confidence measures character edge gradient magnitude rather than posterior probability of medical truth, formal calibration claims are not statistically warranted. We report observed empirical accuracies across confidence bins instead."
+}

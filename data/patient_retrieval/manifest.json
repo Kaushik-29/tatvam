@@ -1,0 +1,76 @@
+{
+  "seed": 13,
+  "split_ratios": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "split_unit": "patient_id (sha256 bucket)",
+  "gold_per_group": 3,
+  "splits": {
+    "train": {
+      "examples": 16198,
+      "patients": 473,
+      "categories": {
+        "medication_during_episode": 782,
+        "relevant_history": 1810,
+        "lab_lookup": 1612,
+        "similar_symptoms": 1856,
+        "current_medications": 626,
+        "lab_trend": 1892,
+        "latest_measurement": 1892,
+        "medication_changes": 916,
+        "condition_status": 932,
+        "last_visit": 946,
+        "procedure_history": 916,
+        "immunization_history": 944,
+        "diagnoses_in_year": 932,
+        "allergy_check": 142
+      },
+      "sha256": "fd5a1112d2e42348e767de7b59144acbae4e5ee1d59513c6890b477f9a610a99"
+    },
+    "validation": {
+      "examples": 3074,
+      "patients": 89,
+      "categories": {
+        "medication_during_episode": 156,
+        "relevant_history": 346,
+        "lab_lookup": 304,
+        "similar_symptoms": 346,
+        "lab_trend": 356,
+        "latest_measurement": 356,
+        "medication_changes": 172,
+        "condition_status": 176,
+        "last_visit": 178,
+        "procedure_history": 168,
+        "immunization_history": 178,
+        "diagnoses_in_year": 176,
+        "current_medications": 126,
+        "allergy_check": 36
+      },
+      "sha256": "7c408b370d873c11fc10af2bf3592a12107a86f669bd135a795256413c1b0ab1"
+    },
+    "test": {
+      "examples": 3736,
+      "patients": 109,
+      "categories": {
+        "relevant_history": 430,
+        "lab_lookup": 374,
+        "similar_symptoms": 434,
+        "lab_trend": 436,
+        "latest_measurement": 436,
+        "medication_changes": 208,
+        "condition_status": 218,
+        "last_visit": 218,
+        "procedure_history": 214,
+        "immunization_history": 218,
+        "diagnoses_in_year": 218,
+        "medication_during_episode": 164,
+        "current_medications": 132,
+        "allergy_check": 36
+      },
+      "sha256": "b4fd30f8324a7ff90e9fe2c94ca0e2f2363dbd849c9214c246ebcd19e2ced39c"
+    }
+  },
+  "patient_overlap_between_splits": 0
+}

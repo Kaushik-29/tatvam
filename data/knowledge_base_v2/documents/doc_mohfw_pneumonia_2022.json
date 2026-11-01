@@ -1,0 +1,39 @@
+{
+  "document_id": "DOC_MOHFW_PNEUMONIA_2022",
+  "title": "Clinical Practice Guidelines for Community-Acquired Pneumonia in Adults: Diagnosis, Risk Stratification, and Antimicrobial Therapy",
+  "author_or_organization": "Directorate General of Health Services (DGHS), Ministry of Health and Family Welfare, Government of India",
+  "source_url": "https://main.mohfw.gov.in/",
+  "publication_or_revision_date": "2022-04-18",
+  "date_uncertainty_note": "National clinical guidelines for adult respiratory tract infections.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+  "document_type": "Standard Clinical Guideline",
+  "version": "1.0",
+  "passages": [
+    {
+      "passage_id": "DOC_MOHFW_PNEUMONIA_2022_P001",
+      "section_heading": "1. Clinical Definition and Diagnostic Presentation",
+      "text": "Community-Acquired Pneumonia (CAP) is an acute infection of the lung parenchyma acquired outside of hospital or healthcare facilities. Classic clinical presentation comprises: acute cough with purulent or rust-colored sputum production, fever (> 38.0\u00b0C), chills or rigors, pleuritic thoracic chest pain, dyspnea, and focal pulmonary examination findings including localized bronchial breath sounds, late inspiratory crackles, dullness to percussion, and increased vocal fremitus."
+    },
+    {
+      "passage_id": "DOC_MOHFW_PNEUMONIA_2022_P002",
+      "section_heading": "2. CURB-65 Clinical Risk Stratification",
+      "text": "The CURB-65 prognostic score stratifies 30-day mortality risk in adult CAP using 5 clinical parameters (1 point each): Confusion (abbreviated mental test score <= 8), Urea > 7 mmol/L (BUN > 19 mg/dL), Respiratory rate >= 30 breaths/min, Blood pressure (SBP < 90 mmHg or DBP <= 60 mmHg), and Age >= 65 years. Score 0-1 indicates low risk suitable for supervised outpatient care; Score 2 indicates intermediate risk warranting inpatient hospital admission; Score 3-5 indicates severe pneumonia requiring urgent hospital admission and consideration of intensive care."
+    },
+    {
+      "passage_id": "DOC_MOHFW_PNEUMONIA_2022_P003",
+      "section_heading": "3. Immediate Referral and Red-Flag Indicators",
+      "text": "Immediate hospital transfer is indicated regardless of age if any acute red flag is present: pulse oximetry oxygen saturation (SpO2) < 92% on room air, severe hemodynamic instability (shock, systolic BP < 90 mmHg), bilateral or multi-lobar pulmonary consolidation on chest radiography, hemoptysis, inability to retain oral medications, or severe decompensation of preexisting chronic comorbid conditions."
+    },
+    {
+      "passage_id": "DOC_MOHFW_PNEUMONIA_2022_P004",
+      "section_heading": "4. Empiric Antimicrobial Therapy Principles",
+      "text": "For mild outpatients without cardiopulmonary comorbidities or structural lung disease, empiric monotherapy with oral amoxicillin (500 mg - 1000 mg three times daily) or a macrolide (azithromycin) is recommended for 5 days. For outpatients with comorbidities (diabetes, chronic renal disease, alcoholism), combination therapy with a beta-lactam (co-amoxiclav) plus a macrolide or respiratory fluoroquinolone monotherapy is advised."
+    },
+    {
+      "passage_id": "DOC_MOHFW_PNEUMONIA_2022_P005",
+      "section_heading": "5. Distinction from Acute Viral Bronchitis",
+      "text": "Distinguishing pneumonia from viral acute bronchitis is essential to prevent unnecessary antibiotic use. Acute bronchitis manifests with normal vital signs, absence of tachypnea, normal oxygen saturation, clear lung fields without focal crackles or consolidation, and an absence of pleuritic chest pain. Routine chest radiography and antibiotic therapy are not indicated for uncomplicated acute bronchitis in healthy adults."
+    }
+  ]
+}

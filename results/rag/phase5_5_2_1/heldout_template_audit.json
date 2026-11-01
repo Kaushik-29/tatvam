@@ -1,0 +1,46 @@
+{
+  "benchmark_phase": "Phase 5.5.2.1",
+  "ground_truth_classification": "Generator-Derived, Engine-Independent Ground Truth",
+  "human_review_status": "Strictly automated synthetic ground truth; zero external human clinician annotations",
+  "overlap_analysis": {
+    "document_identity_overlap": {
+      "historical_count": 50,
+      "heldout_count": 10,
+      "shared_ids": 0,
+      "overlap_percentage": "0.0%",
+      "status": "COMPLETELY_DISJOINT"
+    },
+    "patient_and_clinical_data_overlap": {
+      "shared_patient_names": 0,
+      "shared_sample_ids": 0,
+      "shared_collection_dates": 0,
+      "overlap_percentage": "0.0%",
+      "status": "COMPLETELY_DISJOINT",
+      "notes": "Untouched cohort uses novel patient names (e.g. Devika Menon, Farhan Qureshi) and April 2026 dates."
+    },
+    "template_and_canvas_overlap": {
+      "rendering_canvas_generators": [
+        "create_digital_pdf",
+        "create_table_pdf",
+        "create_scanned_image"
+      ],
+      "shared_canvas_generators": true,
+      "coordinate_anchors_identical": true,
+      "font_hierarchy_identical": true,
+      "overlap_percentage": "100.0%",
+      "status": "IDENTICAL_SYNTHETIC_TEMPLATES",
+      "notes": "Both cohorts render using the same PIL and PyMuPDF drawing logic and header banner geometry."
+    },
+    "layout_and_visual_variation": {
+      "variation_degree": "MODERATE",
+      "sources_of_variation": [
+        "Varying row counts and analyte combinations",
+        "Different text string lengths causing variable horizontal line flow",
+        "Skew angles from -5 to +4 degrees",
+        "Gaussian blur and multi-level noise scatter",
+        "Single-page vs two-page pagination"
+      ]
+    }
+  },
+  "formal_evaluation_declaration": "Because canvas templates and rendering functions are shared with the historical generator, template independence is NOT established. This benchmark must be strictly cited as an 'unseen synthetic-document evaluation', NOT an out-of-distribution or unseen-template evaluation."
+}

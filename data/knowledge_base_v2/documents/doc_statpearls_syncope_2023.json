@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_STATPEARLS_SYNCOPE_2023",
+  "title": "Vasovagal Syncope Clinical Evaluation and Differential Diagnosis",
+  "author_or_organization": "StatPearls Publishing LLC / National Center for Biotechnology Information (NCBI Bookshelf)",
+  "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK537248/",
+  "publication_or_revision_date": "2023-05-01",
+  "date_uncertainty_note": "StatPearls clinical review; publication date recorded from NCBI database.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Copyright \u00a9 2023 StatPearls Publishing LLC. Distributed under NCBI Bookshelf Free Access Terms (Permitted for educational and research use; not public domain)",
+  "document_type": "Clinical Reference Review",
+  "version": "2023.2",
+  "passages": [
+    {
+      "passage_id": "DOC_STATPEARLS_SYNCOPE_2023_P001",
+      "section_heading": "1. Pathophysiology and Clinical Course",
+      "text": "Vasovagal syncope (neurocardiogenic syncope) is the most common cause of transient loss of consciousness. It results from inappropriate autonomic reflex activation leading to profound vasodilation and bradycardia, causing transient cerebral hypoperfusion. Typical predisposing triggers include prolonged standing, hot environments, emotional stress, pain, venipuncture, or sight of blood."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_SYNCOPE_2023_P002",
+      "section_heading": "2. Autonomic Prodrome Characteristics",
+      "text": "Vasovagal syncope is classically heralded by a clear autonomic prodrome lasting seconds to minutes prior to consciousness loss. Typical prodromal symptoms include lightheadedness, nausea, facial pallor, diaphoresis (cold sweating), blurred or tunnel vision, and a generalized feeling of warmth. Recovery upon assuming a recumbent position is typically rapid, with oriented consciousness returning within 1 to 2 minutes, although lingering fatigue may persist."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_SYNCOPE_2023_P003",
+      "section_heading": "3. Red Flags Differentiating Cardiogenic Syncope",
+      "text": "Cardiogenic syncope carries substantial mortality risk and must be ruled out. High-risk red flags that argue against benign vasovagal syncope include: syncope occurring during physical exertion, syncope in the supine position, sudden loss of consciousness without any prodromal warning, syncope accompanied by chest pain or palpitations, known structural heart disease, or a family history of unexplained premature sudden cardiac death. Any exertional syncope mandates immediate cardiological workup."
+    },
+    {
+      "passage_id": "DOC_STATPEARLS_SYNCOPE_2023_P004",
+      "section_heading": "4. Immediate Response and Clinical Guidance",
+      "text": "If a patient experiences prodromal lightheadedness, immediate counter-measures include lying flat or sitting with head between knees, and performing physical counter-pressure maneuvers (leg crossing, arm tensing). If collapse occurs, the patient should be kept supine with legs elevated. A formal clinical evaluation with standard 12-lead ECG is advised for any first episode of syncope or where red-flag features cannot be excluded."
+    }
+  ]
+}

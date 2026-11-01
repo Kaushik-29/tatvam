@@ -1,0 +1,58 @@
+{
+  "evaluation_dataset_size": 20,
+  "evaluable_queries_with_ground_truth": 19,
+  "out_of_domain_queries": 1,
+  "methods": {
+    "lexical": {
+      "mrr": 0.8526,
+      "zero_hit_rate": 0.0526,
+      "zero_hit_count": 1,
+      "total_evaluated_queries": 19,
+      "latency_ms": {
+        "mean": 0.7,
+        "p50": 0.54,
+        "p95": 1.28
+      },
+      "recall@1": 0.7895,
+      "precision@1": 0.7895,
+      "recall@3": 0.8947,
+      "precision@3": 0.2982,
+      "recall@5": 0.9474,
+      "precision@5": 0.1895
+    },
+    "dense": {
+      "mrr": 0.9123,
+      "zero_hit_rate": 0.0,
+      "zero_hit_count": 0,
+      "total_evaluated_queries": 19,
+      "latency_ms": {
+        "mean": 611.92,
+        "p50": 529.84,
+        "p95": 891.35
+      },
+      "recall@1": 0.8421,
+      "precision@1": 0.8421,
+      "recall@3": 1.0,
+      "precision@3": 0.3333,
+      "recall@5": 1.0,
+      "precision@5": 0.2
+    },
+    "hybrid": {
+      "mrr": 0.9123,
+      "zero_hit_rate": 0.0,
+      "zero_hit_count": 0,
+      "total_evaluated_queries": 19,
+      "latency_ms": {
+        "mean": 568.88,
+        "p50": 562.91,
+        "p95": 752.45
+      },
+      "recall@1": 0.8421,
+      "precision@1": 0.8421,
+      "recall@3": 1.0,
+      "precision@3": 0.3333,
+      "recall@5": 1.0,
+      "precision@5": 0.2
+    }
+  }
+}

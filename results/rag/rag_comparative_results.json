@@ -1,0 +1,419 @@
+{
+  "cohort_size": 12,
+  "systems": {
+    "B0_Plain": {
+      "system_mode": "B0_Plain",
+      "mean_evidence_support_rate": 0.0,
+      "mean_unsupported_claim_rate": 1.0,
+      "citation_correctness_rate": 1.0,
+      "total_citations_generated": 0,
+      "total_hallucinated_citations": 0,
+      "correct_abstention_on_out_of_domain": 0.0,
+      "ledger_contradictions_detected": 0,
+      "unconfirmed_extractions_flagged": 2,
+      "latency_ms": {
+        "mean": 0.31,
+        "p50": 0.27,
+        "p95": 0.58
+      },
+      "records": [
+        {
+          "scenario_id": "RAG_SC_01_GERD_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Retrosternal burning sensation after meals (PATIENT_REPORTED).\nPertinent negatives noted: None docume...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.6702999962726608
+        },
+        {
+          "scenario_id": "RAG_SC_02_BRONCHITIS_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Cough lasting two weeks with mild sputum (PATIENT_REPORTED).\nPertinent negatives noted: High fever.\n\n...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.28020000172546133
+        },
+        {
+          "scenario_id": "RAG_SC_03_SYNCOPE_PRODROME",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Fainting episode after prolonged standing (PATIENT_REPORTED), Lightheadedness and cold sweating befor...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.28619999648071826
+        },
+        {
+          "scenario_id": "RAG_SC_04_URTICARIA_NO_AIRWAY",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Generalized itchy hives on arms and torso (PATIENT_REPORTED).\nPertinent negatives noted: Shortness of...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.2673999988473952
+        },
+        {
+          "scenario_id": "RAG_SC_05_OCR_ALARM_FEATURE",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Retrosternal heartburn (PATIENT_REPORTED), Difficulty swallowing food (EHR_EXTRACTED_NOTE).\nPertinent...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.2860999957192689
+        },
+        {
+          "scenario_id": "RAG_SC_06_OCR_LAB_TROPONIN",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Retrosternal chest heaviness (PATIENT_REPORTED), Elevated cardiac troponin biomarker (EHR_EXTRACTED_N...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.506200005474966
+        },
+        {
+          "scenario_id": "RAG_SC_07_CONTRADICTED_ANTIBIOTIC",
+          "category": "CONTRADICTION_TRAP",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Cough lasting 10 days with clear phlegm (PATIENT_REPORTED).\nPertinent negatives noted: None documente...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.24920000578276813
+        },
+        {
+          "scenario_id": "RAG_SC_08_HALLUCINATED_CITATION",
+          "category": "HALLUCINATED_CITATION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Epigastric burning discomfort (PATIENT_REPORTED).\nPertinent negatives noted: None documented.\n\n### Cl...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.24900000425986946
+        },
+        {
+          "scenario_id": "RAG_SC_09_PANIC_VS_ACS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Sudden discrete surge of intense fear and rapid pounding heartbeat (PATIENT_REPORTED).\nPertinent nega...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.2784000025712885
+        },
+        {
+          "scenario_id": "RAG_SC_10_OUT_OF_DOMAIN_APPENDECTOMY",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Right lower quadrant rebound abdominal tenderness (PATIENT_REPORTED).\nPertinent negatives noted: None...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.23120000696508214
+        },
+        {
+          "scenario_id": "RAG_SC_11_OUT_OF_DOMAIN_RETINA",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Sudden shower of dark floaters and peripheral flashing lights in right eye (PATIENT_REPORTED).\nPertin...",
+          "claims_count": 5,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.2426999999443069
+        },
+        {
+          "scenario_id": "RAG_SC_12_EMPTY_RETRIEVAL",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Health Assessment Summary (Baseline B0)\n\n### Patient Findings\nThe patient reports experiencing: Unspecified atypical malaise (PATIENT_REPORTED).\nPertinent negatives noted: None documented.\n\n### Cli...",
+          "claims_count": 4,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.2175999979954213
+        }
+      ]
+    },
+    "B1_RAG": {
+      "system_mode": "B1_RAG",
+      "mean_evidence_support_rate": 0.2751,
+      "mean_unsupported_claim_rate": 0.7249,
+      "citation_correctness_rate": 0.9583,
+      "total_citations_generated": 26,
+      "total_hallucinated_citations": 2,
+      "correct_abstention_on_out_of_domain": 1.0,
+      "ledger_contradictions_detected": 0,
+      "unconfirmed_extractions_flagged": 3,
+      "latency_ms": {
+        "mean": 1.38,
+        "p50": 1.39,
+        "p95": 1.86
+      },
+      "records": [
+        {
+          "scenario_id": "RAG_SC_01_GERD_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal burning sensation after meals (PATIENT_REPORTED).\nPerti...",
+          "claims_count": 11,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 1.5835000012884848
+        },
+        {
+          "scenario_id": "RAG_SC_02_BRONCHITIS_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough lasting two weeks with mild sputum (PATIENT_REPORTED).\nPertine...",
+          "claims_count": 11,
+          "supported_claims": 6,
+          "contradicted_claims": 0,
+          "latency_ms": 1.5609000038239174
+        },
+        {
+          "scenario_id": "RAG_SC_03_SYNCOPE_PRODROME",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Fainting episode after prolonged standing (PATIENT_REPORTED), Lighth...",
+          "claims_count": 11,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 1.4639999935752712
+        },
+        {
+          "scenario_id": "RAG_SC_04_URTICARIA_NO_AIRWAY",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Generalized itchy hives on arms and torso (PATIENT_REPORTED).\nPertin...",
+          "claims_count": 11,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 1.3058999975328334
+        },
+        {
+          "scenario_id": "RAG_SC_05_OCR_ALARM_FEATURE",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal heartburn (PATIENT_REPORTED), Difficulty swallowing foo...",
+          "claims_count": 13,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 2.202499999839347
+        },
+        {
+          "scenario_id": "RAG_SC_06_OCR_LAB_TROPONIN",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Retrosternal chest heaviness (PATIENT_REPORTED), Elevated cardiac troponin bio...",
+          "claims_count": 6,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.9146999946096912
+        },
+        {
+          "scenario_id": "RAG_SC_07_CONTRADICTED_ANTIBIOTIC",
+          "category": "CONTRADICTION_TRAP",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough lasting 10 days with clear phlegm (PATIENT_REPORTED).\nPertinen...",
+          "claims_count": 12,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 1.534499999252148
+        },
+        {
+          "scenario_id": "RAG_SC_08_HALLUCINATED_CITATION",
+          "category": "HALLUCINATED_CITATION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Epigastric burning discomfort (PATIENT_REPORTED).\nPertinent negative...",
+          "claims_count": 12,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 1.5824000001884997
+        },
+        {
+          "scenario_id": "RAG_SC_09_PANIC_VS_ACS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Sudden discrete surge of intense fear and rapid pounding heartbeat (...",
+          "claims_count": 11,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 1.3088999985484406
+        },
+        {
+          "scenario_id": "RAG_SC_10_OUT_OF_DOMAIN_APPENDECTOMY",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Right lower quadrant rebound abdominal tenderness (PATIENT_REPORTED).\n\n### 2. ...",
+          "claims_count": 6,
+          "supported_claims": 1,
+          "contradicted_claims": 0,
+          "latency_ms": 0.9358999959658831
+        },
+        {
+          "scenario_id": "RAG_SC_11_OUT_OF_DOMAIN_RETINA",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Sudden shower of dark floaters and peripheral flashing lights in right eye (PA...",
+          "claims_count": 6,
+          "supported_claims": 1,
+          "contradicted_claims": 0,
+          "latency_ms": 1.0588999939500354
+        },
+        {
+          "scenario_id": "RAG_SC_12_EMPTY_RETRIEVAL",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Unspecified atypical malaise (PATIENT_REPORTED).\n\n### 2. Medical Reference Gui...",
+          "claims_count": 6,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.1082999990321696
+        }
+      ]
+    },
+    "B2_RAG_Verified": {
+      "system_mode": "B2_RAG_Verified",
+      "mean_evidence_support_rate": 0.2795,
+      "mean_unsupported_claim_rate": 0.7205,
+      "citation_correctness_rate": 1.0,
+      "total_citations_generated": 24,
+      "total_hallucinated_citations": 0,
+      "correct_abstention_on_out_of_domain": 1.0,
+      "ledger_contradictions_detected": 0,
+      "unconfirmed_extractions_flagged": 3,
+      "latency_ms": {
+        "mean": 2.33,
+        "p50": 2.46,
+        "p95": 3.92
+      },
+      "records": [
+        {
+          "scenario_id": "RAG_SC_01_GERD_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal burning sensation after meals (PATIENT_REPORTED).\nPerti...",
+          "claims_count": 11,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 3.8085000051069073
+        },
+        {
+          "scenario_id": "RAG_SC_02_BRONCHITIS_CLEAN",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough lasting two weeks with mild sputum (PATIENT_REPORTED).\nPertine...",
+          "claims_count": 11,
+          "supported_claims": 6,
+          "contradicted_claims": 0,
+          "latency_ms": 2.72430000040913
+        },
+        {
+          "scenario_id": "RAG_SC_03_SYNCOPE_PRODROME",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Fainting episode after prolonged standing (PATIENT_REPORTED), Lighth...",
+          "claims_count": 11,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 2.470800005539786
+        },
+        {
+          "scenario_id": "RAG_SC_04_URTICARIA_NO_AIRWAY",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Generalized itchy hives on arms and torso (PATIENT_REPORTED).\nPertin...",
+          "claims_count": 11,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 2.3593000005348586
+        },
+        {
+          "scenario_id": "RAG_SC_05_OCR_ALARM_FEATURE",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Retrosternal heartburn (PATIENT_REPORTED), Difficulty swallowing foo...",
+          "claims_count": 13,
+          "supported_claims": 5,
+          "contradicted_claims": 0,
+          "latency_ms": 2.697500000067521
+        },
+        {
+          "scenario_id": "RAG_SC_06_OCR_LAB_TROPONIN",
+          "category": "UNCONFIRMED_EXTRACTION",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Retrosternal chest heaviness (PATIENT_REPORTED), Elevated cardiac troponin bio...",
+          "claims_count": 6,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 1.66200000239769
+        },
+        {
+          "scenario_id": "RAG_SC_07_CONTRADICTED_ANTIBIOTIC",
+          "category": "CONTRADICTION_TRAP",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Cough lasting 10 days with clear phlegm (PATIENT_REPORTED).\nPertinen...",
+          "claims_count": 11,
+          "supported_claims": 4,
+          "contradicted_claims": 0,
+          "latency_ms": 2.854899998055771
+        },
+        {
+          "scenario_id": "RAG_SC_08_HALLUCINATED_CITATION",
+          "category": "HALLUCINATED_CITATION",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Epigastric burning discomfort (PATIENT_REPORTED).\nPertinent negative...",
+          "claims_count": 11,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 4.05989999853773
+        },
+        {
+          "scenario_id": "RAG_SC_09_PANIC_VS_ACS",
+          "category": "IN_DOMAIN_CLEAN",
+          "is_insufficient_evidence": false,
+          "text_snippet": "## Evidence-Grounded Health Assessment Summary\n\n### 1. Documented Patient Observations\nThe patient presents with verified findings: Sudden discrete surge of intense fear and rapid pounding heartbeat (...",
+          "claims_count": 11,
+          "supported_claims": 3,
+          "contradicted_claims": 0,
+          "latency_ms": 2.4396000007982366
+        },
+        {
+          "scenario_id": "RAG_SC_10_OUT_OF_DOMAIN_APPENDECTOMY",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Right lower quadrant rebound abdominal tenderness (PATIENT_REPORTED).\n\n### 2. ...",
+          "claims_count": 6,
+          "supported_claims": 1,
+          "contradicted_claims": 0,
+          "latency_ms": 0.8859000008669682
+        },
+        {
+          "scenario_id": "RAG_SC_11_OUT_OF_DOMAIN_RETINA",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Sudden shower of dark floaters and peripheral flashing lights in right eye (PA...",
+          "claims_count": 6,
+          "supported_claims": 1,
+          "contradicted_claims": 0,
+          "latency_ms": 0.9748999946168624
+        },
+        {
+          "scenario_id": "RAG_SC_12_EMPTY_RETRIEVAL",
+          "category": "OUT_OF_DOMAIN",
+          "is_insufficient_evidence": true,
+          "text_snippet": "## Clinical Assessment & Evidence Notice\n\n### 1. Patient Observed Findings\nThe patient presents with documented findings: Unspecified atypical malaise (PATIENT_REPORTED).\n\n### 2. Medical Reference Gui...",
+          "claims_count": 6,
+          "supported_claims": 0,
+          "contradicted_claims": 0,
+          "latency_ms": 0.9805000008782372
+        }
+      ]
+    }
+  }
+}

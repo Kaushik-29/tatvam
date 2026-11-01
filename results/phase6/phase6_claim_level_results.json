@@ -1,0 +1,3234 @@
+[
+  {
+    "scenario_id": "EVAL_SCEN_001",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_001"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_001",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_001"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_001",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_001"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_001",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_001"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_001",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_001"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_002",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_002"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_002",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_002"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_002",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_002"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_002",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_002"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_002",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_002"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_003",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_003"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_003",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_003"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_003",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_003"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_003",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_003"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_003",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_003"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_004",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_004"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_004",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_004"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_004",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_004"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_004",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_004"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_004",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_004"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_005",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_005"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_005",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_005"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_005",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_005"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_005",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_005"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_005",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_005"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_006",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_006"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_006",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_006"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_006",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_006"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_007",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_007"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_007",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_007"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_007",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_007"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_007",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_007"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_007",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "serum_creatinine",
+    "value": "1.2",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_cr_eval_scen_007"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_008",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_008"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_008",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_008"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_008",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_008"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_009",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_009"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_009",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_009"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_009",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_009"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_010",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_010"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_010",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_010"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_010",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_010"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_011",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_011"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_011",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_011"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_011",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_011"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_012",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_012"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_012",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_012"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_013",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_013"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_013",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_013"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_013",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_013"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_014",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_014"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_014",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_014"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_014",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_014"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_015",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_015"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_015",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "serum_creatinine",
+    "value": "12.0",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_015"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_016"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_016",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_017"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_017",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_018"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_018",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_019",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_019"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_019",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_019",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_019",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_020"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_020"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_020",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_021"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_021",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_022"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_022"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_022",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_023"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_023",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_024"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_024",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_025",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_025"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_025",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_025",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_025",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_026"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_026"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_026",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_027"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_027"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_027",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_028",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_028"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_028",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_028",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_028",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_029"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_029"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_029",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_030",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_030"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_030",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_030",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": "mg/dL",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_030"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_030",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "fasting_blood_glucose",
+    "value": "110",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_031",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_031"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_031",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_031"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_031",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_031"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_031",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_031"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_032",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_032",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_032"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_032",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_032"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_032",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_032"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_033",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_033",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_033"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_033",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_033"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_033",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_033"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_034",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_034"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_034",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_034"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_034",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_034"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_034",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_034"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_035",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_035"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_035",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_035"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_035",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_035"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_035",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_035"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_035",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_035"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_036",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_036"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_036",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_036"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_036",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_036"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_036",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_036"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_037",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_037"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_037",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_037"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_037",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_037"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_037",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_prior_rx_eval_scen_037"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_038",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_038"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_038",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_038",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_038"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_038",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_039",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_039"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_039",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_039",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_039"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_039",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_040",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_040"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_040",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_040",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_040"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_040",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_041",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_041"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_041",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_041",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_041"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_041",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_042",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_042"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_042",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_042",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_042"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_042",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_043",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_043"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_043",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_043",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_current_ocr_EVAL_SCEN_043"
+    ],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_043",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_044",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_044",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_044",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_045",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "100",
+    "unit": "mg",
+    "claim_category": "SAFETY_NAVIGATION",
+    "assertion_status": "UNCONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "NOT_APPLICABLE"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_045",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_045",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "lisinopril_dosage",
+    "value": "10",
+    "unit": null,
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [],
+    "verification_result": "UNVERIFIED_UNSUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_086",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_086"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_086",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_086"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_086",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_086"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_086",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_086"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_087",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_087"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_087",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_087"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_087",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_087"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_087",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_087"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_088",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_088"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_088",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_088"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_088",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_088"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_088",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_088"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_089",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_089"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_089",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_089"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_089",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_089"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_089",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_089"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_090",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_090"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_090",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_090"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_090",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_090"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_090",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_090"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_091",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_091"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_091",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_091"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_091",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_091"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_091",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_091"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_092",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_092"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_092",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_092"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_092",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_092"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_092",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_092"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_093",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_093"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_093",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_093"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_093",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_093"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_093",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_093"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_094",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_094"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_094",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_094"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_094",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_094"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_094",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_094"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_095",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_095"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_095",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_095"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_095",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_095"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_095",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_095"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_096",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_096"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_096",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_096"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_096",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_096"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_096",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_096"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_097",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_097"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_097",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_097"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_097",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_097"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_097",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_097"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_098",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_098"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_098",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_098"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_098",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_098"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_098",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_098"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_099",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_099"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_099",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_099"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_099",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_099"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_099",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_099"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_100",
+    "system_arm": "B0_Direct_Baseline",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_100"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_100",
+    "system_arm": "B1_Provenance_Aware",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_100"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_100",
+    "system_arm": "B2_Evidence_Reconciliation",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_100"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  },
+  {
+    "scenario_id": "EVAL_SCEN_100",
+    "system_arm": "B3_Full_MedResolve",
+    "concept": "routine_vitals_panel",
+    "value": "98.6 degF, BP 120/80 mmHg, SpO2 98%",
+    "unit": "panel",
+    "claim_category": "PATIENT_SPECIFIC",
+    "assertion_status": "CONFIRMED",
+    "evidence_ids": [
+      "ev_clean_history_eval_scen_100"
+    ],
+    "verification_result": "VERIFIED_SUPPORTED"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "document_id": "DOC_MOHFW_BRONCHITIS_2021",
+  "title": "Clinical Guidance for Management of Adult Patients with Acute Respiratory Symptoms and Acute Bronchitis",
+  "author_or_organization": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+  "source_url": "https://main.mohfw.gov.in/",
+  "publication_or_revision_date": "2021-05-17",
+  "date_uncertainty_note": "National clinical guidance for respiratory infections in adult primary care.",
+  "access_date": "2026-10-30",
+  "license_or_reuse_conditions": "Open Government Data (OGD) License India",
+  "document_type": "Standard Treatment Guideline",
+  "version": "2.0",
+  "passages": [
+    {
+      "passage_id": "DOC_MOHFW_BRONCHITIS_2021_P001",
+      "section_heading": "1. Clinical Features of Acute Bronchitis",
+      "text": "Acute bronchitis is a self-limiting inflammation of the large airways, overwhelmingly caused by respiratory viruses (influenza, parainfluenza, RSV, rhinovirus). The hallmark symptom is cough lasting between 1 to 3 weeks (median 18 days). Purulent sputum production occurs in roughly half of patients and represents desquamated bronchial epithelial cells and inflammatory cells rather than bacterial infection."
+    },
+    {
+      "passage_id": "DOC_MOHFW_BRONCHITIS_2021_P002",
+      "section_heading": "2. Pertinent Negative Findings Distinguishing from Pneumonia",
+      "text": "In uncomplicated acute bronchitis, physiological vital signs remain essentially normal. Vital signs and physical examination show absence of high fever (temperature > 38.0\u00b0C), absence of tachypnea (respiratory rate > 24 breaths/min), absence of resting tachycardia (heart rate > 100 beats/min), and absence of focal chest signs (no bronchial breath sounds, egophony, or localized crackles). Normal vital signs effectively lower the probability of community-acquired pneumonia."
+    },
+    {
+      "passage_id": "DOC_MOHFW_BRONCHITIS_2021_P003",
+      "section_heading": "3. Respiratory Red Flags Requiring Immediate Hospitalization",
+      "text": "Immediate hospital evaluation is indicated if the patient develops: resting dyspnea or acute shortness of breath, pulse oximetry SpO2 < 92% on room air, hemoptysis (coughing up gross blood), high-pitched inspiratory stridor, altered mental state, central cyanosis, or hemodynamic collapse. Patients with underlying severe COPD or immunocompromise require early clinician review."
+    },
+    {
+      "passage_id": "DOC_MOHFW_BRONCHITIS_2021_P004",
+      "section_heading": "4. Symptom-Directed Care and Antibiotic Stewardship",
+      "text": "Routine antibiotic treatment provides minimal clinical benefit for acute bronchitis in immunocompetent adults and contributes to antimicrobial resistance. Management is supportive: adequate oral hydration, honey or over-the-counter antitussives for cough relief, and inhaled short-acting beta-agonists only in patients with documented expiratory wheezing and bronchial hyperresponsiveness."
+    }
+  ]
+}
