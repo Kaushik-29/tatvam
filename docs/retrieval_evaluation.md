@@ -95,19 +95,22 @@ BM25 is the strongest flat baseline on every domain except social sciences (medi
 - Zero-shot llama3.2:3b, free generation: **invalid (non-existent) leaf rate 0.667 (20/30)**, exact match 0.10 (3/30).
 
 ### 5.7 Test split — Mistral-7B STAIR-Clinical router (same 599 queries, 108 unseen patients)
-Results file: `evaluation/experiments/patient_context_retrieval/results/retrieval_eval_test_mistral_trained.json`. Same sample (seed 2026) and validation-tuned selector parameters as before; no test-set tuning.
+Results files: `.../results/retrieval_eval_test_mistral_trained.json` (fine-tuned router) and `retrieval_eval_test_mistral_base.json` (the same base model with no adapter, scored the same way on Kaggle). Same sample (seed 2026) and validation-tuned selector parameters as before; no test-set tuning.
 
 | Method | R@1 | R@5 | R@10 | MRR | Ctx-recall@10 | Leaf EM | Section hit@1 | Invalid paths |
 |---|---|---|---|---|---|---|---|---|
 | R4 Hybrid + structured (reference) | 0.673 | 0.758 [0.728, 0.786] | 0.824 | 0.746 | 0.809 | — | — | — |
 | R5 STAIR, structural selector | 0.489 | 0.567 | 0.622 | 0.567 | 0.648 | 0.466 | 0.713 | 0/3,334 |
 | R7 STAIR, Qwen-0.5B LoRA (§5.5) | 0.314 | 0.491 | 0.650 | 0.433 | 0.760 | 0.194 | — | 0/6,448 |
+| R10-base STAIR, Mistral-7B **untrained** (constrained) | 0.629 | 0.639 | 0.669 | 0.681 | 0.673 | 0.619 | 0.788 | 0/2,897 |
+| R11-base untrained Mistral STAIR + hybrid | 0.703 | 0.722 | 0.841 | 0.758 | 0.826 | 0.619 | 0.788 | 0/2,897 |
 | R10 STAIR, Mistral-7B QLoRA | 0.688 | 0.783 [0.756, 0.807] | 0.862 | 0.778 | 0.880 | **0.843** | **0.958** | 0/3,547 |
 | **R11 Mistral STAIR + hybrid** | **0.818** | **0.867 [0.843, 0.892]** | **0.943** | **0.873** | **0.930** | 0.843 | 0.958 | 0/3,547 |
 
 Paired, patient-clustered bootstrap (599 queries, 108 patients):
 - **R11 − R4:** ΔR@5 **+0.109** (95% CI [0.075, 0.142]), ΔMRR **+0.127** ([0.099, 0.154]), both p < 0.001. This is the first STAIR variant that significantly beats hybrid retrieval.
 - **R10 − R4** (router alone): ΔR@5 +0.024 ([−0.012, 0.061]), ΔMRR +0.032 ([−0.007, 0.067]). Not significant. The router on its own matches hybrid retrieval; the gain comes from fusing the two.
+- **Effect of fine-tuning (trained − untrained Mistral, same queries):** R10 ΔR@5 **+0.143** ([0.115, 0.173]), ΔMRR +0.097 ([0.068, 0.127]), section hit@1 +0.170 ([0.140, 0.201]). R11 ΔR@5 +0.145 ([0.120, 0.171]), ΔMRR +0.115 ([0.088, 0.144]). All p < 0.001. The untrained 7B router is already usable (section hit@1 0.79; `predict_stage1` summary 0.766 = 459/599 on raw top-1), but alone it is below R4 (ΔR@5 −0.119), and fused it only ties R4 (ΔR@5 −0.036, CI [−0.076, 0.006]). The significant gain over R4 therefore comes from the fine-tuning.
 - **R10 − R7** (7B vs 0.5B router): ΔR@5 +0.292 ([0.262, 0.319]), ΔMRR +0.345. **R11 − R9:** ΔR@5 +0.145 ([0.120, 0.173]).
 - **By category (R@5, R11 vs R4):** large gains on *last visit* (0.94 vs 0.06), *allergy check* (0.79 vs 0.32), *current medications* (0.92 vs 0.65) and *relevant history* (0.86 vs 0.57). Small losses where structured ops are already exact: *procedure history* (0.93 vs 1.00), *medication changes* (0.89 vs 1.00), *lab trend* (0.78 vs 0.82). The router alone is weakest on *lab trend* (0.49) and *medication during episode* (0.49).
 - **Cost:** stage-1 scoring takes about 8.4 s per query on a T4 GPU in 4-bit (23 candidate sections, 599 queries in about 84 min). The local s/query figure in the results file excludes this, because the rankings were precomputed. The app's CPU-only deployment cannot run a 7B router at interactive speed; it keeps the Qwen-0.5B adapter or the structural selector.
@@ -118,7 +121,7 @@ Paired, patient-clustered bootstrap (599 queries, 108 patients):
 - With the reduced-scale Qwen-0.5B router (R7/R9) or the structural selector (R5/R8), no STAIR variant significantly beats hybrid + structured retrieval (R4) on R@5 or MRR (§5.2, §5.5).
 - With the Mistral-7B QLoRA router (reference configuration, 100 steps), fusion with hybrid retrieval (R11) significantly beats R4: R@5 0.867 vs 0.758 (Δ +0.109, CI [0.075, 0.142]) and MRR 0.873 vs 0.746. The router alone (R10) is on par with R4, not significantly better (§5.7).
 
-So hierarchical routing adds information that lexical/dense retrieval misses ("where" a fact lives: last visit, allergies, current medications, relevant history). It pays off only once the router is accurate (section hit@1 0.958 vs 0.71 structural), and only in combination with hybrid retrieval. Caveats: one run, synthetic template-generated queries, GPU-only router. This is not clinical evidence.
+So hierarchical routing adds information that lexical/dense retrieval misses ("where" a fact lives: last visit, allergies, current medications, relevant history). It pays off only once the router is accurate (section hit@1 0.958 trained vs 0.79 untrained Mistral vs 0.71 structural), and only in combination with hybrid retrieval. The untrained 7B router fused with hybrid ties R4, so the improvement is attributable to STAIR-Clinical fine-tuning (ΔR@5 +0.145 trained vs untrained, CI [0.120, 0.171]). Caveats: one run, synthetic template-generated queries, GPU-only router. This is not clinical evidence.
 
 ## 7. Configuration used by the app
 `STAIR_BACKEND=auto` loads the installed LoRA adapter (R9-style fusion, B4/B5). Set `STAIR_BACKEND=structural` for the non-LLM selector (R8, about 5 s faster per query on CPU). The B0–B5 response evaluation in §5.4 used the structural selector, because it ran before the adapter existed.
