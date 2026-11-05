@@ -31,6 +31,17 @@ SAFETY_RE = re.compile(r"(seek (urgent|emergency|immediate)|call (emergency|911|
                        r"health ?care|provider|pharmacist)|speak (with|to) (your|a)|consult (your|a)|see (your|a) (doctor|clinician|"
                        r"provider)|not a (diagnosis|substitute)|medical advice|professional assessment|if (your )?symptoms (worsen|get worse))",
                        re.I)
+# Navigation advice addressed to the user ("discuss this with your dentist", "seek medical care if ...").
+# It tells the user where to go, not what their record says, so it needs no [E#] citation.
+NAV_RE = re.compile(r"\b((seek|get)( \w+){0,2} (care|attention|help|advice|assessment)|make an appointment|"
+                    r"(contact|call|see|visit|consult|ask|tell|inform|talk (with|to)|speak (with|to)|check with)"
+                    r"( \w+){0,2} (doctor|dentist|clinician|physician|provider|pharmacist|nurse|gp|care team)s?|"
+                    r"discuss .{0,60} with (your|a|the) (doctor|dentist|clinician|physician|provider|pharmacist|nurse|gp))\b", re.I)
+# Navigation advice must never carry a treatment decision.
+DECISION_WORDS_RE = re.compile(r"\b(stop|start|increase|decrease|double|skip|dose|dosage|mg|switch)\b", re.I)
+# Sentences framed as general information stay general even when they say "you".
+GENERAL_FRAME_RE = re.compile(r"^\W*(in general|generally|typically|usually|most people|for most people)\b", re.I)
+NO_RELATED_RE = re.compile(r"^\W*nothing in your records? (appears|seems|is) (directly )?(related|relevant) to (this|your) question\W*$", re.I)
 GENERIC_WORDS = {"history", "record", "records", "previous", "recorded", "listed", "shows", "show", "result", "results",
                  "value", "values", "level", "levels", "date", "test", "tests", "visit", "visits", "time", "taking",
                  "medication", "medications", "condition", "conditions", "diagnosis", "diagnosed", "reported"}
@@ -103,9 +114,11 @@ class LongitudinalClaimVerifier:
         return found
 
     def verify(self, text: str, evidence: Dict[str, Dict[str, Any]], references: Dict[str, Dict[str, Any]],
-               current_report: str = "") -> VerificationResult:
+               current_report: str = "", findings_text: str = "") -> VerificationResult:
         claims: List[ClaimResult] = []
         report_tokens = set(tokenize(current_report))
+        finding_tokens = set(tokenize(findings_text))
+        report_entities = self._entities(current_report)
         for i, unit in enumerate(split_claims(text), 1):
             cid = f"C{i:03d}"
             cites = [c.strip() for grp in CITE_RE.findall(unit) for c in grp.split(",")]
@@ -116,11 +129,26 @@ class LongitudinalClaimVerifier:
             if unit.startswith("#") or (len(plain.split()) < 4 and not cites):
                 claims.append(ClaimResult(cid, unit, "STRUCTURAL", status="STRUCTURAL", permitted=True))
                 continue
-            is_patient = bool(e_ids) or bool(PATIENT_RE.search(body))
+            is_patient = bool(e_ids) or (bool(PATIENT_RE.search(body)) and not GENERAL_FRAME_RE.search(body))
             if SAFETY_RE.search(body) and not e_ids and not NUM_RE.search(body):
                 claims.append(ClaimResult(cid, unit, "SAFETY", e_ids, r_ids, "SAFETY_ALLOWED", True,
                                           "Safety / navigation statement."))
                 continue
+            if (NAV_RE.search(body) and not e_ids and not NUM_RE.search(body) and all(r in references for r in r_ids)
+                    and not DECISION_WORDS_RE.search(body) and not self._entities(body) - report_entities):
+                claims.append(ClaimResult(cid, unit, "SAFETY", e_ids, r_ids, "SAFETY_ALLOWED", True,
+                                          "Navigation advice with no record facts, numbers or treatment decisions."))
+                continue
+            if NO_RELATED_RE.search(plain) and not cites:
+                claims.append(ClaimResult(cid, unit, "STRUCTURAL", status="STRUCTURAL", permitted=True,
+                                          rationale="States that no retrieved record is related to the question."))
+                continue
+            if finding_tokens and not cites and not NUM_RE.search(body):
+                content = [t for t in tokenize(body) if t not in GENERIC_WORDS]
+                if content and sum(t in finding_tokens for t in content) / len(content) >= 0.7:
+                    claims.append(ClaimResult(cid, unit, "RECORD_GAP", status="SUPPORTED", permitted=True,
+                                              rationale="Restates a conflict / missing-information finding (section I)."))
+                    continue
             bad = [c for c in e_ids if c not in evidence] + [c for c in r_ids if c not in references]
             if bad:
                 claims.append(ClaimResult(cid, unit, "PATIENT_SPECIFIC" if is_patient else "GENERAL", e_ids, r_ids,

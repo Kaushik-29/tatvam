@@ -104,6 +104,22 @@ def test_auto_attribution_supports_uncited_true_claims_but_not_inventions():
     assert "diabetes" not in r.final_text and "40" not in r.final_text
 
 
+def test_navigation_advice_and_record_gaps_released_but_not_decisions_or_facts():
+    r = V.verify("\n".join([
+        "Discuss your allergy history with your dentist before they prescribe an antibiotic.",  # where to go -> allowed
+        "Seek medical care if you notice bleeding from the nose or gums [R1].",               # navigation -> allowed
+        "Talk to your doctor about whether to stop lisinopril.",                              # decision -> withheld
+        "Ask your doctor about starting metformin.",                                          # unrecorded drug -> withheld
+        "In general, dizziness can be caused by dehydration or medicines that lower blood pressure [R1].",
+        "Nothing in your records appears directly related to this question.",
+        "No allergy history is recorded, and absence of a record does not mean absence of the condition.",
+        "You have hypertension, which causes dizziness [R1].",                                # guideline as fact
+    ]), EVID, REFS, findings_text="No allergy history are recorded. Absence of a record does not mean absence of the condition.")
+    assert [c.permitted for c in r.claims] == [True, True, False, False, True, True, True, False]
+    assert r.claims[4].claim_type == "GENERAL" and r.claims[6].claim_type == "RECORD_GAP"
+    assert "metformin" not in r.final_text and "stop lisinopril" not in r.final_text
+
+
 # ------------------------------------------------------- query understanding
 def test_query_understanding():
     qu = understand("I've started feeling dizzy and lightheaded since yesterday. Could my lisinopril be related?",

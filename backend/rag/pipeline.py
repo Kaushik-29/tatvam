@@ -47,10 +47,14 @@ Rules you must follow exactly:
 3. Say clearly when information is patient-reported, extracted but unconfirmed, derived, or estimated, as labelled in the context.
 4. State conflicts, uncertainty and missing information from section I explicitly.
 5. If something is not in the context, say it is not in the record. Do not guess.
-6. End with when to seek professional assessment. Keep it under 300 words.
+6. Talk to the person directly as "you" and "your". Never write "the patient" or "this patient".
+7. Answer the question that was asked. For general questions (symptoms, causes, prevention, what to do) give that information from the [R#] passages.
+8. Under "What your records show", mention only records that are directly relevant to the question. If none are, write exactly: "Nothing in your records appears directly related to this question."
+9. Under "Suggested next steps", give practical steps from the [R#] passages and say when to see a doctor. End with when to seek professional assessment. Keep it under 300 words.
 Citation examples (copy this format exactly):
   "Your record lists anemia diagnosed on 2024-09-02 [E3]."
   "In general, anemia can cause tiredness and shortness of breath [R1]."
+  "Talk to your doctor if the tiredness lasts more than two weeks." (where-to-go advice needs no citation)
 Write in plain language with these headings:
 ## Summary
 ## What your records show
@@ -195,7 +199,8 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         emit("stage", {"stage": "retrieving_references"})
         mode = "stair" if v in ("B4", "B5") else "hybrid"
         rq = query if not qu.symptoms else f"{query} ({', '.join(qu.symptoms)})"
-        refs = [h.to_dict() for h in deps.reference_index.search(rq, k=cfg.k_reference, mode=mode)]
+        refs = _diverse_refs([h.to_dict() for h in deps.reference_index.search(rq, k=cfg.k_reference * 3, mode=mode)],
+                             cfg.k_reference)
     timings["reference_retrieval_s"] = round(time.time() - ts, 3)
 
     # 5. reconciliation (B5)
@@ -265,7 +270,8 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     if v == "B5" and result["engine"].startswith(("ollama", "deterministic_template")):
         emit("stage", {"stage": "verifying"})
         verifier = LongitudinalClaimVerifier(clinical_vocabulary(s))
-        vr = verifier.verify(result["raw_generation"], ctx.evidence, ctx.references, current_report=full_text)
+        vr = verifier.verify(result["raw_generation"], ctx.evidence, ctx.references, current_report=full_text,
+                             findings_text="\n".join(f.description for f in findings))
         result["verification"] = vr.to_dict()
         final = vr.final_text
         if vr.withheld:
@@ -283,6 +289,19 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     result["model_config"] = {"llm": deps.llm.model if deps.llm else None, "embedding_model": config.EMBEDDING_MODEL,
                               "stair_backend": getattr(deps.selector, "backend_name", None)}
     return _persist(s, result, cfg)
+
+
+def _diverse_refs(hits: List[Dict[str, Any]], k: int, per_path: int = 2) -> List[Dict[str, Any]]:
+    """Keep rank order but take at most `per_path` passages from one subsection, so a question about
+    symptoms AND prevention is not answered from one long subsection split into many passages."""
+    out, seen = [], {}
+    for h in hits:
+        if seen.get(h["path"], 0) < per_path:
+            out.append(h)
+            seen[h["path"]] = seen.get(h["path"], 0) + 1
+        if len(out) == k:
+            break
+    return out
 
 
 def _drug_terms(query: str) -> List[str]:
