@@ -106,9 +106,16 @@ def main():
     ap.add_argument("--stage1-predictions", default=None, help="precomputed stage-1 rankings (R10/R11)")
     ap.add_argument("--max-leaves", type=int, default=None)
     ap.add_argument("--leaf-rel", type=float, default=None)
+    ap.add_argument("--queries", default=None,
+                    help="queries.jsonl of an external test set (e.g. MIMIC-IV demo) instead of --split")
     a = ap.parse_args()
     methods = [m for m in a.methods.split(",") if m]
-    rows = stratified_sample(load_queries(a.split), a.sample, a.seed)
+    if a.queries:
+        a.split = f"external:{Path(a.queries).parent.parent.name}"
+        all_rows = [json.loads(l) for l in open(a.queries, encoding="utf-8")]
+    else:
+        all_rows = load_queries(a.split)
+    rows = stratified_sample(all_rows, a.sample, a.seed)
     print(f"{len(rows)} queries, {len({r['patient_id'] for r in rows})} patients, methods={methods}")
     emb = get_embedder()
     sel_kw = {k: v for k, v in {"max_leaves": a.max_leaves, "leaf_rel": a.leaf_rel}.items() if v is not None}

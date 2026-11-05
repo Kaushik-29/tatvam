@@ -351,9 +351,42 @@ def generate(max_patients: Optional[int] = None, seed: int = 13) -> Dict[str, An
     return manifest
 
 
+def generate_external_test(source: str, out_dir: Path, seed: int = 13) -> Dict[str, Any]:
+    """All questions for one external source (e.g. MIMIC-IV demo) as a test-only set.
+    Nothing from it is used for training, so it measures transfer to unseen data."""
+    exs_all = []
+    with session_scope() as s:
+        pids = list(s.scalars(select(Patient.patient_id).where(Patient.source == source).order_by(Patient.patient_id)))
+        for pid in pids:
+            s.get(Patient, pid).split = "external_test"
+            exs = Generator(PatientMemory(s, pid), random.Random(f"{seed}|{pid}")).run()
+            for e in exs:
+                e["split"] = "external_test"
+            exs_all.extend(exs)
+    path = out_dir / "test" / "queries.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        for e in exs_all:
+            f.write(json.dumps(e) + "\n")
+    manifest = {"source": source, "seed": seed, "split": "test only (no training use)",
+                "examples": len(exs_all), "patients": len({e["patient_id"] for e in exs_all}),
+                "categories": dict(Counter(e["query_category"] for e in exs_all)),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    print(json.dumps(manifest, indent=2))
+    return manifest
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-patients", type=int, default=None)
     ap.add_argument("--seed", type=int, default=13)
+    ap.add_argument("--external-source", default=None,
+                    help="generate a test-only set for this Patient.source instead of the Synthea splits")
+    ap.add_argument("--out", default=None, help="output folder for --external-source")
     a = ap.parse_args()
-    generate(a.max_patients, a.seed)
+    if a.external_source:
+        generate_external_test(a.external_source, Path(a.out or OUT_DIR.parent / f"patient_retrieval_{a.external_source}"),
+                               a.seed)
+    else:
+        generate(a.max_patients, a.seed)

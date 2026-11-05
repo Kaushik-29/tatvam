@@ -23,7 +23,7 @@ from backend.config import DATA_DIR
 EXPORT = DATA_DIR / "patient_retrieval" / "sft" / "stair_clinical_stage1_test_eval.jsonl"
 
 
-def export(split: str = "test", sample: int = 600, seed: int = 2026, out: Path = EXPORT):
+def export(split: str = "test", sample: int = 600, seed: int = 2026, out: Path = EXPORT, queries: str = None):
     from collections import defaultdict
     from backend.patient_memory.db import session_scope
     from backend.patient_memory.repository import PatientMemory
@@ -31,7 +31,8 @@ def export(split: str = "test", sample: int = 600, seed: int = 2026, out: Path =
     from backend.stair_retriever.selector import patient_header
     from backend.stair_retriever.sft import load_queries
     from evaluation.experiments.patient_context_retrieval.run_retrieval_eval import stratified_sample
-    rows = stratified_sample(load_queries(split), sample, seed)
+    all_rows = [json.loads(l) for l in open(queries, encoding="utf-8")] if queries else load_queries(split)
+    rows = stratified_sample(all_rows, sample, seed)
     by_pid = defaultdict(list)
     for r in rows:
         by_pid[r["patient_id"]].append(r)
@@ -119,7 +120,9 @@ def summarize(out: Path):
 def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("export")
+    e = sub.add_parser("export")
+    e.add_argument("--queries", default=None, help="external queries.jsonl (e.g. MIMIC-IV demo test set)")
+    e.add_argument("--out", default=str(EXPORT))
     p = sub.add_parser("predict")
     p.add_argument("--input", default=str(EXPORT))
     p.add_argument("--output", required=True)
@@ -128,7 +131,7 @@ def main():
     p.add_argument("--load-in-4bit", action="store_true")
     a = ap.parse_args()
     if a.cmd == "export":
-        export()
+        export(out=Path(a.out), queries=a.queries)
     else:
         predict(Path(a.input), Path(a.output), a.base_model, a.adapter, a.load_in_4bit)
 

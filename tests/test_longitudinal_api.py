@@ -87,6 +87,20 @@ def test_demo_patient_read_only_and_consult(client):
     assert hist and hist[0]["consultation_id"] == r["consultation_id"]
 
 
+def test_mimic_demo_patients_listed_read_only_but_credentialed_mimic_never(client):
+    with session_scope() as s:
+        for pid, source in (("mimic-demo-1", "mimic_iv_fhir_demo"), ("mimic-full-1", "mimic_iv")):
+            p, recs, _ = BundleMapper("fixture/m.json", collections.Counter(), collections.Counter()).map_bundle(bundle(pid, "m" + pid[-1]))
+            p.update(source=source, family_name="Patient_1")
+            s.add(Patient(**p)); s.flush()
+    listed = [d["patient_id"] for d in client.get("/api/v2/auth/demo-patients").json()]
+    assert "mimic-demo-1" in listed and "mimic-full-1" not in listed
+    assert client.post("/api/v2/auth/demo-login/mimic-full-1").status_code == 404
+    h = {"Authorization": f"Bearer {client.post('/api/v2/auth/demo-login/mimic-demo-1').json()['access_token']}"}
+    assert client.post("/api/v2/records", headers=h, json={"leaf_path": "allergy_history", "display": "x"}).status_code == 403
+    assert client.get("/api/v2/profile", headers=h).json()["is_demo"] is True
+
+
 def test_emergency_preempts_retrieval(client):
     tok = client.post("/api/v2/auth/demo-login/syn-a").json()["access_token"]
     r = client.post("/api/v2/consult", headers={"Authorization": f"Bearer {tok}"},

@@ -18,7 +18,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from backend import config
-from backend.api.auth import audit, current_patient_id
+from backend.api.auth import DEMO_SOURCES, audit, current_patient_id
 from backend.api.services import get_deps
 from backend.patient_memory.db import get_session, session_scope
 from backend.patient_memory.hierarchy import LEAF_BY_PATH, LEAVES
@@ -48,7 +48,7 @@ def _profile(p: Patient, mem: PatientMemory) -> Dict[str, Any]:
     return {"patient_id": p.patient_id, "source": p.source, "given_name": p.given_name, "family_name": p.family_name,
             "birth_date": p.birth_date, "gender": p.gender, "city": p.city, "state": p.state,
             "deceased_date": p.deceased_date, "onboarding_complete": bool(p.onboarding_complete),
-            "is_synthetic": p.source == "synthea_fhir_r4", "record_count": mem.count()}
+            "is_synthetic": p.source == "synthea_fhir_r4", "is_demo": p.source in DEMO_SOURCES, "record_count": mem.count()}
 
 
 @router.get("/profile")
@@ -65,8 +65,8 @@ def update_profile(body: ProfileIn, pid: str = Depends(current_patient_id), s: S
     p = s.get(Patient, pid)
     if p is None:
         raise HTTPException(404, "Patient not found")
-    if p.source == "synthea_fhir_r4":
-        raise HTTPException(403, "Synthetic demo patients are read-only")
+    if p.source in DEMO_SOURCES:
+        raise HTTPException(403, "Demo patients are read-only")
     for k, v in body.model_dump(exclude_none=True).items():
         setattr(p, k, v)
     audit(s, pid, "profile_update")
@@ -131,8 +131,8 @@ def get_record(record_id: str, pid: str = Depends(current_patient_id), s: Sessio
 
 def _require_writable(s: Session, pid: str):
     p = s.get(Patient, pid)
-    if p is None or p.source == "synthea_fhir_r4":
-        raise HTTPException(403, "Synthetic demo patients are read-only")
+    if p is None or p.source in DEMO_SOURCES:
+        raise HTTPException(403, "Demo patients are read-only")
 
 
 @router.post("/records")
@@ -389,8 +389,8 @@ def delete_account(pid: str = Depends(current_patient_id), s: Session = Depends(
     p = s.get(Patient, pid)
     if p is None:
         raise HTTPException(404, "Patient not found")
-    if p.source == "synthea_fhir_r4":
-        raise HTTPException(403, "Synthetic demo patients cannot be deleted from the app")
+    if p.source in DEMO_SOURCES:
+        raise HTTPException(403, "Demo patients cannot be deleted from the app")
     for d in PatientMemory(s, pid).documents():
         if d.file_path:
             Path(d.file_path).unlink(missing_ok=True)

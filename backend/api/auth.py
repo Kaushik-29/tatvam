@@ -102,21 +102,30 @@ def login(body: LoginIn, s: Session = Depends(get_session)):
                     onboarding_complete=bool(p and p.onboarding_complete))
 
 
+# Sources that may be opened read-only as demo patients. The open-access MIMIC-IV FHIR demo is
+# allowed; credentialed MIMIC-IV (source "mimic_iv") is deliberately not, per its data use agreement.
+DEMO_SOURCES = ("synthea_fhir_r4", "mimic_iv_fhir_demo")
+
+
 @router.get("/demo-patients")
-def demo_patients(s: Session = Depends(get_session), limit: int = 25):
-    """Synthetic (Synthea) TEST-split patients that can be opened read-only for demonstration.
-    Only synthetic records are exposed; registered users' data is never listed."""
-    rows = s.scalars(select(Patient).where(Patient.source == "synthea_fhir_r4", Patient.split == "test",
-                                           Patient.deceased_date.is_(None)).order_by(Patient.patient_id).limit(limit))
-    return [{"patient_id": p.patient_id, "label": f"{p.given_name.split()[0]} {p.family_name}",
+def demo_patients(s: Session = Depends(get_session), limit: int = 25, mimic_limit: int = 10):
+    """Read-only demonstration patients: Synthea TEST-split patients, then real de-identified patients
+    from the open-access MIMIC-IV FHIR demo. Registered users' data is never listed."""
+    rows = list(s.scalars(select(Patient).where(Patient.source == "synthea_fhir_r4", Patient.split == "test",
+                                                Patient.deceased_date.is_(None)).order_by(Patient.patient_id).limit(limit)))
+    rows += list(s.scalars(select(Patient).where(Patient.source == "mimic_iv_fhir_demo")
+                           .order_by(Patient.patient_id).limit(mimic_limit)))
+    return [{"patient_id": p.patient_id,
+             "label": (f"Real (MIMIC-IV demo) {p.family_name}" if p.source == "mimic_iv_fhir_demo"
+                       else f"{p.given_name.split()[0]} {p.family_name}"),
              "gender": p.gender, "birth_date": p.birth_date, "city": p.city} for p in rows]
 
 
 @router.post("/demo-login/{patient_id}", response_model=TokenOut)
 def demo_login(patient_id: str, s: Session = Depends(get_session)):
     p = s.get(Patient, patient_id)
-    if p is None or p.source != "synthea_fhir_r4":
-        raise HTTPException(404, "Synthetic demo patient not found")
+    if p is None or p.source not in DEMO_SOURCES:
+        raise HTTPException(404, "Demo patient not found")
     audit(s, patient_id, "demo_login", actor="demo")
     return TokenOut(access_token=_token("demo", patient_id, demo=True), patient_id=patient_id,
                     onboarding_complete=True, is_demo=True)
