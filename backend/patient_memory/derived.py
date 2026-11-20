@@ -103,3 +103,67 @@ def derive_trends(pid: str, records: List[Dict[str, Any]], source_doc: str) -> L
                             status=direction, code=pts[0].get("concept_code"),
                             end=pts[-1]["effective_start"]))
     return out
+
+
+WINDOWS_DAYS = (30, 90, 365)
+
+
+def _days(a: str, b: str) -> float:
+    from datetime import datetime
+    pa = datetime.fromisoformat(a[:19].replace("Z", ""))
+    pb = datetime.fromisoformat(b[:19].replace("Z", ""))
+    return (pa - pb).total_seconds() / 86400.0
+
+
+def window_summaries(pid: str, series: List[Dict[str, Any]], windows=WINDOWS_DAYS,
+                     threshold: float = 0.05) -> List[Dict[str, Any]]:
+    """Time-slice summaries of ONE measurement series (after Li & Liu, TA-RAG, HBD 2026).
+
+    For each window W (days) ending at the series' LATEST measurement (not today: records may be
+    old or date-shifted), report n / mean / min / max and compare the mean with the preceding window
+    of the same length (up / down / stable at a 5% relative threshold). A window is emitted only when
+    it holds >= 2 points and more points than the next smaller one, so short histories are not repeated.
+    Computed on demand for trend/comparison questions; never stored and never part of the benchmarks.
+    """
+    pts = sorted([r for r in series if r.get("normalized_value") is not None and r.get("effective_start")],
+                 key=lambda r: r["effective_start"])
+    if len(pts) < 2:
+        return []
+    last = pts[-1]["effective_start"]
+    key, unit = pts[-1]["concept_key"], pts[-1].get("normalized_unit")
+    u = f" {unit}" if unit else ""
+    fmt = lambda v: f"{v:.2f}".rstrip("0").rstrip(".")
+    age = [(p, _days(last, p["effective_start"])) for p in pts]
+    out, prev_n = [], None
+    for w in sorted(windows):
+        cur = [p for p, d in age if d <= w]
+        same_as_smaller = prev_n == len(cur)
+        prev_n = len(cur)
+        if len(cur) < 2 or same_as_smaller:
+            continue
+        before = [p for p, d in age if w < d <= 2 * w]
+        vals = [p["normalized_value"] for p in cur]
+        mean = sum(vals) / len(vals)
+        desc = (f"last {w} days up to {fmt_date_safe(last)}: {len(vals)} measurements, mean {fmt(mean)}{u}, "
+                f"min {fmt(min(vals))}{u}, max {fmt(max(vals))}{u}")
+        direction = None
+        if before:
+            bv = [p["normalized_value"] for p in before]
+            bmean = sum(bv) / len(bv)
+            rel = (mean - bmean) / abs(bmean) if bmean else 0.0
+            direction = "up" if rel > threshold else "down" if rel < -threshold else "stable"
+            desc += (f"; previous {w} days: {len(bv)} measurements, mean {fmt(bmean)}{u} -> {direction} "
+                     f"({'+' if mean - bmean >= 0 else ''}{fmt(mean - bmean)}{u})")
+        else:
+            desc += f"; no measurements in the previous {w} days to compare"
+        out.append(_derived(pid, TREND_LEAF, f"Derived/window/{pid}/{slugify(key, 60)}/{w}d", key,
+                            f"{pts[-1]['concept_display']} ({w}-day window)", cur[0]["effective_start"], desc,
+                            [p["record_id"] for p in cur + before], f"window {w}d ending at latest; mean vs previous "
+                            f"{w}d, {int(threshold * 100)}% threshold", "computed_on_demand",
+                            value_num=mean, unit=unit, normalized_value=mean, normalized_unit=unit,
+                            value_text=direction or "no_comparison", status=direction, end=last))
+    return out
+
+
+def fmt_date_safe(d: str) -> str:
+    return C.fmt_date(d)

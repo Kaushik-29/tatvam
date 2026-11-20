@@ -132,6 +132,10 @@ MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "
                                        "september", "october", "november", "december"], 1)}
 
 
+COMPARE_RE = re.compile(r"\b(compared? (to|with)|than (it was |they were )?(last|before|previous|earlier|my last)|versus|vs\.?"
+                        r"|better than|worse than|difference between|since (my )?last)\b")
+
+
 @dataclass
 class QueryUnderstanding:
     raw_query: str
@@ -144,6 +148,7 @@ class QueryUnderstanding:
     time_start: Optional[str] = None
     time_end: Optional[str] = None
     temporal_relation: Optional[str] = None   # most_recent | trend | during_episode | range | None
+    temporal_intent: Optional[str] = None     # recent | long_term | compare | None (TA-RAG-style)
     is_new_concern: bool = False
     expanded_terms: List[str] = field(default_factory=list)
 
@@ -211,6 +216,16 @@ def understand(query: str, known_medications: Sequence[str] = (), known_concepts
         days = {"year": 365, "month": 30, "week": 7}[m.group(2)] * n
         qu.time_start, qu.time_end = (today - timedelta(days=days)).isoformat(), None
         qu.temporal_relation = "range"
+    # Temporal intent (after Li & Liu, TA-RAG, HBD 2026): recent state, long-term course, or a
+    # comparison between periods. A comparison needs the whole series, so it is retrieved as a trend.
+    if COMPARE_RE.search(q):
+        qu.temporal_intent = "compare"
+        qu.temporal_relation = "trend"
+        qu.time_start = qu.time_end = None
+    elif qu.temporal_relation == "trend":
+        qu.temporal_intent = "long_term"
+    elif qu.temporal_relation == "most_recent":
+        qu.temporal_intent = "recent"
 
     expanded = set(qu.symptoms) | set(qu.medications)
     for s in qu.symptoms:

@@ -31,12 +31,13 @@ from backend.claim_verification.verifier import LongitudinalClaimVerifier
 from backend.evidence_reconciliation.emergency import screen_text
 from backend.evidence_reconciliation.reconcile import reconcile
 from backend.llm.ollama_client import OllamaClient, OllamaUnavailable
+from backend.patient_memory.derived import window_summaries
 from backend.patient_memory.models import ClinicalRecord, Consultation
 from backend.patient_memory.repository import PatientMemory
 from backend.rag.evidence_assembly import assemble
 from backend.rag.fusion import rrf
 from backend.rag.query_understanding import lay_name, understand
-from backend.structured_retrieval.patient_retriever import PatientRetriever
+from backend.structured_retrieval.patient_retriever import MED_WORDS, SERIES_LEAVES, PatientRetriever
 
 logger = logging.getLogger("MedResolve.Pipeline")
 
@@ -191,6 +192,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     current_meds = mem.records(leaves=["medication_history/current_medications"]) if uses_history else []
     allergies = mem.records(leaves=["allergy_history"]) if uses_history else []
     med_intervals = mem.medication_intervals() if uses_history else []
+    windows = _window_context(mem, patient_id, retrieved, qu) if uses_history else []
 
     # 4. reference retrieval
     refs = []
@@ -223,7 +225,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
                          for m in unknown]
 
     # 6. evidence assembly
-    ctx = assemble(query, qu.symptoms, intake, retrieved, (current_meds + allergies) if uses_history else [],
+    ctx = assemble(query, qu.symptoms, intake, retrieved, ((current_meds + allergies) if uses_history else []) + windows,
                    refs, [f.to_dict() for f in findings], med_intervals)
     result["evidence"] = list(ctx.evidence.values())
     result["references"] = list(ctx.references.values())
@@ -289,6 +291,29 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     result["model_config"] = {"llm": deps.llm.model if deps.llm else None, "embedding_model": config.EMBEDDING_MODEL,
                               "stair_backend": getattr(deps.selector, "backend_name", None)}
     return _persist(s, result, cfg)
+
+
+def _window_context(mem: PatientMemory, pid: str, retrieved: List[Dict[str, Any]], qu, n_series: int = 2):
+    """Trend / comparison questions: on-demand 30/90/365-day summaries of the measurement series the
+    retrieval returned (TA-RAG-style time slices). Derived, cited, never stored."""
+    if (qu.temporal_relation != "trend" or MED_WORDS.search(qu.raw_query.lower())
+            or not retrieved or retrieved[0]["leaf_path"] not in SERIES_LEAVES):
+        return []
+    slugs = []
+    for r in retrieved:
+        leaf = r["leaf_path"]
+        if leaf in SERIES_LEAVES:
+            slug = r["group_path"][len(leaf) + 1:]
+            if slug not in slugs:
+                slugs.append(slug)
+        if len(slugs) == n_series:
+            break
+    out = []
+    for slug in slugs:
+        series = mem.records(groups=[f"laboratory_observations/laboratory_results/{slug}",
+                                     f"laboratory_observations/vital_signs/{slug}"])
+        out += window_summaries(pid, series)
+    return out
 
 
 def _diverse_refs(hits: List[Dict[str, Any]], k: int, per_path: int = 2) -> List[Dict[str, Any]]:

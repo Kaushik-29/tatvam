@@ -11,6 +11,7 @@ because CPU encoding of every dated value (~750k rows) is infeasible. Records of
 the same concept therefore tie on dense score; ties are broken by recency.
 """
 
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -27,6 +28,9 @@ from backend.rag.query_understanding import QueryUnderstanding
 
 SYMPTOM_LEAVES = ("clinical_encounters/previous_symptoms", "clinical_encounters/complaints")
 MED_LEAVES = ("medication_history/current_medications", "medication_history/previous_medications")
+TREND_LEAF = "laboratory_observations/historical_trends"
+MED_WORDS = re.compile(r"\b(prescription|medication|medicine|dose|drug|pill|tablet)s?\b")
+SERIES_LEAVES = (TREND_LEAF, "laboratory_observations/laboratory_results", "laboratory_observations/vital_signs")
 
 
 def concept_text(r: Dict[str, Any]) -> str:
@@ -116,6 +120,37 @@ class PatientRetriever:
         trace.structured_ops.append(f"medications_active_at({a['effective_start'][:10]}) anchored on {a['record_id']}")
         return [a] + [{k: v for k, v in m.items() if not k.startswith("interval")} for m in meds]
 
+    def trend_series(self, groups: Sequence[Tuple[str, float]], by_group: Dict[str, List[Dict[str, Any]]],
+                     qu: QueryUnderstanding, trace: RetrievalTrace, n_series: int = 2,
+                     n_recent: int = 3) -> List[Dict[str, Any]]:
+        """Trend / comparison questions: keep one measurement series together. For the top routed
+        measurement concepts, emit the series' trend summary followed by its newest readings, instead of
+        interleaving the newest reading of many different tests (temporal proximity, as in TA-RAG)."""
+        # only when the router's top choice is a measurement section: "changed" also appears in
+        # medication-change questions, which must not be crowded out by lab series
+        if (qu.temporal_relation != "trend" or MED_WORDS.search(qu.raw_query.lower())
+                or not groups or leaf_of(groups[0][0]) not in SERIES_LEAVES):
+            return []
+        out, families = [], []
+        for gp, _ in groups:
+            leaf = leaf_of(gp)
+            if leaf not in SERIES_LEAVES:
+                continue
+            slug = gp[len(leaf) + 1:]
+            if slug not in families:
+                families.append(slug)
+            if len(families) == n_series:
+                break
+        for slug in families:
+            trend = by_group.get(f"{TREND_LEAF}/{slug}", [])[:1]
+            raw = sorted(by_group.get(f"laboratory_observations/laboratory_results/{slug}", []) +
+                         by_group.get(f"laboratory_observations/vital_signs/{slug}", []),
+                         key=lambda r: r.get("effective_start") or "", reverse=True)[:n_recent]
+            if trend or raw:
+                out += trend + raw
+                trace.structured_ops.append(f"trend_series({slug}: summary + {len(raw)} newest)")
+        return out
+
     # -------------------------------------------------------------- STAIR
     def stair(self, query: str, qu: QueryUnderstanding, selector, k: int = 20,
               per_group: int = 3) -> Tuple[List[Dict[str, Any]], RetrievalTrace]:
@@ -142,7 +177,7 @@ class PatientRetriever:
         result: List[Dict[str, Any]] = []
         seen = set()
         episode = self.episode_medications(qu, trace)
-        for r in episode:
+        for r in episode + self.trend_series(groups, by_group, qu, trace):
             if r["record_id"] not in seen:
                 seen.add(r["record_id"]); result.append(r)
         for depth in range(per_group):                  # round-robin: newest of each group first
