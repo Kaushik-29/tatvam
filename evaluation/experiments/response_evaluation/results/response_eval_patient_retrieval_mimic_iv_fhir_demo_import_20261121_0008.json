@@ -1,0 +1,67 @@
+{
+  "protocol": "MedResolve response evaluation v1 (automated proxies)",
+  "query_source": "patient_retrieval_mimic_iv_fhir_demo",
+  "generation": "GPU (Kaggle) Ollama, replayed by prompt hash",
+  "gpu_generation_meta": {
+    "model": "llama3.2:3b",
+    "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "hardware": "a330e2196333 / Tesla T4\nTesla T4",
+    "ollama_version": "0.40.16",
+    "today": "2026-11-20"
+  },
+  "latency_note": "latency_s excludes LLM generation in import mode",
+  "llm": "llama3.2:3b",
+  "stair_backend": "lora",
+  "n_clinical_queries": 60,
+  "n_probes": 0,
+  "seed": 41,
+  "wall_time_s": 1965.7,
+  "summary": {
+    "B5": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.6511011303511304,
+        "ci95": [
+          0.5710648058409253,
+          0.7430361033302209
+        ],
+        "n": 60
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.491055113187466,
+        "ci95": [
+          0.4221584912262877,
+          0.5494813550420168
+        ],
+        "n": 60
+      },
+      "historical_context_coverage": {
+        "mean": 0.5497147458017023,
+        "ci95": [
+          0.4212045616535994,
+          0.665262122025407
+        ],
+        "n": 60
+      },
+      "patient_history_consistency": {
+        "mean": 0.9201190476190477,
+        "ci95": [
+          0.8701940035273368,
+          0.9637520525451558
+        ],
+        "n": 60
+      },
+      "latency_s": {
+        "mean": 20.972483333333333,
+        "ci95": [
+          19.28962295081967,
+          22.70964406779662
+        ],
+        "n": 60
+      },
+      "action_appropriateness_probes": null,
+      "unsupported_patient_claims_released_total": 2
+    }
+  },
+  "factual_correctness": "NOT AUTOMATED \u2014 see blinded review sheet; requires clinician raters",
+  "caveat": "De-identified open-access data (patient_retrieval_mimic_iv_fhir_demo), automated lexical verification proxies; not clinical validation."
+}

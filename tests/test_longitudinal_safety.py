@@ -129,3 +129,16 @@ def test_query_understanding():
     qu2 = understand("Show my kidney blood tests from 2021")
     assert qu2.organ_systems == ["kidney"] and qu2.time_start == "2021-01-01" and qu2.time_end == "2022-01-01"
     assert "creatinine" in qu2.expanded_terms
+
+
+def test_date_shifted_records_are_not_future_dated_against_record_time():
+    """MIMIC dates are privacy-shifted (2100+): against the wall clock every record is 'future-dated',
+    which flooded B5's context. The pipeline passes the patient's latest record date as 'today'."""
+    from types import SimpleNamespace
+    from backend.rag.pipeline import _record_today
+    r = _rec("L1", "laboratory_observations/laboratory_results", "MCV", key="mcv", effective_start="2155-11-23T08:00:00")
+    assert any("Future-dated" in f.description for f in reconcile([r], today="2026-11-20"))
+    assert not any("Future-dated" in f.description for f in reconcile([r], today="2155-11-23"))
+    mem = SimpleNamespace(records=lambda limit=None: [r])
+    assert _record_today(mem, SimpleNamespace(source="mimic_iv_fhir_demo")) == "2155-11-23"
+    assert _record_today(mem, SimpleNamespace(source="synthea_fhir_r4")) is None

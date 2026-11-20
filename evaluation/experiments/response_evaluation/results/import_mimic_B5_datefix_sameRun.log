@@ -1,0 +1,108 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[1/60] B5 EXPLAIN unsupported=0.2 cov=1.0 t=20.81
+[2/60] B5 EXPLAIN unsupported=1.0 cov=1.0 t=13.96
+[3/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=22.542
+[4/60] B5 EXPLAIN unsupported=0.0 cov=1.0 t=39.877
+[5/60] B5 EXPLAIN unsupported=0.2 cov=1.0 t=26.361
+[6/60] B5 EXPLAIN unsupported=0.7142857142857143 cov=0.06521739130434782 t=27.903
+[7/60] B5 EXPLAIN unsupported=0.2 cov=1.0 t=22.868
+[8/60] B5 EXPLAIN unsupported=0.6 cov=1.0 t=22.439
+[9/60] B5 EXPLAIN unsupported=0.5 cov=1.0 t=24.921
+[10/60] B5 EXPLAIN unsupported=0.8571428571428571 cov=0.5714285714285714 t=28.853
+[11/60] B5 EXPLAIN unsupported=0.0 cov=0.0 t=19.218
+[12/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=18.698
+[13/60] B5 EXPLAIN unsupported=1.0 cov=1.0 t=33.659
+[14/60] B5 EXPLAIN unsupported=0.5 cov=0.0 t=18.747
+[15/60] B5 EXPLAIN unsupported=0.7777777777777778 cov=0.027777777777777776 t=30.069
+[16/60] B5 EXPLAIN unsupported=1.0 cov=1.0 t=22.44
+[17/60] B5 EXPLAIN unsupported=0.8 cov=0.0 t=27.486
+[18/60] B5 EXPLAIN unsupported=0.4 cov=1.0 t=30.884
+[19/60] B5 EXPLAIN unsupported=0.2727272727272727 cov=1.0 t=28.885
+[20/60] B5 EXPLAIN unsupported=0.4166666666666667 cov=0.0 t=30.422
+[21/60] B5 EXPLAIN unsupported=0.5 cov=0.0 t=22.962
+[22/60] B5 EXPLAIN unsupported=0.75 cov=1.0 t=20.314
+[23/60] B5 EXPLAIN unsupported=0.8333333333333334 cov=0.0 t=22.673
+[24/60] B5 EXPLAIN unsupported=0.12 cov=0.5428571428571428 t=41.121
+[25/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=19.541
+[26/60] B5 EXPLAIN unsupported=0.75 cov=0.6666666666666666 t=27.378
+[27/60] B5 EXPLAIN unsupported=0.4 cov=1.0 t=27.318
+[28/60] B5 EXPLAIN unsupported=0.047619047619047616 cov=0.3 t=34.653
+[29/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=26.049
+[30/60] B5 EXPLAIN unsupported=0.75 cov=0.0 t=24.789
+[31/60] B5 EXPLAIN unsupported=0.5 cov=1.0 t=22.388
+[32/60] B5 EXPLAIN unsupported=0.5 cov=0.0 t=24.485
+[33/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=0.1111111111111111 t=21.915
+[34/60] B5 EXPLAIN unsupported=0.75 cov=1.0 t=23.346
+[35/60] B5 EXPLAIN unsupported=0.4 cov=0.75 t=32.621
+[36/60] B5 EXPLAIN unsupported=0.5 cov=1.0 t=23.612
+[37/60] B5 EXPLAIN unsupported=1.0 cov=0.5 t=25.406
+[38/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=30.635
+[39/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=19.097
+[40/60] B5 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=25.329
+[41/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=24.369
+[42/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=24.882
+[43/60] B5 EXPLAIN unsupported=0.0 cov=1.0 t=19.443
+[44/60] B5 EXPLAIN unsupported=0.8571428571428571 cov=0.0 t=22.898
+[45/60] B5 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=22.997
+[46/60] B5 EXPLAIN unsupported=0.2727272727272727 cov=1.0 t=26.326
+[47/60] B5 EXPLAIN unsupported=0.5 cov=0.0 t=24.944
+[48/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=0.0 t=23.326
+[49/60] B5 EXPLAIN unsupported=0.75 cov=1.0 t=19.635
+[50/60] B5 EXPLAIN unsupported=0.4 cov=1.0 t=23.21
+[51/60] B5 EXPLAIN unsupported=1.0 cov=0.6521739130434783 t=9.679
+[52/60] B5 EXPLAIN unsupported=0.2 cov=0.0 t=20.955
+[53/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=23.015
+[54/60] B5 EXPLAIN unsupported=0.75 cov=1.0 t=21.358
+[55/60] B5 EXPLAIN unsupported=0.1111111111111111 cov=1.0 t=20.462
+[56/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=18.583
+[57/60] B5 EXPLAIN unsupported=1.0 cov=0.0 t=12.9
+[58/60] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=16.961
+[59/60] B5 EXPLAIN unsupported=0.5 cov=0.0 t=14.355
+[60/60] B5 EXPLAIN unsupported=0.23809523809523808 cov=0.6956521739130435 t=29.958
+replayed 57 GPU answers
+{
+ "B5": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.5941993746993748,
+   "ci95": [
+    0.5158312112723875,
+    0.6871693121693121
+   ],
+   "n": 60
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.5254723491005119,
+   "ci95": [
+    0.45952264661301395,
+    0.5824949134861849
+   ],
+   "n": 60
+  },
+  "historical_context_coverage": {
+   "mean": 0.5647147458017023,
+   "ci95": [
+    0.43581441129552323,
+    0.6901378909051543
+   ],
+   "n": 60
+  },
+  "patient_history_consistency": {
+   "mean": 0.9113997113997114,
+   "ci95": [
+    0.8544949494949493,
+    0.9587570621468926
+   ],
+   "n": 60
+  },
+  "latency_s": {
+   "mean": 24.1155,
+   "ci95": [
+    22.497131147540983,
+    25.790636363636374
+   ],
+   "n": 60
+  },
+  "action_appropriateness_probes": null,
+  "unsupported_patient_claims_released_total": 2
+ }
+}

@@ -221,7 +221,10 @@ def main():
     tag = dt.datetime.now().strftime("%Y%m%d_%H%M")
     src = Path(a.queries).parent.parent.name if a.queries else "synthea_test"
     if a.mode == "export":
-        out = OUT / "kaggle" / f"answer_prompts_{src}_n{a.n_queries}_s{a.seed}.jsonl"
+        vtag = "" if variants == VARIANTS else "_" + "".join(variants)     # never overwrite a full export
+        out = OUT / "kaggle" / f"answer_prompts_{src}_n{a.n_queries}_s{a.seed}{vtag}.jsonl"
+        if out.exists():
+            raise SystemExit(f"{out} exists; frozen exports are not overwritten")
         out.parent.mkdir(parents=True, exist_ok=True)
         with open(out, "w", encoding="utf-8") as f:
             for c in deps.llm.calls.values():

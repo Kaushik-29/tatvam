@@ -39,6 +39,10 @@ from backend.rag.fusion import rrf
 from backend.rag.query_understanding import lay_name, understand
 from backend.structured_retrieval.patient_retriever import MED_WORDS, SERIES_LEAVES, PatientRetriever
 
+# Sources whose dates are privacy-shifted (MIMIC-IV: years 2100+). For these, "now" for the date checks in
+# reconciliation is the patient's latest record, not the wall clock; otherwise every record is "future-dated".
+DATE_SHIFTED_SOURCES = {"mimic_iv_fhir_demo", "mimic_iv"}
+
 logger = logging.getLogger("MedResolve.Pipeline")
 
 SYSTEM_PROMPT = """You are MedResolve, an academic medical INFORMATION assistant (not a doctor). You never diagnose, never prescribe, and never change medications.
@@ -216,7 +220,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         findings = reconcile(retrieved + current_meds + allergies, allergies=allergies, current_meds=current_meds,
                              mentioned_medications=[], query_drug_terms=_drug_terms(query),
                              birth_date=patient.birth_date if patient else None, needed_leaves=sorted(set(needed)),
-                             leaf_counts=leaf_counts, med_intervals=med_intervals)
+                             leaf_counts=leaf_counts, med_intervals=med_intervals, today=_record_today(mem, patient))
         unknown = _unknown_medications(query, known_meds)
         if unknown:
             from backend.evidence_reconciliation.reconcile import Finding
@@ -291,6 +295,14 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     result["model_config"] = {"llm": deps.llm.model if deps.llm else None, "embedding_model": config.EMBEDDING_MODEL,
                               "stair_backend": getattr(deps.selector, "backend_name", None)}
     return _persist(s, result, cfg)
+
+
+def _record_today(mem: PatientMemory, patient) -> Optional[str]:
+    """Reference date for reconciliation: the latest record date for date-shifted sources, else None (wall clock)."""
+    if patient is None or patient.source not in DATE_SHIFTED_SOURCES:
+        return None
+    last = mem.records(limit=1)
+    return last[0]["effective_start"][:10] if last and last[0].get("effective_start") else None
 
 
 def _window_context(mem: PatientMemory, pid: str, retrieved: List[Dict[str, Any]], qu, n_series: int = 2):
