@@ -1,0 +1,324 @@
+{
+  "protocol": "MedResolve response evaluation v1 (automated proxies)",
+  "query_source": "synthea_test",
+  "generation": "GPU (Kaggle) Ollama, replayed by prompt hash",
+  "gpu_generation_meta": {
+    "model": "llama3.2:3b",
+    "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "hardware": "43b29ffdf08d / Tesla T4\nTesla T4",
+    "ollama_version": "0.40.16",
+    "today": "2026-11-20"
+  },
+  "latency_note": "latency_s excludes LLM generation in import mode",
+  "llm": "llama3.2:3b",
+  "stair_backend": "lora",
+  "n_clinical_queries": 120,
+  "n_probes": 5,
+  "seed": 41,
+  "wall_time_s": 7163.3,
+  "summary": {
+    "B0": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.9916666666666667,
+        "ci95": [
+          0.9705882352941176,
+          1.0
+        ],
+        "n": 120
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.05872294372294371,
+        "ci95": [
+          0.03883215549882217,
+          0.08464634539014702
+        ],
+        "n": 120
+      },
+      "historical_context_coverage": {
+        "mean": 0.403125,
+        "ci95": [
+          0.319,
+          0.4830097087378641
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n": 120
+      },
+      "latency_s": {
+        "mean": 0.05720000000000001,
+        "ci95": [
+          0.04777499999999996,
+          0.06822935779816514
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 0.2,
+        "ci95": [
+          0.2,
+          0.2
+        ],
+        "n": 5
+      }
+    },
+    "B1": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.9916666666666667,
+        "ci95": [
+          0.9739130434782609,
+          1.0
+        ],
+        "n": 120
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.45386123136123124,
+        "ci95": [
+          0.4146287328490717,
+          0.4909323834520684
+        ],
+        "n": 120
+      },
+      "historical_context_coverage": {
+        "mean": 0.5229166666666667,
+        "ci95": [
+          0.43538135593220345,
+          0.6039823008849557
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n": 120
+      },
+      "latency_s": {
+        "mean": 0.32245833333333335,
+        "ci95": [
+          0.19718584070796458,
+          0.5719259259259258
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 0.2,
+        "ci95": [
+          0.2,
+          0.2
+        ],
+        "n": 5
+      }
+    },
+    "B2": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.6334523809523808,
+        "ci95": [
+          0.5684630102040817,
+          0.7000517598343684
+        ],
+        "n": 120
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.3918218240093241,
+        "ci95": [
+          0.35471836592526246,
+          0.42679424365470864
+        ],
+        "n": 120
+      },
+      "historical_context_coverage": {
+        "mean": 0.7610879629629629,
+        "ci95": [
+          0.6862014453477866,
+          0.8306921675774135
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 0.9496527777777779,
+        "ci95": [
+          0.9142628205128206,
+          0.9750778816199377
+        ],
+        "n": 120
+      },
+      "latency_s": {
+        "mean": 8.279158333333339,
+        "ci95": [
+          7.3192080000000015,
+          9.280934426229505
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 0.2,
+        "ci95": [
+          0.2,
+          0.2
+        ],
+        "n": 5
+      }
+    },
+    "B3": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.6055210985909515,
+        "ci95": [
+          0.5447651409048467,
+          0.6608093521499506
+        ],
+        "n": 120
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.5057587802634242,
+        "ci95": [
+          0.46435020833800317,
+          0.5481378136656648
+        ],
+        "n": 120
+      },
+      "historical_context_coverage": {
+        "mean": 0.7883564814814815,
+        "ci95": [
+          0.718939393939394,
+          0.8531648451730418
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 0.945418390841185,
+        "ci95": [
+          0.9190729522462628,
+          0.9703732865358837
+        ],
+        "n": 120
+      },
+      "latency_s": {
+        "mean": 0.21474166666666666,
+        "ci95": [
+          0.1769310344827587,
+          0.25470992366412204
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 0.2,
+        "ci95": [
+          0.2,
+          0.2
+        ],
+        "n": 5
+      }
+    },
+    "B4": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.6027484458695758,
+        "ci95": [
+          0.5452261246378892,
+          0.6650254276467867
+        ],
+        "n": 120
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.5041015864080879,
+        "ci95": [
+          0.4638099975062644,
+          0.5429164666222474
+        ],
+        "n": 120
+      },
+      "historical_context_coverage": {
+        "mean": 0.7893287037037038,
+        "ci95": [
+          0.7223520249221185,
+          0.8549410029498524
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 0.9588173558897245,
+        "ci95": [
+          0.9336152882205514,
+          0.9796617712505563
+        ],
+        "n": 120
+      },
+      "latency_s": {
+        "mean": 8.155483333333331,
+        "ci95": [
+          7.211145299145302,
+          9.160666666666662
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 0.2,
+        "ci95": [
+          0.2,
+          0.2
+        ],
+        "n": 5
+      }
+    },
+    "B5": {
+      "unsupported_patient_claim_rate_raw": {
+        "mean": 0.6320881064431115,
+        "ci95": [
+          0.5716818273029575,
+          0.695460142450989
+        ],
+        "n": 117
+      },
+      "evidence_support_rate_raw": {
+        "mean": 0.46457861949645707,
+        "ci95": [
+          0.42660557757204237,
+          0.5034802342324154
+        ],
+        "n": 117
+      },
+      "historical_context_coverage": {
+        "mean": 0.6839814814814814,
+        "ci95": [
+          0.5979600694444444,
+          0.7660550458715596
+        ],
+        "n": 120
+      },
+      "patient_history_consistency": {
+        "mean": 0.9578113407060777,
+        "ci95": [
+          0.9345157564758292,
+          0.9775710284113645
+        ],
+        "n": 117
+      },
+      "latency_s": {
+        "mean": 11.909908333333334,
+        "ci95": [
+          10.714209090909092,
+          13.231841269841265
+        ],
+        "n": 120
+      },
+      "action_appropriateness_probes": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n": 5
+      },
+      "unsupported_patient_claims_released_total": 0
+    }
+  },
+  "factual_correctness": "NOT AUTOMATED \u2014 see blinded review sheet; requires clinician raters",
+  "caveat": "Synthetic data, automated lexical verification proxies; not clinical validation."
+}

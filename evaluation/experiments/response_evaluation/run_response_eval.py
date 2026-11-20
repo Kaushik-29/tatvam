@@ -12,12 +12,22 @@ Automated metrics (per response):
 Not automated: factual correctness -> blinded clinician review sheet (CSV) is produced.
 
     python -m evaluation.experiments.response_evaluation.run_response_eval --n-queries 12
+
+Offloading generation to a GPU (Kaggle) with the same Ollama model:
+    ... run_response_eval --mode export --n-queries 120     -> results/kaggle/answer_prompts_<src>_n120_s41.jsonl
+    (Kaggle: scripts/kaggle_answer_generation.py, Ollama llama3.2:3b on a T4) -> answers_<...>.jsonl
+    ... run_response_eval --mode import --n-queries 120 --answers <answers file>
+Export records every LLM call instead of answering it; import re-runs the identical (deterministic)
+pipeline and replays the GPU answer for each call, matched by SHA-256 of system + prompt. A prompt
+without a matching answer stops the run, so no metric is ever computed on a mismatched answer.
 """
 
 import argparse
 import csv
 import datetime as dt
+import hashlib
 import json
+import os
 import random
 import re
 import time
@@ -100,30 +110,97 @@ def score(res, gold_records, verifier):
     return out
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--n-queries", type=int, default=12)
-    ap.add_argument("--seed", type=int, default=41)
-    ap.add_argument("--variants", default=",".join(VARIANTS))
-    a = ap.parse_args()
-    variants = a.variants.split(",")
-    from backend.api.services import get_deps
-    deps = get_deps()
-    if deps.llm is None or not deps.llm.available():
-        raise SystemExit("Ollama model not available — refusing to report LLM response metrics without the LLM.")
-    rows = load_queries("test")
+def call_id(system, prompt) -> str:
+    return hashlib.sha256(((system or "") + "\x00" + prompt).encode("utf-8")).hexdigest()
+
+
+class RecordingLLM:
+    """Stands in for OllamaClient in --mode export: records each call and generates nothing."""
+
+    def __init__(self, model: str):
+        self.model = model
+        self.calls = {}
+
+    def available(self):
+        return True
+
+    def generate(self, prompt, system=None, max_tokens=700, temperature=0.1, seed=7):
+        from backend.llm.ollama_client import OllamaUnavailable
+        cid = call_id(system, prompt)
+        self.calls[cid] = {"id": cid, "model": self.model, "today": os.environ.get("MEDRESOLVE_TODAY"),
+                           "system": system, "prompt": prompt,
+                           "options": {"temperature": temperature, "num_predict": max_tokens, "seed": seed,
+                                       "num_ctx": 8192}}
+        raise OllamaUnavailable("export mode: prompt recorded, generation deferred to GPU")
+
+
+class ReplayLLM:
+    """Stands in for OllamaClient in --mode import: returns the GPU answer for the identical prompt."""
+
+    def __init__(self, answers: dict, model: str):
+        self.answers, self.model, self.used = answers, model, set()
+
+    def available(self):
+        return True
+
+    def generate(self, prompt, system=None, max_tokens=700, temperature=0.1, seed=7):
+        cid = call_id(system, prompt)
+        if cid not in self.answers:
+            raise SystemExit(f"No GPU answer for prompt {cid[:12]}: re-export and regenerate. Refusing to score.")
+        self.used.add(cid)
+        return self.answers[cid]["response"]
+
+
+def select_items(s, a):
+    rows = [json.loads(l) for l in open(a.queries, encoding="utf-8")] if a.queries else load_queries("test")
     by_cat = defaultdict(list)
     for r in rows:
         by_cat[r["query_category"]].append(r)
     rng = random.Random(a.seed)
     cats = sorted(by_cat)
     picked = [rng.choice(by_cat[cats[i % len(cats)]]) for i in range(a.n_queries)]
+    items = [{"kind": "clinical", **q} for q in picked]
+    if not a.queries:          # the safety probes use Synthea test patients
+        test_pids = list(s.scalars(select(Patient.patient_id).where(Patient.split == "test",
+                                                                    Patient.deceased_date.is_(None))))
+        items += [{"kind": "probe", **p} for p in safety_probes(s, sorted(test_pids))]
+    return picked, items, rng
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--n-queries", type=int, default=12)
+    ap.add_argument("--seed", type=int, default=41)
+    ap.add_argument("--variants", default=",".join(VARIANTS))
+    ap.add_argument("--queries", default=None, help="external queries.jsonl (e.g. MIMIC-IV demo); default Synthea test")
+    ap.add_argument("--mode", choices=["local", "export", "import"], default="local")
+    ap.add_argument("--answers", default=None, help="--mode import: answers .jsonl from the GPU run")
+    ap.add_argument("--model", default=config.OLLAMA_MODEL)
+    a = ap.parse_args()
+    variants = a.variants.split(",")
+    from dataclasses import replace
+    from backend.api.services import get_deps
+    deps = get_deps()
+    gpu_meta = None
+    if a.mode == "export":
+        os.environ["MEDRESOLVE_TODAY"] = config.today().isoformat()   # pinned, stored with every prompt
+        deps = replace(deps, llm=RecordingLLM(a.model))
+    elif a.mode == "import":
+        if not a.answers:
+            raise SystemExit("--mode import needs --answers")
+        ans = [json.loads(l) for l in open(a.answers, encoding="utf-8") if l.strip()]
+        if not ans:
+            raise SystemExit("answers file is empty")
+        gpu_meta = {k: ans[0].get(k) for k in ("model", "model_digest", "hardware", "ollama_version", "today")}
+        os.environ["MEDRESOLVE_TODAY"] = ans[0]["today"]      # same 'today' as at export -> identical prompts
+        deps = replace(deps, llm=ReplayLLM({r["id"]: r for r in ans}, a.model))
+    elif deps.llm is None or not deps.llm.available():
+        raise SystemExit("Ollama model not available — refusing to report LLM response metrics without the LLM.")
     results, review = [], []
     t0 = time.time()
     with session_scope() as s:
         verifier = LongitudinalClaimVerifier(clinical_vocabulary(s))
-        test_pids = list(s.scalars(select(Patient.patient_id).where(Patient.split == "test", Patient.deceased_date.is_(None))))
-        items = [{"kind": "clinical", **q} for q in picked] + [{"kind": "probe", **p} for p in safety_probes(s, sorted(test_pids))]
+        picked, items, rng = select_items(s, a)
         for i, it in enumerate(items, 1):
             mem = PatientMemory(s, it["patient_id"])
             gold = [mem.get(g) for g in it.get("gold_evidence_ids", [])]
@@ -141,6 +218,18 @@ def main():
                                "answer": (res.get("final_text") if v == "B5" else res.get("raw_generation")) or ""})
                 print(f"[{i}/{len(items)}] {v} {m.get('action')} unsupported={m.get('unsupported_patient_claim_rate_raw')} "
                       f"cov={m.get('historical_context_coverage')} t={m.get('latency_s')}", flush=True)
+    tag = dt.datetime.now().strftime("%Y%m%d_%H%M")
+    src = Path(a.queries).parent.parent.name if a.queries else "synthea_test"
+    if a.mode == "export":
+        out = OUT / "kaggle" / f"answer_prompts_{src}_n{a.n_queries}_s{a.seed}.jsonl"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", encoding="utf-8") as f:
+            for c in deps.llm.calls.values():
+                f.write(json.dumps(c) + "\n")
+        print(f"exported {len(deps.llm.calls)} unique LLM prompts -> {out}")
+        return
+    if a.mode == "import":
+        print(f"replayed {len(deps.llm.used)} GPU answers")
     summary = {}
     for v in variants:
         rs = [r for r in results if r["variant"] == v]
@@ -158,12 +247,16 @@ def main():
             summary[v]["unsupported_patient_claims_released_total"] = sum(r.get("unsupported_patient_claims_released", 0) for r in rs)
     rng.shuffle(review)
     OUT.mkdir(parents=True, exist_ok=True)
-    tag = dt.datetime.now().strftime("%Y%m%d_%H%M")
-    payload = {"protocol": "MedResolve response evaluation v1 (synthetic patients, automated proxies)",
+    tag = f"{src}_{a.mode}_{tag}"
+    payload = {"protocol": "MedResolve response evaluation v1 (automated proxies)", "query_source": src,
+               "generation": "GPU (Kaggle) Ollama, replayed by prompt hash" if a.mode == "import" else "local Ollama",
+               "gpu_generation_meta": gpu_meta,
+               "latency_note": "latency_s excludes LLM generation in import mode" if a.mode == "import" else None,
                "llm": deps.llm.model, "stair_backend": deps.selector.backend_name, "n_clinical_queries": len(picked),
                "n_probes": len(items) - len(picked), "seed": a.seed, "wall_time_s": round(time.time() - t0, 1),
                "summary": summary, "factual_correctness": "NOT AUTOMATED — see blinded review sheet; requires clinician raters",
-               "caveat": "Synthetic data, automated lexical verification proxies; not clinical validation."}
+               "caveat": ("Synthetic data" if src == "synthea_test" else f"De-identified open-access data ({src})")
+                         + ", automated lexical verification proxies; not clinical validation."}
     (OUT / f"response_eval_{tag}.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
     with open(OUT / f"response_eval_{tag}_per_response.jsonl", "w", encoding="utf-8") as f:
         for r in results:

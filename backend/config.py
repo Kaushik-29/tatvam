@@ -55,3 +55,11 @@ JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_MINUTES = int(_env("JWT_EXPIRE_MINUTES", "720"))
 
 UPLOAD_DIR = DATA_DIR / "uploads"
+
+
+def today():
+    """Today's date, or the fixed date in MEDRESOLVE_TODAY (YYYY-MM-DD). Evaluations that run the
+    pipeline twice (prompt export, then answer replay) pin it so relative dates stay identical."""
+    from datetime import date
+    fixed = os.environ.get("MEDRESOLVE_TODAY")
+    return date.fromisoformat(fixed) if fixed else date.today()

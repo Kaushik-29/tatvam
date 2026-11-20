@@ -14,6 +14,7 @@ Inspects the assembled patient evidence (and the new query) for:
 """
 
 import re
+from backend import config
 from collections import defaultdict
 from dataclasses import asdict, dataclass, field
 from datetime import date
@@ -61,7 +62,7 @@ def reconcile(evidence: Sequence[Dict[str, Any]], *, allergies: Sequence[Dict[st
               query_drug_terms: Sequence[str] = (), birth_date: Optional[str] = None,
               needed_leaves: Sequence[str] = (), leaf_counts: Optional[Dict[str, int]] = None,
               med_intervals: Sequence[Dict[str, Any]] = (), today: Optional[str] = None) -> List[Finding]:
-    today = today or date.today().isoformat()
+    today = today or config.today().isoformat()
     out: List[Finding] = []
     ev = list(evidence)
 

@@ -1,0 +1,1055 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+[1/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.02
+[1/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.047
+[1/125] B2 EXPLAIN unsupported=0.6 cov=0.6666666666666666 t=6.644
+[1/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.102
+[1/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=6.262
+[1/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=8.89
+[2/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.033
+[2/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=13.037
+[2/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=24.587
+[2/125] B3 EXPLAIN unsupported=1.0 cov=1.0 t=0.146
+[2/125] B4 EXPLAIN unsupported=0.6 cov=1.0 t=24.668
+[2/125] B5 EXPLAIN unsupported=0.6 cov=1.0 t=30.256
+[3/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.096
+[3/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.326
+[3/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=21.68
+[3/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.194
+[3/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=22.222
+[3/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=26.938
+[4/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.076
+[4/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.649
+[4/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=24.802
+[4/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.193
+[4/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=25.01
+[4/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=30.313
+[5/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.063
+[5/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.503
+[5/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=20.371
+[5/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.143
+[5/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=19.846
+[5/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=31.734
+[6/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.115
+[6/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.388
+[6/125] B2 EXPLAIN unsupported=0.16666666666666666 cov=0.6 t=26.223
+[6/125] B3 EXPLAIN unsupported=0.06666666666666667 cov=0.9 t=1.531
+[6/125] B4 EXPLAIN unsupported=0.0 cov=0.9 t=24.162
+[6/125] B5 EXPLAIN unsupported=0.0 cov=0.3 t=30.004
+[7/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.048
+[7/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.359
+[7/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=20.344
+[7/125] B3 EXPLAIN unsupported=0.2857142857142857 cov=1.0 t=0.787
+[7/125] B4 EXPLAIN unsupported=0.8 cov=1.0 t=24.47
+[7/125] B5 EXPLAIN unsupported=0.8 cov=1.0 t=27.808
+[8/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.079
+[8/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.05
+[8/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=24.429
+[8/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.122
+[8/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=20.871
+[8/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=8.886
+[9/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.037
+[9/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.263
+[9/125] B2 EXPLAIN unsupported=0.6 cov=1.0 t=5.376
+[9/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.321
+[9/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=5.793
+[9/125] B5 EXPLAIN unsupported=0.6 cov=1.0 t=9.196
+[10/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.036
+[10/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.034
+[10/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=6.158
+[10/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.264
+[10/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=5.941
+[10/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=7.639
+[11/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.052
+[11/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.318
+[11/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=6.206
+[11/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.424
+[11/125] B4 EXPLAIN unsupported=1.0 cov=0.5 t=6.005
+[11/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=8.457
+[12/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.044
+[12/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.038
+[12/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=5.622
+[12/125] B3 EXPLAIN unsupported=0.125 cov=1.0 t=0.054
+[12/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=5.721
+[12/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=9.275
+[13/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[13/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.522
+[13/125] B2 EXPLAIN unsupported=0.5 cov=0.0 t=5.896
+[13/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.47
+[13/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=5.335
+[13/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=6.958
+[14/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.228
+[14/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.269
+[14/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=6.057
+[14/125] B3 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=0.168
+[14/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=5.945
+[14/125] B5 EXPLAIN unsupported=0.8 cov=1.0 t=18.156
+[15/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.061
+[15/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.354
+[15/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=7.534
+[15/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.153
+[15/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=7.96
+[15/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=12.233
+[16/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.029
+[16/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.064
+[16/125] B2 EXPLAIN unsupported=0.8 cov=1.0 t=6.33
+[16/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.076
+[16/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=6.574
+[16/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=12.118
+[17/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.129
+[17/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.402
+[17/125] B2 EXPLAIN unsupported=0.0 cov=0.8 t=7.749
+[17/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=0.8 t=0.19
+[17/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=7.754
+[17/125] B5 EXPLAIN unsupported=0.0 cov=0.0 t=11.42
+[18/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.109
+[18/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.63
+[18/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=7.549
+[18/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.145
+[18/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=7.598
+[18/125] B5 ABSTAIN_AND_NAVIGATE unsupported=None cov=0.0 t=7.77
+[19/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.076
+[19/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.421
+[19/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=7.858
+[19/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.178
+[19/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=8.039
+[19/125] B5 EXPLAIN unsupported=0.4 cov=1.0 t=10.86
+[20/125] B0 EXPLAIN unsupported=1.0 cov=0.5 t=0.081
+[20/125] B1 EXPLAIN unsupported=1.0 cov=0.125 t=0.081
+[20/125] B2 EXPLAIN unsupported=0.4166666666666667 cov=0.5 t=7.693
+[20/125] B3 EXPLAIN unsupported=0.11764705882352941 cov=0.0 t=0.117
+[20/125] B4 EXPLAIN unsupported=0.5 cov=0.5 t=7.565
+[20/125] B5 EXPLAIN unsupported=0.5 cov=0.5 t=15.355
+[21/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.048
+[21/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.364
+[21/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=7.659
+[21/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.366
+[21/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=7.672
+[21/125] B5 EXPLAIN unsupported=0.75 cov=1.0 t=10.932
+[22/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.032
+[22/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.332
+[22/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=11.61
+[22/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.062
+[22/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=7.148
+[22/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=8.385
+[23/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.012
+[23/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.287
+[23/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=5.965
+[23/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=0.5 t=0.285
+[23/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=5.744
+[23/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=8.341
+[24/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.012
+[24/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.038
+[24/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=6.272
+[24/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.06
+[24/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=5.747
+[24/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=6.528
+[25/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.066
+[25/125] B1 EXPLAIN unsupported=1.0 cov=0.5 t=0.357
+[25/125] B2 EXPLAIN unsupported=0.875 cov=1.0 t=6.334
+[25/125] B3 EXPLAIN unsupported=1.0 cov=1.0 t=0.088
+[25/125] B4 EXPLAIN unsupported=1.0 cov=0.5 t=4.846
+[25/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=6.005
+[26/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.024
+[26/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.185
+[26/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.524
+[26/125] B3 EXPLAIN unsupported=0.5454545454545454 cov=1.0 t=0.063
+[26/125] B4 EXPLAIN unsupported=0.7 cov=1.0 t=4.701
+[26/125] B5 EXPLAIN unsupported=0.7 cov=0.0 t=9.106
+[27/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.06
+[27/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.178
+[27/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=4.982
+[27/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.344
+[27/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.58
+[27/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=8.331
+[28/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.037
+[28/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.137
+[28/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.87
+[28/125] B3 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=0.574
+[28/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=4.881
+[28/125] B5 ABSTAIN_AND_NAVIGATE unsupported=None cov=0.0 t=4.559
+[29/125] B0 EXPLAIN unsupported=1.0 cov=0.25 t=0.023
+[29/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.223
+[29/125] B2 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=4.764
+[29/125] B3 EXPLAIN unsupported=0.42857142857142855 cov=1.0 t=0.086
+[29/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=0.75 t=4.441
+[29/125] B5 EXPLAIN unsupported=0.25 cov=0.75 t=9.719
+[30/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.047
+[30/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.167
+[30/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.647
+[30/125] B3 EXPLAIN unsupported=0.25 cov=1.0 t=0.063
+[30/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.705
+[30/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=5.89
+[31/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[31/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.033
+[31/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.378
+[31/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.063
+[31/125] B4 EXPLAIN unsupported=0.8 cov=0.8333333333333334 t=4.544
+[31/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=0.0 t=7.353
+[32/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.072
+[32/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.287
+[32/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.95
+[32/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.132
+[32/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.706
+[32/125] B5 EXPLAIN unsupported=0.2222222222222222 cov=1.0 t=8.147
+[33/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.034
+[33/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.235
+[33/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.694
+[33/125] B3 EXPLAIN unsupported=0.4 cov=1.0 t=0.09
+[33/125] B4 EXPLAIN unsupported=0.25 cov=1.0 t=4.4
+[33/125] B5 EXPLAIN unsupported=0.25 cov=1.0 t=6.557
+[34/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.04
+[34/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.18
+[34/125] B2 EXPLAIN unsupported=0.2 cov=0.5 t=4.685
+[34/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=0.875 t=0.298
+[34/125] B4 EXPLAIN unsupported=0.15789473684210525 cov=0.5 t=4.617
+[34/125] B5 EXPLAIN unsupported=0.15789473684210525 cov=0.5 t=9.864
+[35/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.04
+[35/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.131
+[35/125] B2 EXPLAIN unsupported=0.4 cov=1.0 t=4.192
+[35/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.169
+[35/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=4.231
+[35/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=5.113
+[36/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.037
+[36/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.166
+[36/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=0.0 t=4.577
+[36/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.081
+[36/125] B4 EXPLAIN unsupported=0.6 cov=0.0 t=4.426
+[36/125] B5 EXPLAIN unsupported=0.6 cov=0.0 t=7.977
+[37/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.023
+[37/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.033
+[37/125] B2 EXPLAIN unsupported=0.8 cov=1.0 t=4.345
+[37/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=1.0 t=0.061
+[37/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.292
+[37/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=7.241
+[38/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.047
+[38/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.252
+[38/125] B2 EXPLAIN unsupported=0.4 cov=1.0 t=4.417
+[38/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.53
+[38/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.434
+[38/125] B5 EXPLAIN unsupported=0.625 cov=1.0 t=8.204
+[39/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.025
+[39/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.232
+[39/125] B2 EXPLAIN unsupported=1.0 cov=0.25 t=4.64
+[39/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.084
+[39/125] B4 EXPLAIN unsupported=0.5 cov=0.5 t=4.641
+[39/125] B5 EXPLAIN unsupported=0.5 cov=0.25 t=7.277
+[40/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.048
+[40/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.149
+[40/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.45
+[40/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.085
+[40/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.419
+[40/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=8.803
+[41/125] B0 EXPLAIN unsupported=1.0 cov=0.5 t=0.027
+[41/125] B1 EXPLAIN unsupported=1.0 cov=0.5 t=0.052
+[41/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=4.495
+[41/125] B3 EXPLAIN unsupported=0.625 cov=1.0 t=0.077
+[41/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=4.667
+[41/125] B5 EXPLAIN unsupported=0.75 cov=0.5 t=8.76
+[42/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.053
+[42/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.133
+[42/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.838
+[42/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.096
+[42/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=4.741
+[42/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=5.984
+[43/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[43/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.255
+[43/125] B2 EXPLAIN unsupported=0.5 cov=0.6666666666666666 t=4.887
+[43/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=0.3333333333333333 t=0.09
+[43/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=4.853
+[43/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=7.999
+[44/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.015
+[44/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.163
+[44/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.562
+[44/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.063
+[44/125] B4 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=4.575
+[44/125] B5 EXPLAIN unsupported=0.7272727272727273 cov=1.0 t=8.876
+[45/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.018
+[45/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.038
+[45/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.603
+[45/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.064
+[45/125] B4 EXPLAIN unsupported=0.8 cov=1.0 t=4.576
+[45/125] B5 EXPLAIN unsupported=0.8 cov=0.0 t=7.738
+[46/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[46/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.178
+[46/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.49
+[46/125] B3 EXPLAIN unsupported=0.75 cov=0.0 t=0.068
+[46/125] B4 EXPLAIN unsupported=0.4 cov=0.0 t=4.372
+[46/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=6.511
+[47/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.035
+[47/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.307
+[47/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.568
+[47/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.091
+[47/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.697
+[47/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=5.989
+[48/125] B0 EXPLAIN unsupported=1.0 cov=0.5 t=0.038
+[48/125] B1 EXPLAIN unsupported=1.0 cov=0.125 t=0.037
+[48/125] B2 EXPLAIN unsupported=0.25 cov=0.625 t=4.551
+[48/125] B3 EXPLAIN unsupported=0.42857142857142855 cov=0.125 t=0.084
+[48/125] B4 EXPLAIN unsupported=0.3 cov=0.875 t=4.542
+[48/125] B5 EXPLAIN unsupported=0.7142857142857143 cov=0.0 t=7.906
+[49/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.014
+[49/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.2
+[49/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.661
+[49/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.093
+[49/125] B4 EXPLAIN unsupported=0.058823529411764705 cov=1.0 t=4.692
+[49/125] B5 EXPLAIN unsupported=0.058823529411764705 cov=1.0 t=8.883
+[50/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.019
+[50/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.035
+[50/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.135
+[50/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.047
+[50/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=4.098
+[50/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=7.067
+[51/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.045
+[51/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.161
+[51/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=5.261
+[51/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.282
+[51/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.821
+[51/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=7.028
+[52/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.031
+[52/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.037
+[52/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.531
+[52/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.074
+[52/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=4.54
+[52/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=5.912
+[53/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.049
+[53/125] B1 EXPLAIN unsupported=1.0 cov=0.3333333333333333 t=0.234
+[53/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.742
+[53/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.096
+[53/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=4.562
+[53/125] B5 EXPLAIN unsupported=0.75 cov=0.3333333333333333 t=6.886
+[54/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.05
+[54/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.131
+[54/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.676
+[54/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.082
+[54/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.71
+[54/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=7.707
+[55/125] B0 EXPLAIN unsupported=1.0 cov=0.25 t=0.085
+[55/125] B1 EXPLAIN unsupported=1.0 cov=0.25 t=0.199
+[55/125] B2 EXPLAIN unsupported=0.7142857142857143 cov=0.75 t=5.093
+[55/125] B3 EXPLAIN unsupported=0.5 cov=0.75 t=0.361
+[55/125] B4 EXPLAIN unsupported=0.8 cov=0.5 t=4.896
+[55/125] B5 EXPLAIN unsupported=0.8 cov=0.5 t=8.912
+[56/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.066
+[56/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.04
+[56/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=5.049
+[56/125] B3 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=0.153
+[56/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=5.232
+[56/125] B5 EXPLAIN unsupported=0.8 cov=1.0 t=11.372
+[57/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.016
+[57/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.219
+[57/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.988
+[57/125] B3 EXPLAIN unsupported=1.0 cov=0.2222222222222222 t=0.105
+[57/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=4.7
+[57/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=7.403
+[58/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.022
+[58/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.155
+[58/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.861
+[58/125] B3 EXPLAIN unsupported=0.25 cov=1.0 t=0.136
+[58/125] B4 EXPLAIN unsupported=0.6 cov=1.0 t=4.852
+[58/125] B5 EXPLAIN unsupported=0.6 cov=1.0 t=7.818
+[59/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.047
+[59/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.037
+[59/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.631
+[59/125] B3 EXPLAIN unsupported=1.0 cov=1.0 t=0.084
+[59/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.783
+[59/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=7.296
+[60/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[60/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.18
+[60/125] B2 EXPLAIN unsupported=0.5 cov=0.0 t=4.477
+[60/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=0.057
+[60/125] B4 EXPLAIN unsupported=0.5 cov=0.0 t=4.253
+[60/125] B5 EXPLAIN unsupported=0.5 cov=0.0 t=6.604
+[61/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.015
+[61/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.247
+[61/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.633
+[61/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.114
+[61/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.607
+[61/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=5.93
+[62/125] B0 EXPLAIN unsupported=1.0 cov=0.375 t=0.013
+[62/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.147
+[62/125] B2 EXPLAIN unsupported=0.2 cov=0.5 t=4.664
+[62/125] B3 EXPLAIN unsupported=0.17647058823529413 cov=0.875 t=0.327
+[62/125] B4 EXPLAIN unsupported=0.0 cov=0.5 t=4.508
+[62/125] B5 EXPLAIN unsupported=0.0 cov=0.5 t=9.574
+[63/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.032
+[63/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.242
+[63/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.594
+[63/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.083
+[63/125] B4 EXPLAIN unsupported=0.2 cov=1.0 t=4.603
+[63/125] B5 EXPLAIN unsupported=0.2 cov=1.0 t=8.717
+[64/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.041
+[64/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.029
+[64/125] B2 EXPLAIN unsupported=0.75 cov=1.0 t=4.951
+[64/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.076
+[64/125] B4 EXPLAIN unsupported=0.75 cov=0.0 t=4.485
+[64/125] B5 EXPLAIN unsupported=0.75 cov=0.0 t=6.344
+[65/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.013
+[65/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.168
+[65/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.477
+[65/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.157
+[65/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.426
+[65/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=6.254
+[66/125] B0 EXPLAIN unsupported=0.0 cov=1.0 t=0.023
+[66/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.178
+[66/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.388
+[66/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.26
+[66/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.322
+[66/125] B5 EXPLAIN unsupported=0.75 cov=1.0 t=7.012
+[67/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.074
+[67/125] B1 EXPLAIN unsupported=1.0 cov=0.3333333333333333 t=0.195
+[67/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=5.187
+[67/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.361
+[67/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=4.705
+[67/125] B5 EXPLAIN unsupported=0.75 cov=1.0 t=6.995
+[68/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.017
+[68/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.24
+[68/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.83
+[68/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.106
+[68/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=4.901
+[68/125] B5 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=6.965
+[69/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.015
+[69/125] B1 EXPLAIN unsupported=0.0 cov=0.0 t=0.209
+[69/125] B2 EXPLAIN unsupported=0.8333333333333334 cov=1.0 t=4.585
+[69/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.338
+[69/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.457
+[69/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=7.784
+[70/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.025
+[70/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.152
+[70/125] B2 EXPLAIN unsupported=0.6 cov=1.0 t=4.238
+[70/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=1.0 t=0.054
+[70/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.111
+[70/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=6.803
+[71/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.06
+[71/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.172
+[71/125] B2 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=4.907
+[71/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.086
+[71/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=5.198
+[71/125] B5 EXPLAIN unsupported=0.75 cov=1.0 t=7.202
+[72/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.033
+[72/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.178
+[72/125] B2 EXPLAIN unsupported=0.8 cov=1.0 t=4.493
+[72/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.068
+[72/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.426
+[72/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=7.705
+[73/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.014
+[73/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.031
+[73/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=4.495
+[73/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.069
+[73/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.55
+[73/125] B5 EXPLAIN unsupported=0.6 cov=1.0 t=6.708
+[74/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.018
+[74/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.033
+[74/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=4.743
+[74/125] B3 EXPLAIN unsupported=0.5 cov=0.5 t=0.088
+[74/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=4.917
+[74/125] B5 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=7.687
+[75/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.018
+[75/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.172
+[75/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.597
+[75/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.102
+[75/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.615
+[75/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=7.102
+[76/125] B0 EXPLAIN unsupported=1.0 cov=0.75 t=0.015
+[76/125] B1 EXPLAIN unsupported=1.0 cov=0.75 t=0.133
+[76/125] B2 EXPLAIN unsupported=0.2 cov=1.0 t=4.993
+[76/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.207
+[76/125] B4 EXPLAIN unsupported=0.2 cov=1.0 t=4.603
+[76/125] B5 EXPLAIN unsupported=0.2 cov=1.0 t=9.181
+[77/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.056
+[77/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.163
+[77/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.868
+[77/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.111
+[77/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=4.736
+[77/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=6.847
+[78/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.051
+[78/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[78/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.587
+[78/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.092
+[78/125] B4 EXPLAIN unsupported=0.75 cov=0.0 t=4.701
+[78/125] B5 EXPLAIN unsupported=0.75 cov=0.0 t=6.07
+[79/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.015
+[79/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.034
+[79/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=4.352
+[79/125] B3 EXPLAIN unsupported=1.0 cov=1.0 t=0.074
+[79/125] B4 EXPLAIN unsupported=0.2 cov=1.0 t=4.424
+[79/125] B5 EXPLAIN unsupported=0.2 cov=1.0 t=8.745
+[80/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.014
+[80/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.042
+[80/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=4.631
+[80/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.476
+[80/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=4.604
+[80/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=6.018
+[81/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.013
+[81/125] B1 EXPLAIN unsupported=1.0 cov=0.25 t=0.213
+[81/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=0.25 t=4.916
+[81/125] B3 EXPLAIN unsupported=1.0 cov=0.25 t=0.081
+[81/125] B4 EXPLAIN unsupported=0.8 cov=0.25 t=4.789
+[81/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=6.439
+[82/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.046
+[82/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.153
+[82/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.706
+[82/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.081
+[82/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.794
+[82/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=6.903
+[83/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.016
+[83/125] B1 EXPLAIN unsupported=1.0 cov=0.5 t=0.271
+[83/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.694
+[83/125] B3 EXPLAIN unsupported=0.8333333333333334 cov=0.5 t=0.334
+[83/125] B4 EXPLAIN unsupported=0.8333333333333334 cov=0.5 t=4.827
+[83/125] B5 EXPLAIN unsupported=0.8333333333333334 cov=0.5 t=8.922
+[84/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.042
+[84/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.161
+[84/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=4.888
+[84/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.417
+[84/125] B4 EXPLAIN unsupported=0.6 cov=1.0 t=4.574
+[84/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=9.103
+[85/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.014
+[85/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.048
+[85/125] B2 EXPLAIN unsupported=0.5 cov=0.6666666666666666 t=4.733
+[85/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=0.3333333333333333 t=0.082
+[85/125] B4 EXPLAIN unsupported=0.4 cov=1.0 t=4.87
+[85/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=7.983
+[86/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.017
+[86/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.19
+[86/125] B2 EXPLAIN unsupported=0.75 cov=1.0 t=4.005
+[86/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.086
+[86/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=9.64
+[86/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=17.454
+[87/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.036
+[87/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.078
+[87/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=14.017
+[87/125] B3 EXPLAIN unsupported=0.0 cov=0.75 t=0.172
+[87/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=14.144
+[87/125] B5 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=24.864
+[88/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.055
+[88/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.425
+[88/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=13.63
+[88/125] B3 EXPLAIN unsupported=0.25 cov=0.0 t=0.138
+[88/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=13.425
+[88/125] B5 EXPLAIN unsupported=0.8 cov=0.0 t=15.29
+[89/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.058
+[89/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.385
+[89/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=14.619
+[89/125] B3 EXPLAIN unsupported=0.8 cov=0.0 t=0.146
+[89/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=13.693
+[89/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=20.311
+[90/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.083
+[90/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.386
+[90/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=13.829
+[90/125] B3 EXPLAIN unsupported=0.18181818181818182 cov=1.0 t=0.507
+[90/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=13.656
+[90/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=17.991
+[91/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.059
+[91/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.442
+[91/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=13.707
+[91/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.17
+[91/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=13.454
+[91/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=18.803
+[92/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.105
+[92/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.074
+[92/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=12.684
+[92/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.128
+[92/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=12.91
+[92/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=17.647
+[93/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.207
+[93/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.091
+[93/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=13.09
+[93/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.738
+[93/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=13.021
+[93/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=18.227
+[94/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.201
+[94/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.071
+[94/125] B2 EXPLAIN unsupported=0.625 cov=1.0 t=13.315
+[94/125] B3 EXPLAIN unsupported=0.6 cov=1.0 t=0.217
+[94/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=13.472
+[94/125] B5 EXPLAIN unsupported=0.8 cov=1.0 t=20.616
+[95/125] B0 EXPLAIN unsupported=1.0 cov=0.5 t=0.053
+[95/125] B1 EXPLAIN unsupported=1.0 cov=0.5 t=0.455
+[95/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=0.5 t=13.588
+[95/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=0.5 t=0.164
+[95/125] B4 EXPLAIN unsupported=0.6 cov=0.5 t=13.211
+[95/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=0.5 t=19.372
+[96/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.111
+[96/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.099
+[96/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=14.018
+[96/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.236
+[96/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=14.087
+[96/125] B5 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=20.272
+[97/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.034
+[97/125] B1 EXPLAIN unsupported=1.0 cov=0.5 t=0.503
+[97/125] B2 EXPLAIN unsupported=0.8 cov=0.5 t=13.522
+[97/125] B3 EXPLAIN unsupported=0.75 cov=0.5 t=0.765
+[97/125] B4 EXPLAIN unsupported=0.5 cov=0.5 t=13.031
+[97/125] B5 EXPLAIN unsupported=0.75 cov=0.5 t=21.843
+[98/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.093
+[98/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.404
+[98/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=14.619
+[98/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=0.203
+[98/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=14.257
+[98/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=18.93
+[99/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.195
+[99/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.114
+[99/125] B2 EXPLAIN unsupported=1.0 cov=0.4444444444444444 t=14.397
+[99/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=0.4444444444444444 t=0.342
+[99/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=14.138
+[99/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=22.461
+[100/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.033
+[100/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.639
+[100/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=14.17
+[100/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.237
+[100/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=14.089
+[100/125] B5 EXPLAIN unsupported=0.0 cov=1.0 t=20.81
+[101/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.197
+[101/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.079
+[101/125] B2 EXPLAIN unsupported=0.0 cov=1.0 t=12.707
+[101/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.146
+[101/125] B4 EXPLAIN unsupported=0.0 cov=1.0 t=12.71
+[101/125] B5 EXPLAIN unsupported=0.25 cov=1.0 t=16.927
+[102/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.085
+[102/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.066
+[102/125] B2 EXPLAIN unsupported=0.6666666666666666 cov=0.0 t=13.284
+[102/125] B3 EXPLAIN unsupported=0.8 cov=1.0 t=0.159
+[102/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=13.376
+[102/125] B5 EXPLAIN unsupported=0.75 cov=0.0 t=17.028
+[103/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.064
+[103/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.36
+[103/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=13.271
+[103/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.153
+[103/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=8.354
+[103/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=8.808
+[104/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.065
+[104/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.342
+[104/125] B2 EXPLAIN unsupported=0.8571428571428571 cov=1.0 t=13.822
+[104/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.452
+[104/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=13.905
+[104/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=19.043
+[105/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.417
+[105/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.102
+[105/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=13.969
+[105/125] B3 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=0.355
+[105/125] B4 EXPLAIN unsupported=0.5 cov=1.0 t=14.142
+[105/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=12.665
+[106/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.027
+[106/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.029
+[106/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=4.34
+[106/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.052
+[106/125] B4 EXPLAIN unsupported=1.0 cov=0.0 t=4.427
+[106/125] B5 EXPLAIN unsupported=1.0 cov=0.0 t=5.311
+[107/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.056
+[107/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.255
+[107/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.776
+[107/125] B3 EXPLAIN unsupported=1.0 cov=1.0 t=0.282
+[107/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=4.614
+[107/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=6.766
+[108/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.048
+[108/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.145
+[108/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=4.647
+[108/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.277
+[108/125] B4 EXPLAIN unsupported=0.6 cov=1.0 t=4.516
+[108/125] B5 EXPLAIN unsupported=0.5 cov=1.0 t=7.793
+[109/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.042
+[109/125] B1 EXPLAIN unsupported=1.0 cov=0.3333333333333333 t=0.176
+[109/125] B2 EXPLAIN unsupported=1.0 cov=0.3333333333333333 t=4.721
+[109/125] B3 EXPLAIN unsupported=0.6666666666666666 cov=0.6666666666666666 t=0.296
+[109/125] B4 EXPLAIN unsupported=0.75 cov=0.6666666666666666 t=4.587
+[109/125] B5 EXPLAIN unsupported=0.75 cov=0.3333333333333333 t=6.696
+[110/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.065
+[110/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.39
+[110/125] B2 EXPLAIN unsupported=0.8 cov=1.0 t=13.795
+[110/125] B3 EXPLAIN unsupported=0.5 cov=1.0 t=0.155
+[110/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=13.382
+[110/125] B5 EXPLAIN unsupported=0.3333333333333333 cov=1.0 t=17.866
+[111/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.105
+[111/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.483
+[111/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=13.866
+[111/125] B3 EXPLAIN unsupported=0.625 cov=1.0 t=0.675
+[111/125] B4 EXPLAIN unsupported=0.875 cov=1.0 t=13.717
+[111/125] B5 EXPLAIN unsupported=0.875 cov=1.0 t=29.73
+[112/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.109
+[112/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.439
+[112/125] B2 EXPLAIN unsupported=0.6 cov=1.0 t=14.239
+[112/125] B3 EXPLAIN unsupported=0.3125 cov=1.0 t=0.214
+[112/125] B4 EXPLAIN unsupported=0.75 cov=1.0 t=14.032
+[112/125] B5 EXPLAIN unsupported=0.75 cov=1.0 t=20.193
+[113/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.102
+[113/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.106
+[113/125] B2 EXPLAIN unsupported=1.0 cov=0.7777777777777778 t=13.904
+[113/125] B3 EXPLAIN unsupported=0.75 cov=0.7777777777777778 t=0.209
+[113/125] B4 EXPLAIN unsupported=0.5714285714285714 cov=0.4444444444444444 t=14.11
+[113/125] B5 ABSTAIN_AND_NAVIGATE unsupported=None cov=0.1111111111111111 t=13.951
+[114/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.065
+[114/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.499
+[114/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=13.469
+[114/125] B3 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=0.847
+[114/125] B4 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=12.568
+[114/125] B5 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=24.985
+[115/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.113
+[115/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.197
+[115/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=4.58
+[115/125] B3 EXPLAIN unsupported=0.0 cov=1.0 t=0.076
+[115/125] B4 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=4.444
+[115/125] B5 EXPLAIN unsupported=0.6666666666666666 cov=1.0 t=7.249
+[116/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.093
+[116/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.352
+[116/125] B2 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=15.092
+[116/125] B3 EXPLAIN unsupported=0.8 cov=0.0 t=0.128
+[116/125] B4 EXPLAIN unsupported=0.25 cov=1.0 t=14.794
+[116/125] B5 EXPLAIN unsupported=0.25 cov=1.0 t=23.201
+[117/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.04
+[117/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.147
+[117/125] B2 EXPLAIN unsupported=1.0 cov=1.0 t=13.493
+[117/125] B3 EXPLAIN unsupported=0.75 cov=1.0 t=0.201
+[117/125] B4 EXPLAIN unsupported=1.0 cov=1.0 t=13.922
+[117/125] B5 EXPLAIN unsupported=1.0 cov=1.0 t=16.963
+[118/125] B0 EXPLAIN unsupported=1.0 cov=0.75 t=0.032
+[118/125] B1 EXPLAIN unsupported=1.0 cov=0.75 t=0.57
+[118/125] B2 EXPLAIN unsupported=0.25 cov=1.0 t=13.913
+[118/125] B3 EXPLAIN unsupported=0.29411764705882354 cov=1.0 t=0.619
+[118/125] B4 EXPLAIN unsupported=0.14285714285714285 cov=1.0 t=13.858
+[118/125] B5 EXPLAIN unsupported=0.4166666666666667 cov=1.0 t=22.116
+[119/125] B0 EXPLAIN unsupported=1.0 cov=1.0 t=0.033
+[119/125] B1 EXPLAIN unsupported=1.0 cov=1.0 t=0.382
+[119/125] B2 EXPLAIN unsupported=0.5 cov=1.0 t=13.544
+[119/125] B3 EXPLAIN unsupported=0.5714285714285714 cov=1.0 t=0.247
+[119/125] B4 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=13.459
+[119/125] B5 EXPLAIN unsupported=0.7142857142857143 cov=1.0 t=22.135
+[120/125] B0 EXPLAIN unsupported=1.0 cov=0.0 t=0.134
+[120/125] B1 EXPLAIN unsupported=1.0 cov=0.0 t=0.063
+[120/125] B2 EXPLAIN unsupported=1.0 cov=0.0 t=13.545
+[120/125] B3 EXPLAIN unsupported=1.0 cov=0.0 t=0.168
+[120/125] B4 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=13.682
+[120/125] B5 EXPLAIN unsupported=0.3333333333333333 cov=0.0 t=18.63
+[121/125] B0 EXPLAIN unsupported=1.0 cov=None t=0.034
+[121/125] B1 EXPLAIN unsupported=1.0 cov=None t=0.669
+[121/125] B2 EXPLAIN unsupported=1.0 cov=None t=13.694
+[121/125] B3 EXPLAIN unsupported=0.5 cov=None t=0.89
+[121/125] B4 EXPLAIN unsupported=0.25 cov=None t=13.844
+[121/125] B5 EMERGENCY_OVERRIDE unsupported=None cov=None t=0.007
+[122/125] B0 EXPLAIN unsupported=1.0 cov=None t=0.027
+[122/125] B1 EXPLAIN unsupported=1.0 cov=None t=0.332
+[122/125] B2 EXPLAIN unsupported=1.0 cov=None t=13.426
+[122/125] B3 EXPLAIN unsupported=0.6 cov=None t=0.436
+[122/125] B4 EXPLAIN unsupported=0.375 cov=None t=13.241
+[122/125] B5 ABSTAIN_AND_NAVIGATE unsupported=None cov=None t=13.311
+[123/125] B0 EXPLAIN unsupported=1.0 cov=None t=0.007
+[123/125] B1 EXPLAIN unsupported=1.0 cov=None t=0.324
+[123/125] B2 EXPLAIN unsupported=1.0 cov=None t=13.625
+[123/125] B3 EXPLAIN unsupported=1.0 cov=None t=0.56
+[123/125] B4 EXPLAIN unsupported=1.0 cov=None t=13.255
+[123/125] B5 ASK unsupported=None cov=None t=13.335
+[124/125] B0 EXPLAIN unsupported=1.0 cov=None t=0.007
+[124/125] B1 EXPLAIN unsupported=1.0 cov=None t=0.468
+[124/125] B2 EXPLAIN unsupported=1.0 cov=None t=13.466
+[124/125] B3 EXPLAIN unsupported=1.0 cov=None t=0.188
+[124/125] B4 EXPLAIN unsupported=1.0 cov=None t=13.113
+[124/125] B5 ASK unsupported=None cov=None t=13.501
+[125/125] B0 EXPLAIN unsupported=1.0 cov=None t=0.008
+[125/125] B1 EXPLAIN unsupported=1.0 cov=None t=0.428
+[125/125] B2 EXPLAIN unsupported=0.625 cov=None t=13.549
+[125/125] B3 EXPLAIN unsupported=0.8571428571428571 cov=None t=0.642
+[125/125] B4 EXPLAIN unsupported=0.2857142857142857 cov=None t=13.568
+[125/125] B5 EXPLAIN unsupported=0.2857142857142857 cov=None t=25.99
+replayed 597 GPU answers
+{
+ "B0": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.9916666666666667,
+   "ci95": [
+    0.9705882352941176,
+    1.0
+   ],
+   "n": 120
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.05872294372294371,
+   "ci95": [
+    0.03883215549882217,
+    0.08464634539014702
+   ],
+   "n": 120
+  },
+  "historical_context_coverage": {
+   "mean": 0.403125,
+   "ci95": [
+    0.319,
+    0.4830097087378641
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 120
+  },
+  "latency_s": {
+   "mean": 0.05720000000000001,
+   "ci95": [
+    0.04777499999999996,
+    0.06822935779816514
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B1": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.9916666666666667,
+   "ci95": [
+    0.9739130434782609,
+    1.0
+   ],
+   "n": 120
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.45386123136123124,
+   "ci95": [
+    0.4146287328490717,
+    0.4909323834520684
+   ],
+   "n": 120
+  },
+  "historical_context_coverage": {
+   "mean": 0.5229166666666667,
+   "ci95": [
+    0.43538135593220345,
+    0.6039823008849557
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 120
+  },
+  "latency_s": {
+   "mean": 0.32245833333333335,
+   "ci95": [
+    0.19718584070796458,
+    0.5719259259259258
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B2": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.6334523809523808,
+   "ci95": [
+    0.5684630102040817,
+    0.7000517598343684
+   ],
+   "n": 120
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.3918218240093241,
+   "ci95": [
+    0.35471836592526246,
+    0.42679424365470864
+   ],
+   "n": 120
+  },
+  "historical_context_coverage": {
+   "mean": 0.7610879629629629,
+   "ci95": [
+    0.6862014453477866,
+    0.8306921675774135
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 0.9496527777777779,
+   "ci95": [
+    0.9142628205128206,
+    0.9750778816199377
+   ],
+   "n": 120
+  },
+  "latency_s": {
+   "mean": 8.279158333333339,
+   "ci95": [
+    7.3192080000000015,
+    9.280934426229505
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B3": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.6055210985909515,
+   "ci95": [
+    0.5447651409048467,
+    0.6608093521499506
+   ],
+   "n": 120
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.5057587802634242,
+   "ci95": [
+    0.46435020833800317,
+    0.5481378136656648
+   ],
+   "n": 120
+  },
+  "historical_context_coverage": {
+   "mean": 0.7883564814814815,
+   "ci95": [
+    0.718939393939394,
+    0.8531648451730418
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 0.945418390841185,
+   "ci95": [
+    0.9190729522462628,
+    0.9703732865358837
+   ],
+   "n": 120
+  },
+  "latency_s": {
+   "mean": 0.21474166666666666,
+   "ci95": [
+    0.1769310344827587,
+    0.25470992366412204
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B4": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.6027484458695758,
+   "ci95": [
+    0.5452261246378892,
+    0.6650254276467867
+   ],
+   "n": 120
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.5041015864080879,
+   "ci95": [
+    0.4638099975062644,
+    0.5429164666222474
+   ],
+   "n": 120
+  },
+  "historical_context_coverage": {
+   "mean": 0.7893287037037038,
+   "ci95": [
+    0.7223520249221185,
+    0.8549410029498524
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 0.9588173558897245,
+   "ci95": [
+    0.9336152882205514,
+    0.9796617712505563
+   ],
+   "n": 120
+  },
+  "latency_s": {
+   "mean": 8.155483333333331,
+   "ci95": [
+    7.211145299145302,
+    9.160666666666662
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 0.2,
+   "ci95": [
+    0.2,
+    0.2
+   ],
+   "n": 5
+  }
+ },
+ "B5": {
+  "unsupported_patient_claim_rate_raw": {
+   "mean": 0.6320881064431115,
+   "ci95": [
+    0.5716818273029575,
+    0.695460142450989
+   ],
+   "n": 117
+  },
+  "evidence_support_rate_raw": {
+   "mean": 0.46457861949645707,
+   "ci95": [
+    0.42660557757204237,
+    0.5034802342324154
+   ],
+   "n": 117
+  },
+  "historical_context_coverage": {
+   "mean": 0.6839814814814814,
+   "ci95": [
+    0.5979600694444444,
+    0.7660550458715596
+   ],
+   "n": 120
+  },
+  "patient_history_consistency": {
+   "mean": 0.9578113407060777,
+   "ci95": [
+    0.9345157564758292,
+    0.9775710284113645
+   ],
+   "n": 117
+  },
+  "latency_s": {
+   "mean": 11.909908333333334,
+   "ci95": [
+    10.714209090909092,
+    13.231841269841265
+   ],
+   "n": 120
+  },
+  "action_appropriateness_probes": {
+   "mean": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "n": 5
+  },
+  "unsupported_patient_claims_released_total": 0
+ }
+}

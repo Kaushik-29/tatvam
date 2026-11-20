@@ -8,6 +8,7 @@ any generation and be unit tested.
 """
 
 import re
+from backend import config
 from dataclasses import asdict, dataclass, field
 from datetime import date, timedelta
 from typing import Dict, List, Optional, Sequence
@@ -163,7 +164,7 @@ def _find_terms(q: str, terms: Sequence[str]) -> List[str]:
 def understand(query: str, known_medications: Sequence[str] = (), known_concepts: Sequence[str] = (),
                today: Optional[date] = None) -> QueryUnderstanding:
     q = " ".join(query.lower().split())
-    today = today or date.today()
+    today = today or config.today()
     qu = QueryUnderstanding(raw_query=query)
 
     syms = set(_find_terms(q, [s for s in SYMPTOM_TERMS if s != "pain"]))
