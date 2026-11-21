@@ -150,11 +150,22 @@ class QueryUnderstanding:
     time_end: Optional[str] = None
     temporal_relation: Optional[str] = None   # most_recent | trend | during_episode | range | None
     temporal_intent: Optional[str] = None     # recent | long_term | compare | None (TA-RAG-style)
+    episode_phrase: Optional[str] = None      # "when I had <X> in <month>": the condition/symptom named as anchor
     is_new_concern: bool = False
     expanded_terms: List[str] = field(default_factory=list)
 
     def to_dict(self):
         return asdict(self)
+
+
+PAIN_STOP = {"had", "have", "has", "reported", "report", "any", "my", "the", "of", "in", "with", "some", "a"}
+_MONTH_ALT = "january|february|march|april|may|june|july|august|september|october|november|december"
+# "when I had <X> back in <Month Year>", "when the patient reported <X> in ...",
+# "during their previous <X> episode ...", "active when the patient reported <X> ..."
+EPISODE_RE = re.compile(
+    r"\b(?:when (?:i|the patient|they|he|she) (?:had|reported|was diagnosed with|experienced)"
+    r"|during (?:my|their|the|his|her) (?:previous|last|earlier) )"
+    r"\s*(.+?)(?:\s+episode)?(?:\s+back)?(?:\s+(?:in|during)\s+(?:" + _MONTH_ALT + r")\b.*|\s*,\s*what\b.*|\s*\?|$)")
 
 
 def _find_terms(q: str, terms: Sequence[str]) -> List[str]:
@@ -173,7 +184,7 @@ def understand(query: str, known_medications: Sequence[str] = (), known_concepts
             syms.add(canon)
     if "pain" in q and not any("pain" in s for s in syms):
         m = re.search(r"\b(\w+)\s+pain\b", q)
-        syms.add(f"{m.group(1)} pain" if m else "pain")
+        syms.add(f"{m.group(1)} pain" if m and m.group(1) not in PAIN_STOP else "pain")
     qu.symptoms = sorted(syms)
 
     qu.medications = sorted({m for m in known_medications if m and re.search(r"\b" + re.escape(m.lower()) + r"\b", q)})
@@ -198,6 +209,12 @@ def understand(query: str, known_medications: Sequence[str] = (), known_concepts
     if re.search(r"\b(over time|trend|changed|getting (better|worse))\b", q):
         qu.temporal_relation = "trend"
     if re.search(r"\b(during|when i had|when the patient had|at the time)\b", q):
+        qu.temporal_relation = "during_episode"
+    m = EPISODE_RE.search(q)
+    if m:
+        # the anchor is named by the condition / symptom itself, which may be outside the symptom vocabulary
+        # (e.g. "sepsis, pulmonary", "asthma"): keep the phrase so retrieval can match record names
+        qu.episode_phrase = m.group(1).strip(" ,.?")
         qu.temporal_relation = "during_episode"
     m = re.search(r"\b(?:in|during)\s+(" + "|".join(MONTHS) + r")\s+((?:19|20)\d\d)\b", q)
     if m:

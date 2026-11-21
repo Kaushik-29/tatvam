@@ -24,7 +24,7 @@ from backend.patient_memory.hierarchy import LEAF_BY_PATH, leaf_of, resolve_virt
 from backend.patient_memory.repository import PatientMemory
 from backend.rag.embeddings import CachedEmbedder
 from backend.rag.fusion import rrf, tokenize
-from backend.rag.query_understanding import QueryUnderstanding
+from backend.rag.query_understanding import QueryUnderstanding, lay_name
 
 SYMPTOM_LEAVES = ("clinical_encounters/previous_symptoms", "clinical_encounters/complaints")
 MED_LEAVES = ("medication_history/current_medications", "medication_history/previous_medications")
@@ -107,15 +107,30 @@ class PatientRetriever:
     def episode_medications(self, qu: QueryUnderstanding, trace: RetrievalTrace) -> List[Dict[str, Any]]:
         """For 'during my previous <symptom> episode' questions: anchor on the matching symptom
         record (respecting any date range) and return medications in effect at that date."""
-        if qu.temporal_relation != "during_episode" or not qu.symptoms:
+        phrase = (getattr(qu, "episode_phrase", None) or "").lower()
+        if qu.temporal_relation != "during_episode" or not (qu.symptoms or phrase):
             return []
         lo, hi = qu.time_start or "0000", qu.time_end or "9999"
-        anchors = [r for r in self.records if r["leaf_path"] in SYMPTOM_LEAVES and r.get("effective_start")
-                   and lo <= r["effective_start"][:10] < hi
-                   and any(s in r["concept_display"].lower() for s in qu.symptoms)]
+        cands = [r for r in self.records if r["leaf_path"] in SYMPTOM_LEAVES and r.get("effective_start")
+                 and lo <= r["effective_start"][:10] < hi]
+
+        def match(r):
+            """2 = the record's name is the phrase the user used, 1 = one contains the other or a known
+            symptom term matches, 0 = no match. The anchor may be any condition/symptom name, not only
+            terms in the symptom vocabulary (e.g. 'sepsis, pulmonary')."""
+            names = {r["concept_display"].lower(), lay_name(r["concept_display"]).lower()}
+            if phrase and phrase in names:
+                return 2
+            if phrase and len(phrase) > 3 and any(phrase in n or (len(n) > 3 and n in phrase) for n in names):
+                return 1
+            return int(any(s in r["concept_display"].lower() for s in qu.symptoms))
+
+        scored = [(match(r), r) for r in cands]
+        best = max((m for m, _ in scored), default=0)
+        anchors = [r for m, r in scored if m == best and m > 0]     # records are newest first
         if not anchors:
             return []
-        a = anchors[0]                       # most recent matching episode
+        a = anchors[0]                       # most recent best-matching episode
         meds = self.mem.medications_active_at(a["effective_start"])
         trace.structured_ops.append(f"medications_active_at({a['effective_start'][:10]}) anchored on {a['record_id']}")
         return [a] + [{k: v for k, v in m.items() if not k.startswith("interval")} for m in meds]

@@ -68,3 +68,29 @@ def test_trend_series_skips_medication_change_questions():
     q = understand("Has the patient's acetaminophen prescription changed over time?")
     assert q.temporal_relation == "trend"
     assert PatientRetriever(mem=None).trend_series([(trend["group_path"], 1.0)], by_group, q, RetrievalTrace(method="t")) == []
+
+
+def test_episode_phrase_outside_symptom_vocabulary():
+    """eICU/MIMIC episodes are often named by diagnoses ('sepsis, pulmonary') that are not symptom terms;
+    before, these questions found no anchor and lost the episode-medication lookup entirely."""
+    q = understand("Which medicines was I on when I had sepsis, pulmonary back in January 2015?")
+    assert q.temporal_relation == "during_episode" and q.episode_phrase == "sepsis, pulmonary"
+    assert q.time_start == "2015-01-01"
+    q = understand("List the medications that were active when the patient reported vomiting in January 2014.")
+    assert q.temporal_relation == "during_episode" and q.episode_phrase == "vomiting"
+    assert understand("Which medicines was I on when I had pain back in January 2014?").symptoms == ["pain"]
+    assert understand("What was my latest blood pressure?").episode_phrase is None
+
+
+def test_episode_anchor_matches_record_name():
+    from types import SimpleNamespace
+    leaf = "clinical_encounters/previous_symptoms"
+    recs = [dict(_pt(1, "2015-01-03", None, key="anxiety", leaf=leaf), concept_display="Anxiety"),
+            dict(_pt(2, "2015-01-02", None, key="sepsis, pulmonary", leaf=leaf), concept_display="Sepsis, pulmonary")]
+    med = {"record_id": "MedicationRequest/m1", "interval_start": "2015-01-01T00:00:00", "interval_end": None}
+    mem = SimpleNamespace(medications_active_at=lambda when: [med])
+    pr = PatientRetriever(mem=mem)
+    pr._records = recs
+    trace = RetrievalTrace(method="t")
+    out = pr.episode_medications(understand("Which medicines was I on when I had sepsis, pulmonary in January 2015?"), trace)
+    assert [r["record_id"] for r in out] == [recs[1]["record_id"], "MedicationRequest/m1"]

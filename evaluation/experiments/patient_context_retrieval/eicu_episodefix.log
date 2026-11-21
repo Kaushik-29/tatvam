@@ -1,0 +1,104 @@
+600 queries, 530 patients, methods=['R4_hybrid_structured', 'R5_stair_structural', 'R8_stair_hybrid', 'R10_stair_precomputed', 'R11_stair_precomputed_hybrid']
+  10/530 patients (57s)
+  20/530 patients (68s)
+  30/530 patients (73s)
+  40/530 patients (81s)
+  50/530 patients (85s)
+  60/530 patients (87s)
+  70/530 patients (91s)
+  80/530 patients (96s)
+  90/530 patients (107s)
+  100/530 patients (113s)
+  110/530 patients (124s)
+  120/530 patients (136s)
+  130/530 patients (138s)
+  140/530 patients (143s)
+  150/530 patients (148s)
+  160/530 patients (155s)
+  170/530 patients (163s)
+  180/530 patients (176s)
+  190/530 patients (183s)
+  200/530 patients (195s)
+  210/530 patients (202s)
+  220/530 patients (211s)
+  230/530 patients (215s)
+  240/530 patients (221s)
+  250/530 patients (229s)
+  260/530 patients (234s)
+  270/530 patients (244s)
+  280/530 patients (251s)
+  290/530 patients (258s)
+  300/530 patients (265s)
+  310/530 patients (274s)
+  320/530 patients (279s)
+  330/530 patients (281s)
+  340/530 patients (287s)
+  350/530 patients (295s)
+  360/530 patients (299s)
+  370/530 patients (303s)
+  380/530 patients (306s)
+  390/530 patients (314s)
+  400/530 patients (321s)
+  410/530 patients (328s)
+  420/530 patients (330s)
+  430/530 patients (335s)
+  440/530 patients (339s)
+  450/530 patients (343s)
+  460/530 patients (347s)
+  470/530 patients (351s)
+  480/530 patients (357s)
+  490/530 patients (362s)
+  500/530 patients (366s)
+  510/530 patients (372s)
+  520/530 patients (379s)
+  530/530 patients (383s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 600,
+  "seconds_per_query": 0.37643364707628885,
+  "recall@1": 0.785,
+  "recall@5": 0.8308333333333338,
+  "mrr": 0.8315290309106093,
+  "ndcg@10": 0.8246828273034957
+ },
+ "R5_stair_structural": {
+  "n_queries": 600,
+  "seconds_per_query": 0.24079026341438292,
+  "recall@1": 0.5833333333333334,
+  "recall@5": 0.738083333333334,
+  "mrr": 0.6465034271284266,
+  "ndcg@10": 0.6694561510720395,
+  "leaf_exact_match": 0.47,
+  "invalid_path_rate": 0.0
+ },
+ "R10_stair_precomputed": {
+  "n_queries": 600,
+  "seconds_per_query": 0.01753549893697103,
+  "recall@1": 0.83,
+  "recall@5": 0.891583333333334,
+  "mrr": 0.8815126262626264,
+  "ndcg@10": 0.8748793532009059,
+  "leaf_exact_match": 0.8633333333333333,
+  "invalid_path_rate": 0.0
+ },
+ "R11_stair_precomputed_hybrid": {
+  "n_queries": 600,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.9016666666666666,
+  "recall@5": 0.9540833333333336,
+  "mrr": 0.937285714285714,
+  "ndcg@10": 0.9356321823075753,
+  "leaf_exact_match": 0.8633333333333333,
+  "invalid_path_rate": 0.0
+ },
+ "R8_stair_hybrid": {
+  "n_queries": 600,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.695,
+  "recall@5": 0.9098055555555559,
+  "mrr": 0.7971531269656258,
+  "ndcg@10": 0.8403971803683222,
+  "leaf_exact_match": 0.47,
+  "invalid_path_rate": 0.0
+ }
+}
