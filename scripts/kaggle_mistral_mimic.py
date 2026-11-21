@@ -1,4 +1,4 @@
-# Kaggle notebook: STAIR-Clinical Mistral-7B router on the MIMIC-IV FHIR demo questions.
+# Kaggle notebook: STAIR-Clinical Mistral-7B router on external test questions (MIMIC-IV FHIR demo or eICU demo).
 # Same constrained scoring as backend/stair_retriever/predict_stage1.py (copied so no repo upload is needed).
 # Settings: Accelerator = GPU T4, Internet = On. Dataset attached with
 #   mistral7b_clinical_stage1/adapter/...  and  stage1_mimic_eval.jsonl
@@ -21,8 +21,9 @@ except Exception as e:
 
 BASE = "mistralai/Mistral-7B-Instruct-v0.2"
 ADAPTER = os.path.dirname(glob.glob("/kaggle/input/**/adapter/adapter_config.json", recursive=True)[0])
-INP = glob.glob("/kaggle/input/**/stage1_mimic_eval.jsonl", recursive=True)[0]
-OUT = "/kaggle/working/mistral_mimic_predictions.jsonl"
+DATASET = "eicu"   # "mimic" or "eicu"
+INP = glob.glob(f"/kaggle/input/**/stage1_{DATASET}_eval.jsonl", recursive=True)[0]
+OUT = f"/kaggle/working/mistral_{DATASET}_predictions.jsonl"
 print("adapter:", ADAPTER, "\ninput:  ", INP)
 print(open(os.path.join(ADAPTER, "stair_clinical_meta.json")).read())   # should say "steps": 100
 

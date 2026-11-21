@@ -1,0 +1,84 @@
+600 queries, 530 patients, methods=['R4_hybrid_structured', 'R10_stair_precomputed', 'R11_stair_precomputed_hybrid']
+  10/530 patients (90s)
+  20/530 patients (95s)
+  30/530 patients (98s)
+  40/530 patients (101s)
+  50/530 patients (104s)
+  60/530 patients (106s)
+  70/530 patients (114s)
+  80/530 patients (125s)
+  90/530 patients (136s)
+  100/530 patients (142s)
+  110/530 patients (151s)
+  120/530 patients (163s)
+  130/530 patients (165s)
+  140/530 patients (169s)
+  150/530 patients (174s)
+  160/530 patients (181s)
+  170/530 patients (188s)
+  180/530 patients (198s)
+  190/530 patients (204s)
+  200/530 patients (214s)
+  210/530 patients (220s)
+  220/530 patients (227s)
+  230/530 patients (230s)
+  240/530 patients (233s)
+  250/530 patients (240s)
+  260/530 patients (244s)
+  270/530 patients (253s)
+  280/530 patients (258s)
+  290/530 patients (266s)
+  300/530 patients (274s)
+  310/530 patients (284s)
+  320/530 patients (290s)
+  330/530 patients (292s)
+  340/530 patients (300s)
+  350/530 patients (311s)
+  360/530 patients (315s)
+  370/530 patients (321s)
+  380/530 patients (324s)
+  390/530 patients (333s)
+  400/530 patients (340s)
+  410/530 patients (346s)
+  420/530 patients (349s)
+  430/530 patients (354s)
+  440/530 patients (359s)
+  450/530 patients (364s)
+  460/530 patients (367s)
+  470/530 patients (371s)
+  480/530 patients (378s)
+  490/530 patients (382s)
+  500/530 patients (388s)
+  510/530 patients (393s)
+  520/530 patients (401s)
+  530/530 patients (405s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 600,
+  "seconds_per_query": 0.42709087212880453,
+  "recall@1": 0.785,
+  "recall@5": 0.8040277777777782,
+  "mrr": 0.8311123642439426,
+  "ndcg@10": 0.7995665258963437
+ },
+ "R10_stair_precomputed": {
+  "n_queries": 600,
+  "seconds_per_query": 0.24535839557647704,
+  "recall@1": 0.82,
+  "recall@5": 0.8615555555555562,
+  "mrr": 0.8760959595959599,
+  "ndcg@10": 0.8461072127811453,
+  "leaf_exact_match": 0.8633333333333333,
+  "invalid_path_rate": 0.0
+ },
+ "R11_stair_precomputed_hybrid": {
+  "n_queries": 600,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.9,
+  "recall@5": 0.9246111111111113,
+  "mrr": 0.936035714285714,
+  "ndcg@10": 0.9096954051038244,
+  "leaf_exact_match": 0.8633333333333333,
+  "invalid_path_rate": 0.0
+ }
+}
