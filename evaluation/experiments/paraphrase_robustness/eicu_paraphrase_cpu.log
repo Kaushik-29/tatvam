@@ -1,0 +1,78 @@
+530 queries, 478 patients, methods=['R4_hybrid_structured', 'R5_stair_structural', 'R8_stair_hybrid']
+  10/478 patients (47s)
+  20/478 patients (51s)
+  30/478 patients (53s)
+  40/478 patients (56s)
+  50/478 patients (59s)
+  60/478 patients (61s)
+  70/478 patients (65s)
+  80/478 patients (70s)
+  90/478 patients (72s)
+  100/478 patients (75s)
+  110/478 patients (78s)
+  120/478 patients (78s)
+  130/478 patients (81s)
+  140/478 patients (83s)
+  150/478 patients (86s)
+  160/478 patients (90s)
+  170/478 patients (92s)
+  180/478 patients (95s)
+  190/478 patients (98s)
+  200/478 patients (100s)
+  210/478 patients (102s)
+  220/478 patients (104s)
+  230/478 patients (105s)
+  240/478 patients (108s)
+  250/478 patients (110s)
+  260/478 patients (112s)
+  270/478 patients (115s)
+  280/478 patients (116s)
+  290/478 patients (118s)
+  300/478 patients (120s)
+  310/478 patients (124s)
+  320/478 patients (126s)
+  330/478 patients (128s)
+  340/478 patients (129s)
+  350/478 patients (131s)
+  360/478 patients (134s)
+  370/478 patients (136s)
+  380/478 patients (138s)
+  390/478 patients (139s)
+  400/478 patients (141s)
+  410/478 patients (143s)
+  420/478 patients (144s)
+  430/478 patients (146s)
+  440/478 patients (148s)
+  450/478 patients (150s)
+  460/478 patients (153s)
+  470/478 patients (156s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 530,
+  "seconds_per_query": 0.1972892887187454,
+  "recall@1": 0.7660377358490567,
+  "recall@5": 0.8096226415094344,
+  "mrr": 0.8118022531904038,
+  "ndcg@10": 0.7971316609396679
+ },
+ "R5_stair_structural": {
+  "n_queries": 530,
+  "seconds_per_query": 0.09812111089814383,
+  "recall@1": 0.47924528301886793,
+  "recall@5": 0.6060691823899369,
+  "mrr": 0.5535127215551738,
+  "ndcg@10": 0.5591259082223536,
+  "leaf_exact_match": 0.41132075471698115,
+  "invalid_path_rate": 0.0
+ },
+ "R8_stair_hybrid": {
+  "n_queries": 530,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.6452830188679245,
+  "recall@5": 0.7968238993710695,
+  "mrr": 0.7422339484123167,
+  "ndcg@10": 0.746860626750003,
+  "leaf_exact_match": 0.41132075471698115,
+  "invalid_path_rate": 0.0
+ }
+}

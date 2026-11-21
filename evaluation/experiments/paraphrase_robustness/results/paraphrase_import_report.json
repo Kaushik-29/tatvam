@@ -1,0 +1,71 @@
+{
+ "eicu": {
+  "sampled": 600,
+  "accepted": 530,
+  "accepted_by_attempt": {
+   "2": 69,
+   "1": 442,
+   "3": 19
+  },
+  "rejected_after_last_attempt": {
+   "clinical_name_changed": 57,
+   "date_changed": 9,
+   "empty_or_length": 2,
+   "time_period_added": 2
+  },
+  "acceptance_rate": 0.883,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "85a8ac97747f5651787bab1fdd40399f3c14a2d9f605ab35cd118bf78dfde8bd"
+ },
+ "mimic": {
+  "sampled": 599,
+  "accepted": 522,
+  "accepted_by_attempt": {
+   "1": 418,
+   "2": 82,
+   "3": 22
+  },
+  "rejected_after_last_attempt": {
+   "time_period_added": 7,
+   "empty_or_length": 5,
+   "clinical_name_changed": 59,
+   "date_changed": 6
+  },
+  "acceptance_rate": 0.871,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "ccd568c65fa81b948b6ea208eb3e8fb04a881b1f69390ca24dfe526eb95dfb74"
+ },
+ "synthea": {
+  "sampled": 599,
+  "accepted": 486,
+  "accepted_by_attempt": {
+   "2": 67,
+   "1": 392,
+   "3": 27
+  },
+  "rejected_after_last_attempt": {
+   "clinical_name_changed": 106,
+   "date_changed": 3,
+   "time_period_added": 2,
+   "empty_or_length": 2
+  },
+  "acceptance_rate": 0.811,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "7255b01ecb5d1f9c145fae6c6fb494ec953da5376829b94c14ee409530000709"
+ }
+}
