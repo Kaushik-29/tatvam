@@ -29,7 +29,8 @@ from backend.rag.query_understanding import QueryUnderstanding, lay_name
 SYMPTOM_LEAVES = ("clinical_encounters/previous_symptoms", "clinical_encounters/complaints")
 MED_LEAVES = ("medication_history/current_medications", "medication_history/previous_medications")
 TREND_LEAF = "laboratory_observations/historical_trends"
-MED_WORDS = re.compile(r"\b(prescription|medication|medicine|dose|drug|pill|tablet)s?\b")
+MED_WORDS = re.compile(r"\b(prescription|medication|medicine|dose|dosage|drug|pill|tablet|regimen|med)s?\b")
+ARTICLE = re.compile(r"^(?:(?:a|an|the|my|their)\s+)+")
 SERIES_LEAVES = (TREND_LEAF, "laboratory_observations/laboratory_results", "laboratory_observations/vital_signs")
 
 
@@ -107,7 +108,7 @@ class PatientRetriever:
     def episode_medications(self, qu: QueryUnderstanding, trace: RetrievalTrace) -> List[Dict[str, Any]]:
         """For 'during my previous <symptom> episode' questions: anchor on the matching symptom
         record (respecting any date range) and return medications in effect at that date."""
-        phrase = (getattr(qu, "episode_phrase", None) or "").lower()
+        phrase = ARTICLE.sub("", (getattr(qu, "episode_phrase", None) or "").lower())
         if qu.temporal_relation != "during_episode" or not (qu.symptoms or phrase):
             return []
         lo, hi = qu.time_start or "0000", qu.time_end or "9999"
@@ -118,7 +119,7 @@ class PatientRetriever:
             """2 = the record's name is the phrase the user used, 1 = one contains the other or a known
             symptom term matches, 0 = no match. The anchor may be any condition/symptom name, not only
             terms in the symptom vocabulary (e.g. 'sepsis, pulmonary')."""
-            names = {r["concept_display"].lower(), lay_name(r["concept_display"]).lower()}
+            names = {ARTICLE.sub("", n) for n in (r["concept_display"].lower(), lay_name(r["concept_display"]).lower())}
             if phrase and phrase in names:
                 return 2
             if phrase and len(phrase) > 3 and any(phrase in n or (len(n) > 3 and n in phrase) for n in names):
@@ -134,6 +135,16 @@ class PatientRetriever:
         meds = self.mem.medications_active_at(a["effective_start"])
         trace.structured_ops.append(f"medications_active_at({a['effective_start'][:10]}) anchored on {a['record_id']}")
         return [a] + [{k: v for k, v in m.items() if not k.startswith("interval")} for m in meds]
+
+    def current_medications(self, qu: QueryUnderstanding, trace: RetrievalTrace, limit: int = 10) -> List[Dict[str, Any]]:
+        """'What am I taking now?' is an exact lookup (the current-medications section), not a text match:
+        hybrid search otherwise depends on the question happening to share words like 'active' with the records."""
+        if qu.intent != "current_medications":
+            return []
+        recs = [r for r in self.records if r["leaf_path"] == "medication_history/current_medications"][:limit]
+        if recs:
+            trace.structured_ops.append(f"current_medications({len(recs)})")
+        return recs
 
     def trend_series(self, groups: Sequence[Tuple[str, float]], by_group: Dict[str, List[Dict[str, Any]]],
                      qu: QueryUnderstanding, trace: RetrievalTrace, n_series: int = 2,
@@ -191,7 +202,7 @@ class PatientRetriever:
                 ordered.append(self.structured_filter([r for r in self.records if r["leaf_path"] == src], qu, trace))
         result: List[Dict[str, Any]] = []
         seen = set()
-        episode = self.episode_medications(qu, trace)
+        episode = self.episode_medications(qu, trace) + self.current_medications(qu, trace)
         for r in episode + self.trend_series(groups, by_group, qu, trace):
             if r["record_id"] not in seen:
                 seen.add(r["record_id"]); result.append(r)
@@ -206,5 +217,6 @@ class PatientRetriever:
         trace = RetrievalTrace(method="hybrid_structured")
         res = self.structured_filter(self.hybrid(query, 200, qu.expanded_terms), qu, trace)
         episode = self.episode_medications(qu, trace)
+        episode += [r for r in self.current_medications(qu, trace) if r["record_id"] not in {e["record_id"] for e in episode}]
         seen = {r["record_id"] for r in episode}
         return (episode + [r for r in res if r["record_id"] not in seen])[:k], trace

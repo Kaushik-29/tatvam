@@ -94,3 +94,35 @@ def test_episode_anchor_matches_record_name():
     trace = RetrievalTrace(method="t")
     out = pr.episode_medications(understand("Which medicines was I on when I had sepsis, pulmonary in January 2015?"), trace)
     assert [r["record_id"] for r in out] == [recs[1]["record_id"], "MedicationRequest/m1"]
+
+
+def test_episode_anchor_other_constructions():
+    """Episode questions are recognised by meaning, not one template: 'when X first started', 'an episode of X'."""
+    q = understand("What medications was the patient taking when the sinus infection first started in May 2026?")
+    assert (q.temporal_relation, q.episode_phrase, q.time_start) == ("during_episode", "sinus infection", "2026-05-01")
+    q = understand("Which drugs was I prescribed during an episode of acute bronchitis in March 2019?")
+    assert q.episode_phrase == "acute bronchitis" and q.time_start == "2019-03-01"
+    q = understand("What meds was the patient on while they were experiencing chest pain, what were they?")
+    assert q.episode_phrase == "chest pain"
+
+
+def test_dates_years_and_shifted_years():
+    """'in the year 2003' is a date range; 'during 2003' is a range, not an episode; MIMIC dates are shifted
+    into 21xx and must still be read."""
+    q = understand("What conditions did the patient receive a diagnosis for in the year 2003?")
+    assert (q.time_start, q.time_end, q.temporal_relation) == ("2003-01-01", "2004-01-01", "range")
+    q = understand("Which conditions was the patient diagnosed with during 2003?")
+    assert q.temporal_relation == "range" and q.episode_phrase is None
+    q = understand("What medications was the patient taking during their previous abdominal pain, unspecified site episode in August 2180?")
+    assert (q.time_start, q.episode_phrase) == ("2180-08-01", "abdominal pain, unspecified site")
+    assert understand("Show my potassium results from March of 2017.").time_start == "2017-03-01"
+
+
+def test_trend_and_intent_wording():
+    assert understand("Is the patient's sodium improving or deteriorating over the years?").temporal_relation == "trend"
+    assert understand("Is my body height trending upward or downward?").intent == "lab_trend"
+    assert understand("What is the patient's most current body weight measurement?").intent == "latest_measurement"
+    assert understand("List the patient's active medications.").intent == "current_medications"
+    assert understand("Has the patient's amoxicillin regimen undergone any adjustments?").intent == "medication_changes"
+    assert understand("Can I see the patient's history of complete blood cell counts?").organ_systems == ["blood count"]
+    assert understand("When was the patient's most recent clinical encounter?").intent == "last_visit"

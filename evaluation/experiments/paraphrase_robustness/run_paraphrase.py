@@ -42,6 +42,18 @@ DATASETS = {
               "original_results": "retrieval_eval_mimic_demo_mistral_episodefix"},
     "eicu": {"queries": DATA_DIR / "patient_retrieval_eicu_crd_demo" / "test" / "queries.jsonl",
              "original_results": "retrieval_eval_eicu_demo_mistral_episodefix"},
+    # development only: Synthea VALIDATION questions, used to build the robustness fix without
+    # looking at any test paraphrase
+    "synthea_val": {"queries": DATA_DIR / "patient_retrieval" / "validation" / "queries.jsonl",
+                    "original_results": None},
+}
+# Paraphrase sets. v1 = the first test set (frozen). dev = validation questions for developing fixes.
+# heldout = a fresh paraphrase of the same test questions with a new seed, generated only AFTER the
+# fix was frozen, so the fix is never tuned on the questions it is scored on.
+SETS = {
+    "v1": {"tag": "", "seed": 2026, "datasets": ["synthea", "mimic", "eicu"]},
+    "dev": {"tag": "_dev", "seed": 3101, "datasets": ["synthea_val"]},
+    "heldout": {"tag": "_heldout", "seed": 4242, "datasets": ["synthea", "mimic", "eicu"]},
 }
 MODEL = "llama3.2:3b"
 SYSTEM = ("You rewrite questions. You never answer them. You output only the rewritten question, "
@@ -115,7 +127,8 @@ def attempts_for(ds, eid, answers):
 
 def load_answers(ds, answers_dir):
     ans = {}
-    for fp in sorted(Path(answers_dir).glob(f"answers_paraphrase_prompts_{ds}*.jsonl")):
+    pat = re.compile(rf"answers_paraphrase_prompts_{re.escape(ds)}(_try\d+)?\.jsonl$")
+    for fp in sorted(p for p in Path(answers_dir).glob("answers_paraphrase_prompts_*.jsonl") if pat.match(p.name)):
         for l in open(fp, encoding="utf-8"):
             if l.strip():
                 r = json.loads(l)
@@ -127,21 +140,23 @@ def export(a):
     """First export: every sampled question. --retry N: only questions with no accepted paraphrase in
     attempts 1..N-1, with a different sampling seed. The same validator decides; attempts are reported."""
     RES.joinpath("kaggle").mkdir(parents=True, exist_ok=True)
-    for ds in a.datasets:
+    st = SETS[a.set]
+    for ds in a.datasets or st["datasets"]:
+        key = ds + st["tag"]
         all_rows, rows = sampled(ds)
-        suffix, opts = "", OPTIONS
+        suffix, opts = "", {**OPTIONS, "seed": st["seed"]}
         if a.retry:
-            tmpl, ans = template_words(all_rows), load_answers(ds, a.answers_dir)
+            tmpl, ans = template_words(all_rows), load_answers(key, a.answers_dir)
             rows = [r for r in rows
                     if not any(g and not validate(r["query"], clean(g["response"]), tmpl)
-                               for g in attempts_for(ds, r["example_id"], ans))]
-            suffix, opts = f"_try{a.retry}", {**OPTIONS, "seed": OPTIONS["seed"] + a.retry - 1}
-        out = RES / "kaggle" / f"paraphrase_prompts_{ds}{suffix}.jsonl"
+                               for g in attempts_for(key, r["example_id"], ans))]
+            suffix, opts = f"_try{a.retry}", {**OPTIONS, "seed": st["seed"] + a.retry - 1}
+        out = RES / "kaggle" / f"paraphrase_prompts_{key}{suffix}.jsonl"
         if out.exists():
             raise SystemExit(f"{out} exists; frozen exports are not overwritten")
         with open(out, "w", encoding="utf-8") as f:
             for r in rows:
-                rid = f"{ds}:{r['example_id']}" + (f"#{a.retry}" if a.retry else "")
+                rid = f"{key}:{r['example_id']}" + (f"#{a.retry}" if a.retry else "")
                 f.write(json.dumps({"id": rid, "model": MODEL, "today": None, "system": SYSTEM,
                                     "prompt": PROMPT.format(q=r["query"]), "options": opts}) + "\n")
         print(f"{ds}: {len(rows)} prompts -> {out}")
@@ -149,15 +164,17 @@ def export(a):
 
 def do_import(a):
     from backend.stair_retriever.predict_stage1 import export as stage1_export
-    rep_file = RES / "paraphrase_import_report.json"
+    st = SETS[a.set]
+    rep_file = RES / f"paraphrase_import_report{st['tag']}.json"
     report = json.loads(rep_file.read_text(encoding="utf-8")) if rep_file.exists() else {}
-    for ds in a.datasets:
+    for ds in a.datasets or st["datasets"]:
+        key = ds + st["tag"]
         all_rows, rows = sampled(ds)
         tmpl = template_words(all_rows)
-        ans = load_answers(ds, a.answers_dir)
+        ans = load_answers(key, a.answers_dir)
         kept, reasons, meta, by_attempt = [], Counter(), None, Counter()
         for r in rows:
-            tries = [g for g in attempts_for(ds, r["example_id"], ans) if g is not None]
+            tries = [g for g in attempts_for(key, r["example_id"], ans) if g is not None]
             if not tries:
                 reasons["missing"] += 1
                 continue
@@ -172,32 +189,33 @@ def do_import(a):
                     break
             if why:
                 reasons[why] += 1          # reason of the last attempt
-        d = OUT_DATA / ds
+        d = OUT_DATA / key
         d.mkdir(parents=True, exist_ok=True)
         qf = d / "queries.jsonl"
         with open(qf, "w", encoding="utf-8") as f:
             for r in kept:
                 f.write(json.dumps(r) + "\n")
-        stage1_export(sample=0, seed=SEED, out=d / f"stage1_{ds}_para_eval.jsonl", queries=str(qf))
-        report[ds] = {"sampled": len(rows), "accepted": len(kept), "accepted_by_attempt": dict(by_attempt),
+        stage1_export(sample=0, seed=SEED, out=d / f"stage1_{key}_para_eval.jsonl", queries=str(qf))
+        report[key] = {"sampled": len(rows), "accepted": len(kept), "accepted_by_attempt": dict(by_attempt),
                       "rejected_after_last_attempt": dict(reasons),
                       "acceptance_rate": round(len(kept) / len(rows), 3), "generator": meta,
                       "paraphrase_sha256": hashlib.sha256(qf.read_bytes()).hexdigest()}
-        print(ds, report[ds])
+        print(key, report[key])
     RES.mkdir(parents=True, exist_ok=True)
     rep_file.write_text(json.dumps(report, indent=1), encoding="utf-8")
 
 
 def compare(a):
     from evaluation.metrics import cluster_bootstrap_ci, paired_cluster_bootstrap
+    st = SETS[a.set]
     summary = {}
-    for ds in a.datasets:
-        para_file = RET_RES / f"retrieval_eval_{ds}_paraphrase_per_query.jsonl"
+    for ds in a.datasets or st["datasets"]:
+        para_file = RET_RES / f"retrieval_eval_{ds}{st['tag']}_paraphrase{a.para_suffix}_per_query.jsonl"
         if not para_file.exists():
             print(f"{ds}: no paraphrase results yet ({para_file.name})")
             continue
         orig = {(r["method"], r["example_id"]): r for r in map(json.loads, open(
-            RET_RES / f"{DATASETS[ds]['original_results']}_per_query.jsonl", encoding="utf-8"))}
+            RET_RES / f"{DATASETS[ds]['original_results']}{a.orig_suffix}_per_query.jsonl", encoding="utf-8"))}
         para = [json.loads(l) for l in open(para_file, encoding="utf-8")]
         out = {}
         for m in sorted({r["method"] for r in para}):
@@ -243,13 +261,16 @@ def compare(a):
             print(f"{ds:8} {m:30} vs R4: original {o['diff']:+.3f} [{o['ci'][0]:+.3f}, {o['ci'][1]:+.3f}]"
                   f"  paraphrase {p['diff']:+.3f} [{p['ci'][0]:+.3f}, {p['ci'][1]:+.3f}]")
     RES.mkdir(parents=True, exist_ok=True)
-    (RES / "paraphrase_robustness_summary.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
+    (RES / f"paraphrase_robustness_summary{st['tag']}{a.para_suffix}.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["export", "import", "compare"])
-    ap.add_argument("--datasets", nargs="+", default=list(DATASETS))
+    ap.add_argument("--set", choices=list(SETS), default="v1")
+    ap.add_argument("--datasets", nargs="+", default=None, help="default: the set's datasets")
+    ap.add_argument("--orig-suffix", default="", help="compare: suffix of the original-wording result tag")
+    ap.add_argument("--para-suffix", default="", help="compare: suffix of the paraphrase result tag")
     ap.add_argument("--answers-dir", default=str(RES / "kaggle"))
     ap.add_argument("--retry", type=int, default=0, help="export: attempt number (2, 3, ...) for unaccepted questions")
     a = ap.parse_args()

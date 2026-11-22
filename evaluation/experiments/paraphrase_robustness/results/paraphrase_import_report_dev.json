@@ -1,0 +1,23 @@
+{
+ "synthea_val_dev": {
+  "sampled": 600,
+  "accepted": 425,
+  "accepted_by_attempt": {
+   "1": 425
+  },
+  "rejected_after_last_attempt": {
+   "clinical_name_changed": 135,
+   "date_changed": 19,
+   "time_period_added": 17,
+   "empty_or_length": 4
+  },
+  "acceptance_rate": 0.708,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "8fccc130e3d0d606c5e8434026effb21db6a8d6b4b0fad9fe47dcf6c8669d0d9"
+ }
+}

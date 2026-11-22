@@ -87,10 +87,13 @@ SYSTEM_LABS: Dict[str, List[str]] = {
     "urine": ["urine", "urinalysis"],
 }
 SYSTEM_SYNONYMS = {
-    "kidney": ["kidney", "renal", "kidneys"], "liver": ["liver", "hepatic"],
-    "cholesterol": ["cholesterol", "lipid", "lipids", "fats"], "blood sugar": ["blood sugar", "sugar", "glucose", "diabetes", "a1c"],
-    "blood count": ["blood count", "cbc", "anemia", "anaemia", "hemoglobin", "haemoglobin"],
-    "thyroid": ["thyroid"], "electrolyte": ["electrolyte", "electrolytes", "salt", "sodium", "potassium"],
+    "kidney": ["kidney", "renal", "kidneys"], "liver": ["liver", "hepatic", "lft", "lfts", "liver enzymes"],
+    "cholesterol": ["cholesterol", "lipid", "lipids", "fats", "lipid panel", "lipid profile"],
+    "blood sugar": ["blood sugar", "sugar", "sugars", "glucose", "diabetes", "a1c", "hba1c", "glycated"],
+    "blood count": ["blood count", "blood counts", "blood cell count", "blood cell counts", "cbc", "full blood count",
+                    "red blood cells", "white blood cells", "platelets", "anemia", "anaemia", "hemoglobin", "haemoglobin"],
+    "thyroid": ["thyroid", "tsh"], "electrolyte": ["electrolyte", "electrolytes", "salt", "sodium", "potassium",
+                                                 "metabolic panel"],
     "urine": ["urine", "urinalysis"],
 }
 
@@ -113,19 +116,33 @@ CONDITION_LAY = {
     "body mass index 30+ - obesity": "obesity", "osteoarthritis of knee": "knee arthritis",
 }
 
+MED_NOUN = r"(medications?|medicines?|drugs?|meds|pills|prescriptions?|regimen|dos(e|es|age|ages)|administration)"
+# trend / course-over-time vocabulary (shared by the intent and the temporal relation)
+TREND_RE = re.compile(
+    r"\b(trend\w*|over time|over the (years|months|course|period)|changed|chang(es|ing) in|getting (better|worse)"
+    r"|improv\w*|worsen\w*|deteriorat\w*|evolv\w*|progress(ed|ion|ing)?|fluctuat\w*|vari(ed|ation|ations)"
+    r"|pattern|trajectory|(going|gone|went) (up|down)|upward|downward|increas\w*|decreas\w*|rising|falling"
+    r"|across (visits|tests|time)|track\w*)\b")
 INTENT_KEYWORDS = [
-    ("medication_during_episode", [r"\b(taking|on)\b.*\b(when|during)\b", r"\bduring (my|the|their)? ?(previous|last|earlier)\b"]),
-    ("medication_changes", [r"\bdose\b.*\bchang", r"\bchang\w*\b.*\b(dose|medication|medicine|prescription)", r"\bstopp?ed\b.*\b(medication|medicine|taking)", r"\bdiscontinu"]),
+    ("medication_during_episode", [r"\b(taking|on)\b.*\b(when|during)\b", r"\bduring (my|the|their)? ?(previous|last|earlier)\b",
+                                   r"\b" + MED_NOUN + r"\b.*\b(when|while|at the time)\b"]),
+    ("medication_changes", [r"\bdose\b.*\bchang", r"\bchang\w*\b.*\b(dose|medication|medicine|prescription)", r"\bstopp?ed\b.*\b(medication|medicine|taking)", r"\bdiscontinu",
+                            r"\b" + MED_NOUN + r"\b.*\b(chang|adjust|modif|alter|vari|switch|stopp|increas|decreas)\w*",
+                            r"\b(chang|adjust|modif|alter|switch)\w*\b.*\b" + MED_NOUN + r"\b"]),
     ("allergy_check", [r"\ballerg", r"\bintoleran", r"\breaction to\b"]),
-    ("current_medications", [r"\b(current|currently|right now|now)\b.*\b(medication|medicine|drugs|pills|taking)", r"\bwhat (medications|medicines|drugs) (am i|is the patient|are)\b"]),
-    ("lab_trend", [r"\b(trend|changed over time|over time|getting (better|worse)|improv|worsen|history of my)\b"]),
-    ("latest_measurement", [r"\b(latest|most recent|last)\b.*\b(reading|value|result|measurement|level|blood pressure|weight|bmi|heart rate|pulse)\b"]),
-    ("lab_lookup", [r"\b(lab|labs|laboratory|blood test|blood work|test results|tests)\b"]),
+    ("current_medications", [r"\b(current|currently|right now|now)\b.*\b(medication|medicine|drugs|pills|taking)", r"\bwhat (medications|medicines|drugs) (am i|is the patient|are)\b",
+                             r"\b(active|current|currently|presently|at present)\b.*\b" + MED_NOUN + r"\b",
+                             r"\b" + MED_NOUN + r"\b.*\b(currently|presently|right now|at present|active)\b"]),
+    ("lab_trend", [r"\b(history of my)\b", TREND_RE.pattern]),
+    ("latest_measurement", [r"\b(latest|most recent|most current|newest|last|current)\b.*\b(reading|value|result|measurement|level|blood pressure|weight|bmi|heart rate|pulse|height|temperature|oxygen)\b"]),
+    ("lab_lookup", [r"\b(lab|labs|laboratory|blood tests?|blood work|bloodwork|test results|tests|panels?|function tests?|blood (cell )?counts?)\b"]),
+    ("relevant_history", [r"\b(associated|related|connected|linked|relevant) (with|to)\b"]),
     ("similar_symptoms", [r"\b(before|previously|in the past|again|ever (had|experienced))\b"]),
-    ("last_visit", [r"\b(last|most recent|previous)\b.*\b(visit|appointment|saw a doctor|see a doctor|consultation|seen)\b", r"\bwhen did i (last )?(see|visit)\b"]),
-    ("procedure_history", [r"\b(procedure|surgery|operation|screening|scan|x-ray|colonoscopy)\b"]),
+    ("last_visit", [r"\b(last|most recent|previous|latest)\b.*\b(visit|appointment|saw a doctor|see a doctor|consultation|seen|encounter|check-?up)\b", r"\bwhen did i (last )?(see|visit)\b"]),
+    ("procedure_history", [r"\b(procedure|surgery|operation|screening|scan|x-ray|colonoscopy|undergo|undergone|underwent|removal of)\b"]),
     ("immunization_history", [r"\b(vaccin|immuni[sz]|shot|booster|flu jab)\w*"]),
-    ("condition_status", [r"\b(still have|resolved|cured|active|gone away)\b"]),
+    ("condition_status", [r"\b(still have|resolved|cured|active|gone away|still (present|there|ongoing)|ongoing|persist\w*)\b",
+                          r"\b(status|diagnos\w*)\b"]),
     ("relevant_history", [r"\b(relevant|related|connected|history)\b", r"\b(new|started|starting|recently)\b"]),
 ]
 
@@ -162,10 +179,44 @@ PAIN_STOP = {"had", "have", "has", "reported", "report", "any", "my", "the", "of
 _MONTH_ALT = "january|february|march|april|may|june|july|august|september|october|november|december"
 # "when I had <X> back in <Month Year>", "when the patient reported <X> in ...",
 # "during their previous <X> episode ...", "active when the patient reported <X> ..."
-EPISODE_RE = re.compile(
-    r"\b(?:when (?:i|the patient|they|he|she) (?:had|reported|was diagnosed with|experienced)"
-    r"|during (?:my|their|the|his|her) (?:previous|last|earlier) )"
-    r"\s*(.+?)(?:\s+episode)?(?:\s+back)?(?:\s+(?:in|during)\s+(?:" + _MONTH_ALT + r")\b.*|\s*,\s*what\b.*|\s*\?|$)")
+_WHO = r"(?:i|the patient|they|he|she|my (?:child|son|daughter)|the person)"
+_HAD = (r"(?:first\s+)?(?:had|have had|reported|mentioned|noticed|experienced|was experiencing|suffered from|was suffering from"
+        r"|was (?:first\s+)?diagnosed with|got|developed|came down with|was treated for|presented with|dealt with|went through"
+        r"|experiencing|having|suffering from|being treated for)")
+_ARTICLE = (r"(?:(?:a|an|the|my|their|his|her|that|this|previous|last|earlier|prior|past|recent"
+            r"|episode of|bout of|case of|attack of)\s+)*")
+# the anchor ends at a date, a clause break or the end of the question
+_ANCHOR_END = (r"(?=\s+(?:episode|bout|attack|flare)\b|\s+back\b"
+               r"|\s+(?:in|during|around|on|from|at)\s+(?:the\s+(?:month|year)\s+(?:of\s+)?)?(?:" + _MONTH_ALT + r"|(?:19|20|21)\d\d)\b"
+               r"|\s+(?:in|on|from)\s+(?:the patient'?s|my|their|his|her)\s+(?:record|chart|history|file)"
+               r"|\s*,\s*(?:what|which|how|can|could|please|and|did|were|was)\b|\s*\?|\s*\.|$|\s+(?:what|which|and)\b)")
+EPISODE_PATTERNS = [
+    # "when I had <X>", "when the patient was diagnosed with <X>", "while they were experiencing <X>"
+    re.compile(r"\b(?:when|while|at the time)\s+" + _WHO + r"\s+(?:was\s+|were\s+)?" + _HAD + r"\s+" + _ARTICLE
+               + r"(.+?)" + _ANCHOR_END),
+    # "during my previous <X> episode", "at the time of their last <X>"
+    re.compile(r"\b(?:during|throughout|at the time of|in the course of)\s+(?:my|their|the|his|her|that)\s+"
+               r"(?:previous|last|earlier|prior|past|recent)\s+" + _ARTICLE + r"(.+?)" + _ANCHOR_END),
+    # "when <X> first started / began / presented", "when the sinus infection first started"
+    re.compile(r"\b(?:when|while|at the time)\s+" + _ARTICLE + r"(.+?)\s+(?:first\s+)?(?:started|began|presented|appeared"
+               r"|occurred|developed|flared|happened|was (?:first\s+)?(?:diagnosed|reported|noted|recorded))\b"),
+    # "an episode of <X>", "the bout of <X>"
+    re.compile(r"\b(?:episode|bout|attack|case)\s+of\s+" + _ARTICLE + r"(.+?)" + _ANCHOR_END),
+]
+_STRIP_ARTICLE = re.compile(r"^(?:(?:a|an|the|my|their|his|her|that|this)\s+)+")
+_NOT_ANCHOR = re.compile(r"(?:it|this|that|them|they|so|there|ill|sick|i|you|he|she)")
+
+
+def episode_anchor(q: str) -> Optional[str]:
+    """The condition / symptom a 'medications during that episode' question is anchored on, or None."""
+    for pat in EPISODE_PATTERNS:
+        m = pat.search(q)
+        if m:
+            phrase = _STRIP_ARTICLE.sub("", m.group(1).strip(" ,.?"))
+            phrase = re.sub(r"\s+(?:episode|bout|attack|flare)$", "", phrase)
+            if phrase and not _NOT_ANCHOR.fullmatch(phrase):
+                return phrase
+    return None
 
 
 def _find_terms(q: str, terms: Sequence[str]) -> List[str]:
@@ -204,26 +255,29 @@ def understand(query: str, known_medications: Sequence[str] = (), known_concepts
     qu.is_new_concern = bool(re.search(r"\b(new|started|starting|recently|since|today|this week|i have|i've got|i am having|i'm having|i feel|i'm feeling)\b", q)) and bool(qu.symptoms)
 
     # ------------------------------------------------------------- temporal
-    if re.search(r"\b(latest|most recent|last)\b", q):
+    if re.search(r"\b(latest|most recent|most current|newest|last|up[- ]to[- ]date)\b", q):
         qu.temporal_relation = "most_recent"
-    if re.search(r"\b(over time|trend|changed|getting (better|worse))\b", q):
+    if TREND_RE.search(q):
         qu.temporal_relation = "trend"
-    if re.search(r"\b(during|when i had|when the patient had|at the time)\b", q):
+    # "during 2003" / "during the visit" are not episodes: only an episode construction or a named anchor is
+    if re.search(r"\b(when i had|when the patient had|at the time (of|when))\b", q):
         qu.temporal_relation = "during_episode"
-    m = EPISODE_RE.search(q)
-    if m:
+    phrase = episode_anchor(q)
+    if phrase:
         # the anchor is named by the condition / symptom itself, which may be outside the symptom vocabulary
         # (e.g. "sepsis, pulmonary", "asthma"): keep the phrase so retrieval can match record names
-        qu.episode_phrase = m.group(1).strip(" ,.?")
+        qu.episode_phrase = phrase
         qu.temporal_relation = "during_episode"
-    m = re.search(r"\b(?:in|during)\s+(" + "|".join(MONTHS) + r")\s+((?:19|20)\d\d)\b", q)
+    # dates: "<month> <year>" / "<month> of <year>" anywhere; date-shifted sources (MIMIC) use 21xx years
+    m = re.search(r"\b(" + "|".join(MONTHS) + r")\s+(?:of\s+)?((?:19|20|21)\d\d)\b", q)
     if m:
         mo, yr = MONTHS[m.group(1)], int(m.group(2))
         qu.time_start = f"{yr:04d}-{mo:02d}-01"
         qu.time_end = f"{yr + (mo == 12):04d}-{(mo % 12) + 1:02d}-01"
         qu.temporal_relation = qu.temporal_relation or "range"
     else:
-        m = re.search(r"\b(?:in|during|from|back in)\s+((?:19|20)\d\d)\b", q)
+        m = re.search(r"\b(?:in|during|from|back in|around|throughout|within|for|of|year)\s+(?:the\s+(?:calendar\s+)?year\s+)?"
+                      r"((?:19|20|21)\d\d)\b", q)
         if m:
             yr = int(m.group(1))
             qu.time_start, qu.time_end = f"{yr}-01-01", f"{yr + 1}-01-01"

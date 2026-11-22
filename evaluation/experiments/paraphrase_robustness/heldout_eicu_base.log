@@ -1,0 +1,78 @@
+520 queries, 472 patients, methods=['R4_hybrid_structured', 'R5_stair_structural', 'R8_stair_hybrid']
+  10/472 patients (31s)
+  20/472 patients (35s)
+  30/472 patients (38s)
+  40/472 patients (42s)
+  50/472 patients (45s)
+  60/472 patients (48s)
+  70/472 patients (53s)
+  80/472 patients (56s)
+  90/472 patients (60s)
+  100/472 patients (64s)
+  110/472 patients (65s)
+  120/472 patients (67s)
+  130/472 patients (69s)
+  140/472 patients (73s)
+  150/472 patients (78s)
+  160/472 patients (81s)
+  170/472 patients (85s)
+  180/472 patients (88s)
+  190/472 patients (91s)
+  200/472 patients (93s)
+  210/472 patients (96s)
+  220/472 patients (98s)
+  230/472 patients (101s)
+  240/472 patients (103s)
+  250/472 patients (106s)
+  260/472 patients (110s)
+  270/472 patients (112s)
+  280/472 patients (115s)
+  290/472 patients (116s)
+  300/472 patients (119s)
+  310/472 patients (124s)
+  320/472 patients (126s)
+  330/472 patients (128s)
+  340/472 patients (130s)
+  350/472 patients (134s)
+  360/472 patients (136s)
+  370/472 patients (137s)
+  380/472 patients (140s)
+  390/472 patients (141s)
+  400/472 patients (143s)
+  410/472 patients (145s)
+  420/472 patients (148s)
+  430/472 patients (150s)
+  440/472 patients (152s)
+  450/472 patients (155s)
+  460/472 patients (158s)
+  470/472 patients (160s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 520,
+  "seconds_per_query": 0.19062675466904275,
+  "recall@1": 0.7788461538461539,
+  "recall@5": 0.8283974358974363,
+  "mrr": 0.8253576717615029,
+  "ndcg@10": 0.8137333251535206
+ },
+ "R5_stair_structural": {
+  "n_queries": 520,
+  "seconds_per_query": 0.11686108112335206,
+  "recall@1": 0.5423076923076923,
+  "recall@5": 0.6724679487179492,
+  "mrr": 0.6073886530136524,
+  "ndcg@10": 0.6142429097547619,
+  "leaf_exact_match": 0.5,
+  "invalid_path_rate": 0.0
+ },
+ "R8_stair_hybrid": {
+  "n_queries": 520,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.675,
+  "recall@5": 0.8149038461538465,
+  "mrr": 0.7623259127551812,
+  "ndcg@10": 0.7844520450977348,
+  "leaf_exact_match": 0.5,
+  "invalid_path_rate": 0.0
+ }
+}

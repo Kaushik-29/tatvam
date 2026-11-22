@@ -1,0 +1,868 @@
+{
+  "protocol": "STAIR-Clinical longitudinal patient-context retrieval v1 (patient-separated split)",
+  "split": "external:paraphrase_robustness",
+  "sample": 520,
+  "seed": 2026,
+  "methods": [
+    "R4_hybrid_structured",
+    "R5_stair_structural",
+    "R8_stair_hybrid"
+  ],
+  "selector_params": {},
+  "query_set_sha256": "36c96e5564676271f6074cb60072814eb3e400b4f45fa016c68ec95e881f4ee2",
+  "embedding_model": "BAAI/bge-m3",
+  "stage1_predictions": null,
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "lora_adapter": null,
+  "metric_definitions": {
+    "recall@k": "capped: |gold \u2229 top-k| / min(|gold|, k); gold = up to 3 most recent records per gold evidence path",
+    "context_precision@10": "share of top-10 records that belong to a gold evidence path (concept group)",
+    "context_recall@10": "share of gold evidence paths with >=1 record in top-10",
+    "leaf_exact_match": "selected level-2 sections == gold sections (STAIR methods only)",
+    "invalid_path_rate": "emitted paths not present in the patient's hierarchy / all emitted paths",
+    "ci95": "patient-clustered percentile bootstrap, 1000 resamples"
+  },
+  "summary": {
+    "R4_hybrid_structured": {
+      "n_queries": 520,
+      "n_patients": 472,
+      "seconds_per_query": 0.19252017919833844,
+      "recall@1": {
+        "mean": 0.7769230769230769,
+        "ci95": [
+          0.7423076923076923,
+          0.8108108108108109
+        ],
+        "n": 520,
+        "numerator": 404.0,
+        "denominator": 520
+      },
+      "recall@3": {
+        "mean": 0.8221153846153848,
+        "ci95": [
+          0.7923976608187135,
+          0.8509433962264151
+        ],
+        "n": 520,
+        "numerator": 427.5,
+        "denominator": 520
+      },
+      "recall@5": {
+        "mean": 0.8249358974358978,
+        "ci95": [
+          0.7950653594771248,
+          0.8527296082209382
+        ],
+        "n": 520,
+        "numerator": 428.967,
+        "denominator": 520
+      },
+      "recall@10": {
+        "mean": 0.8564903846153846,
+        "ci95": [
+          0.8283909149072299,
+          0.8825063613231554
+        ],
+        "n": 520,
+        "numerator": 445.375,
+        "denominator": 520
+      },
+      "mrr": {
+        "mean": 0.8243961332999644,
+        "ci95": [
+          0.7951195614682569,
+          0.8525049685225663
+        ],
+        "n": 520,
+        "numerator": 428.686,
+        "denominator": 520
+      },
+      "ndcg@10": {
+        "mean": 0.8107258694625102,
+        "ci95": [
+          0.7828914750205473,
+          0.8379073940257401
+        ],
+        "n": 520,
+        "numerator": 421.577,
+        "denominator": 520
+      },
+      "context_precision@10": {
+        "mean": 0.4149999999999987,
+        "ci95": [
+          0.38665377176015353,
+          0.4458733205374266
+        ],
+        "n": 520,
+        "numerator": 215.8,
+        "denominator": 520
+      },
+      "context_recall@10": {
+        "mean": 0.8496868187480536,
+        "ci95": [
+          0.82041212299833,
+          0.8771584656908545
+        ],
+        "n": 520,
+        "numerator": 441.837,
+        "denominator": 520
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 1.0,
+          "n": 4
+        },
+        "lab_lookup": {
+          "mean": 0.7900343642611681,
+          "n": 97
+        },
+        "lab_trend": {
+          "mean": 0.8133802816901409,
+          "n": 71
+        },
+        "last_visit": {
+          "mean": 0.08,
+          "n": 50
+        },
+        "latest_measurement": {
+          "mean": 1.0,
+          "n": 95
+        },
+        "medication_changes": {
+          "mean": 0.9684684684684683,
+          "n": 37
+        },
+        "medication_during_episode": {
+          "mean": 0.5416666666666666,
+          "n": 6
+        },
+        "procedure_history": {
+          "mean": 0.9743589743589743,
+          "n": 39
+        },
+        "relevant_history": {
+          "mean": 0.95,
+          "n": 80
+        },
+        "similar_symptoms": {
+          "mean": 0.9390243902439024,
+          "n": 41
+        }
+      }
+    },
+    "R5_stair_structural": {
+      "n_queries": 520,
+      "n_patients": 472,
+      "seconds_per_query": 0.11448441514602074,
+      "recall@1": {
+        "mean": 0.6,
+        "ci95": [
+          0.556420233463035,
+          0.6441005802707931
+        ],
+        "n": 520,
+        "numerator": 312.0,
+        "denominator": 520
+      },
+      "recall@3": {
+        "mean": 0.5871794871794872,
+        "ci95": [
+          0.5483558994197291,
+          0.626039667306462
+        ],
+        "n": 520,
+        "numerator": 305.333,
+        "denominator": 520
+      },
+      "recall@5": {
+        "mean": 0.7303525641025645,
+        "ci95": [
+          0.6917469492614005,
+          0.7636276391554707
+        ],
+        "n": 520,
+        "numerator": 379.783,
+        "denominator": 520
+      },
+      "recall@10": {
+        "mean": 0.7848305860805861,
+        "ci95": [
+          0.7481932773109244,
+          0.8176051779935276
+        ],
+        "n": 520,
+        "numerator": 408.112,
+        "denominator": 520
+      },
+      "mrr": {
+        "mean": 0.6592782217782212,
+        "ci95": [
+          0.6218850539862206,
+          0.6976813141196697
+        ],
+        "n": 520,
+        "numerator": 342.825,
+        "denominator": 520
+      },
+      "ndcg@10": {
+        "mean": 0.6696155031597347,
+        "ci95": [
+          0.6355427098668435,
+          0.703107935499924
+        ],
+        "n": 520,
+        "numerator": 348.2,
+        "denominator": 520
+      },
+      "context_precision@10": {
+        "mean": 0.3761744505494507,
+        "ci95": [
+          0.348366147741148,
+          0.4071037016957321
+        ],
+        "n": 520,
+        "numerator": 195.611,
+        "denominator": 520
+      },
+      "context_recall@10": {
+        "mean": 0.788154520917679,
+        "ci95": [
+          0.7501274697259404,
+          0.821981132075472
+        ],
+        "n": 520,
+        "numerator": 409.84,
+        "denominator": 520
+      },
+      "leaf_exact_match": {
+        "mean": 0.5711538461538461,
+        "ci95": [
+          0.5275142314990512,
+          0.6140684410646388
+        ],
+        "n": 520,
+        "numerator": 297.0,
+        "denominator": 520
+      },
+      "leaf_recall": {
+        "mean": 0.7855769230769231,
+        "ci95": [
+          0.7504690431519699,
+          0.8158914728682171
+        ],
+        "n": 520,
+        "numerator": 408.5,
+        "denominator": 520
+      },
+      "leaf_hit@1": {
+        "mean": 0.8134615384615385,
+        "ci95": [
+          0.7766798418972332,
+          0.8460038986354775
+        ],
+        "n": 520,
+        "numerator": 423.0,
+        "denominator": 520
+      },
+      "group_path_recall": {
+        "mean": 0.7596738641475484,
+        "ci95": [
+          0.7238438016159996,
+          0.791792452830189
+        ],
+        "n": 520,
+        "numerator": 395.03,
+        "denominator": 520
+      },
+      "invalid_path_rate": {
+        "numerator": 0,
+        "denominator": 2801,
+        "mean": 0.0
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 0.95,
+          "n": 4
+        },
+        "lab_lookup": {
+          "mean": 0.7895189003436426,
+          "n": 97
+        },
+        "lab_trend": {
+          "mean": 0.8802816901408451,
+          "n": 71
+        },
+        "last_visit": {
+          "mean": 1.0,
+          "n": 50
+        },
+        "latest_measurement": {
+          "mean": 0.6526315789473685,
+          "n": 95
+        },
+        "medication_changes": {
+          "mean": 0.6936936936936936,
+          "n": 37
+        },
+        "medication_during_episode": {
+          "mean": 0.3666666666666667,
+          "n": 6
+        },
+        "procedure_history": {
+          "mean": 0.23076923076923078,
+          "n": 39
+        },
+        "relevant_history": {
+          "mean": 0.8191666666666666,
+          "n": 80
+        },
+        "similar_symptoms": {
+          "mean": 0.5487804878048781,
+          "n": 41
+        }
+      }
+    },
+    "R8_stair_hybrid": {
+      "n_queries": 520,
+      "n_patients": 472,
+      "seconds_per_query": 0.0,
+      "recall@1": {
+        "mean": 0.7096153846153846,
+        "ci95": [
+          0.667953667953668,
+          0.7466666666666667
+        ],
+        "n": 520,
+        "numerator": 369.0,
+        "denominator": 520
+      },
+      "recall@3": {
+        "mean": 0.8038461538461539,
+        "ci95": [
+          0.7735124760076779,
+          0.8333333333333334
+        ],
+        "n": 520,
+        "numerator": 418.0,
+        "denominator": 520
+      },
+      "recall@5": {
+        "mean": 0.8543589743589749,
+        "ci95": [
+          0.8267501605651898,
+          0.8811580294305826
+        ],
+        "n": 520,
+        "numerator": 444.267,
+        "denominator": 520
+      },
+      "recall@10": {
+        "mean": 0.9386675824175822,
+        "ci95": [
+          0.9199881861141403,
+          0.9570078314879826
+        ],
+        "n": 520,
+        "numerator": 488.107,
+        "denominator": 520
+      },
+      "mrr": {
+        "mean": 0.7923860077731529,
+        "ci95": [
+          0.7629507732996788,
+          0.8191140343834328
+        ],
+        "n": 520,
+        "numerator": 412.041,
+        "denominator": 520
+      },
+      "ndcg@10": {
+        "mean": 0.8188775113062033,
+        "ci95": [
+          0.7945668431118458,
+          0.8419384011301211
+        ],
+        "n": 520,
+        "numerator": 425.816,
+        "denominator": 520
+      },
+      "context_precision@10": {
+        "mean": 0.2965384615384609,
+        "ci95": [
+          0.27734374999999917,
+          0.3177387914230016
+        ],
+        "n": 520,
+        "numerator": 154.2,
+        "denominator": 520
+      },
+      "context_recall@10": {
+        "mean": 0.9376096491228072,
+        "ci95": [
+          0.9179558745348222,
+          0.9566343042071199
+        ],
+        "n": 520,
+        "numerator": 487.557,
+        "denominator": 520
+      },
+      "leaf_exact_match": {
+        "mean": 0.5711538461538461,
+        "ci95": [
+          0.5275142314990512,
+          0.6140684410646388
+        ],
+        "n": 520,
+        "numerator": 297.0,
+        "denominator": 520
+      },
+      "leaf_recall": {
+        "mean": 0.7855769230769231,
+        "ci95": [
+          0.7504690431519699,
+          0.8158914728682171
+        ],
+        "n": 520,
+        "numerator": 408.5,
+        "denominator": 520
+      },
+      "leaf_hit@1": {
+        "mean": 0.8134615384615385,
+        "ci95": [
+          0.7766798418972332,
+          0.8460038986354775
+        ],
+        "n": 520,
+        "numerator": 423.0,
+        "denominator": 520
+      },
+      "group_path_recall": {
+        "mean": 0.7596738641475484,
+        "ci95": [
+          0.7238438016159996,
+          0.791792452830189
+        ],
+        "n": 520,
+        "numerator": 395.03,
+        "denominator": 520
+      },
+      "invalid_path_rate": {
+        "numerator": 0,
+        "denominator": 2801,
+        "mean": 0.0
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 1.0,
+          "n": 4
+        },
+        "lab_lookup": {
+          "mean": 0.8957044673539517,
+          "n": 97
+        },
+        "lab_trend": {
+          "mean": 0.9119718309859155,
+          "n": 71
+        },
+        "last_visit": {
+          "mean": 1.0,
+          "n": 50
+        },
+        "latest_measurement": {
+          "mean": 0.8526315789473684,
+          "n": 95
+        },
+        "medication_changes": {
+          "mean": 0.7972972972972973,
+          "n": 37
+        },
+        "medication_during_episode": {
+          "mean": 0.3666666666666667,
+          "n": 6
+        },
+        "procedure_history": {
+          "mean": 0.6324786324786325,
+          "n": 39
+        },
+        "relevant_history": {
+          "mean": 0.9345833333333331,
+          "n": 80
+        },
+        "similar_symptoms": {
+          "mean": 0.6463414634146342,
+          "n": 41
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "R5_stair_structural - R4_hybrid_structured (recall@5)": {
+      "diff": -0.09458333333333335,
+      "ci": [
+        -0.14352030947775632,
+        -0.04850260416666666
+      ],
+      "p_bootstrap": 0.0,
+      "n_queries": 520,
+      "n_patients": 472
+    },
+    "R8_stair_hybrid - R4_hybrid_structured (recall@5)": {
+      "diff": 0.02942307692307691,
+      "ci": [
+        -0.011508704061895553,
+        0.06770833333333333
+      ],
+      "p_bootstrap": 0.158,
+      "n_queries": 520,
+      "n_patients": 472
+    },
+    "R5_stair_structural - R4_hybrid_structured (mrr)": {
+      "diff": -0.16511791152174274,
+      "ci": [
+        -0.21370254601271757,
+        -0.1176526779752402
+      ],
+      "p_bootstrap": 0.0,
+      "n_queries": 520,
+      "n_patients": 472
+    },
+    "R8_stair_hybrid - R4_hybrid_structured (mrr)": {
+      "diff": -0.03201012552681105,
+      "ci": [
+        -0.07325554686342874,
+        0.008498510607980576
+      ],
+      "p_bootstrap": 0.138,
+      "n_queries": 520,
+      "n_patients": 472
+    }
+  },
+  "failure_analysis": {
+    "R4_hybrid_structured": {
+      "zero_recall@5_count": 59,
+      "by_category": {
+        "lab_lookup": 4,
+        "lab_trend": 3,
+        "last_visit": 46,
+        "procedure_history": 1,
+        "relevant_history": 3,
+        "similar_symptoms": 2
+      },
+      "examples": [
+        {
+          "example_id": "d9373f9675fe2277",
+          "category": "lab_lookup",
+          "top5": [
+            "Observation/lab-416484661",
+            "Observation/lab-417344481",
+            "Observation/lab-425942268",
+            "Observation/lab-426618439",
+            "Observation/lab-417704723"
+          ],
+          "query": "What liver blood test results do I have on file?"
+        },
+        {
+          "example_id": "388ac7bc69636589",
+          "category": "lab_lookup",
+          "top5": [
+            "Observation/lab-645965351",
+            "Observation/lab-631063824",
+            "Observation/lab-643798376",
+            "Observation/lab-628777264",
+            "Observation/lab-640322528"
+          ],
+          "query": "Have the patient's liver function tests been conducted prior to the current diagnosis, and what were the results of those tests?"
+        },
+        {
+          "example_id": "7d1dcb5be6fdefe2",
+          "category": "lab_lookup",
+          "top5": [
+            "Procedure/tx-63204739",
+            "Observation/bp-346095608.0#None",
+            "Observation/bp-346095601.0#None",
+            "Observation/bp-346095593.0#None",
+            "Observation/bp-346095583.0#None"
+          ],
+          "query": "What previous blood count results are stored in the patient's file?"
+        },
+        {
+          "example_id": "c0e9e65318246947",
+          "category": "lab_lookup",
+          "top5": [
+            "Observation/lab-227801705",
+            "Observation/lab-229055550",
+            "Observation/lab-228009632",
+            "Observation/lab-228087046",
+            "Observation/lab-228189746"
+          ],
+          "query": "What historical liver lab results does the patient have on file?"
+        },
+        {
+          "example_id": "72038e47fdeec51d",
+          "category": "lab_trend",
+          "top5": [
+            "Patient/eicu-1099181#demographics"
+          ],
+          "query": "Does the patient's diastolic blood pressure have been trending upward or downward over the past five years?"
+        },
+        {
+          "example_id": "27abc520e78bda00",
+          "category": "lab_trend",
+          "top5": [
+            "Observation/bp-259929944.0#None",
+            "Observation/bp-259929940.0#None",
+            "Observation/bp-259929936.0#None",
+            "Observation/bp-259929932.0#None",
+            "Observation/bp-259929926.0#None"
+          ],
+          "query": "What is the pattern of diastolic blood pressure readings over time?"
+        },
+        {
+          "example_id": "09a046542ce52a88",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/medchange/eicu-642400/aspirin/0",
+            "Derived/medchange/eicu-642400/amiodarone/0",
+            "Derived/medchange/eicu-642400/warfarin/0",
+            "Derived/medchange/eicu-642400/methylprednisolone/2",
+            "Derived/medchange/eicu-642400/morphine/0"
+          ],
+          "query": "What changes have been observed in the patient's condition over time?"
+        },
+        {
+          "example_id": "a04eb2fbc6695ada",
+          "category": "last_visit",
+          "top5": [
+            "Encounter/icu-1433842#reason0",
+            "Condition/ph-8785052",
+            "Derived/medchange/eicu-1096609/albuterol_sulfate_2_5_mg_3ml/0",
+            "Derived/medchange/eicu-1096609/morphine_sulfate/0",
+            "Derived/medchange/eicu-1096609/sertraline_hcl/0"
+          ],
+          "query": "When was the most recent office visit documented in the patient's health record?"
+        }
+      ]
+    },
+    "R5_stair_structural": {
+      "zero_recall@5_count": 104,
+      "by_category": {
+        "lab_trend": 7,
+        "latest_measurement": 33,
+        "medication_changes": 10,
+        "medication_during_episode": 3,
+        "procedure_history": 30,
+        "relevant_history": 3,
+        "similar_symptoms": 18
+      },
+      "examples": [
+        {
+          "example_id": "27abc520e78bda00",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-1420854/bedside_glucose/mg_dl",
+            "Observation/lab-442726914",
+            "Observation/lab-443787352",
+            "Observation/lab-444792443",
+            "Derived/trend/eicu-1420854/albumin/g_dl"
+          ],
+          "query": "What is the pattern of diastolic blood pressure readings over time?"
+        },
+        {
+          "example_id": "45cf008cd011fd1d",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-1919227/bedside_glucose/mg_dl",
+            "Observation/lab-566203078",
+            "Observation/lab-564821962",
+            "Observation/lab-566048443",
+            "Derived/trend/eicu-1919227/anion_gap/nounit"
+          ],
+          "query": "Has the patient's systolic blood pressure shown any notable fluctuations from year one to the current date?"
+        },
+        {
+          "example_id": "0cb63711187e4c62",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-2146373/mch/pg",
+            "Observation/lab-666676262",
+            "Observation/lab-662847740",
+            "Observation/lab-660998372",
+            "Derived/trend/eicu-2146373/mcv/fl"
+          ],
+          "query": "Can I view the historical trend of the patient's mean corpuscular hemoglobin concentration (mchc) measurements?"
+        },
+        {
+          "example_id": "3535f0f086d2b10e",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-2154032/cpk/units_l",
+            "Observation/lab-629831045",
+            "Observation/lab-638981532",
+            "Observation/lab-638481668",
+            "Derived/trend/eicu-2154032/cpk_mb/ng_ml"
+          ],
+          "query": "Is the troponin - i level in the patient's health record improving or deteriorating?"
+        },
+        {
+          "example_id": "962ef2569ade05a9",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/medchange/eicu-256495/insulin_glargine/1",
+            "Derived/medchange/eicu-256495/labetalol_hcl/1",
+            "Derived/medchange/eicu-256495/nitroglycerin_sl/1",
+            "Derived/medchange/eicu-256495/furosemide_inj/1",
+            "Derived/medchange/eicu-256495/insulin_glargine/0"
+          ],
+          "query": "Has the patient's condition of monos shown any notable changes?"
+        },
+        {
+          "example_id": "a87dfde4e9daa26c",
+          "category": "lab_trend",
+          "top5": [
+            "Observation/lab-793649255",
+            "Observation/lab-791008334",
+            "Observation/lab-793649259",
+            "Observation/lab-791008340",
+            "Observation/lab-793649256"
+          ],
+          "query": "What is the pattern of diastolic blood pressure readings over time?"
+        },
+        {
+          "example_id": "09a046542ce52a88",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-642400/heart_rate/min",
+            "Observation/vp-322208059.0-heartrate",
+            "Observation/vp-322223703.0-heartrate",
+            "Observation/vp-322240501.0-heartrate",
+            "Derived/trend/eicu-642400/oxygen_saturation/unspecified"
+          ],
+          "query": "What changes have been observed in the patient's condition over time?"
+        },
+        {
+          "example_id": "bc9537902fbb7198",
+          "category": "latest_measurement",
+          "top5": [
+            "MedicationRequest/med-55866314",
+            "MedicationRequest/med-56566957",
+            "MedicationRequest/med-56511813",
+            "MedicationRequest/med-55805505",
+            "MedicationRequest/med-55700022"
+          ],
+          "query": "What was the patient's heart rate recorded during their last scheduled appointment?"
+        }
+      ]
+    },
+    "R8_stair_hybrid": {
+      "zero_recall@5_count": 57,
+      "by_category": {
+        "lab_trend": 4,
+        "latest_measurement": 14,
+        "medication_changes": 5,
+        "medication_during_episode": 3,
+        "procedure_history": 14,
+        "relevant_history": 3,
+        "similar_symptoms": 14
+      },
+      "examples": [
+        {
+          "example_id": "0cb63711187e4c62",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-2146373/mch/pg",
+            "Observation/lab-666676262",
+            "Derived/trend/eicu-2146373/mcv/fl",
+            "Observation/lab-662847740",
+            "Observation/lab-666676258"
+          ],
+          "query": "Can I view the historical trend of the patient's mean corpuscular hemoglobin concentration (mchc) measurements?"
+        },
+        {
+          "example_id": "3535f0f086d2b10e",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-2154032/cpk/units_l",
+            "Observation/lab-629831045",
+            "Observation/lab-638981532",
+            "Observation/lab-638481668",
+            "Derived/trend/eicu-2154032/cpk_mb/ng_ml"
+          ],
+          "query": "Is the troponin - i level in the patient's health record improving or deteriorating?"
+        },
+        {
+          "example_id": "962ef2569ade05a9",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/medchange/eicu-256495/labetalol_hcl/0",
+            "Derived/medchange/eicu-256495/furosemide_inj/0",
+            "Derived/medchange/eicu-256495/insulin_glargine/0",
+            "Derived/medchange/eicu-256495/insulin_glargine/1",
+            "Derived/medchange/eicu-256495/labetalol_hcl/1"
+          ],
+          "query": "Has the patient's condition of monos shown any notable changes?"
+        },
+        {
+          "example_id": "09a046542ce52a88",
+          "category": "lab_trend",
+          "top5": [
+            "Derived/trend/eicu-642400/heart_rate/min",
+            "Observation/vp-322208059.0-heartrate",
+            "Observation/vp-322223703.0-heartrate",
+            "Observation/vp-322240501.0-heartrate",
+            "Derived/trend/eicu-642400/oxygen_saturation/unspecified"
+          ],
+          "query": "What changes have been observed in the patient's condition over time?"
+        },
+        {
+          "example_id": "bc9537902fbb7198",
+          "category": "latest_measurement",
+          "top5": [
+            "MedicationRequest/med-55866314",
+            "MedicationRequest/med-56566957",
+            "MedicationRequest/med-56511813",
+            "MedicationRequest/med-55805505",
+            "MedicationRequest/med-55700022"
+          ],
+          "query": "What was the patient's heart rate recorded during their last scheduled appointment?"
+        },
+        {
+          "example_id": "a5c31f8807415244",
+          "category": "latest_measurement",
+          "top5": [
+            "MedicationRequest/med-88091957",
+            "MedicationRequest/med-84692129",
+            "MedicationRequest/med-85952014",
+            "MedicationRequest/med-86493965",
+            "MedicationRequest/med-88120944"
+          ],
+          "query": "What was the patient's blood pressure recorded during their last visit to the clinic?"
+        },
+        {
+          "example_id": "82f7b76f768851ed",
+          "category": "latest_measurement",
+          "top5": [
+            "MedicationRequest/med-91830443",
+            "MedicationRequest/med-91359723",
+            "MedicationRequest/med-92813837",
+            "MedicationRequest/med-90654691",
+            "MedicationRequest/med-91995699"
+          ],
+          "query": "What was the patient's blood pressure recorded during their last visit to the clinic?"
+        },
+        {
+          "example_id": "68b5a68d10e6b166",
+          "category": "latest_measurement",
+          "top5": [
+            "MedicationRequest/med-96604334",
+            "MedicationRequest/med-97227722",
+            "MedicationRequest/med-97998144",
+            "MedicationRequest/med-97407612",
+            "MedicationRequest/med-97077369"
+          ],
+          "query": "What was the patient's heart rate recorded during their last medical assessment?"
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-11-22T19:24:04"
+}

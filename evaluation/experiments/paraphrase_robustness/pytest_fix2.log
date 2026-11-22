@@ -1,0 +1,19 @@
+........................................................................ [ 45%]
+........................................................................ [ 90%]
+................                                                         [100%]
+============================== warnings summary ===============================
+C:\Users\lenovo\AppData\Local\Programs\Python\Python311\Lib\site-packages\starlette\formparsers.py:12
+  C:\Users\lenovo\AppData\Local\Programs\Python\Python311\Lib\site-packages\starlette\formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
+    import multipart
+
+tests/test_phase5_5_e2e_security.py::test_full_synthetic_workflow
+tests/test_phase5_5_sse.py::test_sse_in_domain_events_sequence
+tests/test_rag_pipeline.py::test_system_b3_policy_precedence
+tests/test_rag_pipeline.py::test_system_b3_policy_precedence
+tests/test_rag_pipeline.py::test_system_b3_policy_precedence
+tests/test_rag_pipeline.py::test_system_b3_policy_precedence
+  C:\Users\lenovo\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\main.py:1114: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.9/migration/
+    warnings.warn('The `dict` method is deprecated; use `model_dump` instead.', category=PydanticDeprecatedSince20)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+160 passed, 7 warnings in 165.25s (0:02:45)

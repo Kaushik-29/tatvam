@@ -1,0 +1,41 @@
+501 queries, 108 patients, methods=['R4_hybrid_structured', 'R5_stair_structural', 'R8_stair_hybrid']
+  10/108 patients (115s)
+  20/108 patients (129s)
+  30/108 patients (144s)
+  40/108 patients (156s)
+  50/108 patients (169s)
+  60/108 patients (182s)
+  70/108 patients (208s)
+  80/108 patients (246s)
+  90/108 patients (259s)
+  100/108 patients (268s)
+{
+ "R4_hybrid_structured": {
+  "n_queries": 501,
+  "seconds_per_query": 0.35855913162231445,
+  "recall@1": 0.7045908183632734,
+  "recall@5": 0.7531936127744517,
+  "mrr": 0.762654265489771,
+  "ndcg@10": 0.7442664882644761
+ },
+ "R5_stair_structural": {
+  "n_queries": 501,
+  "seconds_per_query": 0.238081139718701,
+  "recall@1": 0.5888223552894212,
+  "recall@5": 0.7171989354624086,
+  "mrr": 0.6565656565656561,
+  "ndcg@10": 0.660085967226859,
+  "leaf_exact_match": 0.5748502994011976,
+  "invalid_path_rate": 0.0
+ },
+ "R8_stair_hybrid": {
+  "n_queries": 501,
+  "seconds_per_query": 0.0,
+  "recall@1": 0.718562874251497,
+  "recall@5": 0.7888556220891553,
+  "mrr": 0.7751122199783701,
+  "ndcg@10": 0.7854604978600975,
+  "leaf_exact_match": 0.5748502994011976,
+  "invalid_path_rate": 0.0
+ }
+}

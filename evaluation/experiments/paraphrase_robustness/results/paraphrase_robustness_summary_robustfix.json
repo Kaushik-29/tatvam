@@ -1,0 +1,1453 @@
+{
+ "synthea": {
+  "R10_stair_precomputed": {
+   "n": 486,
+   "original_recall@5": {
+    "mean": 0.8539094650205765,
+    "lo": 0.8220641867250186,
+    "hi": 0.8824683965402537
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.7968106995884778,
+    "lo": 0.7629487179487184,
+    "hi": 0.8292439862542957
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.057098765432098755,
+    "ci": [
+     -0.07866528354080222,
+     -0.036330409356725143
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 486,
+    "n_patients": 108
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 3,
+     "original": 0.756,
+     "paraphrase": 0.756
+    },
+    "condition_status": {
+     "n": 31,
+     "original": 0.86,
+     "paraphrase": 0.86
+    },
+    "current_medications": {
+     "n": 16,
+     "original": 1.0,
+     "paraphrase": 0.917
+    },
+    "diagnoses_in_year": {
+     "n": 35,
+     "original": 0.561,
+     "paraphrase": 0.561
+    },
+    "immunization_history": {
+     "n": 34,
+     "original": 0.877,
+     "paraphrase": 0.877
+    },
+    "lab_lookup": {
+     "n": 60,
+     "original": 0.93,
+     "paraphrase": 0.913
+    },
+    "lab_trend": {
+     "n": 60,
+     "original": 0.904,
+     "paraphrase": 0.892
+    },
+    "last_visit": {
+     "n": 24,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "latest_measurement": {
+     "n": 65,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_during_episode": {
+     "n": 10,
+     "original": 0.95,
+     "paraphrase": 0.51
+    },
+    "procedure_history": {
+     "n": 22,
+     "original": 0.818,
+     "paraphrase": 0.614
+    },
+    "relevant_history": {
+     "n": 68,
+     "original": 0.8,
+     "paraphrase": 0.717
+    },
+    "similar_symptoms": {
+     "n": 58,
+     "original": 0.684,
+     "paraphrase": 0.509
+    }
+   }
+  },
+  "R11_stair_precomputed_hybrid": {
+   "n": 486,
+   "original_recall@5": {
+    "mean": 0.9049382716049387,
+    "lo": 0.8746666666666665,
+    "hi": 0.9307176391683438
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8515089163237316,
+    "lo": 0.8181518151815184,
+    "hi": 0.8818150448585235
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.05342935528120714,
+    "ci": [
+     -0.07584434654919238,
+     -0.03076358296622614
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 486,
+    "n_patients": 108
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 3,
+     "original": 0.756,
+     "paraphrase": 0.867
+    },
+    "condition_status": {
+     "n": 31,
+     "original": 0.887,
+     "paraphrase": 0.887
+    },
+    "current_medications": {
+     "n": 16,
+     "original": 1.0,
+     "paraphrase": 0.95
+    },
+    "diagnoses_in_year": {
+     "n": 35,
+     "original": 0.603,
+     "paraphrase": 0.641
+    },
+    "immunization_history": {
+     "n": 34,
+     "original": 0.971,
+     "paraphrase": 0.971
+    },
+    "lab_lookup": {
+     "n": 60,
+     "original": 0.963,
+     "paraphrase": 0.96
+    },
+    "lab_trend": {
+     "n": 60,
+     "original": 0.95,
+     "paraphrase": 0.908
+    },
+    "last_visit": {
+     "n": 24,
+     "original": 1.0,
+     "paraphrase": 0.917
+    },
+    "latest_measurement": {
+     "n": 65,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_during_episode": {
+     "n": 10,
+     "original": 1.0,
+     "paraphrase": 0.56
+    },
+    "procedure_history": {
+     "n": 22,
+     "original": 0.924,
+     "paraphrase": 0.833
+    },
+    "relevant_history": {
+     "n": 68,
+     "original": 0.857,
+     "paraphrase": 0.795
+    },
+    "similar_symptoms": {
+     "n": 58,
+     "original": 0.819,
+     "paraphrase": 0.621
+    }
+   }
+  },
+  "R4_hybrid_structured": {
+   "n": 486,
+   "original_recall@5": {
+    "mean": 0.772462277091907,
+    "lo": 0.7409090909090913,
+    "hi": 0.800071684587814
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.7284293552812073,
+    "lo": 0.6967082467082467,
+    "hi": 0.7580388080388082
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.04403292181069958,
+    "ci": [
+     -0.07130350194552526,
+     -0.017726971504307493
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 486,
+    "n_patients": 108
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 3,
+     "original": 0.178,
+     "paraphrase": 0.111
+    },
+    "condition_status": {
+     "n": 31,
+     "original": 0.79,
+     "paraphrase": 0.731
+    },
+    "current_medications": {
+     "n": 16,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "diagnoses_in_year": {
+     "n": 35,
+     "original": 0.593,
+     "paraphrase": 0.491
+    },
+    "immunization_history": {
+     "n": 34,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "lab_lookup": {
+     "n": 60,
+     "original": 0.88,
+     "paraphrase": 0.87
+    },
+    "lab_trend": {
+     "n": 60,
+     "original": 0.817,
+     "paraphrase": 0.762
+    },
+    "last_visit": {
+     "n": 24,
+     "original": 0.0,
+     "paraphrase": 0.042
+    },
+    "latest_measurement": {
+     "n": 65,
+     "original": 0.985,
+     "paraphrase": 0.923
+    },
+    "medication_during_episode": {
+     "n": 10,
+     "original": 1.0,
+     "paraphrase": 0.637
+    },
+    "procedure_history": {
+     "n": 22,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "relevant_history": {
+     "n": 68,
+     "original": 0.581,
+     "paraphrase": 0.537
+    },
+    "similar_symptoms": {
+     "n": 58,
+     "original": 0.73,
+     "paraphrase": 0.69
+    }
+   }
+  },
+  "R5_stair_structural": {
+   "n": 486,
+   "original_recall@5": {
+    "mean": 0.7298696844993142,
+    "lo": 0.6902405498281786,
+    "hi": 0.7673664122137408
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.6731138545953359,
+    "lo": 0.6361330698287223,
+    "hi": 0.7081961591220853
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.05675582990397805,
+    "ci": [
+     -0.08177993527508091,
+     -0.03201566951566951
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 486,
+    "n_patients": 108
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 3,
+     "original": 0.756,
+     "paraphrase": 0.756
+    },
+    "condition_status": {
+     "n": 31,
+     "original": 0.828,
+     "paraphrase": 0.731
+    },
+    "current_medications": {
+     "n": 16,
+     "original": 1.0,
+     "paraphrase": 0.904
+    },
+    "diagnoses_in_year": {
+     "n": 35,
+     "original": 0.477,
+     "paraphrase": 0.375
+    },
+    "immunization_history": {
+     "n": 34,
+     "original": 0.877,
+     "paraphrase": 0.877
+    },
+    "lab_lookup": {
+     "n": 60,
+     "original": 0.93,
+     "paraphrase": 0.88
+    },
+    "lab_trend": {
+     "n": 60,
+     "original": 0.771,
+     "paraphrase": 0.713
+    },
+    "last_visit": {
+     "n": 24,
+     "original": 1.0,
+     "paraphrase": 0.792
+    },
+    "latest_measurement": {
+     "n": 65,
+     "original": 0.585,
+     "paraphrase": 0.6
+    },
+    "medication_during_episode": {
+     "n": 10,
+     "original": 0.95,
+     "paraphrase": 0.473
+    },
+    "procedure_history": {
+     "n": 22,
+     "original": 0.485,
+     "paraphrase": 0.515
+    },
+    "relevant_history": {
+     "n": 68,
+     "original": 0.829,
+     "paraphrase": 0.779
+    },
+    "similar_symptoms": {
+     "n": 58,
+     "original": 0.408,
+     "paraphrase": 0.382
+    }
+   }
+  },
+  "R8_stair_hybrid": {
+   "n": 486,
+   "original_recall@5": {
+    "mean": 0.8342249657064474,
+    "lo": 0.8024779361846572,
+    "hi": 0.8622655122655124
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.7779149519890263,
+    "lo": 0.7440648723257421,
+    "hi": 0.8098137059214903
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.05631001371742112,
+    "ci": [
+     -0.08111338797814209,
+     -0.03244104525175271
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 486,
+    "n_patients": 108
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 3,
+     "original": 0.756,
+     "paraphrase": 0.867
+    },
+    "condition_status": {
+     "n": 31,
+     "original": 0.887,
+     "paraphrase": 0.774
+    },
+    "current_medications": {
+     "n": 16,
+     "original": 1.0,
+     "paraphrase": 0.917
+    },
+    "diagnoses_in_year": {
+     "n": 35,
+     "original": 0.546,
+     "paraphrase": 0.45
+    },
+    "immunization_history": {
+     "n": 34,
+     "original": 0.971,
+     "paraphrase": 0.971
+    },
+    "lab_lookup": {
+     "n": 60,
+     "original": 0.963,
+     "paraphrase": 0.96
+    },
+    "lab_trend": {
+     "n": 60,
+     "original": 0.833,
+     "paraphrase": 0.775
+    },
+    "last_visit": {
+     "n": 24,
+     "original": 1.0,
+     "paraphrase": 0.75
+    },
+    "latest_measurement": {
+     "n": 65,
+     "original": 0.923,
+     "paraphrase": 0.931
+    },
+    "medication_during_episode": {
+     "n": 10,
+     "original": 0.95,
+     "paraphrase": 0.473
+    },
+    "procedure_history": {
+     "n": 22,
+     "original": 0.576,
+     "paraphrase": 0.652
+    },
+    "relevant_history": {
+     "n": 68,
+     "original": 0.854,
+     "paraphrase": 0.8
+    },
+    "similar_symptoms": {
+     "n": 58,
+     "original": 0.612,
+     "paraphrase": 0.552
+    }
+   }
+  },
+  "_vs_R4": {
+   "R10_stair_precomputed": {
+    "original_minus_R4": {
+     "diff": 0.08144718792866942,
+     "ci": [
+      0.04240549828178696,
+      0.12036262203626222
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 486,
+     "n_patients": 108
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.06838134430727022,
+     "ci": [
+      0.02555096418732781,
+      0.11426080892608084
+     ],
+     "p_bootstrap": 0.008,
+     "n_queries": 486,
+     "n_patients": 108
+    }
+   },
+   "R11_stair_precomputed_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.13247599451303158,
+     "ci": [
+      0.09683168316831686,
+      0.1665637860082305
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 486,
+     "n_patients": 108
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.123079561042524,
+     "ci": [
+      0.08278122843340231,
+      0.164155749636099
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 486,
+     "n_patients": 108
+    }
+   },
+   "R5_stair_structural": {
+    "original_minus_R4": {
+     "diff": -0.04259259259259259,
+     "ci": [
+      -0.08527131782945736,
+      0.002035886818495495
+     ],
+     "p_bootstrap": 0.062,
+     "n_queries": 486,
+     "n_patients": 108
+    },
+    "paraphrase_minus_R4": {
+     "diff": -0.055315500685871065,
+     "ci": [
+      -0.09455128205128202,
+      -0.010446735395189014
+     ],
+     "p_bootstrap": 0.004,
+     "n_queries": 486,
+     "n_patients": 108
+    }
+   },
+   "R8_stair_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.06176268861454045,
+     "ci": [
+      0.025530458590006837,
+      0.09916666666666668
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 486,
+     "n_patients": 108
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.04948559670781893,
+     "ci": [
+      0.013759689922480629,
+      0.08602693602693602
+     ],
+     "p_bootstrap": 0.002,
+     "n_queries": 486,
+     "n_patients": 108
+    }
+   }
+  }
+ },
+ "mimic": {
+  "R10_stair_precomputed": {
+   "n": 522,
+   "original_recall@5": {
+    "mean": 0.8938058748403583,
+    "lo": 0.8711599745060554,
+    "hi": 0.914003759398497
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8366538952745856,
+    "lo": 0.8074679487179492,
+    "hi": 0.865337043908473
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.05715197956577267,
+    "ci": [
+     -0.08058161350844278,
+     -0.034103078982597054
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 522,
+    "n_patients": 100
+   },
+   "by_category": {
+    "lab_lookup": {
+     "n": 106,
+     "original": 0.717,
+     "paraphrase": 0.715
+    },
+    "lab_trend": {
+     "n": 76,
+     "original": 0.908,
+     "paraphrase": 0.826
+    },
+    "last_visit": {
+     "n": 53,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "latest_measurement": {
+     "n": 60,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 50,
+     "original": 0.98,
+     "paraphrase": 0.82
+    },
+    "medication_during_episode": {
+     "n": 5,
+     "original": 1.0,
+     "paraphrase": 0.6
+    },
+    "procedure_history": {
+     "n": 50,
+     "original": 0.947,
+     "paraphrase": 0.86
+    },
+    "relevant_history": {
+     "n": 101,
+     "original": 0.854,
+     "paraphrase": 0.784
+    },
+    "similar_symptoms": {
+     "n": 21,
+     "original": 1.0,
+     "paraphrase": 0.905
+    }
+   }
+  },
+  "R11_stair_precomputed_hybrid": {
+   "n": 522,
+   "original_recall@5": {
+    "mean": 0.9162835249042148,
+    "lo": 0.8964579380139152,
+    "hi": 0.934967948717949
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8742017879948918,
+    "lo": 0.8483365949119376,
+    "hi": 0.8984760051880677
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.04208173690932311,
+    "ci": [
+     -0.06446955430006279,
+     -0.020314591700133874
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 522,
+    "n_patients": 100
+   },
+   "by_category": {
+    "lab_lookup": {
+     "n": 106,
+     "original": 0.749,
+     "paraphrase": 0.767
+    },
+    "lab_trend": {
+     "n": 76,
+     "original": 0.944,
+     "paraphrase": 0.852
+    },
+    "last_visit": {
+     "n": 53,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "latest_measurement": {
+     "n": 60,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 0.88
+    },
+    "medication_during_episode": {
+     "n": 5,
+     "original": 1.0,
+     "paraphrase": 0.6
+    },
+    "procedure_history": {
+     "n": 50,
+     "original": 0.98,
+     "paraphrase": 0.9
+    },
+    "relevant_history": {
+     "n": 101,
+     "original": 0.883,
+     "paraphrase": 0.844
+    },
+    "similar_symptoms": {
+     "n": 21,
+     "original": 1.0,
+     "paraphrase": 0.952
+    }
+   }
+  },
+  "R4_hybrid_structured": {
+   "n": 522,
+   "original_recall@5": {
+    "mean": 0.7477011494252875,
+    "lo": 0.7170411985018726,
+    "hi": 0.7779077322936977
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.7189655172413796,
+    "lo": 0.6896063960639608,
+    "hi": 0.749902152641879
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.028735632183908042,
+    "ci": [
+     -0.048616352201257866,
+     -0.006269691241335855
+    ],
+    "p_bootstrap": 0.006,
+    "n_queries": 522,
+    "n_patients": 100
+   },
+   "by_category": {
+    "lab_lookup": {
+     "n": 106,
+     "original": 0.627,
+     "paraphrase": 0.674
+    },
+    "lab_trend": {
+     "n": 76,
+     "original": 0.862,
+     "paraphrase": 0.763
+    },
+    "last_visit": {
+     "n": 53,
+     "original": 0.245,
+     "paraphrase": 0.0
+    },
+    "latest_measurement": {
+     "n": 60,
+     "original": 0.883,
+     "paraphrase": 0.883
+    },
+    "medication_changes": {
+     "n": 50,
+     "original": 0.98,
+     "paraphrase": 0.97
+    },
+    "medication_during_episode": {
+     "n": 5,
+     "original": 1.0,
+     "paraphrase": 0.68
+    },
+    "procedure_history": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "relevant_history": {
+     "n": 101,
+     "original": 0.667,
+     "paraphrase": 0.693
+    },
+    "similar_symptoms": {
+     "n": 21,
+     "original": 1.0,
+     "paraphrase": 1.0
+    }
+   }
+  },
+  "R5_stair_structural": {
+   "n": 522,
+   "original_recall@5": {
+    "mean": 0.7681353767560668,
+    "lo": 0.7354978354978359,
+    "hi": 0.8
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.7234674329501919,
+    "lo": 0.6857777777777778,
+    "hi": 0.7606716886377909
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.04466794380587484,
+    "ci": [
+     -0.07352941176470587,
+     -0.014179586563307487
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 522,
+    "n_patients": 100
+   },
+   "by_category": {
+    "lab_lookup": {
+     "n": 106,
+     "original": 0.717,
+     "paraphrase": 0.695
+    },
+    "lab_trend": {
+     "n": 76,
+     "original": 0.957,
+     "paraphrase": 0.885
+    },
+    "last_visit": {
+     "n": 53,
+     "original": 1.0,
+     "paraphrase": 0.755
+    },
+    "latest_measurement": {
+     "n": 60,
+     "original": 0.683,
+     "paraphrase": 0.683
+    },
+    "medication_changes": {
+     "n": 50,
+     "original": 0.64,
+     "paraphrase": 0.78
+    },
+    "medication_during_episode": {
+     "n": 5,
+     "original": 1.0,
+     "paraphrase": 0.6
+    },
+    "procedure_history": {
+     "n": 50,
+     "original": 0.44,
+     "paraphrase": 0.473
+    },
+    "relevant_history": {
+     "n": 101,
+     "original": 0.775,
+     "paraphrase": 0.724
+    },
+    "similar_symptoms": {
+     "n": 21,
+     "original": 1.0,
+     "paraphrase": 0.81
+    }
+   }
+  },
+  "R8_stair_hybrid": {
+   "n": 522,
+   "original_recall@5": {
+    "mean": 0.8530012771392085,
+    "lo": 0.8234808259587025,
+    "hi": 0.8827124183006543
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8057471264367818,
+    "lo": 0.7753584229390683,
+    "hi": 0.8376482213438735
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.04725415070242657,
+    "ci": [
+     -0.07169143665958952,
+     -0.021739130434782608
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 522,
+    "n_patients": 100
+   },
+   "by_category": {
+    "lab_lookup": {
+     "n": 106,
+     "original": 0.749,
+     "paraphrase": 0.765
+    },
+    "lab_trend": {
+     "n": 76,
+     "original": 0.97,
+     "paraphrase": 0.898
+    },
+    "last_visit": {
+     "n": 53,
+     "original": 1.0,
+     "paraphrase": 0.717
+    },
+    "latest_measurement": {
+     "n": 60,
+     "original": 0.942,
+     "paraphrase": 0.942
+    },
+    "medication_changes": {
+     "n": 50,
+     "original": 0.67,
+     "paraphrase": 0.84
+    },
+    "medication_during_episode": {
+     "n": 5,
+     "original": 1.0,
+     "paraphrase": 0.6
+    },
+    "procedure_history": {
+     "n": 50,
+     "original": 0.743,
+     "paraphrase": 0.66
+    },
+    "relevant_history": {
+     "n": 101,
+     "original": 0.851,
+     "paraphrase": 0.799
+    },
+    "similar_symptoms": {
+     "n": 21,
+     "original": 1.0,
+     "paraphrase": 0.857
+    }
+   }
+  },
+  "_vs_R4": {
+   "R10_stair_precomputed": {
+    "original_minus_R4": {
+     "diff": 0.14610472541507033,
+     "ci": [
+      0.11503452605147517,
+      0.17726396917148368
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.1176883780332056,
+     "ci": [
+      0.08003300330033003,
+      0.1501344086021505
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    }
+   },
+   "R11_stair_precomputed_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.16858237547892732,
+     "ci": [
+      0.14325699745547085,
+      0.19628552971576246
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.15523627075351218,
+     "ci": [
+      0.12214022140221407,
+      0.1850775193798451
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    }
+   },
+   "R5_stair_structural": {
+    "original_minus_R4": {
+     "diff": 0.020434227330779056,
+     "ci": [
+      -0.01797979797979797,
+      0.05902111324376199
+     ],
+     "p_bootstrap": 0.286,
+     "n_queries": 522,
+     "n_patients": 100
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.004501915708812269,
+     "ci": [
+      -0.036565656565656565,
+      0.044787765293383255
+     ],
+     "p_bootstrap": 0.804,
+     "n_queries": 522,
+     "n_patients": 100
+    }
+   },
+   "R8_stair_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.10530012771392079,
+     "ci": [
+      0.0710766423357664,
+      0.13706182281708096
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.08678160919540227,
+     "ci": [
+      0.05402193784277876,
+      0.11909146715776553
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 522,
+     "n_patients": 100
+    }
+   }
+  }
+ },
+ "eicu": {
+  "R10_stair_precomputed": {
+   "n": 530,
+   "original_recall@5": {
+    "mean": 0.8956289308176107,
+    "lo": 0.8736058301647662,
+    "hi": 0.9164469554300068
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8452830188679251,
+    "lo": 0.8197623514696689,
+    "hi": 0.8713371721049268
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.05034591194968553,
+    "ci": [
+     -0.06930477963997518,
+     -0.03212064676616916
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 530,
+    "n_patients": 478
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 4,
+     "original": 0.95,
+     "paraphrase": 0.95
+    },
+    "lab_lookup": {
+     "n": 97,
+     "original": 0.8,
+     "paraphrase": 0.794
+    },
+    "lab_trend": {
+     "n": 78,
+     "original": 0.833,
+     "paraphrase": 0.779
+    },
+    "last_visit": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "latest_measurement": {
+     "n": 95,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 37,
+     "original": 0.833,
+     "paraphrase": 0.689
+    },
+    "medication_during_episode": {
+     "n": 8,
+     "original": 1.0,
+     "paraphrase": 0.492
+    },
+    "procedure_history": {
+     "n": 39,
+     "original": 0.697,
+     "paraphrase": 0.641
+    },
+    "relevant_history": {
+     "n": 78,
+     "original": 0.944,
+     "paraphrase": 0.868
+    },
+    "similar_symptoms": {
+     "n": 44,
+     "original": 0.992,
+     "paraphrase": 0.894
+    }
+   }
+  },
+  "R11_stair_precomputed_hybrid": {
+   "n": 530,
+   "original_recall@5": {
+    "mean": 0.9583647798742141,
+    "lo": 0.9444025157232705,
+    "hi": 0.9716856060606059
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.9293396226415097,
+    "lo": 0.911891025641026,
+    "hi": 0.9469955724225176
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.029025157232704404,
+    "ci": [
+     -0.04223918575063613,
+     -0.01578449905482042
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 530,
+    "n_patients": 478
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 4,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "lab_lookup": {
+     "n": 97,
+     "original": 0.919,
+     "paraphrase": 0.905
+    },
+    "lab_trend": {
+     "n": 78,
+     "original": 0.942,
+     "paraphrase": 0.894
+    },
+    "last_visit": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "latest_measurement": {
+     "n": 95,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 37,
+     "original": 0.883,
+     "paraphrase": 0.815
+    },
+    "medication_during_episode": {
+     "n": 8,
+     "original": 1.0,
+     "paraphrase": 0.492
+    },
+    "procedure_history": {
+     "n": 39,
+     "original": 0.872,
+     "paraphrase": 0.863
+    },
+    "relevant_history": {
+     "n": 78,
+     "original": 0.996,
+     "paraphrase": 0.986
+    },
+    "similar_symptoms": {
+     "n": 44,
+     "original": 1.0,
+     "paraphrase": 0.939
+    }
+   }
+  },
+  "R4_hybrid_structured": {
+   "n": 530,
+   "original_recall@5": {
+    "mean": 0.8243396226415101,
+    "lo": 0.7942866161616163,
+    "hi": 0.8523096129837704
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.8154402515723275,
+    "lo": 0.782766225582861,
+    "hi": 0.8443718905472639
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.008899371069182392,
+    "ci": [
+     -0.024446552814674265,
+     0.005628930817610064
+    ],
+    "p_bootstrap": 0.228,
+    "n_queries": 530,
+    "n_patients": 478
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 4,
+     "original": 1.0,
+     "paraphrase": 0.95
+    },
+    "lab_lookup": {
+     "n": 97,
+     "original": 0.71,
+     "paraphrase": 0.715
+    },
+    "lab_trend": {
+     "n": 78,
+     "original": 0.881,
+     "paraphrase": 0.824
+    },
+    "last_visit": {
+     "n": 50,
+     "original": 0.04,
+     "paraphrase": 0.04
+    },
+    "latest_measurement": {
+     "n": 95,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 37,
+     "original": 0.982,
+     "paraphrase": 0.991
+    },
+    "medication_during_episode": {
+     "n": 8,
+     "original": 1.0,
+     "paraphrase": 0.542
+    },
+    "procedure_history": {
+     "n": 39,
+     "original": 0.974,
+     "paraphrase": 0.966
+    },
+    "relevant_history": {
+     "n": 78,
+     "original": 0.923,
+     "paraphrase": 0.972
+    },
+    "similar_symptoms": {
+     "n": 44,
+     "original": 1.0,
+     "paraphrase": 0.985
+    }
+   }
+  },
+  "R5_stair_structural": {
+   "n": 530,
+   "original_recall@5": {
+    "mean": 0.7529874213836485,
+    "lo": 0.7193255512321662,
+    "hi": 0.7852850061957872
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.6927987421383649,
+    "lo": 0.6537213740458013,
+    "hi": 0.7299751243781097
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.06018867924528301,
+    "ci": [
+     -0.09134491634491636,
+     -0.03236032642812303
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 530,
+    "n_patients": 478
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 4,
+     "original": 0.95,
+     "paraphrase": 0.95
+    },
+    "lab_lookup": {
+     "n": 97,
+     "original": 0.8,
+     "paraphrase": 0.754
+    },
+    "lab_trend": {
+     "n": 78,
+     "original": 0.872,
+     "paraphrase": 0.824
+    },
+    "last_visit": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 0.78
+    },
+    "latest_measurement": {
+     "n": 95,
+     "original": 0.621,
+     "paraphrase": 0.621
+    },
+    "medication_changes": {
+     "n": 37,
+     "original": 0.532,
+     "paraphrase": 0.671
+    },
+    "medication_during_episode": {
+     "n": 8,
+     "original": 1.0,
+     "paraphrase": 0.375
+    },
+    "procedure_history": {
+     "n": 39,
+     "original": 0.312,
+     "paraphrase": 0.214
+    },
+    "relevant_history": {
+     "n": 78,
+     "original": 0.849,
+     "paraphrase": 0.865
+    },
+    "similar_symptoms": {
+     "n": 44,
+     "original": 0.788,
+     "paraphrase": 0.553
+    }
+   }
+  },
+  "R8_stair_hybrid": {
+   "n": 530,
+   "original_recall@5": {
+    "mean": 0.9247484276729563,
+    "lo": 0.9051136363636365,
+    "hi": 0.9436522826766733
+   },
+   "paraphrase_recall@5": {
+    "mean": 0.861415094339623,
+    "lo": 0.8336152882205519,
+    "hi": 0.8887096774193552
+   },
+   "paraphrase_minus_original": {
+    "diff": -0.06333333333333332,
+    "ci": [
+     -0.0901923076923077,
+     -0.039416983523447406
+    ],
+    "p_bootstrap": 0.0,
+    "n_queries": 530,
+    "n_patients": 478
+   },
+   "by_category": {
+    "allergy_check": {
+     "n": 4,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "lab_lookup": {
+     "n": 97,
+     "original": 0.919,
+     "paraphrase": 0.903
+    },
+    "lab_trend": {
+     "n": 78,
+     "original": 0.958,
+     "paraphrase": 0.91
+    },
+    "last_visit": {
+     "n": 50,
+     "original": 1.0,
+     "paraphrase": 0.78
+    },
+    "latest_measurement": {
+     "n": 95,
+     "original": 1.0,
+     "paraphrase": 1.0
+    },
+    "medication_changes": {
+     "n": 37,
+     "original": 0.676,
+     "paraphrase": 0.856
+    },
+    "medication_during_episode": {
+     "n": 8,
+     "original": 1.0,
+     "paraphrase": 0.375
+    },
+    "procedure_history": {
+     "n": 39,
+     "original": 0.795,
+     "paraphrase": 0.521
+    },
+    "relevant_history": {
+     "n": 78,
+     "original": 0.965,
+     "paraphrase": 0.944
+    },
+    "similar_symptoms": {
+     "n": 44,
+     "original": 0.864,
+     "paraphrase": 0.712
+    }
+   }
+  },
+  "_vs_R4": {
+   "R10_stair_precomputed": {
+    "original_minus_R4": {
+     "diff": 0.07128930817610064,
+     "ci": [
+      0.03574969021065676,
+      0.10519278606965171
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.029842767295597483,
+     "ci": [
+      -0.010689437065148645,
+      0.06812144212523721
+     ],
+     "p_bootstrap": 0.16,
+     "n_queries": 530,
+     "n_patients": 478
+    }
+   },
+   "R11_stair_precomputed_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.13402515723270444,
+     "ci": [
+      0.10250316856780735,
+      0.1634845620667927
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.11389937106918237,
+     "ci": [
+      0.0804597701149425,
+      0.14672391857506362
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    }
+   },
+   "R5_stair_structural": {
+    "original_minus_R4": {
+     "diff": -0.07135220125786164,
+     "ci": [
+      -0.12177318295739342,
+      -0.025328330206378993
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    },
+    "paraphrase_minus_R4": {
+     "diff": -0.12264150943396232,
+     "ci": [
+      -0.17131854590264953,
+      -0.076558524173028
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    }
+   },
+   "R8_stair_hybrid": {
+    "original_minus_R4": {
+     "diff": 0.10040880503144652,
+     "ci": [
+      0.06437106918238993,
+      0.13517460317460311
+     ],
+     "p_bootstrap": 0.0,
+     "n_queries": 530,
+     "n_patients": 478
+    },
+    "paraphrase_minus_R4": {
+     "diff": 0.04597484276729558,
+     "ci": [
+      0.006925996204933585,
+      0.08000627746390457
+     ],
+     "p_bootstrap": 0.016,
+     "n_queries": 530,
+     "n_patients": 478
+    }
+   }
+  }
+ }
+}

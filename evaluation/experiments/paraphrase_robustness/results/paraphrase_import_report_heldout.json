@@ -1,0 +1,71 @@
+{
+ "synthea_heldout": {
+  "sampled": 599,
+  "accepted": 501,
+  "accepted_by_attempt": {
+   "1": 394,
+   "2": 82,
+   "3": 25
+  },
+  "rejected_after_last_attempt": {
+   "clinical_name_changed": 81,
+   "empty_or_length": 2,
+   "time_period_added": 6,
+   "date_changed": 9
+  },
+  "acceptance_rate": 0.836,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "874c1875631be3567b4881a6e2d0407d31a231adcbd206736b2c404590a8d8d8"
+ },
+ "mimic_heldout": {
+  "sampled": 599,
+  "accepted": 517,
+  "accepted_by_attempt": {
+   "1": 453,
+   "2": 53,
+   "3": 11
+  },
+  "rejected_after_last_attempt": {
+   "time_period_added": 6,
+   "date_changed": 7,
+   "empty_or_length": 10,
+   "clinical_name_changed": 59
+  },
+  "acceptance_rate": 0.863,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "ffdd6cd2a1f43f9bc8b1d7a960e9a0f9d35dcdbda14b317dbb5f1aefdf4eb16c"
+ },
+ "eicu_heldout": {
+  "sampled": 600,
+  "accepted": 520,
+  "accepted_by_attempt": {
+   "1": 446,
+   "2": 60,
+   "3": 14
+  },
+  "rejected_after_last_attempt": {
+   "clinical_name_changed": 66,
+   "empty_or_length": 2,
+   "date_changed": 3,
+   "time_period_added": 9
+  },
+  "acceptance_rate": 0.867,
+  "generator": {
+   "model": "llama3.2:3b",
+   "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+   "ollama_version": "0.40.17",
+   "hardware": "DESKTOP-343I01M / no GPU"
+  },
+  "paraphrase_sha256": "2d554961c52703afc4920f1d3ebea2cd092617cfb0e2ee0227a094fca80216ed"
+ }
+}

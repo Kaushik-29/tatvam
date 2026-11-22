@@ -1,0 +1,923 @@
+{
+  "protocol": "STAIR-Clinical longitudinal patient-context retrieval v1 (patient-separated split)",
+  "split": "external:paraphrase_robustness",
+  "sample": 425,
+  "seed": 2026,
+  "methods": [
+    "R4_hybrid_structured",
+    "R5_stair_structural",
+    "R8_stair_hybrid"
+  ],
+  "selector_params": {},
+  "query_set_sha256": "4aa04ad98531ac6debd4745c2bf567172b938852e45b4efa5233fcc5909c229f",
+  "embedding_model": "BAAI/bge-m3",
+  "stage1_predictions": null,
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "lora_adapter": null,
+  "metric_definitions": {
+    "recall@k": "capped: |gold \u2229 top-k| / min(|gold|, k); gold = up to 3 most recent records per gold evidence path",
+    "context_precision@10": "share of top-10 records that belong to a gold evidence path (concept group)",
+    "context_recall@10": "share of gold evidence paths with >=1 record in top-10",
+    "leaf_exact_match": "selected level-2 sections == gold sections (STAIR methods only)",
+    "invalid_path_rate": "emitted paths not present in the patient's hierarchy / all emitted paths",
+    "ci95": "patient-clustered percentile bootstrap, 1000 resamples"
+  },
+  "summary": {
+    "R4_hybrid_structured": {
+      "n_queries": 425,
+      "n_patients": 89,
+      "seconds_per_query": 0.3931536438885857,
+      "recall@1": {
+        "mean": 0.6329411764705882,
+        "ci95": [
+          0.5862068965517241,
+          0.6796536796536796
+        ],
+        "n": 425,
+        "numerator": 269.0,
+        "denominator": 425
+      },
+      "recall@3": {
+        "mean": 0.671372549019608,
+        "ci95": [
+          0.6317647058823528,
+          0.7115384615384619
+        ],
+        "n": 425,
+        "numerator": 285.333,
+        "denominator": 425
+      },
+      "recall@5": {
+        "mean": 0.7009411764705882,
+        "ci95": [
+          0.6622222222222222,
+          0.7395691609977325
+        ],
+        "n": 425,
+        "numerator": 297.9,
+        "denominator": 425
+      },
+      "recall@10": {
+        "mean": 0.7526535947712418,
+        "ci95": [
+          0.7157958301550978,
+          0.7874700239808154
+        ],
+        "n": 425,
+        "numerator": 319.878,
+        "denominator": 425
+      },
+      "mrr": {
+        "mean": 0.7040543691218432,
+        "ci95": [
+          0.665257927715302,
+          0.7414747683464259
+        ],
+        "n": 425,
+        "numerator": 299.223,
+        "denominator": 425
+      },
+      "ndcg@10": {
+        "mean": 0.6812303470739318,
+        "ci95": [
+          0.6454299958673477,
+          0.7153569527474549
+        ],
+        "n": 425,
+        "numerator": 289.523,
+        "denominator": 425
+      },
+      "context_precision@10": {
+        "mean": 0.39664612511671254,
+        "ci95": [
+          0.362369477911646,
+          0.4301221297580519
+        ],
+        "n": 425,
+        "numerator": 168.575,
+        "denominator": 425
+      },
+      "context_recall@10": {
+        "mean": 0.7413119429590018,
+        "ci95": [
+          0.7009731889662285,
+          0.7787259615384616
+        ],
+        "n": 425,
+        "numerator": 315.058,
+        "denominator": 425
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 0.3,
+          "n": 4
+        },
+        "condition_status": {
+          "mean": 0.6956521739130435,
+          "n": 23
+        },
+        "current_medications": {
+          "mean": 0.11764705882352941,
+          "n": 17
+        },
+        "diagnoses_in_year": {
+          "mean": 0.4647058823529412,
+          "n": 34
+        },
+        "immunization_history": {
+          "mean": 1.0,
+          "n": 28
+        },
+        "lab_lookup": {
+          "mean": 0.7591836734693879,
+          "n": 49
+        },
+        "lab_trend": {
+          "mean": 0.75,
+          "n": 31
+        },
+        "last_visit": {
+          "mean": 0.19230769230769232,
+          "n": 26
+        },
+        "latest_measurement": {
+          "mean": 0.967741935483871,
+          "n": 62
+        },
+        "medication_changes": {
+          "mean": 1.0,
+          "n": 17
+        },
+        "medication_during_episode": {
+          "mean": 0.5733333333333334,
+          "n": 5
+        },
+        "procedure_history": {
+          "mean": 0.9333333333333333,
+          "n": 15
+        },
+        "relevant_history": {
+          "mean": 0.5550847457627117,
+          "n": 59
+        },
+        "similar_symptoms": {
+          "mean": 0.7787878787878788,
+          "n": 55
+        }
+      }
+    },
+    "R5_stair_structural": {
+      "n_queries": 425,
+      "n_patients": 89,
+      "seconds_per_query": 0.23733627543729893,
+      "recall@1": {
+        "mean": 0.45647058823529413,
+        "ci95": [
+          0.4056603773584906,
+          0.5069444444444444
+        ],
+        "n": 425,
+        "numerator": 194.0,
+        "denominator": 425
+      },
+      "recall@3": {
+        "mean": 0.4760784313725492,
+        "ci95": [
+          0.43383584589614743,
+          0.5132090132090131
+        ],
+        "n": 425,
+        "numerator": 202.333,
+        "denominator": 425
+      },
+      "recall@5": {
+        "mean": 0.5643529411764707,
+        "ci95": [
+          0.5242803030303028,
+          0.6030824372759856
+        ],
+        "n": 425,
+        "numerator": 239.85,
+        "denominator": 425
+      },
+      "recall@10": {
+        "mean": 0.6062577030812326,
+        "ci95": [
+          0.5664448562443846,
+          0.6433553597650514
+        ],
+        "n": 425,
+        "numerator": 257.66,
+        "denominator": 425
+      },
+      "mrr": {
+        "mean": 0.5195156608097783,
+        "ci95": [
+          0.47695947268811567,
+          0.5618458673109836
+        ],
+        "n": 425,
+        "numerator": 220.794,
+        "denominator": 425
+      },
+      "ndcg@10": {
+        "mean": 0.5184720366220614,
+        "ci95": [
+          0.48204602764353727,
+          0.5528494279794273
+        ],
+        "n": 425,
+        "numerator": 220.351,
+        "denominator": 425
+      },
+      "context_precision@10": {
+        "mean": 0.2954379084967322,
+        "ci95": [
+          0.266639589169001,
+          0.32245141493351526
+        ],
+        "n": 425,
+        "numerator": 125.561,
+        "denominator": 425
+      },
+      "context_recall@10": {
+        "mean": 0.5961263899499194,
+        "ci95": [
+          0.55638293997669,
+          0.634221576766564
+        ],
+        "n": 425,
+        "numerator": 253.354,
+        "denominator": 425
+      },
+      "leaf_exact_match": {
+        "mean": 0.40941176470588236,
+        "ci95": [
+          0.3611111111111111,
+          0.45727482678983833
+        ],
+        "n": 425,
+        "numerator": 174.0,
+        "denominator": 425
+      },
+      "leaf_recall": {
+        "mean": 0.6815686274509805,
+        "ci95": [
+          0.6348631239935587,
+          0.7215821812596005
+        ],
+        "n": 425,
+        "numerator": 289.667,
+        "denominator": 425
+      },
+      "leaf_hit@1": {
+        "mean": 0.6705882352941176,
+        "ci95": [
+          0.6235011990407674,
+          0.7133182844243793
+        ],
+        "n": 425,
+        "numerator": 285.0,
+        "denominator": 425
+      },
+      "group_path_recall": {
+        "mean": 0.5867146252440371,
+        "ci95": [
+          0.5470595788392398,
+          0.623935212514758
+        ],
+        "n": 425,
+        "numerator": 249.354,
+        "denominator": 425
+      },
+      "invalid_path_rate": {
+        "numerator": 0,
+        "denominator": 2464,
+        "mean": 0.0
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 0.8500000000000001,
+          "n": 4
+        },
+        "condition_status": {
+          "mean": 0.41304347826086957,
+          "n": 23
+        },
+        "current_medications": {
+          "mean": 0.869607843137255,
+          "n": 17
+        },
+        "diagnoses_in_year": {
+          "mean": 0.22941176470588234,
+          "n": 34
+        },
+        "immunization_history": {
+          "mean": 0.7857142857142858,
+          "n": 28
+        },
+        "lab_lookup": {
+          "mean": 0.6993197278911565,
+          "n": 49
+        },
+        "lab_trend": {
+          "mean": 0.5967741935483871,
+          "n": 31
+        },
+        "last_visit": {
+          "mean": 1.0,
+          "n": 26
+        },
+        "latest_measurement": {
+          "mean": 0.5967741935483871,
+          "n": 62
+        },
+        "medication_changes": {
+          "mean": 0.34313725490196084,
+          "n": 17
+        },
+        "medication_during_episode": {
+          "mean": 0.5133333333333333,
+          "n": 5
+        },
+        "procedure_history": {
+          "mean": 0.31111111111111106,
+          "n": 15
+        },
+        "relevant_history": {
+          "mean": 0.7067796610169492,
+          "n": 59
+        },
+        "similar_symptoms": {
+          "mean": 0.21515151515151515,
+          "n": 55
+        }
+      }
+    },
+    "R8_stair_hybrid": {
+      "n_queries": 425,
+      "n_patients": 89,
+      "seconds_per_query": 0.0,
+      "recall@1": {
+        "mean": 0.5788235294117647,
+        "ci95": [
+          0.5358851674641149,
+          0.6205250596658711
+        ],
+        "n": 425,
+        "numerator": 246.0,
+        "denominator": 425
+      },
+      "recall@3": {
+        "mean": 0.6192156862745094,
+        "ci95": [
+          0.5772884283246975,
+          0.65625
+        ],
+        "n": 425,
+        "numerator": 263.167,
+        "denominator": 425
+      },
+      "recall@5": {
+        "mean": 0.7032549019607844,
+        "ci95": [
+          0.665056179775281,
+          0.7389156626506026
+        ],
+        "n": 425,
+        "numerator": 298.883,
+        "denominator": 425
+      },
+      "recall@10": {
+        "mean": 0.7974145658263309,
+        "ci95": [
+          0.7647648442092888,
+          0.8300261523373654
+        ],
+        "n": 425,
+        "numerator": 338.901,
+        "denominator": 425
+      },
+      "mrr": {
+        "mean": 0.6614840349456081,
+        "ci95": [
+          0.6264513834412615,
+          0.6948723808439264
+        ],
+        "n": 425,
+        "numerator": 281.131,
+        "denominator": 425
+      },
+      "ndcg@10": {
+        "mean": 0.6710588971504406,
+        "ci95": [
+          0.6386453239063302,
+          0.7020158242162872
+        ],
+        "n": 425,
+        "numerator": 285.2,
+        "denominator": 425
+      },
+      "context_precision@10": {
+        "mean": 0.29453594771241776,
+        "ci95": [
+          0.2690713101160857,
+          0.31907688599662565
+        ],
+        "n": 425,
+        "numerator": 125.178,
+        "denominator": 425
+      },
+      "context_recall@10": {
+        "mean": 0.7903812919107039,
+        "ci95": [
+          0.7572830344258916,
+          0.8242810760667905
+        ],
+        "n": 425,
+        "numerator": 335.912,
+        "denominator": 425
+      },
+      "leaf_exact_match": {
+        "mean": 0.40941176470588236,
+        "ci95": [
+          0.3611111111111111,
+          0.45727482678983833
+        ],
+        "n": 425,
+        "numerator": 174.0,
+        "denominator": 425
+      },
+      "leaf_recall": {
+        "mean": 0.6815686274509805,
+        "ci95": [
+          0.6348631239935587,
+          0.7215821812596005
+        ],
+        "n": 425,
+        "numerator": 289.667,
+        "denominator": 425
+      },
+      "leaf_hit@1": {
+        "mean": 0.6705882352941176,
+        "ci95": [
+          0.6235011990407674,
+          0.7133182844243793
+        ],
+        "n": 425,
+        "numerator": 285.0,
+        "denominator": 425
+      },
+      "group_path_recall": {
+        "mean": 0.5867146252440371,
+        "ci95": [
+          0.5470595788392398,
+          0.623935212514758
+        ],
+        "n": 425,
+        "numerator": 249.354,
+        "denominator": 425
+      },
+      "invalid_path_rate": {
+        "numerator": 0,
+        "denominator": 2464,
+        "mean": 0.0
+      },
+      "recall@5_by_category": {
+        "allergy_check": {
+          "mean": 0.8500000000000001,
+          "n": 4
+        },
+        "condition_status": {
+          "mean": 0.5,
+          "n": 23
+        },
+        "current_medications": {
+          "mean": 0.869607843137255,
+          "n": 17
+        },
+        "diagnoses_in_year": {
+          "mean": 0.33333333333333337,
+          "n": 34
+        },
+        "immunization_history": {
+          "mean": 0.9107142857142857,
+          "n": 28
+        },
+        "lab_lookup": {
+          "mean": 0.7795918367346939,
+          "n": 49
+        },
+        "lab_trend": {
+          "mean": 0.6612903225806451,
+          "n": 31
+        },
+        "last_visit": {
+          "mean": 1.0,
+          "n": 26
+        },
+        "latest_measurement": {
+          "mean": 0.9274193548387096,
+          "n": 62
+        },
+        "medication_changes": {
+          "mean": 0.5294117647058824,
+          "n": 17
+        },
+        "medication_during_episode": {
+          "mean": 0.72,
+          "n": 5
+        },
+        "procedure_history": {
+          "mean": 0.3777777777777777,
+          "n": 15
+        },
+        "relevant_history": {
+          "mean": 0.7836158192090393,
+          "n": 59
+        },
+        "similar_symptoms": {
+          "mean": 0.4666666666666666,
+          "n": 55
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "R5_stair_structural - R4_hybrid_structured (recall@5)": {
+      "diff": -0.13658823529411768,
+      "ci": [
+        -0.1920409771473601,
+        -0.08060109289617487
+      ],
+      "p_bootstrap": 0.0,
+      "n_queries": 425,
+      "n_patients": 89
+    },
+    "R8_stair_hybrid - R4_hybrid_structured (recall@5)": {
+      "diff": 0.0023137254901960756,
+      "ci": [
+        -0.04315831344470964,
+        0.05270785659801678
+      ],
+      "p_bootstrap": 0.914,
+      "n_queries": 425,
+      "n_patients": 89
+    },
+    "R5_stair_structural - R4_hybrid_structured (mrr)": {
+      "diff": -0.18453870831206465,
+      "ci": [
+        -0.24520880569367598,
+        -0.12796400730099636
+      ],
+      "p_bootstrap": 0.0,
+      "n_queries": 425,
+      "n_patients": 89
+    },
+    "R8_stair_hybrid - R4_hybrid_structured (mrr)": {
+      "diff": -0.04257033417623475,
+      "ci": [
+        -0.09020166525695052,
+        0.0012681739417802042
+      ],
+      "p_bootstrap": 0.056,
+      "n_queries": 425,
+      "n_patients": 89
+    }
+  },
+  "failure_analysis": {
+    "R4_hybrid_structured": {
+      "zero_recall@5_count": 91,
+      "by_category": {
+        "allergy_check": 2,
+        "condition_status": 7,
+        "current_medications": 14,
+        "diagnoses_in_year": 18,
+        "lab_lookup": 1,
+        "lab_trend": 1,
+        "last_visit": 21,
+        "procedure_history": 1,
+        "relevant_history": 16,
+        "similar_symptoms": 10
+      },
+      "examples": [
+        {
+          "example_id": "7bb9002dbb7c53bb",
+          "category": "allergy_check",
+          "top5": [
+            "Encounter/9454190a-cc11-6c4b-82f3-31810849cef5#reason0",
+            "Encounter/9454190a-cc11-6c4b-0de2-e0068fd4dd6c#reason0",
+            "Condition/9454190a-cc11-6c4b-abfc-7bfa19f977c8",
+            "Encounter/9454190a-cc11-6c4b-30cf-2bb4888524ed#reason0",
+            "Encounter/9454190a-cc11-6c4b-531a-71f9e5eee7d7#reason0"
+          ],
+          "query": "What allergies are documented for the patient?"
+        },
+        {
+          "example_id": "7387c074e1a2d716",
+          "category": "allergy_check",
+          "top5": [
+            "Encounter/f7075f61-df9e-4519-2f9f-2781f9f14c08#reason0",
+            "Encounter/f7075f61-df9e-4519-2acd-67d89257938b#reason0",
+            "Encounter/f7075f61-df9e-4519-df36-73e88ae7b302#reason0",
+            "Encounter/f7075f61-df9e-4519-d850-8bc579b0a0d3#reason0",
+            "Encounter/f7075f61-df9e-4519-b728-fd090b2d998d#reason0"
+          ],
+          "query": "What allergies are documented for the patient?"
+        },
+        {
+          "example_id": "9aa394dcb17d0490",
+          "category": "condition_status",
+          "top5": [
+            "Observation/11355734-f6e1-6e86-50ed-606fda298764",
+            "Observation/11355734-f6e1-6e86-0695-4e58b73a6e07",
+            "Observation/11355734-f6e1-6e86-f1d7-708198ff4675",
+            "Observation/11355734-f6e1-6e86-5364-0248168e25b5",
+            "Observation/11355734-f6e1-6e86-c0c1-1e26ffea7171"
+          ],
+          "query": "Is the patient's high cholesterol status currently active?"
+        },
+        {
+          "example_id": "e174e2b82807fb48",
+          "category": "condition_status",
+          "top5": [
+            "Condition/5bbbf4c8-959c-5cb2-4e28-14007bccc5a0",
+            "Derived/medchange/5bbbf4c8-959c-5cb2-c69e-5b304dd43b13/unspecified_medication/1",
+            "Derived/medchange/5bbbf4c8-959c-5cb2-c69e-5b304dd43b13/amoxicillin/1",
+            "Derived/medchange/5bbbf4c8-959c-5cb2-c69e-5b304dd43b13/acetaminophen/1",
+            "Condition/5bbbf4c8-959c-5cb2-e3e8-8aedbbcb1991"
+          ],
+          "query": "Is the patient's periodontitis currently active?"
+        },
+        {
+          "example_id": "fa14add8e62db843",
+          "category": "condition_status",
+          "top5": [
+            "Encounter/61a51dd2-d6cb-0eeb-5110-7a61287b5477",
+            "Encounter/61a51dd2-d6cb-0eeb-0e28-968754ed67c5",
+            "Derived/medchange/61a51dd2-d6cb-0eeb-884e-32598cd8b3c3/amoxicillin/1",
+            "Condition/61a51dd2-d6cb-0eeb-bcba-75d82c975805",
+            "Derived/medchange/61a51dd2-d6cb-0eeb-884e-32598cd8b3c3/acetaminophen/1"
+          ],
+          "query": "Is the patient currently experiencing an active sinus infection?"
+        },
+        {
+          "example_id": "faa52a3b7ab98861",
+          "category": "condition_status",
+          "top5": [
+            "Derived/medchange/87f703ff-08c7-0d37-24a8-083f0fc56333/unspecified_medication/1",
+            "Condition/87f703ff-08c7-0d37-57de-a6181303c1d4",
+            "Encounter/87f703ff-08c7-0d37-4558-d1a97eb99146",
+            "Encounter/87f703ff-08c7-0d37-574b-5fbb476989ac",
+            "MedicationRequest/87f703ff-08c7-0d37-a65c-aec9049e1689"
+          ],
+          "query": "Is the patient's periodontitis currently active?"
+        },
+        {
+          "example_id": "4bb377cfe49ac2c2",
+          "category": "condition_status",
+          "top5": [
+            "Observation/99ed5fc6-1261-d7fa-418c-6fad5585083f#67875-5",
+            "MedicationRequest/99ed5fc6-1261-d7fa-5b1a-6e13122ea232",
+            "Observation/99ed5fc6-1261-d7fa-e122-67840338f694#67875-5",
+            "Observation/99ed5fc6-1261-d7fa-9d4c-a4f59e502b53#67875-5",
+            "Observation/99ed5fc6-1261-d7fa-6ace-3a3c6dc3fecd#67875-5"
+          ],
+          "query": "What is the current status of the patient's diagnosed sinus infection?"
+        },
+        {
+          "example_id": "833143ac3ef6a758",
+          "category": "condition_status",
+          "top5": [
+            "Condition/ab4d361c-8108-199d-0381-b049119bbd72",
+            "Derived/medchange/ab4d361c-8108-199d-2613-0e6e45e9712a/unspecified_medication/1",
+            "Derived/medchange/ab4d361c-8108-199d-2613-0e6e45e9712a/ibuprofen/1",
+            "Derived/medchange/ab4d361c-8108-199d-2613-0e6e45e9712a/acetaminophen/1",
+            "Condition/ab4d361c-8108-199d-959e-d8e6c946a38a"
+          ],
+          "query": "Is the patient currently experiencing an active sinus infection?"
+        }
+      ]
+    },
+    "R5_stair_structural": {
+      "zero_recall@5_count": 147,
+      "by_category": {
+        "condition_status": 13,
+        "diagnoses_in_year": 25,
+        "immunization_history": 4,
+        "lab_lookup": 11,
+        "lab_trend": 7,
+        "latest_measurement": 19,
+        "medication_changes": 9,
+        "procedure_history": 10,
+        "relevant_history": 9,
+        "similar_symptoms": 40
+      },
+      "examples": [
+        {
+          "example_id": "aa1606f44b1eb0ed",
+          "category": "condition_status",
+          "top5": [
+            "Condition/002a0393-3a3d-4c88-ee8d-ec19ea196413",
+            "Encounter/002a0393-3a3d-4c88-3c33-ffab4e363699",
+            "Condition/002a0393-3a3d-4c88-93c6-a62a14bb5d17",
+            "Encounter/002a0393-3a3d-4c88-0366-d00b36b4ac30",
+            "Condition/002a0393-3a3d-4c88-8bdc-e9329b8f7c09"
+          ],
+          "query": "Is the concussion that the patient is experiencing still present, given there was no loss of consciousness?"
+        },
+        {
+          "example_id": "1334f8cc155b7814",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/00faa8e3-7572-8ab6-1bbd-b726e81a99be",
+            "MedicationRequest/00faa8e3-7572-8ab6-46e6-eec1ddc3cfb8",
+            "MedicationRequest/00faa8e3-7572-8ab6-29e1-03e1774b392d",
+            "MedicationRequest/00faa8e3-7572-8ab6-70b8-92c25f0f4a5c",
+            "Patient/00faa8e3-7572-8ab6-f8f0-f3257f52d38f#demographics"
+          ],
+          "query": "What is the current status of the patient's hyperglycemia diagnosis?"
+        },
+        {
+          "example_id": "8866f4beccba7c5e",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/0fbaf7a6-4637-66aa-c93e-9e6dfe69098d",
+            "MedicationRequest/0fbaf7a6-4637-66aa-d638-cc578eaac75e",
+            "MedicationRequest/0fbaf7a6-4637-66aa-2f06-d73403e33221",
+            "MedicationRequest/0fbaf7a6-4637-66aa-7f97-1c2324e9936c",
+            "MedicationRequest/0fbaf7a6-4637-66aa-da92-279307537dae"
+          ],
+          "query": "Is the patient's loss of teeth currently an ongoing issue?"
+        },
+        {
+          "example_id": "9aa394dcb17d0490",
+          "category": "condition_status",
+          "top5": [
+            "Condition/11355734-f6e1-6e86-058b-49f363639092",
+            "Condition/11355734-f6e1-6e86-a655-2173e38f1aff",
+            "Condition/11355734-f6e1-6e86-7c61-5f9fb94df488",
+            "Condition/11355734-f6e1-6e86-b1dd-c85e612c6ff5",
+            "Condition/11355734-f6e1-6e86-ce04-f67c983e25ff"
+          ],
+          "query": "Is the patient's high cholesterol status currently active?"
+        },
+        {
+          "example_id": "730842920f2e2a73",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/22394cc9-6b32-ff28-3295-ff0105233eb6",
+            "MedicationRequest/22394cc9-6b32-ff28-8ea9-aa0cef26ecd8",
+            "Patient/22394cc9-6b32-ff28-1e6f-2bd45ceb6d05#demographics"
+          ],
+          "query": "What is the current status of the patient's bronchitis diagnosis?"
+        },
+        {
+          "example_id": "0854dbb5bdb8601c",
+          "category": "condition_status",
+          "top5": [
+            "DocumentReference/e93fc8ce-c361-bb92-c0ea-15c0c787f878#cc0",
+            "Encounter/863450ab-661b-f7b4-2aa2-33a193263192#reason0",
+            "Encounter/863450ab-661b-f7b4-391b-c8de6e947845#reason0",
+            "Encounter/863450ab-661b-f7b4-5e59-18d2c82d20cc#reason0",
+            "Encounter/863450ab-661b-f7b4-e067-5f5f30cc6949"
+          ],
+          "query": "Is the patient's primary dental caries still present?"
+        },
+        {
+          "example_id": "4bb377cfe49ac2c2",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/99ed5fc6-1261-d7fa-5b1a-6e13122ea232",
+            "Condition/99ed5fc6-1261-d7fa-9232-0e6ca4158dfe",
+            "MedicationRequest/99ed5fc6-1261-d7fa-2c70-717267338012",
+            "Condition/99ed5fc6-1261-d7fa-51ce-de71266ee69f",
+            "Condition/99ed5fc6-1261-d7fa-4018-73df615c3f89"
+          ],
+          "query": "What is the current status of the patient's diagnosed sinus infection?"
+        },
+        {
+          "example_id": "4a28b931b618058a",
+          "category": "condition_status",
+          "top5": [
+            "Patient/a343d4bf-9dfe-1264-5eda-08744af920c2#demographics"
+          ],
+          "query": "What is the current status of the patient's diagnosis for an ear infection?"
+        }
+      ]
+    },
+    "R8_stair_hybrid": {
+      "zero_recall@5_count": 98,
+      "by_category": {
+        "condition_status": 11,
+        "diagnoses_in_year": 22,
+        "immunization_history": 1,
+        "lab_lookup": 8,
+        "lab_trend": 5,
+        "medication_changes": 7,
+        "procedure_history": 9,
+        "relevant_history": 8,
+        "similar_symptoms": 27
+      },
+      "examples": [
+        {
+          "example_id": "aa1606f44b1eb0ed",
+          "category": "condition_status",
+          "top5": [
+            "Condition/002a0393-3a3d-4c88-ee8d-ec19ea196413",
+            "Condition/002a0393-3a3d-4c88-93c6-a62a14bb5d17",
+            "Encounter/002a0393-3a3d-4c88-3c33-ffab4e363699",
+            "Condition/002a0393-3a3d-4c88-8bdc-e9329b8f7c09",
+            "Encounter/002a0393-3a3d-4c88-0366-d00b36b4ac30"
+          ],
+          "query": "Is the concussion that the patient is experiencing still present, given there was no loss of consciousness?"
+        },
+        {
+          "example_id": "1334f8cc155b7814",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/00faa8e3-7572-8ab6-1bbd-b726e81a99be",
+            "MedicationRequest/00faa8e3-7572-8ab6-46e6-eec1ddc3cfb8",
+            "MedicationRequest/00faa8e3-7572-8ab6-29e1-03e1774b392d",
+            "MedicationRequest/00faa8e3-7572-8ab6-70b8-92c25f0f4a5c",
+            "Patient/00faa8e3-7572-8ab6-f8f0-f3257f52d38f#demographics"
+          ],
+          "query": "What is the current status of the patient's hyperglycemia diagnosis?"
+        },
+        {
+          "example_id": "8866f4beccba7c5e",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/0fbaf7a6-4637-66aa-c93e-9e6dfe69098d",
+            "MedicationRequest/0fbaf7a6-4637-66aa-d638-cc578eaac75e",
+            "MedicationRequest/0fbaf7a6-4637-66aa-2f06-d73403e33221",
+            "MedicationRequest/0fbaf7a6-4637-66aa-7f97-1c2324e9936c",
+            "MedicationRequest/0fbaf7a6-4637-66aa-da92-279307537dae"
+          ],
+          "query": "Is the patient's loss of teeth currently an ongoing issue?"
+        },
+        {
+          "example_id": "9aa394dcb17d0490",
+          "category": "condition_status",
+          "top5": [
+            "Condition/11355734-f6e1-6e86-058b-49f363639092",
+            "Condition/11355734-f6e1-6e86-a655-2173e38f1aff",
+            "Condition/11355734-f6e1-6e86-7c61-5f9fb94df488",
+            "Condition/11355734-f6e1-6e86-b1dd-c85e612c6ff5",
+            "Condition/11355734-f6e1-6e86-ce04-f67c983e25ff"
+          ],
+          "query": "Is the patient's high cholesterol status currently active?"
+        },
+        {
+          "example_id": "0854dbb5bdb8601c",
+          "category": "condition_status",
+          "top5": [
+            "DocumentReference/e93fc8ce-c361-bb92-c0ea-15c0c787f878#cc0",
+            "Encounter/863450ab-661b-f7b4-2aa2-33a193263192#reason0",
+            "Encounter/863450ab-661b-f7b4-391b-c8de6e947845#reason0",
+            "Encounter/863450ab-661b-f7b4-5e59-18d2c82d20cc#reason0",
+            "Encounter/863450ab-661b-f7b4-e067-5f5f30cc6949"
+          ],
+          "query": "Is the patient's primary dental caries still present?"
+        },
+        {
+          "example_id": "4bb377cfe49ac2c2",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/99ed5fc6-1261-d7fa-5b1a-6e13122ea232",
+            "MedicationRequest/99ed5fc6-1261-d7fa-2c70-717267338012",
+            "Condition/99ed5fc6-1261-d7fa-4018-73df615c3f89",
+            "Condition/99ed5fc6-1261-d7fa-da73-b64a15ec66dc",
+            "Condition/99ed5fc6-1261-d7fa-e8ac-1e7f4f36e917"
+          ],
+          "query": "What is the current status of the patient's diagnosed sinus infection?"
+        },
+        {
+          "example_id": "1050aedcbadfcc68",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/a553507e-1a1b-972d-7246-87188d860aac",
+            "MedicationRequest/a553507e-1a1b-972d-5409-15c8daafc012",
+            "MedicationRequest/a553507e-1a1b-972d-9cbf-4a3bdcaea0eb",
+            "Patient/a553507e-1a1b-972d-732b-82b246700f43#demographics",
+            "MedicationRequest/a553507e-1a1b-972d-b618-7eda16d52458"
+          ],
+          "query": "What is the current status of the patient's diagnosis for gingival disease?"
+        },
+        {
+          "example_id": "f56f688b6f2f6f88",
+          "category": "condition_status",
+          "top5": [
+            "MedicationRequest/bea259a5-5f7a-fbba-80cf-bb2751122e7a",
+            "Derived/trend/bea259a5-5f7a-fbba-59ed-2a65c333dee5/body_height/cm",
+            "MedicationRequest/bea259a5-5f7a-fbba-28b8-002c2c4f9b7e",
+            "Derived/trend/bea259a5-5f7a-fbba-59ed-2a65c333dee5/body_mass_index_bmi_percentile_per_age_and_sex/unspecified",
+            "MedicationRequest/bea259a5-5f7a-fbba-e8ca-8970894dec24"
+          ],
+          "query": "Is the patient's sinusitis showing any signs of ongoing activity in the current record?"
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-11-22T14:02:40"
+}
