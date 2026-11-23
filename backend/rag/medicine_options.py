@@ -73,7 +73,7 @@ def _hits(names: Sequence[str], recs: Sequence[Dict[str, Any]]) -> List[Dict[str
     return [r for r in recs if any(re.search(rf"\b{re.escape(n)}", _txt(r)) for n in names)]
 
 
-def build_answer(group: str, evidence: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+def build_answer(group: str, evidence: Dict[str, Dict[str, Any]], query: str = "") -> Dict[str, Any]:
     """Deterministic answer from the curated file + the patient's assembled evidence (alias -> record)."""
     g = KB["groups"][group]
     by_leaf = lambda pred: [e for e in evidence.values() if pred(e.get("leaf_path", ""))]
@@ -82,20 +82,36 @@ def build_answer(group: str, evidence: Dict[str, Dict[str, Any]]) -> Dict[str, A
     history = by_leaf(lambda l: l in HISTORY_LEAVES)
     lines = [f"## General medicine options for {g['label']} (not a prescription)"]
     checks, offered, used_sources = [], [], set()
+    q = query.lower()
 
     for o in g["options"]:
-        allergic = _hits(o["names"] + [o["generic"]], allergies)
+        allergic = _hits(o["names"] + [o["generic"]] + o.get("allergy_names", []), allergies)
         if allergic:
             checks.append(f"{o['generic'].capitalize()} is not suggested because your records list an allergy to it "
-                          + "".join(f"[{a['alias']}]" for a in allergic) + ".")
+                          "or a related medicine " + "".join(f"[{a['alias']}]" for a in allergic) + ".")
             continue
+        if any(w in q for w in o.get("skip_if_query", [])):     # e.g. loperamide with fever or blood in the stool
+            used_sources |= set(o["sources"])
+            checks.append(o["skip_text"] + _cite(o["sources"]))
+            continue
+        blocked = [(c, h) for c in o.get("cautions", []) if c.get("block")
+                   for h in history if any(k in _txt(h) for k in c["match"])]
+        if blocked:                                              # a record makes this option unsuitable
+            c = blocked[0][0]
+            used_sources |= set(c["sources"])
+            refs = "".join("[" + h["alias"] + "]" for _, h in blocked)
+            checks.append(f"{o['generic'].capitalize()} is not suggested because of your records {refs}: {c['text']}."
+                          + _cite(c["sources"]))
+            continue
+        lead = (f"A commonly used over-the-counter option for {g['label']} is" if not offered
+                else "Another option is")
         offered.append(o)
         used_sources |= set(o["sources"])
-        lines.append(f"A commonly used over-the-counter medicine for {g['label']} is **{o['generic']}** "
-                     f"(for example {o['brands']}): {o['use']}{_cite(o['sources'])}. {o['limit']}")
+        brands = f" (for example {o['brands']})" if o.get("brands") else ""
+        lines.append(f"{lead} **{o['generic']}**{brands}: {o['use']}{_cite(o['sources'])}. {o['limit']}")
         for c in o.get("cautions", []):
             hit = [h for h in history if any(k in _txt(h) for k in c["match"])]
-            if hit:
+            if hit and not c.get("block"):
                 used_sources |= set(c["sources"])
                 refs = ", ".join("[" + h["alias"] + "]" for h in hit)
                 lines.append(f"Because of your records ({refs}), {c['text']}." + _cite(c["sources"]))
@@ -125,7 +141,7 @@ def build_answer(group: str, evidence: Dict[str, Dict[str, Any]]) -> Dict[str, A
     # checked against the record
     if allergies:
         checks.append("Recorded allergies: " + ", ".join(f"{a['concept_display']} [{a['alias']}]" for a in allergies)
-                      + (f" (none of them is to {', '.join(o['generic'] for o in offered)})." if offered else "."))
+                      + (" (none of them affects the options above)." if offered else "."))
     else:
         checks.append("No allergies are recorded in your profile; tell the pharmacist about any you know of.")
     others = [c for c in current if not any(c in _hits(o["names"] + [o["generic"]], [c]) for o in offered)]

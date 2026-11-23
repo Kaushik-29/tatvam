@@ -40,7 +40,7 @@ def test_fever_answer_uses_dengue_history_allergies_and_current_medicines():
 def test_allergic_option_is_not_offered_and_duplicate_is_flagged():
     a = M.build_answer("fever", ev(E1={"leaf_path": "allergy_history", "concept_display": "Paracetamol",
                                        "value_text": "rash"}))
-    assert a["options"] == [] and "allergy to it [E1]" in a["text"]
+    assert a["options"] == [] and "allergy to it or a related medicine [E1]" in a["text"]
     b = M.build_answer("allergy", ev(E1=CETIRIZINE))
     assert "You already take cetirizine [E1]" in b["text"]
 
@@ -78,3 +78,36 @@ def test_headache_gets_paracetamol_with_record_dependent_nsaid_caution():
     ulcer = {"leaf_path": "medical_history/diagnoses", "concept_display": "Peptic ulcer", "value_text": None}
     assert "NSAIDs" in M.build_answer("pain", ev(E1=ulcer))["text"]
     assert "S2" not in M.build_answer("pain", ev(E1=DENGUE))["sources"]   # caution not shown -> source not listed
+
+
+import pytest
+
+GROUP_QUESTIONS = {
+    "fever": "fever which medicine", "period": "I have period cramps, which medicine can I take?",
+    "tooth": "tablet for toothache", "sprain": "I sprained my ankle, what medicine should I use?",
+    "fungal": "medicine for ringworm", "dandruff": "what medicine for dandruff?",
+    "allergy": "sneezing, what tablet?", "itching": "mosquito bite itching, which medicine?",
+    "acidity": "I have acidity, which tablet?", "diarrhoea": "loose motions since morning, which medicine?",
+    "constipation": "which medicine for constipation", "throat": "sore throat, which medicine can I take?",
+    "cough": "I have a cough, which medicine?", "cold": "I have cold and blocked nose, what medicine?",
+    "pain": "body pain, which medicine?",
+}
+
+
+@pytest.mark.parametrize("group,question", GROUP_QUESTIONS.items())
+def test_every_group_is_detected_and_fully_sourced(group, question):
+    assert M.detect(question) == group
+    a = M.build_answer(group, {}, question)
+    assert a["options"] and "## See a doctor if" in a["text"] and "Warning signs" in a["text"]
+    for s in a["sources"]:                                   # every cited source exists and is listed
+        assert s in M.KB["sources"] and M.KB["sources"][s]["url"] in a["text"]
+
+
+def test_record_and_question_based_exclusions():
+    ulcer = {"leaf_path": "medical_history/diagnoses", "concept_display": "Peptic ulcer", "value_text": None}
+    aspirin = {"leaf_path": "allergy_history", "concept_display": "Aspirin", "value_text": "hives"}
+    assert M.build_answer("period", ev(E1=ulcer))["options"] == ["paracetamol"]          # blocked by record
+    assert M.build_answer("period", ev(E1=aspirin))["options"] == ["paracetamol"]        # cross-allergy
+    a = M.build_answer("diarrhoea", {}, "loose motions with blood in stool")
+    assert a["options"] == ["oral rehydration solution (ORS)"] and "Loperamide is not suggested" in a["text"]
+    assert "loperamide" in M.build_answer("diarrhoea", {}, "loose motions since morning")["options"]

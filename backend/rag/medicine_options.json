@@ -1,88 +1,271 @@
 {
-  "_about": "Curated general over-the-counter options for a few common, non-emergency adult symptoms. Every option, caution and warning sign below is taken from the listed source pages (checked 2026-11-23). Items marked rule=\"medresolve\" are conservative MedResolve rules, not claims from a source. This is general information to discuss with a pharmacist, not a prescription. Clinician review of this file is pending.",
+  "_about": "Curated general over-the-counter options for common, non-emergency adult self-care symptoms. Every option, caution and warning sign below is taken from the listed source pages (checked 2026-11-23 / 2026-11-24). Items marked rule=\"medresolve\" are conservative MedResolve rules, not claims from a source. This is general information to discuss with a pharmacist, not a prescription. Clinician review of this file is pending.",
   "sources": {
-    "S1": {"title": "Acetaminophen (paracetamol): MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a681004.html"},
-    "S2": {"title": "Ibuprofen: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a682159.html"},
-    "S3": {"title": "Aspirin: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a682878.html"},
-    "S4": {"title": "Cetirizine: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a623043.html"},
-    "S5": {"title": "Dengue and severe dengue: WHO fact sheet", "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"},
-    "S6": {"title": "Fever: MedlinePlus", "url": "https://medlineplus.gov/fever.html"},
-    "S7": {"title": "Headache: MedlinePlus", "url": "https://medlineplus.gov/headache.html"}
+    "S1": {
+      "title": "Acetaminophen (paracetamol): MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a681004.html"
+    },
+    "S2": {
+      "title": "Ibuprofen: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a682159.html"
+    },
+    "S3": {
+      "title": "Aspirin: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a682878.html"
+    },
+    "S4": {
+      "title": "Cetirizine: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a623043.html"
+    },
+    "S5": {
+      "title": "Dengue and severe dengue: WHO fact sheet",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
+    },
+    "S6": {
+      "title": "Fever: MedlinePlus",
+      "url": "https://medlineplus.gov/fever.html"
+    },
+    "S7": {
+      "title": "Headache: MedlinePlus",
+      "url": "https://medlineplus.gov/headache.html"
+    },
+    "S8": {
+      "title": "Loperamide: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a682280.html"
+    },
+    "S9": {
+      "title": "Diarrhea: MedlinePlus",
+      "url": "https://medlineplus.gov/diarrhea.html"
+    },
+    "S10": {
+      "title": "Taking antacids: MedlinePlus Medical Encyclopedia",
+      "url": "https://medlineplus.gov/ency/patientinstructions/000198.htm"
+    },
+    "S11": {
+      "title": "Heartburn: MedlinePlus",
+      "url": "https://medlineplus.gov/heartburn.html"
+    },
+    "S12": {
+      "title": "Psyllium: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a601104.html"
+    },
+    "S13": {
+      "title": "Constipation: MedlinePlus",
+      "url": "https://medlineplus.gov/constipation.html"
+    },
+    "S14": {
+      "title": "Oxymetazoline Nasal Spray: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a608026.html"
+    },
+    "S15": {
+      "title": "Common Cold: MedlinePlus",
+      "url": "https://medlineplus.gov/commoncold.html"
+    },
+    "S16": {
+      "title": "Dextromethorphan: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a682492.html"
+    },
+    "S17": {
+      "title": "Cough: MedlinePlus",
+      "url": "https://medlineplus.gov/cough.html"
+    },
+    "S18": {
+      "title": "Sore Throat: MedlinePlus",
+      "url": "https://medlineplus.gov/sorethroat.html"
+    },
+    "S19": {
+      "title": "Clotrimazole Topical: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a618059.html"
+    },
+    "S20": {
+      "title": "Ketoconazole Topical: MedlinePlus Drug Information",
+      "url": "https://medlineplus.gov/druginfo/meds/a605014.html"
+    },
+    "S21": {
+      "title": "Itching: MedlinePlus",
+      "url": "https://medlineplus.gov/itching.html"
+    },
+    "S22": {
+      "title": "Insect Bites and Stings: MedlinePlus",
+      "url": "https://medlineplus.gov/insectbitesandstings.html"
+    },
+    "S23": {
+      "title": "Sprains and Strains: MedlinePlus",
+      "url": "https://medlineplus.gov/sprainsandstrains.html"
+    },
+    "S24": {
+      "title": "Period Pain: MedlinePlus",
+      "url": "https://medlineplus.gov/periodpain.html"
+    },
+    "S25": {
+      "title": "Tooth Disorders: MedlinePlus",
+      "url": "https://medlineplus.gov/toothdisorders.html"
+    }
   },
   "groups": {
     "fever": {
       "label": "fever",
-      "symptoms": ["fever", "temperature", "feverish", "pyrexia", "febrile"],
+      "symptoms": [
+        "fever",
+        "temperature",
+        "feverish",
+        "pyrexia",
+        "febrile"
+      ],
       "options": [
         {
           "generic": "paracetamol",
-          "names": ["paracetamol", "acetaminophen", "dolo", "crocin", "calpol"],
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
           "brands": "Dolo 650, Crocin 650, Calpol 650",
           "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food",
           "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
-          "sources": ["S1", "S5"],
+          "sources": [
+            "S1",
+            "S5"
+          ],
           "cautions": [
-            {"match": ["liver", "hepatitis", "cirrhosis", "alcohol"], "text": "ask a doctor before taking paracetamol, because of your liver-related record", "sources": ["S1"]}
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
           ]
         }
       ],
       "avoid": [
         {
           "what": "ibuprofen and aspirin",
-          "names": ["ibuprofen", "aspirin", "brufen", "combiflam", "diclofenac", "naproxen", "nsaid", "disprin", "ecosprin"],
+          "names": [
+            "ibuprofen",
+            "aspirin",
+            "brufen",
+            "combiflam",
+            "diclofenac",
+            "naproxen",
+            "nsaid",
+            "disprin",
+            "ecosprin"
+          ],
           "text": "Avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
-          "sources": ["S5"],
-          "history_match": ["dengue"],
+          "sources": [
+            "S5"
+          ],
+          "history_match": [
+            "dengue"
+          ],
           "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
         }
       ],
       "see_doctor": [
-        {"text": "the fever lasts more than 2 days: see a doctor and ask for a dengue test (NS1 / blood count)", "rule": "medresolve (earlier than the label's 3 days because of the dengue risk)", "sources": []},
-        {"text": "the fever gets worse or lasts more than 3 days, or new symptoms appear", "sources": ["S1"]}
-      ],
-      "warning_signs": {
-        "text": "Go to a doctor the same day if you notice severe stomach pain, vomiting again and again, fast breathing, bleeding from the gums or nose, blood in vomit or stool, or you feel very weak, restless or very thirsty.",
-        "sources": ["S5"]
-      }
-    },
-    "allergy": {
-      "label": "sneezing / allergy symptoms",
-      "symptoms": ["sneezing", "sneeze", "runny nose", "itchy nose", "itchy eyes", "watery eyes", "hay fever", "allergic rhinitis"],
-      "options": [
         {
-          "generic": "cetirizine",
-          "names": ["cetirizine", "cetzine", "okacet", "zyrtec"],
-          "brands": "Cetzine, Okacet",
-          "use": "one 10 mg tablet once a day",
-          "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
-          "sources": ["S4"],
-          "cautions": [
-            {"match": ["kidney", "renal", "liver", "hepatitis"], "text": "ask a doctor before taking cetirizine, because of your kidney- or liver-related record", "sources": ["S4"]}
+          "text": "the fever lasts more than 2 days: see a doctor and ask for a dengue test (NS1 / blood count)",
+          "rule": "medresolve (earlier than the label's 3 days because of the dengue risk)",
+          "sources": []
+        },
+        {
+          "text": "the fever gets worse or lasts more than 3 days, or new symptoms appear",
+          "sources": [
+            "S1"
           ]
         }
       ],
-      "avoid": [],
-      "see_doctor": [
-        {"text": "the symptoms do not improve, or you develop fever, face pain or wheezing", "rule": "medresolve", "sources": []}
-      ],
       "warning_signs": {
-        "text": "Get help immediately if you have trouble breathing or swelling of the face, lips or throat.",
-        "sources": ["S4"]
+        "text": "Go to a doctor the same day if you notice severe stomach pain, vomiting again and again, fast breathing, bleeding from the gums or nose, blood in vomit or stool, or you feel very weak, restless or very thirsty.",
+        "sources": [
+          "S5"
+        ]
       }
     },
-    "pain": {
-      "label": "headache or body pain",
-      "symptoms": ["headache", "head ache", "head pain", "body pain", "body ache", "bodyache", "muscle pain", "muscle ache"],
+    "period": {
+      "label": "period pain",
+      "symptoms": [
+        "period pain",
+        "period cramps",
+        "menstrual cramps",
+        "menstrual pain",
+        "painful periods",
+        "dysmenorrhea"
+      ],
       "options": [
         {
-          "generic": "paracetamol",
-          "names": ["paracetamol", "acetaminophen", "dolo", "crocin", "calpol"],
-          "brands": "Dolo 650, Crocin 650, Calpol 650",
-          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; it is used to relieve mild to moderate pain",
-          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
-          "sources": ["S1"],
+          "generic": "ibuprofen",
+          "names": [
+            "ibuprofen",
+            "brufen"
+          ],
+          "allergy_names": [
+            "aspirin",
+            "nsaid"
+          ],
+          "brands": "Brufen",
+          "use": "follow the dose on the package label; you can start when symptoms begin or when your period starts and keep taking it for a few days",
+          "limit": "A heating pad or hot water bottle on the lower abdomen, exercise or a hot bath can also help.",
+          "sources": [
+            "S24",
+            "S2"
+          ],
           "cautions": [
-            {"match": ["liver", "hepatitis", "cirrhosis", "alcohol"], "text": "ask a doctor before taking paracetamol, because of your liver-related record", "sources": ["S1"]}
+            {
+              "match": [
+                "ulcer",
+                "stomach bleed",
+                "gastric",
+                "bleeding disorder",
+                "haemophilia",
+                "hemophilia",
+                "liver",
+                "hepatitis",
+                "cirrhosis"
+              ],
+              "block": true,
+              "text": "ibuprofen should not be taken with stomach ulcers, bleeding problems or liver disease",
+              "sources": [
+                "S24"
+              ]
+            }
+          ]
+        },
+        {
+          "generic": "paracetamol",
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; paracetamol relieves mild to moderate pain if you cannot take ibuprofen",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": [
+            "S1"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
           ]
         }
       ],
@@ -91,27 +274,863 @@
           "what": "ibuprofen and aspirin with fever",
           "names": [],
           "text": "If you also have a fever, avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
-          "sources": ["S5"],
-          "history_match": ["dengue"],
+          "sources": [
+            "S5"
+          ],
+          "history_match": [
+            "dengue"
+          ],
+          "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
+        }
+      ],
+      "see_doctor": [
+        {
+          "text": "ibuprofen and self-care do not help and the pain interferes with your life",
+          "sources": [
+            "S24"
+          ]
+        },
+        {
+          "text": "your cramps suddenly get worse, or you are over 25 and get severe cramps for the first time",
+          "sources": [
+            "S24"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "Get medical help the same day for very heavy bleeding, fainting, or severe pain with fever.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "tooth": {
+      "label": "toothache",
+      "symptoms": [
+        "toothache",
+        "tooth ache",
+        "tooth pain",
+        "teeth pain",
+        "dental pain"
+      ],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; it relieves mild to moderate pain until you see a dentist",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": [
+            "S1"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the pain lasts: a dentist needs to find the cause, since treatment (such as a filling or root canal) depends on the problem",
+          "sources": [
+            "S25"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "See a dentist or doctor the same day for swelling of the face or jaw, fever, or trouble swallowing or breathing.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "sprain": {
+      "label": "sprain or strain",
+      "symptoms": [
+        "sprain",
+        "sprained",
+        "strain",
+        "twisted ankle",
+        "pulled muscle",
+        "muscle strain"
+      ],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; rest the injured area, put ice on it and use a compression bandage",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": [
+            "S1",
+            "S23"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [
+        {
+          "what": "ibuprofen (record-dependent)",
+          "always": false,
+          "names": [
+            "ibuprofen",
+            "brufen",
+            "combiflam",
+            "diclofenac",
+            "naproxen",
+            "nsaid"
+          ],
+          "text": "",
+          "sources": [
+            "S2"
+          ],
+          "history_match": [
+            "ulcer",
+            "stomach bleed",
+            "gastric bleed",
+            "kidney",
+            "renal",
+            "heart failure",
+            "heart attack",
+            "stroke"
+          ],
+          "history_text": "Do not use ibuprofen or similar painkillers (NSAIDs) without a doctor's advice: they can cause stomach ulcers and bleeding and need caution with kidney or heart disease, which your records mention"
+        }
+      ],
+      "see_doctor": [
+        {
+          "text": "you cannot put weight on the injured part, it looks deformed, or the pain and swelling do not improve within a few days",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Get medical help right away for numbness, a cold or blue limb, or a joint that looks out of place.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "fungal": {
+      "label": "fungal skin infection (ringworm, jock itch, athlete's foot)",
+      "symptoms": [
+        "ringworm",
+        "jock itch",
+        "athlete's foot",
+        "athletes foot",
+        "fungal infection",
+        "fungal rash",
+        "tinea",
+        "skin fungal"
+      ],
+      "options": [
+        {
+          "generic": "clotrimazole cream",
+          "names": [
+            "clotrimazole",
+            "candid"
+          ],
+          "brands": "Candid",
+          "use": "wash and dry the area, then apply a thin layer as the package label directs",
+          "limit": "Jock itch should improve over 2 weeks and ringworm or athlete's foot over 4 weeks; it does not work on the scalp or nails.",
+          "sources": [
+            "S19"
+          ],
+          "cautions": []
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the rash does not improve in that time, or gets worse at any time",
+          "sources": [
+            "S19"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "See a doctor if the rash spreads quickly, becomes painful, swollen or oozing, or you have a fever.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "dandruff": {
+      "label": "dandruff",
+      "symptoms": [
+        "dandruff",
+        "flaky scalp",
+        "itchy scalp",
+        "scalp flakes"
+      ],
+      "options": [
+        {
+          "generic": "ketoconazole shampoo",
+          "names": [
+            "ketoconazole",
+            "nizral"
+          ],
+          "brands": "Nizral",
+          "use": "use it every 3 to 4 days for up to 8 weeks, then as needed to control dandruff",
+          "limit": "Follow the directions on the package.",
+          "sources": [
+            "S20"
+          ],
+          "cautions": []
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the dandruff does not improve after 8 weeks, or the scalp becomes red, painful or starts losing hair in patches",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Stop using it and get help if you have a rash, swelling or trouble breathing after using it.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "allergy": {
+      "label": "sneezing / allergy symptoms",
+      "symptoms": [
+        "sneezing",
+        "sneeze",
+        "runny nose",
+        "itchy nose",
+        "itchy eyes",
+        "watery eyes",
+        "hay fever",
+        "allergic rhinitis"
+      ],
+      "options": [
+        {
+          "generic": "cetirizine",
+          "names": [
+            "cetirizine",
+            "cetzine",
+            "okacet",
+            "zyrtec"
+          ],
+          "brands": "Cetzine, Okacet",
+          "use": "one 10 mg tablet once a day",
+          "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
+          "sources": [
+            "S4"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "kidney",
+                "renal",
+                "liver",
+                "hepatitis"
+              ],
+              "text": "ask a doctor before taking cetirizine, because of your kidney- or liver-related record",
+              "sources": [
+                "S4"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the symptoms do not improve, or you develop fever, face pain or wheezing",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Get help immediately if you have trouble breathing or swelling of the face, lips or throat.",
+        "sources": [
+          "S4"
+        ]
+      }
+    },
+    "itching": {
+      "label": "itching or insect bites",
+      "symptoms": [
+        "itching",
+        "itchy skin",
+        "itch",
+        "insect bite",
+        "mosquito bite",
+        "bug bite",
+        "insect sting"
+      ],
+      "options": [
+        {
+          "generic": "cetirizine",
+          "names": [
+            "cetirizine",
+            "cetzine",
+            "okacet",
+            "zyrtec"
+          ],
+          "brands": "Cetzine, Okacet",
+          "use": "one 10 mg tablet once a day; cold compresses, moisturising lotion and lukewarm baths also help",
+          "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
+          "sources": [
+            "S4",
+            "S21"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "kidney",
+                "renal",
+                "liver",
+                "hepatitis"
+              ],
+              "text": "ask a doctor before taking cetirizine, because of your kidney- or liver-related record",
+              "sources": [
+                "S4"
+              ]
+            }
+          ]
+        },
+        {
+          "generic": "hydrocortisone 1% cream",
+          "names": [
+            "hydrocortisone"
+          ],
+          "brands": "",
+          "use": "apply a thin layer to the itchy area as the package label directs",
+          "limit": "Use it only on small areas of skin and for a short time.",
+          "sources": [
+            "S21"
+          ],
+          "cautions": []
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the itching is severe, does not go away after a few weeks, or has no clear cause",
+          "sources": [
+            "S21"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "Get emergency help for trouble breathing or swelling of the face, lips or throat after a bite or sting (a severe allergic reaction).",
+        "sources": [
+          "S22",
+          "S4"
+        ]
+      }
+    },
+    "acidity": {
+      "label": "acidity or heartburn",
+      "symptoms": [
+        "acidity",
+        "heartburn",
+        "heart burn",
+        "acid reflux",
+        "indigestion",
+        "sour stomach",
+        "upset stomach",
+        "gastritis"
+      ],
+      "options": [
+        {
+          "generic": "an antacid",
+          "names": [
+            "antacid",
+            "gelusil",
+            "digene"
+          ],
+          "brands": "Gelusil, Digene",
+          "use": "follow the dose on the package label; antacids neutralise the stomach acid that causes heartburn",
+          "limit": "Antacids can change how your body absorbs other medicines, so take other medicines at a different time.",
+          "sources": [
+            "S10"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "kidney",
+                "renal",
+                "heart disease",
+                "heart failure",
+                "hypertension",
+                "high blood pressure",
+                "kidney stone"
+              ],
+              "text": "talk to a doctor or pharmacist before taking antacids regularly",
+              "sources": [
+                "S10"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "you have heartburn more than twice a week (this may be GERD)",
+          "sources": [
+            "S11"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "Crushing chest pain could be a heart attack: get help immediately.",
+        "sources": [
+          "S11"
+        ]
+      }
+    },
+    "diarrhoea": {
+      "label": "diarrhoea (loose motions)",
+      "symptoms": [
+        "diarrhoea",
+        "diarrhea",
+        "loose motion",
+        "loose stool",
+        "watery stool"
+      ],
+      "options": [
+        {
+          "generic": "oral rehydration solution (ORS)",
+          "names": [
+            "ors",
+            "electral"
+          ],
+          "brands": "Electral",
+          "use": "drink it often to replace lost fluids and salts, along with water, fruit juice and salty broths",
+          "limit": "As you feel better, eat soft, bland food.",
+          "sources": [
+            "S9"
+          ],
+          "cautions": []
+        },
+        {
+          "generic": "loperamide",
+          "names": [
+            "loperamide",
+            "imodium",
+            "eldoper"
+          ],
+          "brands": "Imodium, Eldoper",
+          "use": "for sudden (acute) diarrhoea; follow the dose on the package label",
+          "limit": "Never take more, more often or for longer than the package says: too much can cause serious heart problems.",
+          "sources": [
+            "S8"
+          ],
+          "skip_if_query": [
+            "blood",
+            "black stool",
+            "mucus",
+            "fever"
+          ],
+          "skip_text": "Loperamide is not suggested because you mention fever, blood or mucus in the stool, or black stools; see a doctor.",
+          "cautions": [
+            {
+              "match": [
+                "colitis",
+                "liver",
+                "hepatitis",
+                "heart rhythm",
+                "arrhythmia",
+                "long qt"
+              ],
+              "block": true,
+              "text": "loperamide needs a doctor's advice with colitis, liver disease or heart rhythm problems",
+              "sources": [
+                "S8"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "you have signs of dehydration, or the diarrhoea lasts more than 2 days",
+          "sources": [
+            "S9"
+          ]
+        },
+        {
+          "text": "you took loperamide and the diarrhoea gets worse or lasts longer than 48 hours",
+          "sources": [
+            "S8"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "See a doctor the same day for blood in the stool, black stools, high fever, severe stomach pain, or signs of dehydration such as very little urine or dizziness.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "constipation": {
+      "label": "constipation",
+      "symptoms": [
+        "constipation",
+        "constipated",
+        "hard stool",
+        "no bowel movement"
+      ],
+      "options": [
+        {
+          "generic": "psyllium husk (isabgol)",
+          "names": [
+            "psyllium",
+            "isabgol",
+            "isabgul"
+          ],
+          "brands": "Sat Isabgol",
+          "use": "mix the powder with a full glass (240 ml) of liquid right before taking it, and drink at least another glass",
+          "limit": "Do not take it for longer than 1 week unless a doctor advises. Fruit, vegetables, whole grains, plenty of water and exercise also help.",
+          "sources": [
+            "S12",
+            "S13"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "intestinal blockage",
+                "bowel obstruction",
+                "difficulty swallowing",
+                "dysphagia",
+                "rectal bleeding"
+              ],
+              "block": true,
+              "text": "psyllium needs a doctor's advice with intestinal blockage, difficulty swallowing or rectal bleeding",
+              "sources": [
+                "S12"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "the constipation lasts more than a week, or you notice blood in your stool or lose weight without trying",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Get medical help right away for severe stomach pain with a swollen belly and vomiting, or if you cannot pass gas.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "throat": {
+      "label": "sore throat",
+      "symptoms": [
+        "sore throat",
+        "throat pain",
+        "scratchy throat",
+        "painful throat",
+        "throat irritation"
+      ],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; sucking on lozenges, drinking lots of liquids and gargling may also ease the pain",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": [
+            "S1",
+            "S18"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [
+        {
+          "what": "ibuprofen and aspirin with fever",
+          "names": [],
+          "text": "If you also have a fever, avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
+          "sources": [
+            "S5"
+          ],
+          "history_match": [
+            "dengue"
+          ],
+          "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
+        }
+      ],
+      "see_doctor": [
+        {
+          "text": "the sore throat lasts more than a week, or comes with a high fever or white patches on the tonsils",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Get help right away if you have trouble breathing or swallowing, or cannot open your mouth fully.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "cough": {
+      "label": "cough",
+      "symptoms": [
+        "cough",
+        "coughing"
+      ],
+      "options": [
+        {
+          "generic": "dextromethorphan cough syrup",
+          "names": [
+            "dextromethorphan"
+          ],
+          "brands": "",
+          "use": "follow the dose on the package label; it temporarily relieves a cough from a cold or flu but does not treat its cause",
+          "limit": "Many cough syrups also contain paracetamol: do not take a separate paracetamol tablet on top of one that does.",
+          "sources": [
+            "S16",
+            "S15"
+          ],
+          "cautions": []
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "your cough does not get better within 7 days, goes away and comes back, or comes with fever, rash or headache",
+          "sources": [
+            "S16"
+          ]
+        },
+        {
+          "text": "your cough lasts longer than 2 to 3 weeks (a chronic cough)",
+          "sources": [
+            "S17"
+          ]
+        }
+      ],
+      "warning_signs": {
+        "text": "Get help right away if you cough up blood, have trouble breathing, or have chest pain.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "cold": {
+      "label": "common cold or blocked nose",
+      "symptoms": [
+        "common cold",
+        "blocked nose",
+        "stuffy nose",
+        "nasal congestion",
+        "nose block",
+        "cold"
+      ],
+      "options": [
+        {
+          "generic": "saline nose drops",
+          "names": [
+            "saline"
+          ],
+          "brands": "",
+          "use": "use them in the nose as needed; rest, plenty of fluids, a humidifier and gargling with warm salt water also help",
+          "limit": "There is no cure for a cold, but these make you feel better while it goes away.",
+          "sources": [
+            "S15"
+          ],
+          "cautions": []
+        },
+        {
+          "generic": "oxymetazoline nasal spray",
+          "names": [
+            "oxymetazoline",
+            "nasivion"
+          ],
+          "brands": "Nasivion",
+          "use": "follow the package label; it relieves a blocked nose from colds and allergies",
+          "limit": "Do not use it for longer than 3 days: the blockage can get worse or come back.",
+          "sources": [
+            "S14"
+          ],
+          "cautions": []
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {
+          "text": "your blocked nose does not get better after 3 days of the spray",
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "text": "cold symptoms last more than 10 days, or you get a high fever, face pain or ear pain",
+          "rule": "medresolve",
+          "sources": []
+        }
+      ],
+      "warning_signs": {
+        "text": "Get help right away for trouble breathing, wheezing or chest pain.",
+        "rule": "medresolve",
+        "sources": []
+      }
+    },
+    "pain": {
+      "label": "headache or body pain",
+      "symptoms": [
+        "headache",
+        "head ache",
+        "head pain",
+        "body pain",
+        "body ache",
+        "bodyache",
+        "muscle pain",
+        "muscle ache"
+      ],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": [
+            "paracetamol",
+            "acetaminophen",
+            "dolo",
+            "crocin",
+            "calpol"
+          ],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; it is used to relieve mild to moderate pain",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": [
+            "S1"
+          ],
+          "cautions": [
+            {
+              "match": [
+                "liver",
+                "hepatitis",
+                "cirrhosis",
+                "alcohol"
+              ],
+              "text": "ask a doctor before taking paracetamol, because of your liver-related record",
+              "sources": [
+                "S1"
+              ]
+            }
+          ]
+        }
+      ],
+      "avoid": [
+        {
+          "what": "ibuprofen and aspirin with fever",
+          "names": [],
+          "text": "If you also have a fever, avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
+          "sources": [
+            "S5"
+          ],
+          "history_match": [
+            "dengue"
+          ],
           "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
         },
         {
           "what": "ibuprofen (record-dependent)",
           "always": false,
-          "names": ["ibuprofen", "brufen", "combiflam", "diclofenac", "naproxen", "nsaid"],
+          "names": [
+            "ibuprofen",
+            "brufen",
+            "combiflam",
+            "diclofenac",
+            "naproxen",
+            "nsaid"
+          ],
           "text": "",
-          "sources": ["S2"],
-          "history_match": ["ulcer", "stomach bleed", "gastric bleed", "kidney", "renal", "heart failure", "heart attack", "stroke"],
+          "sources": [
+            "S2"
+          ],
+          "history_match": [
+            "ulcer",
+            "stomach bleed",
+            "gastric bleed",
+            "kidney",
+            "renal",
+            "heart failure",
+            "heart attack",
+            "stroke"
+          ],
           "history_text": "Do not use ibuprofen or similar painkillers (NSAIDs) without a doctor's advice: they can cause stomach ulcers and bleeding and need caution with kidney or heart disease, which your records mention"
         }
       ],
       "see_doctor": [
-        {"text": "the pain gets worse or lasts more than 10 days", "sources": ["S1"]},
-        {"text": "you have sudden, severe headaches", "sources": ["S7"]}
+        {
+          "text": "the pain gets worse or lasts more than 10 days",
+          "sources": [
+            "S1"
+          ]
+        },
+        {
+          "text": "you have sudden, severe headaches",
+          "sources": [
+            "S7"
+          ]
+        }
       ],
       "warning_signs": {
         "text": "Get medical help right away if you have a headache after a blow to the head, or a headache with a stiff neck, fever, confusion, loss of consciousness, or pain in the eye or ear.",
-        "sources": ["S7"]
+        "sources": [
+          "S7"
+        ]
       }
     }
   }

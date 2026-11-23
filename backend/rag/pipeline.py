@@ -276,7 +276,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         result["raw_generation"] = raw
         result["engine"] = engine
     elif action == "GENERAL_OPTIONS":   # deterministic: curated options + record checks, no LLM text
-        opt = medicine_options.build_answer(otc_group, ctx.evidence)
+        opt = medicine_options.build_answer(otc_group, ctx.evidence, query)
         result.update(raw_generation=opt["text"], engine="general_options", medicine_options=opt)
     elif action == "ASK":
         raw = _ask_text(reason, qu, mem.count())
