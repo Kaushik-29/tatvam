@@ -35,6 +35,7 @@ from backend.patient_memory.derived import window_summaries
 from backend.patient_memory.models import ClinicalRecord, Consultation
 from backend.patient_memory.repository import PatientMemory
 from backend.rag.evidence_assembly import assemble
+from backend.rag import medicine_options
 from backend.rag.fusion import rrf
 from backend.rag.query_understanding import lay_name, understand
 from backend.structured_retrieval.patient_retriever import MED_WORDS, SERIES_LEAVES, PatientRetriever
@@ -109,11 +110,16 @@ class PipelineDeps:
     llm: Optional[OllamaClient] = None
 
 
-def _policy(emergency, qu, findings, n_records, query) -> (str, str):
+def _policy(emergency, qu, findings, n_records, query, otc_group=None, age=None) -> (str, str):
     if emergency.is_emergency:
         return "EMERGENCY_OVERRIDE", "Red-flag symptoms: " + "; ".join(emergency.red_flags)
     if any(f.severity == "HIGH" for f in findings):
         return "ABSTAIN_AND_NAVIGATE", "High-severity conflict in the record requires clinician review."
+    if otc_group:
+        if age is not None and age < 18:
+            return "ABSTAIN_AND_NAVIGATE", "General medicine options are given for adults only; ask a doctor or pharmacist."
+        label = medicine_options.KB["groups"][otc_group]["label"]
+        return "GENERAL_OPTIONS", f"General over-the-counter options for {label}, checked against your records."
     if DECISION_RE.search(query):
         return "ABSTAIN_AND_NAVIGATE", "The question asks for a diagnostic or prescribing decision."
     if n_records == 0:
@@ -197,11 +203,14 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     allergies = mem.records(leaves=["allergy_history"]) if uses_history else []
     med_intervals = mem.medication_intervals() if uses_history else []
     windows = _window_context(mem, patient_id, retrieved, qu) if uses_history else []
+    otc_group = medicine_options.detect(query) if v == "B5" else None
+    otc_history = (medicine_options.matching_history(mem.records(leaves=list(medicine_options.HISTORY_LEAVES)), otc_group)
+                   if otc_group else [])
 
     # 4. reference retrieval
     refs = []
     ts = time.time()
-    if v in ("B1", "B3", "B4", "B5") and deps.reference_index is not None:
+    if v in ("B1", "B3", "B4", "B5") and deps.reference_index is not None and not otc_group:  # options cite their own sources
         emit("stage", {"stage": "retrieving_references"})
         mode = "stair" if v in ("B4", "B5") else "hybrid"
         rq = query if not qu.symptoms else f"{query} ({', '.join(qu.symptoms)})"
@@ -229,7 +238,8 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
                          for m in unknown]
 
     # 6. evidence assembly
-    ctx = assemble(query, qu.symptoms, intake, retrieved, ((current_meds + allergies) if uses_history else []) + windows,
+    ctx = assemble(query, qu.symptoms, intake, retrieved,
+                   ((current_meds + allergies + otc_history) if uses_history else []) + windows,
                    refs, [f.to_dict() for f in findings], med_intervals)
     result["evidence"] = list(ctx.evidence.values())
     result["references"] = list(ctx.references.values())
@@ -241,7 +251,8 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     # 7. action policy (B5)
     action, reason = ("EXPLAIN", "Baseline variant: no selective policy")
     if v == "B5":
-        action, reason = _policy(emergency, qu, findings, mem.count(), query)
+        action, reason = _policy(emergency, qu, findings, mem.count(), query, otc_group,
+                                 medicine_options.age_years(patient.birth_date if patient else None))
     result.update(action=action, action_reason=reason)
 
     # 8. generation (buffered: nothing is streamed to the user before verification)
@@ -264,6 +275,9 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
             raw, engine = _template_answer(ctx, qu), "deterministic_template_fallback"
         result["raw_generation"] = raw
         result["engine"] = engine
+    elif action == "GENERAL_OPTIONS":   # deterministic: curated options + record checks, no LLM text
+        opt = medicine_options.build_answer(otc_group, ctx.evidence)
+        result.update(raw_generation=opt["text"], engine="general_options", medicine_options=opt)
     elif action == "ASK":
         raw = _ask_text(reason, qu, mem.count())
         result.update(raw_generation=raw, engine="policy_ask")

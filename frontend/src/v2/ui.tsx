@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, HelpCircle, Inbox, Loader2, OctagonAlert, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, HelpCircle, Inbox, Loader2, OctagonAlert, Pill as PillIcon, ShieldCheck } from 'lucide-react';
 import type { Action } from './types';
 
 export const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(' ');
@@ -130,6 +130,11 @@ const ACTIONS: Record<Action, { label: string; icon: React.ReactNode; tone: stri
     label: 'A little more information needed', icon: <HelpCircle className="w-[18px] h-[18px]" />,
     tone: 'bg-accent-soft text-accent-strong', dot: 'bg-accent text-white',
     text: 'MedResolve asks before answering rather than guessing.',
+  },
+  GENERAL_OPTIONS: {
+    label: 'General medicine options, checked against your records', icon: <PillIcon className="w-[18px] h-[18px]" />,
+    tone: 'bg-accent-soft text-accent-strong', dot: 'bg-accent text-white',
+    text: 'Over-the-counter options from cited sources, not a prescription. Confirm with a pharmacist.',
   },
   ABSTAIN_AND_NAVIGATE: {
     label: 'Please speak with a clinician', icon: <AlertTriangle className="w-[18px] h-[18px]" />,

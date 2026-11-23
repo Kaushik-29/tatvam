@@ -1,4 +1,4 @@
-export type Action = 'ASK' | 'EXPLAIN' | 'ABSTAIN_AND_NAVIGATE' | 'EMERGENCY_OVERRIDE';
+export type Action = 'ASK' | 'EXPLAIN' | 'GENERAL_OPTIONS' | 'ABSTAIN_AND_NAVIGATE' | 'EMERGENCY_OVERRIDE';
 
 export interface PatientProfile {
   patient_id: string;

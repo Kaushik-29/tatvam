@@ -1,0 +1,73 @@
+{
+  "_about": "Curated general over-the-counter options for a few common, non-emergency adult symptoms. Every option, caution and warning sign below is taken from the listed source pages (checked 2026-11-23). Items marked rule=\"medresolve\" are conservative MedResolve rules, not claims from a source. This is general information to discuss with a pharmacist, not a prescription. Clinician review of this file is pending.",
+  "sources": {
+    "S1": {"title": "Acetaminophen (paracetamol): MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a681004.html"},
+    "S2": {"title": "Ibuprofen: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a682159.html"},
+    "S3": {"title": "Aspirin: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a682878.html"},
+    "S4": {"title": "Cetirizine: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a623043.html"},
+    "S5": {"title": "Dengue and severe dengue: WHO fact sheet", "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"},
+    "S6": {"title": "Fever: MedlinePlus", "url": "https://medlineplus.gov/fever.html"}
+  },
+  "groups": {
+    "fever": {
+      "label": "fever",
+      "symptoms": ["fever", "temperature", "feverish", "pyrexia", "febrile"],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": ["paracetamol", "acetaminophen", "dolo", "crocin", "calpol"],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": ["S1", "S5"],
+          "cautions": [
+            {"match": ["liver", "hepatitis", "cirrhosis", "alcohol"], "text": "ask a doctor before taking paracetamol, because of your liver-related record", "sources": ["S1"]}
+          ]
+        }
+      ],
+      "avoid": [
+        {
+          "what": "ibuprofen and aspirin",
+          "names": ["ibuprofen", "aspirin", "brufen", "combiflam", "diclofenac", "naproxen", "nsaid", "disprin", "ecosprin"],
+          "text": "Avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
+          "sources": ["S5"],
+          "history_match": ["dengue"],
+          "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
+        }
+      ],
+      "see_doctor": [
+        {"text": "the fever lasts more than 2 days: see a doctor and ask for a dengue test (NS1 / blood count)", "rule": "medresolve (earlier than the label's 3 days because of the dengue risk)", "sources": []},
+        {"text": "the fever gets worse or lasts more than 3 days, or new symptoms appear", "sources": ["S1"]}
+      ],
+      "warning_signs": {
+        "text": "Go to a doctor the same day if you notice severe stomach pain, vomiting again and again, fast breathing, bleeding from the gums or nose, blood in vomit or stool, or you feel very weak, restless or very thirsty.",
+        "sources": ["S5"]
+      }
+    },
+    "allergy": {
+      "label": "sneezing / allergy symptoms",
+      "symptoms": ["sneezing", "sneeze", "runny nose", "itchy nose", "itchy eyes", "watery eyes", "hay fever", "allergic rhinitis"],
+      "options": [
+        {
+          "generic": "cetirizine",
+          "names": ["cetirizine", "cetzine", "okacet", "zyrtec"],
+          "brands": "Cetzine, Okacet",
+          "use": "one 10 mg tablet once a day",
+          "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
+          "sources": ["S4"],
+          "cautions": [
+            {"match": ["kidney", "renal", "liver", "hepatitis"], "text": "ask a doctor before taking cetirizine, because of your kidney- or liver-related record", "sources": ["S4"]}
+          ]
+        }
+      ],
+      "avoid": [],
+      "see_doctor": [
+        {"text": "the symptoms do not improve, or you develop fever, face pain or wheezing", "rule": "medresolve", "sources": []}
+      ],
+      "warning_signs": {
+        "text": "Get help immediately if you have trouble breathing or swelling of the face, lips or throat.",
+        "sources": ["S4"]
+      }
+    }
+  }
+}

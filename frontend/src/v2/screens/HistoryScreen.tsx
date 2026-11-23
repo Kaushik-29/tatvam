@@ -3,7 +3,7 @@ import { api } from '../api';
 import type { Consultation, ConsultationSummary } from '../types';
 import { Card, Empty, ErrorNote, PageHeader, Pill, Spinner } from '../ui';
 
-const ACTION_PILL: Record<string, string> = { EXPLAIN: 'CONFIRMED', ASK: 'INFO', ABSTAIN_AND_NAVIGATE: 'MEDIUM', EMERGENCY_OVERRIDE: 'HIGH' };
+const ACTION_PILL: Record<string, string> = { EXPLAIN: 'CONFIRMED', GENERAL_OPTIONS: 'INFO', ASK: 'INFO', ABSTAIN_AND_NAVIGATE: 'MEDIUM', EMERGENCY_OVERRIDE: 'HIGH' };
 
 export function HistoryScreen({ onOpen }: { onOpen: (c: Consultation) => void }) {
   const [rows, setRows] = useState<ConsultationSummary[] | null>(null);
