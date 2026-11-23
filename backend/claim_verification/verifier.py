@@ -41,6 +41,9 @@ NAV_RE = re.compile(r"\b((seek|get)( \w+){0,2} (care|attention|help|advice|asses
 DECISION_WORDS_RE = re.compile(r"\b(stop|start|increase|decrease|double|skip|dose|dosage|mg|switch)\b", re.I)
 # Sentences framed as general information stay general even when they say "you".
 GENERAL_FRAME_RE = re.compile(r"^\W*(in general|generally|typically|usually|most people|for most people)\b", re.I)
+# "the start date ... is not recorded" / "end date unknown" — contradicted when the cited record carries that date
+MISSING_DATE_RE = re.compile(r"\b(start\w*|end\w*|stop\w*|began|begin)?\s*(?:date|dates|when)\b[^.]{0,60}?\b(not (?:been )?"
+                             r"(?:recorded|documented|available|known|listed)|unknown|missing|unrecorded)\b", re.I)
 NO_RELATED_RE = re.compile(r"^\W*nothing in your records? (appears|seems|is) (directly )?(related|relevant) to (this|your) question\W*$", re.I)
 GENERIC_WORDS = {"history", "record", "records", "previous", "recorded", "listed", "shows", "show", "result", "results",
                  "value", "values", "level", "levels", "date", "test", "tests", "visit", "visits", "time", "taking",
@@ -264,6 +267,14 @@ class LongitudinalClaimVerifier:
         if missing_ents:
             return ClaimResult(cid, unit, "PATIENT_SPECIFIC", e_ids, r_ids, "UNSUPPORTED", False,
                                f"Clinical entities not present in cited evidence: {missing_ents}")
+        gap = MISSING_DATE_RE.search(body)
+        if gap:
+            which = (gap.group(1) or "").lower()
+            fields = (["effective_start"] if which.startswith("start") else ["effective_end"]
+                      if which.startswith(("end", "stop")) else ["effective_start", "effective_end"])
+            if any(evidence[e].get(f) for e in e_ids for f in fields):
+                return ClaimResult(cid, unit, "PATIENT_SPECIFIC", e_ids, r_ids, "UNSUPPORTED", False,
+                                   "Says a date is not recorded, but the cited record has that date.")
         content = [t for t in tokenize(body) if t not in GENERIC_WORDS and not t.isdigit()]
         overlap = sum(1 for t in content if t in ev_text) / max(1, len(content))
         if content and overlap < 0.2:

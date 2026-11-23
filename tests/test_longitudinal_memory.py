@@ -131,3 +131,12 @@ def test_bm25_baseline_scoped(memdb):
     with session_scope() as s:
         hits = PatientRetriever(PatientMemory(s, "pat-b")).bm25("creatinine", k=10)
         assert hits and all(h["patient_id"] == "pat-b" for h in hits)
+
+
+def test_recorded_medication_end_date_is_used_not_estimated(memdb):
+    with session_scope() as s:
+        m = PatientMemory(s, "pat-a")
+        r = m.add_patient_entry("medication_history/previous_medications", "Elodper",
+                                start="2021-11-01", end="2022-01-31", status="completed")
+        iv = {iv["record_id"]: iv for iv in m.medication_intervals()}[r["record_id"]]
+        assert iv["interval_end"].startswith("2022-01-31") and iv["end_uncertain"] is False

@@ -280,6 +280,10 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
                              findings_text="\n".join(f.description for f in findings))
         result["verification"] = vr.to_dict()
         final = vr.final_text
+        added = _required_record_facts(query, qu, ctx.evidence, final)
+        if added:   # the small LLM sometimes leaves out an allergy or current medicine the question asked about
+            final += "\n## Allergies and medicines on record\n" + "\n".join(added)
+            result["verification"]["added_record_facts"] = added
         if vr.withheld:
             final += ("\n\n_Note: " + str(len(vr.withheld)) + " statement(s) were withheld because they could not "
                       "be verified against your records or the cited references._")
@@ -295,6 +299,29 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     result["model_config"] = {"llm": deps.llm.model if deps.llm else None, "embedding_model": config.EMBEDDING_MODEL,
                               "stair_backend": getattr(deps.selector, "backend_name", None)}
     return _persist(s, result, cfg)
+
+
+ALLERGY_Q_RE = re.compile(r"\ballerg\w*", re.I)
+MEDS_Q_RE = re.compile(r"\b(medicines?|medications?|meds|drugs?|tablets?|pills?)\b", re.I)
+
+
+def _required_record_facts(query: str, qu, evidence: Dict[str, Dict[str, Any]], final_text: str) -> List[str]:
+    """When the question asks about allergies or medicines, every allergy / current medication in the
+    assembled evidence must reach the answer. Items the verified answer does not cite are added as
+    deterministic, cited sentences built only from the records (no LLM text)."""
+    groups = []
+    if qu.intent == "allergy_check" or ALLERGY_Q_RE.search(query):
+        groups.append(("allergy_history", "Allergies"))
+    if qu.intent == "current_medications" or MEDS_Q_RE.search(query):
+        groups.append(("medication_history/current_medications", "Current medicines"))
+    out = []
+    for leaf, label in groups:
+        missing = [e for e in evidence.values() if e.get("leaf_path") == leaf and f"[{e['alias']}]" not in final_text]
+        if missing:
+            items = "; ".join(e["concept_display"] + (f" ({e['value_text'][:80]})" if e.get("value_text") else "")
+                              + f" [{e['alias']}]" for e in missing)
+            out.append(f"{label} in your records: {items}.")
+    return out
 
 
 def _record_today(mem: PatientMemory, patient) -> Optional[str]:

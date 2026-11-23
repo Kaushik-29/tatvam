@@ -184,7 +184,9 @@ class PatientMemory:
             chronic = len(reqs) >= 3 or any(r["leaf_path"] == MED_LEAVES[0] for r in reqs)
             for i, r in enumerate(reqs):
                 start = datetime.fromisoformat(r["effective_start"][:19])
-                if r["leaf_path"] == MED_LEAVES[0]:
+                if r.get("effective_end"):                     # a recorded end date is used as-is, never estimated
+                    end, unc = r["effective_end"], False
+                elif r["leaf_path"] == MED_LEAVES[0]:
                     end, unc = as_of, False
                 elif chronic and i + 1 < len(reqs):
                     nxt = reqs[i + 1]["effective_start"]

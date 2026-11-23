@@ -142,3 +142,22 @@ def test_date_shifted_records_are_not_future_dated_against_record_time():
     mem = SimpleNamespace(records=lambda limit=None: [r])
     assert _record_today(mem, SimpleNamespace(source="mimic_iv_fhir_demo")) == "2155-11-23"
     assert _record_today(mem, SimpleNamespace(source="synthea_fhir_r4")) is None
+
+
+def test_claim_that_a_recorded_date_is_missing_is_withheld():
+    r = V.verify("The exact start date of your lisinopril is not recorded [E2].\n"
+                 "The end date of your lisinopril is not recorded [E2].", EVID, REFS)
+    assert not r.claims[0].permitted and "has that date" in r.claims[0].rationale
+    assert r.claims[1].permitted                       # E2 really has no end date
+
+
+def test_allergy_and_current_medicine_added_when_asked_but_missing():
+    from backend.rag.pipeline import _required_record_facts
+    ev = {"E1": {"alias": "E1", "leaf_path": "allergy_history", "concept_display": "Lemon", "value_text": "Mild reaction"},
+          "E2": {"alias": "E2", "leaf_path": "medication_history/current_medications", "concept_display": "Cetirizine",
+                 "value_text": None}}
+    qu = understand("I keep sneezing. What medicines or allergies should I keep in mind?")
+    out = _required_record_facts(qu.raw_query, qu, ev, "You take cetirizine [E2].")
+    assert out == ["Allergies in your records: Lemon (Mild reaction) [E1]."]
+    qu2 = understand("Have I had a cough like this before?")
+    assert _required_record_facts(qu2.raw_query, qu2, ev, "No.") == []
