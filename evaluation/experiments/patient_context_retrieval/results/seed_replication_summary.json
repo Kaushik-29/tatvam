@@ -1,0 +1,83 @@
+{
+ "description": "Mistral-7B QLoRA router trained with seed 29 vs seed 13 (same settings). Original-wording test sets, robustness fix applied.",
+ "seed29_train_metrics": "models/stair_clinical/checkpoints/mistral7b_clinical_stage1_seed29/train_metrics.json (train_time_s 19477.9, val recall@1 0.753->0.977)",
+ "section_hit@1": {
+  "synthea": {
+   "seed13": 0.958,
+   "seed29": 0.965
+  },
+  "mimic": {
+   "seed13": 0.723,
+   "seed29": 0.735
+  },
+  "eicu": {
+   "seed13": 0.83,
+   "seed29": 0.855
+  }
+ },
+ "R11_recall@5": {
+  "synthea": {
+   "seed13": 0.908,
+   "seed29": 0.891,
+   "diff": -0.017,
+   "ci": [
+    -0.03,
+    -0.005
+   ]
+  },
+  "mimic": {
+   "seed13": 0.924,
+   "seed29": 0.925,
+   "diff": 0.0,
+   "ci": [
+    -0.005,
+    0.006
+   ]
+  },
+  "eicu": {
+   "seed13": 0.954,
+   "seed29": 0.958,
+   "diff": 0.004,
+   "ci": [
+    -0.003,
+    0.011
+   ]
+  }
+ },
+ "R10_recall@5": {
+  "synthea": {
+   "seed13": 0.855,
+   "seed29": 0.84
+  },
+  "mimic": {
+   "seed13": 0.901,
+   "seed29": 0.9
+  },
+  "eicu": {
+   "seed13": 0.892,
+   "seed29": 0.892
+  }
+ },
+ "seed29_R11_minus_R4": {
+  "synthea": [
+   0.102,
+   0.066,
+   0.134
+  ],
+  "mimic": [
+   0.154,
+   0.13,
+   0.179
+  ],
+  "eicu": [
+   0.127,
+   0.1,
+   0.158
+  ]
+ },
+ "result_files": [
+  "retrieval_eval_test_mistral_seed29_robustfix",
+  "retrieval_eval_mimic_demo_mistral_seed29_robustfix",
+  "retrieval_eval_eicu_demo_mistral_seed29_robustfix"
+ ]
+}
