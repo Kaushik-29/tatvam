@@ -6,7 +6,8 @@
     "S3": {"title": "Aspirin: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a682878.html"},
     "S4": {"title": "Cetirizine: MedlinePlus Drug Information", "url": "https://medlineplus.gov/druginfo/meds/a623043.html"},
     "S5": {"title": "Dengue and severe dengue: WHO fact sheet", "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"},
-    "S6": {"title": "Fever: MedlinePlus", "url": "https://medlineplus.gov/fever.html"}
+    "S6": {"title": "Fever: MedlinePlus", "url": "https://medlineplus.gov/fever.html"},
+    "S7": {"title": "Headache: MedlinePlus", "url": "https://medlineplus.gov/headache.html"}
   },
   "groups": {
     "fever": {
@@ -67,6 +68,50 @@
       "warning_signs": {
         "text": "Get help immediately if you have trouble breathing or swelling of the face, lips or throat.",
         "sources": ["S4"]
+      }
+    },
+    "pain": {
+      "label": "headache or body pain",
+      "symptoms": ["headache", "head ache", "head pain", "body pain", "body ache", "bodyache", "muscle pain", "muscle ache"],
+      "options": [
+        {
+          "generic": "paracetamol",
+          "names": ["paracetamol", "acetaminophen", "dolo", "crocin", "calpol"],
+          "brands": "Dolo 650, Crocin 650, Calpol 650",
+          "use": "one 500 mg or 650 mg tablet every 6 hours if needed, after food; it is used to relieve mild to moderate pain",
+          "limit": "Do not take more than 4 tablets of 650 mg in 24 hours (MedResolve uses a lower limit than the label maximum of 4,000 mg a day from all sources), and do not take it together with cold or flu products that also contain paracetamol.",
+          "sources": ["S1"],
+          "cautions": [
+            {"match": ["liver", "hepatitis", "cirrhosis", "alcohol"], "text": "ask a doctor before taking paracetamol, because of your liver-related record", "sources": ["S1"]}
+          ]
+        }
+      ],
+      "avoid": [
+        {
+          "what": "ibuprofen and aspirin with fever",
+          "names": [],
+          "text": "If you also have a fever, avoid ibuprofen and aspirin until dengue is ruled out: in dengue they can increase the risk of bleeding.",
+          "sources": ["S5"],
+          "history_match": ["dengue"],
+          "history_text": "This matters more for you because you have had dengue before, and a second dengue infection carries a greater risk of severe dengue."
+        },
+        {
+          "what": "ibuprofen (record-dependent)",
+          "always": false,
+          "names": ["ibuprofen", "brufen", "combiflam", "diclofenac", "naproxen", "nsaid"],
+          "text": "",
+          "sources": ["S2"],
+          "history_match": ["ulcer", "stomach bleed", "gastric bleed", "kidney", "renal", "heart failure", "heart attack", "stroke"],
+          "history_text": "Do not use ibuprofen or similar painkillers (NSAIDs) without a doctor's advice: they can cause stomach ulcers and bleeding and need caution with kidney or heart disease, which your records mention"
+        }
+      ],
+      "see_doctor": [
+        {"text": "the pain gets worse or lasts more than 10 days", "sources": ["S1"]},
+        {"text": "you have sudden, severe headaches", "sources": ["S7"]}
+      ],
+      "warning_signs": {
+        "text": "Get medical help right away if you have a headache after a blow to the head, or a headache with a stiff neck, fever, confusion, loss of consciousness, or pain in the eye or ear.",
+        "sources": ["S7"]
       }
     }
   }

@@ -63,3 +63,18 @@ def test_policy_adults_only_and_decisions_still_abstain():
 def test_age_years():
     assert M.age_years("2005-08-29", date(2026, 11, 23)) == 21
     assert M.age_years(None) is None
+
+
+def test_headache_gets_paracetamol_with_record_dependent_nsaid_caution():
+    for q in ["I have a headache, which medicine should I take?", "give me a tablet for headache",
+              "medicine for body pain"]:
+        assert M.detect(q) == "pain", q
+    a = M.build_answer("pain", ev(E1=DENGUE, E2=LEMON))
+    t = a["text"]
+    assert a["options"] == ["paracetamol"] and "mild to moderate pain" in t
+    assert "If you also have a fever, avoid ibuprofen and aspirin" in t and "[E1]" in t
+    assert "NSAIDs" not in t                                   # no ulcer / kidney / heart record -> not shown
+    assert "stiff neck" in t and "S7" in a["sources"]
+    ulcer = {"leaf_path": "medical_history/diagnoses", "concept_display": "Peptic ulcer", "value_text": None}
+    assert "NSAIDs" in M.build_answer("pain", ev(E1=ulcer))["text"]
+    assert "S2" not in M.build_answer("pain", ev(E1=DENGUE))["sources"]   # caution not shown -> source not listed

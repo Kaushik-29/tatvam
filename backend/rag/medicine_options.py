@@ -22,7 +22,8 @@ KB = json.loads((Path(__file__).with_name("medicine_options.json")).read_text(en
 
 MED_REQUEST_RE = re.compile(
     r"\b(which|what|any|suggest|recommend|name of|tell me|give me|need)\b.{0,40}\b(medicines?|medications?|tablets?|"
-    r"pills?|drugs?)\b|\bmedicines? names?\b|\bwhat (can|should) i (take|use)\b|\bsomething (for|to take)\b", re.I)
+    r"pills?|drugs?)\b|\bmedicines? names?\b|\bwhat (can|should) i (take|use)\b|\bsomething (for|to take)\b|"
+    r"\b(medicines?|medications?|tablets?|pills?)\s+(for|to (take|use))\b", re.I)
 CHANGE_RE = re.compile(r"\b(stop|stopping|increase|decrease|double|skip|quit|change|switch|reduce)\b|\bprescribe\b|"
                        r"\bdiagnos\w*\b|\binstead of\b", re.I)
 HISTORY_LEAVES = ("medical_history/diagnoses", "medical_history/conditions", "medical_history/procedures")
@@ -104,9 +105,12 @@ def build_answer(group: str, evidence: Dict[str, Dict[str, Any]]) -> Dict[str, A
                           + ": do not take an extra dose on top of it.")
 
     for a in g["avoid"]:
-        used_sources |= set(a["sources"])
-        lines.append(f"**{a['text']}**{_cite(a['sources'])}")
         hit = [h for h in history if any(k in _txt(h) for k in a.get("history_match", []))]
+        if a.get("always", True):                        # general caution, shown to everyone
+            lines.append(f"**{a['text']}**{_cite(a['sources'])}")
+        elif not hit:                                    # record-dependent caution: only when the record triggers it
+            continue
+        used_sources |= set(a["sources"])
         if hit:
             lines.append(f"{a['history_text'].replace('you have had', 'your records show you have had', 1)} "
                          + "".join(f"[{h['alias']}]" for h in hit) + _cite(a["sources"]))
