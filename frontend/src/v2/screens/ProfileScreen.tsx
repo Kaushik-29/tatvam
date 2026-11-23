@@ -15,26 +15,26 @@ function age(birth: string | null) {
 function TocTree({ nodes, onOpen, depth = 0 }: { nodes: TocNode[]; onOpen: (n: TocNode) => void; depth?: number }) {
   const [open, setOpen] = useState<Record<string, boolean>>({});
   return (
-    <ul className={depth ? 'ml-4 border-l border-[#EEF2F7] pl-2' : ''}>
+    <ul className={depth ? 'ml-4 border-l border-line-soft pl-2' : ''}>
       {nodes.map((n) => {
         const hasKids = n.children.length > 0;
         const isOpen = open[n.path] ?? depth === 0;
         return (
           <li key={n.path} className="py-0.5">
-            <div className="flex items-center gap-1.5 text-[12px]">
+            <div className="flex items-center gap-1.5 text-[14px]">
               {hasKids ? (
-                <button onClick={() => setOpen({ ...open, [n.path]: !isOpen })} className="text-[#8A99AB]" aria-label={isOpen ? 'Collapse' : 'Expand'}>
+                <button onClick={() => setOpen({ ...open, [n.path]: !isOpen })} className="text-faint" aria-label={isOpen ? 'Collapse' : 'Expand'}>
                   {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
                 </button>
               ) : <span className="w-3.5" />}
-              <button onClick={() => onOpen(n)} className="text-left hover:text-[#3675CA] disabled:text-[#8A99AB]" disabled={!n.count}>
-                <span className="tabular-nums text-[#8A99AB] mr-1.5">{n.number}</span>
-                <span className={depth ? 'text-[#172B4D]' : 'font-medium text-[#172B4D]'}>{n.title}</span>
+              <button onClick={() => onOpen(n)} className="text-left hover:text-accent disabled:text-faint" disabled={!n.count}>
+                <span className="tabular-nums text-faint mr-1.5">{n.number}</span>
+                <span className={depth ? 'text-ink' : 'font-medium text-ink'}>{n.title}</span>
               </button>
-              <span className="text-[10px] text-[#8A99AB] tabular-nums">{n.count ? `${n.count}${n.date_range ? ` · ${n.date_range}` : ''}` : 'empty'}</span>
+              <span className="text-[12px] text-faint tabular-nums">{n.count ? `${n.count}${n.date_range ? ` · ${n.date_range}` : ''}` : 'empty'}</span>
             </div>
             {hasKids && isOpen && <TocTree nodes={n.children.slice(0, 40)} onOpen={onOpen} depth={depth + 1} />}
-            {hasKids && isOpen && n.children.length > 40 && <p className="ml-8 text-[10px] text-[#8A99AB]">+ {n.children.length - 40} more entries</p>}
+            {hasKids && isOpen && n.children.length > 40 && <p className="ml-8 text-[12px] text-faint">+ {n.children.length - 40} more entries</p>}
           </li>
         );
       })}
@@ -72,7 +72,7 @@ export function ProfileScreen({ profile, readOnly, onSaved }: { profile: Patient
     <>
       <PageHeader title="Medical profile" description="Your longitudinal record, organised as the hierarchy MedResolve's structure-aware retriever (STAIR-Clinical) navigates." />
       <ErrorNote error={error} />
-      <div className="grid lg:grid-cols-[320px_1fr] gap-4">
+      <div className="grid lg:grid-cols-[320px_1fr] gap-6">
         <Card title="Personal details" actions={!readOnly && !edit ? <Button variant="ghost" onClick={() => setEdit(true)}>Edit</Button> : undefined}>
           {edit ? (
             <div className="space-y-2">
@@ -85,28 +85,28 @@ export function ProfileScreen({ profile, readOnly, onSaved }: { profile: Patient
               <div className="flex gap-2"><Button onClick={save}>Save</Button><Button variant="secondary" onClick={() => setEdit(false)}>Cancel</Button></div>
             </div>
           ) : (
-            <dl className="grid grid-cols-[110px_1fr] gap-y-1.5 text-[12px]">
-              <dt className="text-[#61738A]">Name</dt><dd>{[profile.given_name, profile.family_name].filter(Boolean).join(' ') || '—'}</dd>
-              <dt className="text-[#61738A]">Born</dt><dd className="tabular-nums">{fmtDate(profile.birth_date)}{age(profile.birth_date) !== null && ` (${age(profile.birth_date)} y)`}</dd>
-              <dt className="text-[#61738A]">Sex</dt><dd>{profile.gender || '—'}</dd>
-              <dt className="text-[#61738A]">Location</dt><dd>{[profile.city, profile.state].filter(Boolean).join(', ') || '—'}</dd>
-              <dt className="text-[#61738A]">Records</dt><dd className="tabular-nums">{profile.record_count.toLocaleString()}</dd>
-              <dt className="text-[#61738A]">Source</dt><dd>{profile.is_synthetic ? 'Synthea synthetic (FHIR R4)' : 'Registered user'}</dd>
+            <dl className="grid grid-cols-[110px_1fr] gap-y-1.5 text-[14px]">
+              <dt className="text-muted">Name</dt><dd>{[profile.given_name, profile.family_name].filter(Boolean).join(' ') || '—'}</dd>
+              <dt className="text-muted">Born</dt><dd className="tabular-nums">{fmtDate(profile.birth_date)}{age(profile.birth_date) !== null && ` (${age(profile.birth_date)} y)`}</dd>
+              <dt className="text-muted">Sex</dt><dd>{profile.gender || '—'}</dd>
+              <dt className="text-muted">Location</dt><dd>{[profile.city, profile.state].filter(Boolean).join(', ') || '—'}</dd>
+              <dt className="text-muted">Records</dt><dd className="tabular-nums">{profile.record_count.toLocaleString()}</dd>
+              <dt className="text-muted">Source</dt><dd>{profile.is_synthetic ? 'Synthea synthetic (FHIR R4)' : 'Registered user'}</dd>
             </dl>
           )}
         </Card>
         <Card title="Record hierarchy" subtitle="Branches → sections → your concept groups. Select an entry to see its records.">
           {!toc ? <Spinner label="Loading hierarchy…" /> : (
-            <div className="grid xl:grid-cols-2 gap-4">
+            <div className="grid xl:grid-cols-2 gap-6">
               <div className="max-h-[560px] overflow-y-auto pr-2"><TocTree nodes={toc} onOpen={open} /></div>
               <div className="min-w-0">
                 {sel ? (
                   <>
-                    <p className="text-[12px] font-medium mb-1"><span className="tabular-nums text-[#8A99AB] mr-1">{sel.number}</span>{sel.title}</p>
-                    <p className="text-[10px] text-[#8A99AB] mb-2 font-mono break-all">{sel.path}</p>
+                    <p className="text-[14px] font-medium mb-1"><span className="tabular-nums text-faint mr-1">{sel.number}</span>{sel.title}</p>
+                    <p className="text-[12px] text-faint mb-2 font-mono break-all">{sel.path}</p>
                     <RecordTable records={rows} compact={false} />
                   </>
-                ) : <p className="text-[12px] text-[#8A99AB]">Select a section on the left.</p>}
+                ) : <p className="text-[14px] text-faint">Select a section on the left.</p>}
               </div>
             </div>
           )}

@@ -59,8 +59,8 @@ export function QuickAdd({ leaves, onAdded, placeholder }: { leaves: string[]; o
   };
 
   return (
-    <div className="space-y-2">
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-2 items-end">
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3 items-end rounded-[16px] bg-panel border border-line-soft p-4">
         {leaves.length > 1 && (
           <Field label="Type">
             <Select value={leaf} onChange={(e) => { setLeaf(e.target.value); setStatus(''); }}>
@@ -91,7 +91,7 @@ export function QuickAdd({ leaves, onAdded, placeholder }: { leaves: string[]; o
         {(status === 'resolved' || status === 'stopped' || leaf.endsWith('previous_medications')) && (
           <Field label="End date"><Input type="date" value={end} onChange={(e) => setEnd(e.target.value)} /></Field>
         )}
-        <Button onClick={add} disabled={!display.trim()}><Plus className="w-3.5 h-3.5" /> Add</Button>
+        <Button onClick={add} disabled={!display.trim()} className="h-11"><Plus className="w-4 h-4" /> Add</Button>
       </div>
       <ErrorNote error={error} />
     </div>
@@ -101,40 +101,46 @@ export function QuickAdd({ leaves, onAdded, placeholder }: { leaves: string[]; o
 export function RecordTable({ records, onDelete, onConfirm, emptyText, compact }: {
   records: RecordItem[]; onDelete?: (r: RecordItem) => void; onConfirm?: (r: RecordItem) => void; emptyText?: string; compact?: boolean;
 }) {
-  if (!records.length) return <p className="text-[12px] text-[#8A99AB] py-2">{emptyText ?? 'Nothing recorded.'}</p>;
+  if (!records.length) return <p className="text-[14px] text-faint py-3">{emptyText ?? 'Nothing recorded.'}</p>;
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-[12px]">
+      <table className="w-full text-[14px]">
         <thead>
-          <tr className="text-left text-[10px] uppercase tracking-wide text-[#8A99AB] border-b border-[#DFE7F1]">
-            <th className="py-1.5 pr-3 font-medium">Item</th>
-            <th className="py-1.5 pr-3 font-medium">Date</th>
-            {!compact && <th className="py-1.5 pr-3 font-medium">Value / status</th>}
-            <th className="py-1.5 pr-3 font-medium">Source</th>
-            {(onDelete || onConfirm) && <th className="py-1.5" />}
+          <tr className="text-left text-[14px] font-medium text-faint">
+            <th className="py-2 px-1 pr-4 font-medium">Item</th>
+            <th className="py-2 pr-4 font-medium">Date</th>
+            {!compact && <th className="py-2 pr-4 font-medium">Value / status</th>}
+            <th className="py-2 pr-4 font-medium">Source</th>
+            {(onDelete || onConfirm) && <th className="py-2" />}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-line-soft border-t border-line-soft">
           {records.map((r) => (
-            <tr key={r.record_id} className="border-b border-[#EEF2F7] align-top">
-              <td className="py-1.5 pr-3 text-[#172B4D]">{r.concept_display}</td>
-              <td className="py-1.5 pr-3 tabular-nums text-[#61738A] whitespace-nowrap">
+            <tr key={r.record_id} className="align-top group transition-colors hover:bg-panel">
+              <td className="py-3 px-1 pr-4 text-ink font-medium">{r.concept_display}</td>
+              <td className="py-3 pr-4 tabular-nums text-muted whitespace-nowrap">
                 {fmtDate(r.effective_start)}{r.effective_end ? ` → ${fmtDate(r.effective_end)}` : ''}
               </td>
               {!compact && (
-                <td className="py-1.5 pr-3 tabular-nums text-[#61738A]">
-                  {r.value_num !== null ? `${r.value_num} ${r.unit ?? '(no unit)'}` : r.value_text ?? ''} {r.clinical_status && <span className="text-[#8A99AB]">· {r.clinical_status}</span>}
+                <td className="py-3 pr-4 tabular-nums text-muted">
+                  {r.value_num !== null ? `${r.value_num} ${r.unit ?? '(no unit)'}` : r.value_text ?? ''} {r.clinical_status && <span className="text-faint">· {r.clinical_status}</span>}
                 </td>
               )}
-              <td className="py-1.5 pr-3"><Pill value={r.verification_status} /> <span className="text-[10px] text-[#8A99AB]">{r.source_system.replace(/_/g, ' ')}</span></td>
+              <td className="py-3 pr-4">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <Pill value={r.verification_status} />
+                  <span className="text-[14px] text-faint">{r.source_system.replace(/_/g, ' ')}</span>
+                </div>
+              </td>
               {(onDelete || onConfirm) && (
-                <td className="py-1.5 text-right whitespace-nowrap">
+                <td className="py-2.5 pr-1 text-right whitespace-nowrap">
                   {onConfirm && r.verification_status === 'unconfirmed' && (
-                    <button onClick={() => onConfirm(r)} className="text-[11px] text-[#26845A] hover:underline mr-2">Confirm</button>
+                    <button onClick={() => onConfirm(r)} className="h-8 px-3 rounded-full text-[15px] font-medium text-success-ink hover:bg-success-soft transition-colors cursor-pointer mr-1">Confirm</button>
                   )}
                   {onDelete && r.source_system !== 'synthea_fhir_r4' && r.source_system !== 'derived' && (
-                    <button onClick={() => onDelete(r)} className="text-[#8A99AB] hover:text-[#C23E4A]" aria-label={`Delete ${r.concept_display}`}>
-                      <Trash2 className="w-3.5 h-3.5" />
+                    <button onClick={() => onDelete(r)} aria-label={`Delete ${r.concept_display}`}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-faint opacity-60 group-hover:opacity-100 hover:text-danger hover:bg-danger-soft transition-all cursor-pointer">
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   )}
                 </td>

@@ -35,7 +35,7 @@ export function MedsAllergiesScreen({ readOnly }: { readOnly: boolean }) {
         description="Current medications and allergies are always included as safety context when you ask a question, even if they were not retrieved as relevant." />
       <ErrorNote error={error} />
       {!data ? <Spinner label="Loading…" /> : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {SECTIONS.map((s) => (
             <Card key={s.leaf} title={s.title} subtitle={`${data[s.leaf].length} record(s)`}>
               {!readOnly && s.add && (

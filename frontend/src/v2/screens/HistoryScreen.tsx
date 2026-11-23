@@ -15,17 +15,17 @@ export function HistoryScreen({ onOpen }: { onOpen: (c: Consultation) => void })
       <ErrorNote error={error} />
       <Card>
         {!rows ? <Spinner /> : rows.length === 0 ? <Empty title="No consultations yet" /> : (
-          <ul className="divide-y divide-[#EEF2F7]">
+          <ul className="divide-y divide-line-soft">
             {rows.map((r) => (
               <li key={r.consultation_id}>
-                <button className="w-full text-left py-2.5 hover:bg-[#F7F9FC] px-1 rounded" onClick={async () => onOpen(await api.consultation(r.consultation_id))}>
+                <button className="w-full text-left py-2.5 hover:bg-panel px-1 rounded" onClick={async () => onOpen(await api.consultation(r.consultation_id))}>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[11px] tabular-nums text-[#8A99AB]">{new Date(r.created_at + 'Z').toLocaleString()}</span>
+                    <span className="text-[13px] tabular-nums text-faint">{new Date(r.created_at + 'Z').toLocaleString()}</span>
                     <Pill value={ACTION_PILL[r.action] ?? 'INFO'} label={r.action} />
-                    {r.latency_s !== null && <span className="text-[10px] text-[#8A99AB] tabular-nums">{r.latency_s.toFixed(1)}s</span>}
+                    {r.latency_s !== null && <span className="text-[12px] text-faint tabular-nums">{r.latency_s.toFixed(1)}s</span>}
                   </div>
-                  <p className="text-[12px] text-[#172B4D] mt-0.5">{r.query}</p>
-                  <p className="text-[11px] text-[#61738A] truncate">{r.preview.replace(/[#*_]/g, '')}</p>
+                  <p className="text-[14px] text-ink mt-0.5">{r.query}</p>
+                  <p className="text-[13px] text-muted truncate">{r.preview.replace(/[#*_]/g, '')}</p>
                 </button>
               </li>
             ))}

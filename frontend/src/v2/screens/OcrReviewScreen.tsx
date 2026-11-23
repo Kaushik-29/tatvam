@@ -39,13 +39,13 @@ export function OcrReviewScreen({ readOnly, initialDoc }: { readOnly: boolean; i
       <PageHeader title="Review extracted data" description="OCR can misread values and units. Confirm, correct or reject each extracted value. Unconfirmed values are labelled as such whenever MedResolve uses them." />
       <ErrorNote error={error} />
       {docs.length === 0 ? <Card><Empty title="No uploaded documents to review">Upload a document first.</Empty></Card> : (
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-4">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-6">
           <Card title="Document" actions={
             <Select value={docId ?? ''} onChange={(e) => setDocId(e.target.value)} className="max-w-[240px]">
               {docs.map((d) => <option key={d.document_id} value={d.document_id}>{d.title} ({d.ocr_status})</option>)}
             </Select>}>
             {!review ? <Spinner /> : (
-              <pre className="text-[11px] whitespace-pre-wrap bg-[#FAF9F6] border border-[#EEF2F7] rounded p-3 max-h-[520px] overflow-y-auto font-mono text-[#172B4D]">{review.text || '(no text extracted)'}</pre>
+              <pre className="text-[13px] whitespace-pre-wrap bg-panel border border-line-soft rounded p-3 max-h-[520px] overflow-y-auto font-mono text-ink">{review.text || '(no text extracted)'}</pre>
             )}
           </Card>
           <Card title="Extracted values" subtitle={review ? `${review.extracted_records.length} item(s) · status ${review.ocr_status}` : undefined}
@@ -55,15 +55,15 @@ export function OcrReviewScreen({ readOnly, initialDoc }: { readOnly: boolean; i
                 {review.extracted_records.map((r) => {
                   const prov = r.provenance as Record<string, string | number | null>;
                   return (
-                    <li key={r.record_id} className="border border-[#EEF2F7] rounded p-2.5">
+                    <li key={r.record_id} className="border border-line-soft rounded p-2.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[12px] font-medium text-[#172B4D]">{r.concept_display}</span>
+                        <span className="text-[14px] font-medium text-ink">{r.concept_display}</span>
                         <Pill value={r.verification_status} />
-                        <span className="text-[10px] text-[#8A99AB] tabular-nums">confidence {(r.confidence ?? 0).toFixed(2)} · unit {String(prov.unit_status ?? 'n/a')} · page {String(prov.page ?? '?')}</span>
+                        <span className="text-[12px] text-faint tabular-nums">confidence {(r.confidence ?? 0).toFixed(2)} · unit {String(prov.unit_status ?? 'n/a')} · page {String(prov.page ?? '?')}</span>
                       </div>
-                      <p className="text-[11px] text-[#61738A] mt-1">Raw text: <span className="font-mono">{String(prov.raw_text ?? '')}</span></p>
+                      <p className="text-[13px] text-muted mt-1">Raw text: <span className="font-mono">{String(prov.raw_text ?? '')}</span></p>
                       <div className="flex flex-wrap gap-2 items-center mt-2">
-                        <span className="text-[11px] tabular-nums">{r.value_num ?? r.value_text} {r.unit ?? <em className="text-[#C23E4A]">no unit</em>} · {fmtDate(r.effective_start)}</span>
+                        <span className="text-[13px] tabular-nums">{r.value_num ?? r.value_text} {r.unit ?? <em className="text-danger">no unit</em>} · {fmtDate(r.effective_start)}</span>
                         {!readOnly && r.verification_status === 'unconfirmed' && (
                           <>
                             <Input className="max-w-[90px]" placeholder="value" value={edits[r.record_id]?.value ?? ''}

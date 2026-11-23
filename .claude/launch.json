@@ -12,6 +12,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "frontend", "run", "dev"],
       "port": 5173
+    },
+    {
+      "name": "doctor-assessment-api",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "app.main:app", "--app-dir", "doctor_assessment_app/backend", "--host", "127.0.0.1", "--port", "8100"],
+      "port": 8100
+    },
+    {
+      "name": "doctor-assessment-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "doctor_assessment_app/frontend", "run", "dev"],
+      "port": 5180
     }
   ]
 }

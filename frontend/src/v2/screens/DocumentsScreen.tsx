@@ -36,7 +36,7 @@ export function DocumentsScreen({ readOnly, onReview }: { readOnly: boolean; onR
     <>
       <PageHeader title="Medical documents" description="Upload prescriptions, lab reports and discharge summaries (PDF, PNG, JPG or TXT, max 15 MB). Text is extracted locally with OCR; nothing is sent to external services." />
       {!readOnly && (
-        <Card title="Upload a document" className="mb-4">
+        <Card title="Upload a document" className="mb-6">
           <div className="grid sm:grid-cols-4 gap-3 items-end">
             <div className="sm:col-span-2">
               <Field label="File"><Input type="file" accept=".pdf,.png,.jpg,.jpeg,.txt" onChange={(e) => setFile(e.target.files?.[0] ?? null)} /></Field>
@@ -54,18 +54,18 @@ export function DocumentsScreen({ readOnly, onReview }: { readOnly: boolean; onR
             <Button onClick={upload} disabled={!file || busy}><Upload className="w-3.5 h-3.5" /> Upload & extract</Button>
             {busy && <Spinner label="Extracting text…" />}
           </div>
-          <div className="mt-2 space-y-2"><ErrorNote error={error} />{msg && <p className="text-[12px] text-[#26845A]">{msg}</p>}</div>
+          <div className="mt-2 space-y-2"><ErrorNote error={error} />{msg && <p className="text-[14px] text-success-ink">{msg}</p>}</div>
         </Card>
       )}
       <Card title="Your documents" subtitle={docs ? `${docs.length} document(s)` : undefined}>
         {!docs ? <Spinner /> : docs.length === 0 ? <Empty title="No documents yet" /> : (
-          <ul className="divide-y divide-[#EEF2F7]">
+          <ul className="divide-y divide-line-soft">
             {docs.map((d) => (
-              <li key={d.document_id} className="py-2 flex items-start gap-3">
+              <li key={d.document_id} className="py-4 first:pt-1 flex items-start gap-4">
                 <div className="min-w-0 flex-1">
-                  <p className="text-[12px] text-[#172B4D] truncate">{d.title}</p>
-                  <p className="text-[11px] text-[#8A99AB] tabular-nums">{fmtDate(d.doc_date)} · {d.leaf_path.split('/').pop()?.replace(/_/g, ' ')} · {d.source_system.replace(/_/g, ' ')}</p>
-                  <p className="text-[11px] text-[#61738A] line-clamp-2 mt-0.5">{d.preview}</p>
+                  <p className="text-[15px] font-medium text-ink truncate">{d.title}</p>
+                  <p className="text-[13px] text-faint tabular-nums">{fmtDate(d.doc_date)} · {d.leaf_path.split('/').pop()?.replace(/_/g, ' ')} · {d.source_system.replace(/_/g, ' ')}</p>
+                  <p className="text-[13px] text-muted line-clamp-2 mt-1.5 leading-relaxed">{d.preview}</p>
                 </div>
                 {d.ocr_status === 'pending_review' && <Pill value="UNCONFIRMED" label="needs review" />}
                 {d.ocr_status === 'reviewed' && <Pill value="CONFIRMED" label="reviewed" />}

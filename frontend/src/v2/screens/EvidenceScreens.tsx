@@ -12,7 +12,7 @@ const LEAF_SECTION = (leaf: string) =>
 
 function NoConsultation({ onNavigate }: { onNavigate: (s: V2Screen) => void }) {
   return (
-    <Card><Empty title="No consultation selected">Ask a question first, or open one from <button className="text-[#3675CA] underline" onClick={() => onNavigate('history')}>previous consultations</button>.</Empty></Card>
+    <Card><Empty title="No consultation selected">Ask a question first, or open one from <button className="text-accent underline" onClick={() => onNavigate('history')}>previous consultations</button>.</Empty></Card>
   );
 }
 
@@ -35,29 +35,29 @@ export function ContextScreen({ consultation: c, focus, onNavigate }: { consulta
   return (
     <>
       <PageHeader title="Retrieved patient context" description={`Question: “${c.query}”`} />
-      <div className="grid lg:grid-cols-[1fr_320px] gap-4">
-        <div className="space-y-4">
+      <div className="grid lg:grid-cols-[1fr_320px] gap-6">
+        <div className="space-y-6">
           {Object.keys(SECTION_NAME).filter((k) => grouped[k]).map((k) => (
             <Card key={k} title={SECTION_NAME[k]} subtitle={`${grouped[k].length} item(s)`}>
-              <ul className="divide-y divide-[#EEF2F7]">
+              <ul className="divide-y divide-line-soft">
                 {grouped[k].map((e) => (
                   <li key={e.alias} ref={e.alias === focus ? (el) => { ref.current = el; } : undefined}
-                    className={cx('py-2 px-1 rounded', e.alias === focus && 'bg-[#EAF2FC]')}>
+                    className={cx('py-2 px-1 rounded', e.alias === focus && 'bg-accent-soft')}>
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[11px] font-semibold text-[#265EAA] tabular-nums w-8">{e.alias}</span>
-                      <span className="text-[12px] text-[#172B4D]">{e.concept_display}</span>
+                      <span className="text-[13px] font-semibold text-accent-strong tabular-nums w-8">{e.alias}</span>
+                      <span className="text-[14px] text-ink">{e.concept_display}</span>
                       <Pill value={e.epistemic_status} />
-                      {cited.has(e.alias) && <span className="text-[10px] text-[#26845A] font-medium">cited in answer</span>}
+                      {cited.has(e.alias) && <span className="text-[12px] text-success-ink font-medium">cited in answer</span>}
                     </div>
-                    <p className="text-[11px] text-[#61738A] ml-10 tabular-nums">
+                    <p className="text-[13px] text-muted ml-10 tabular-nums">
                       {fmtDate(e.effective_start)}{e.effective_end ? ` → ${fmtDate(e.effective_end)}` : ''}
                       {e.value_num !== null && ` · ${e.value_num} ${e.unit ?? '(no unit)'}`}
                       {e.normalized_unit && e.normalized_unit !== e.unit && e.normalized_value !== null && ` (normalised ${e.normalized_value} ${e.normalized_unit})`}
                       {e.clinical_status && ` · ${e.clinical_status}`}
                     </p>
                     <details className="ml-10 mt-0.5">
-                      <summary className="text-[10px] text-[#8A99AB] cursor-pointer">Provenance</summary>
-                      <dl className="text-[10px] text-[#61738A] grid grid-cols-[110px_1fr] gap-x-2 mt-1 font-mono break-all">
+                      <summary className="text-[12px] text-faint cursor-pointer">Provenance</summary>
+                      <dl className="text-[12px] text-muted grid grid-cols-[110px_1fr] gap-x-2 mt-1 font-mono break-all">
                         <dt>record_id</dt><dd>{e.record_id}</dd>
                         <dt>hierarchy path</dt><dd>{e.group_path}</dd>
                         <dt>resource</dt><dd>{e.resource_type} {e.fhir_resource_id ?? ''}</dd>
@@ -73,26 +73,26 @@ export function ContextScreen({ consultation: c, focus, onNavigate }: { consulta
           ))}
           {!c.evidence.length && <Card><Empty title="No patient records were used">{c.action === 'EMERGENCY_OVERRIDE' ? 'Retrieval was skipped because emergency warning signs were detected.' : 'Your record had nothing relevant, or it is empty.'}</Empty></Card>}
         </div>
-        <aside className="space-y-4">
+        <aside className="space-y-6">
           <Card title="How the records were found">
             {t ? (
-              <div className="space-y-3 text-[11px]">
-                <p className="text-[#61738A]">Method: <span className="text-[#172B4D]">{t.method}</span> · selector: <span className="text-[#172B4D]">{t.selector_backend ?? '—'}</span></p>
+              <div className="space-y-3 text-[13px]">
+                <p className="text-muted">Method: <span className="text-ink">{t.method}</span> · selector: <span className="text-ink">{t.selector_backend ?? '—'}</span></p>
                 <div>
-                  <p className="font-medium text-[#172B4D] mb-1">STAIR stage 1 — sections</p>
-                  <ul className="space-y-0.5">{t.selected_leaves.map(([p, s]) => <li key={p} className="font-mono break-all text-[#61738A]">{p} <span className="text-[#8A99AB]">({s.toFixed(3)})</span></li>)}</ul>
+                  <p className="font-medium text-ink mb-1">STAIR stage 1 — sections</p>
+                  <ul className="space-y-0.5">{t.selected_leaves.map(([p, s]) => <li key={p} className="font-mono break-all text-muted">{p} <span className="text-faint">({s.toFixed(3)})</span></li>)}</ul>
                 </div>
                 <div>
-                  <p className="font-medium text-[#172B4D] mb-1">Stage 2 — concept groups</p>
-                  <ul className="space-y-0.5 max-h-48 overflow-y-auto">{t.selected_groups.map(([p, s]) => <li key={p} className="font-mono break-all text-[#61738A]">{p.split('/').slice(-1)[0]} <span className="text-[#8A99AB]">({s.toFixed(3)})</span></li>)}</ul>
+                  <p className="font-medium text-ink mb-1">Stage 2 — concept groups</p>
+                  <ul className="space-y-0.5 max-h-48 overflow-y-auto">{t.selected_groups.map(([p, s]) => <li key={p} className="font-mono break-all text-muted">{p.split('/').slice(-1)[0]} <span className="text-faint">({s.toFixed(3)})</span></li>)}</ul>
                 </div>
-                {t.structured_ops.length > 0 && <div><p className="font-medium text-[#172B4D] mb-1">Structured operations</p><ul>{t.structured_ops.map((o) => <li key={o} className="font-mono text-[#61738A] break-all">{o}</li>)}</ul></div>}
-                <p className={t.invalid_paths.length ? 'text-[#C23E4A]' : 'text-[#26845A]'}>Invalid paths rejected: {t.invalid_paths.length}</p>
+                {t.structured_ops.length > 0 && <div><p className="font-medium text-ink mb-1">Structured operations</p><ul>{t.structured_ops.map((o) => <li key={o} className="font-mono text-muted break-all">{o}</li>)}</ul></div>}
+                <p className={t.invalid_paths.length ? 'text-danger' : 'text-success-ink'}>Invalid paths rejected: {t.invalid_paths.length}</p>
               </div>
-            ) : <p className="text-[11px] text-[#8A99AB]">No retrieval trace.</p>}
+            ) : <p className="text-[13px] text-faint">No retrieval trace.</p>}
           </Card>
           <Card title="Status legend">
-            <ul className="space-y-1 text-[11px] text-[#61738A]">
+            <ul className="space-y-1 text-[13px] text-muted">
               <li><Pill value="CONFIRMED" /> verified clinical record</li>
               <li><Pill value="PATIENT-REPORTED" /> entered or reported by you</li>
               <li><Pill value="EXTRACTED-UNCONFIRMED" /> read from a document, not yet confirmed</li>
@@ -115,13 +115,13 @@ export function ReferencesScreen({ consultation: c, focus, onNavigate }: { consu
         <div className="space-y-3">
           {c.references.map((r) => (
             <section key={r.alias} ref={r.alias === focus ? (el) => { ref.current = el; } : undefined}
-              className={cx('bg-white border rounded-lg p-4', r.alias === focus ? 'border-[#3675CA]' : 'border-[#DFE7F1]')}>
+              className={cx('bg-white border rounded-[20px] p-6 shadow-card', r.alias === focus ? 'border-accent' : 'border-line')}>
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                <span className="text-[11px] font-semibold text-[#61738A]">{r.alias}</span>
-                <span className="text-[11px] text-[#61738A]">{r.source} › {r.chapter} › <strong className="text-[#172B4D]">{r.section}</strong> › {r.subsection}</span>
+                <span className="text-[13px] font-semibold text-muted">{r.alias}</span>
+                <span className="text-[13px] text-muted">{r.source} › {r.chapter} › <strong className="text-ink">{r.section}</strong> › {r.subsection}</span>
               </div>
-              <p className="text-[13px] text-[#172B4D] leading-relaxed">{r.text}</p>
-              <p className="text-[10px] text-[#8A99AB] mt-2">
+              <p className="text-[15px] text-ink leading-relaxed">{r.text}</p>
+              <p className="text-[12px] text-faint mt-2">
                 {r.organization} · <a className="underline" href={r.url} target="_blank" rel="noreferrer">{r.url}</a> · accessed {r.access_date ?? '—'} · {r.license} · retrieval {r.method} (score {r.score.toFixed(4)})
               </p>
             </section>
@@ -138,34 +138,34 @@ export function ConflictsScreen({ consultation: c, onNavigate }: { consultation:
   return (
     <>
       <PageHeader title="Conflicts, uncertainty & verification" description={`Question: “${c.query}”`} />
-      <div className="space-y-4">
+      <div className="space-y-6">
         <ActionBanner action={c.action} reason={c.action_reason} />
         <Card title="Record conflicts and missing information" subtitle={`${c.findings.length} finding(s)`}>
-          {!c.findings.length ? <p className="text-[12px] text-[#61738A]">No conflicts or gaps were detected in the evidence used.</p> : (
-            <ul className="divide-y divide-[#EEF2F7]">
+          {!c.findings.length ? <p className="text-[14px] text-muted">No conflicts or gaps were detected in the evidence used.</p> : (
+            <ul className="divide-y divide-line-soft">
               {c.findings.map((f, i) => (
                 <li key={i} className="py-2">
-                  <div className="flex flex-wrap items-center gap-2"><Pill value={f.severity} /><span className="text-[11px] font-semibold text-[#172B4D]">{f.finding_type.replace(/_/g, ' ')}</span>
-                    <span className="text-[10px] text-[#8A99AB]">→ {f.recommended_action.replace(/_/g, ' ').toLowerCase()}</span></div>
-                  <p className="text-[12px] text-[#61738A] mt-0.5">{f.description}</p>
+                  <div className="flex flex-wrap items-center gap-2"><Pill value={f.severity} /><span className="text-[13px] font-semibold text-ink">{f.finding_type.replace(/_/g, ' ')}</span>
+                    <span className="text-[12px] text-faint">→ {f.recommended_action.replace(/_/g, ' ').toLowerCase()}</span></div>
+                  <p className="text-[14px] text-muted mt-0.5">{f.description}</p>
                 </li>
               ))}
             </ul>
           )}
         </Card>
         <Card title="Claim verification" subtitle={v ? `${v.stats.total_claims} claims · ${v.stats.withheld_claims} withheld · unsupported patient-claim rate ${(v.stats.unsupported_patient_claim_rate * 100).toFixed(0)}%` : 'Not run for this response'}>
-          {!v ? <p className="text-[12px] text-[#61738A]">No generated narrative to verify (emergency, clarification or abstention response).</p> : (
+          {!v ? <p className="text-[14px] text-muted">No generated narrative to verify (emergency, clarification or abstention response).</p> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-[12px]">
-                <thead><tr className="text-left text-[10px] uppercase tracking-wide text-[#8A99AB] border-b border-[#DFE7F1]">
+              <table className="w-full text-[14px]">
+                <thead><tr className="text-left text-[12px] text-faint border-b border-line-soft">
                   <th className="py-1.5 pr-2 font-medium">Claim</th><th className="py-1.5 pr-2 font-medium">Type</th><th className="py-1.5 pr-2 font-medium">Status</th><th className="py-1.5 font-medium">Why</th></tr></thead>
                 <tbody>
                   {v.claims.filter((x) => x.claim_type !== 'STRUCTURAL').map((x) => (
-                    <tr key={x.claim_id} className={cx('border-b border-[#EEF2F7] align-top', !x.permitted && 'bg-[#FFF8F6]')}>
+                    <tr key={x.claim_id} className={cx('border-b border-line-soft align-top', !x.permitted && 'bg-danger-tint')}>
                       <td className="py-1.5 pr-2 max-w-[420px]">{x.text}</td>
-                      <td className="py-1.5 pr-2 text-[11px] text-[#61738A]">{x.claim_type.replace(/_/g, ' ').toLowerCase()}</td>
-                      <td className="py-1.5 pr-2"><Pill value={x.status} />{!x.permitted && <span className="block text-[10px] text-[#C23E4A] mt-0.5">withheld</span>}</td>
-                      <td className="py-1.5 text-[11px] text-[#61738A]">{x.rationale}</td>
+                      <td className="py-1.5 pr-2 text-[13px] text-muted">{x.claim_type.replace(/_/g, ' ').toLowerCase()}</td>
+                      <td className="py-1.5 pr-2"><Pill value={x.status} />{!x.permitted && <span className="block text-[12px] text-danger mt-0.5">withheld</span>}</td>
+                      <td className="py-1.5 text-[13px] text-muted">{x.rationale}</td>
                     </tr>
                   ))}
                 </tbody>

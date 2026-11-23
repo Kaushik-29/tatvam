@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import { Check, Loader2, Send } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowUp, BookOpen, Check, ChevronRight, Flag, Plus, Waypoints } from 'lucide-react';
 import { consultStream } from '../api';
 import type { Consultation, ConsultInput, EvidenceItem, Finding, ReferenceItem } from '../types';
 import type { V2Screen } from '../PatientApp';
-import { ActionBanner, AnswerText, Button, Card, ErrorNote, Pill, TextArea, cx, fmtDate } from '../ui';
+import { ActionBanner, AnswerText, Empty, ErrorNote, PageHeader, Pill, cx, fmtDate } from '../ui';
 
 const STAGES: { key: string; label: string }[] = [
-  { key: 'emergency_check', label: 'Emergency warning-sign check' },
-  { key: 'retrieving_patient_context', label: 'STAIR-Clinical + hybrid retrieval of your records' },
-  { key: 'retrieving_references', label: 'Medical reference retrieval' },
-  { key: 'reconciling', label: 'Conflict & missing-information check' },
-  { key: 'generating', label: 'Drafting answer (held back until verified)' },
-  { key: 'verifying', label: 'Claim-by-claim verification' },
+  { key: 'emergency_check', label: 'Checking for emergency warning signs' },
+  { key: 'retrieving_patient_context', label: 'Finding relevant records in your history' },
+  { key: 'retrieving_references', label: 'Looking up medical references' },
+  { key: 'reconciling', label: 'Checking for conflicts and missing information' },
+  { key: 'generating', label: 'Drafting an answer, held back until verified' },
+  { key: 'verifying', label: 'Verifying each statement against the evidence' },
 ];
 
 interface Turn {
@@ -64,88 +64,144 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
   }, [pending]);
   useEffect(() => { bottom.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, [turns]);
 
+  const send = () => {
+    if (!draft.trim() || busy) return;
+    ask({ query: draft.trim() });
+    setDraft('');
+  };
+
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <h1 className="text-[17px] font-semibold text-[#172B4D]">Personalised medical chat</h1>
-        <p className="text-[12px] text-[#61738A]">Answers use your records and general references. Click a citation to see the exact record or passage.</p>
-      </div>
-      {turns.length === 0 && (
-        <Card><p className="text-[12px] text-[#61738A]">Ask a question below, or use <button className="text-[#3675CA] underline" onClick={() => onNavigate('concern')}>New health concern</button> for a structured intake.</p></Card>
-      )}
-      {turns.map((t, i) => (
-        <div key={i} className="space-y-2">
-          <div className="flex justify-end">
-            <p className="max-w-[80%] bg-[#EAF2FC] text-[#172B4D] text-[13px] rounded-lg px-3 py-2 whitespace-pre-wrap">{t.input.query}</p>
+    <div className="flex flex-col min-h-[calc(100vh-11rem)]">
+      <PageHeader title="Conversation" description="Answers draw on your records and general references. Select a citation to see the exact record or passage." />
+      <div className="flex-1 space-y-10">
+        {turns.length === 0 && (
+          <div className="bg-white rounded-[22px] border border-line/70 shadow-card">
+            <Empty title="Start a conversation">
+              Ask a question below, or use{' '}
+              <button className="text-accent font-medium hover:underline cursor-pointer" onClick={() => onNavigate('concern')}>New health concern</button>{' '}
+              to add symptoms, timing and severity.
+            </Empty>
           </div>
-          <div className="grid xl:grid-cols-[1fr_300px] gap-3">
-            <Card>
-              {!t.result && !t.error && (
-                <ol className="space-y-1 mb-2" aria-live="polite">
-                  {STAGES.map((s) => {
-                    const seen = t.stages.includes(s.key);
-                    const last = t.stages[t.stages.length - 1] === s.key;
-                    return (
-                      <li key={s.key} className={cx('flex items-center gap-2 text-[12px]', seen ? 'text-[#172B4D]' : 'text-[#B3BFCC]')}>
-                        {seen && !last ? <Check className="w-3.5 h-3.5 text-[#26845A]" /> : last ? <Loader2 className="w-3.5 h-3.5 animate-spin text-[#3675CA]" /> : <span className="w-3.5 h-3.5 rounded-full border border-[#DFE7F1]" />}
-                        {s.label}
-                      </li>
-                    );
-                  })}
-                </ol>
-              )}
-              <ErrorNote error={t.error ?? null} />
-              {t.result && <div className="mb-3"><ActionBanner action={t.result.action} reason={t.result.action_reason} /></div>}
-              {t.answer && <AnswerText text={t.answer} onCite={onCite} />}
-              {t.result && (
-                <p className="mt-3 pt-2 border-t border-[#EEF2F7] text-[10px] text-[#8A99AB] tabular-nums">
-                  {t.result.engine} · STAIR backend: {t.result.retrieval_trace?.selector_backend ?? 'n/a'} · {t.result.timings.total_s}s
-                  {t.result.verification && ` · ${t.result.verification.stats.withheld_claims} claim(s) withheld`}
-                </p>
-              )}
-            </Card>
-            {t.evidence && (
-              <aside className="space-y-3">
-                <Card title="Records used" subtitle={`${t.evidence.evidence.length} patient evidence items`} actions={<Button variant="ghost" onClick={() => onNavigate('context')}>All</Button>}>
-                  <ul className="space-y-1.5 max-h-56 overflow-y-auto">
-                    {t.evidence.evidence.slice(0, 8).map((e) => (
-                      <li key={e.alias} className="text-[11px]">
-                        <button onClick={() => onCite(e.alias)} className="font-semibold text-[#265EAA] mr-1 tabular-nums">{e.alias}</button>
-                        <span className="text-[#172B4D]">{e.concept_display}</span>
-                        <span className="text-[#8A99AB] tabular-nums"> · {fmtDate(e.effective_start)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-                <Card title="References" subtitle={`${t.evidence.references.length} passages`} actions={<Button variant="ghost" onClick={() => onNavigate('references')}>All</Button>}>
-                  <ul className="space-y-1">
-                    {t.evidence.references.map((r) => (
-                      <li key={r.alias} className="text-[11px]"><span className="font-semibold text-[#61738A] mr-1">{r.alias}</span>{r.section} › {r.subsection}</li>
-                    ))}
-                  </ul>
-                </Card>
-                {t.evidence.findings.length > 0 && (
-                  <Card title="Flags" actions={<Button variant="ghost" onClick={() => onNavigate('conflicts')}>Review</Button>}>
-                    <ul className="space-y-1">
-                      {t.evidence.findings.slice(0, 4).map((f, k) => (
-                        <li key={k} className="text-[11px] flex gap-1.5 items-start"><Pill value={f.severity} /><span>{f.description}</span></li>
+        )}
+        {turns.map((t, i) => (
+          <div key={i} className="space-y-4">
+            <div className="flex justify-end animate-rise">
+              <p className="max-w-[min(80%,640px)] bg-accent text-white text-[16px] leading-relaxed rounded-[22px] rounded-br-[8px] px-[18px] py-3 whitespace-pre-wrap shadow-[0_1px_2px_rgba(10,102,228,0.25)]">
+                {t.input.query}
+              </p>
+            </div>
+            <div className="grid xl:grid-cols-[1fr_320px] gap-5 items-start">
+              <article className="bg-white rounded-[22px] border border-line/70 shadow-card p-6 animate-rise [animation-delay:60ms]">
+                <div className="flex items-center gap-2.5 mb-5">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-accent text-white"><Plus className="w-4 h-4" strokeWidth={3} /></span>
+                  <span className="text-[14px] font-semibold">MedResolve</span>
+                  {!t.result && !t.error && <span className="text-[13px] text-faint">· working</span>}
+                </div>
+                {!t.result && !t.error && (
+                  <div aria-live="polite">
+                    <div className="h-1 rounded-full bg-canvas overflow-hidden mb-5">
+                      <div className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out"
+                        style={{ width: `${Math.max(6, (t.stages.length / STAGES.length) * 100)}%` }} />
+                    </div>
+                    <ol className="space-y-2.5">
+                      {STAGES.map((st) => {
+                        const seen = t.stages.includes(st.key);
+                        const last = t.stages[t.stages.length - 1] === st.key;
+                        return (
+                          <li key={st.key} className={cx('flex items-center gap-3 text-[15px] transition-colors duration-300', seen ? 'text-ink' : 'text-ghost')}>
+                            <span className={cx('flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-all duration-300',
+                              seen && !last ? 'bg-success text-white' : last ? 'border-2 border-accent border-t-transparent animate-spin' : 'border-[1.5px] border-line')}>
+                              {seen && !last && <Check className="w-3 h-3 animate-pop" strokeWidth={3} />}
+                            </span>
+                            {st.label}
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </div>
+                )}
+                <ErrorNote error={t.error ?? null} />
+                {t.result && <div className="mb-5"><ActionBanner action={t.result.action} reason={t.result.action_reason} /></div>}
+                {t.answer && <div className="animate-fade"><AnswerText text={t.answer} onCite={onCite} /></div>}
+                {t.result && (
+                  <p className="mt-6 pt-4 border-t border-line-soft text-[12px] text-faint tabular-nums">
+                    {t.result.engine} · STAIR: {t.result.retrieval_trace?.selector_backend ?? 'n/a'} · {t.result.timings.total_s}s
+                    {t.result.verification && ` · ${t.result.verification.stats.withheld_claims} statement(s) withheld`}
+                  </p>
+                )}
+              </article>
+              {t.evidence && (
+                <aside className="space-y-4 animate-rise [animation-delay:120ms]">
+                  <EvidencePanel icon={<Waypoints className="w-4 h-4" />} title="Records used" count={t.evidence.evidence.length} onAll={() => onNavigate('context')}>
+                    <ul className="max-h-60 overflow-y-auto -mx-1">
+                      {t.evidence.evidence.slice(0, 8).map((e) => (
+                        <li key={e.alias}>
+                          <button onClick={() => onCite(e.alias)}
+                            className="w-full flex items-baseline gap-2 rounded-[10px] px-1 py-1.5 text-left text-[13px] hover:bg-panel transition-colors cursor-pointer">
+                            <span className="font-semibold text-accent tabular-nums shrink-0">{e.alias}</span>
+                            <span className="text-ink truncate flex-1">{e.concept_display}</span>
+                            <span className="text-faint tabular-nums shrink-0">{fmtDate(e.effective_start).slice(0, 4)}</span>
+                          </button>
+                        </li>
                       ))}
                     </ul>
-                  </Card>
-                )}
-              </aside>
-            )}
+                  </EvidencePanel>
+                  <EvidencePanel icon={<BookOpen className="w-4 h-4" />} title="References" count={t.evidence.references.length} onAll={() => onNavigate('references')}>
+                    <ul className="space-y-1.5">
+                      {t.evidence.references.map((r) => (
+                        <li key={r.alias} className="text-[13px] leading-snug flex gap-2">
+                          <span className="font-semibold text-muted shrink-0">{r.alias}</span>
+                          <span className="text-ink-2">{r.section} <span className="text-faint">› {r.subsection}</span></span>
+                        </li>
+                      ))}
+                    </ul>
+                  </EvidencePanel>
+                  {t.evidence.findings.length > 0 && (
+                    <EvidencePanel icon={<Flag className="w-4 h-4" />} title="Flags" count={t.evidence.findings.length} onAll={() => onNavigate('conflicts')} allLabel="Review">
+                      <ul className="space-y-2.5">
+                        {t.evidence.findings.slice(0, 4).map((f, k) => (
+                          <li key={k} className="text-[13px] leading-snug space-y-1"><Pill value={f.severity} /><p className="text-ink-2">{f.description}</p></li>
+                        ))}
+                      </ul>
+                    </EvidencePanel>
+                  )}
+                </aside>
+              )}
+            </div>
           </div>
+        ))}
+        <div ref={bottom} />
+      </div>
+      <div className="sticky bottom-0 -mx-2 px-2 pt-6 pb-2 mt-8 bg-gradient-to-t from-canvas from-70% to-transparent">
+        <div className="flex items-end gap-2 rounded-[26px] bg-white border border-line shadow-float pl-5 pr-2 py-2 transition-[border-color,box-shadow] focus-within:border-accent focus-within:ring-4 focus-within:ring-accent/15">
+          <label htmlFor="chat-draft" className="sr-only">Message</label>
+          <textarea id="chat-draft" rows={1} value={draft} onChange={(e) => setDraft(e.target.value)}
+            placeholder={turns.length ? 'Ask a follow-up question…' : 'Ask about your health record…'}
+            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+            className="flex-1 max-h-40 resize-none bg-transparent py-2 text-[16px] leading-relaxed outline-none placeholder:text-[#a1a1a6] [field-sizing:content]" />
+          <button onClick={send} disabled={!draft.trim() || busy} aria-label="Send"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-white transition-all duration-200 hover:bg-accent-strong active:scale-95 disabled:bg-line disabled:text-faint cursor-pointer disabled:cursor-not-allowed">
+            <ArrowUp className="w-5 h-5" strokeWidth={2.4} />
+          </button>
         </div>
-      ))}
-      <div ref={bottom} />
-      <Card>
-        <div className="flex gap-2 items-end">
-          <TextArea rows={2} value={draft} onChange={(e) => setDraft(e.target.value)} placeholder="Ask a follow-up question…"
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && draft.trim() && !busy) { e.preventDefault(); ask({ query: draft.trim() }); setDraft(''); } }} />
-          <Button disabled={!draft.trim() || busy} onClick={() => { ask({ query: draft.trim() }); setDraft(''); }}><Send className="w-3.5 h-3.5" /> Send</Button>
-        </div>
-      </Card>
+      </div>
     </div>
+  );
+}
+
+function EvidencePanel({ icon, title, count, onAll, allLabel = 'All', children }: {
+  icon: React.ReactNode; title: string; count: number; onAll: () => void; allLabel?: string; children: React.ReactNode;
+}) {
+  return (
+    <section className="bg-white rounded-[20px] border border-line/70 shadow-card p-4">
+      <header className="flex items-center gap-2 mb-3">
+        <span className="text-faint">{icon}</span>
+        <h3 className="text-[14px] font-semibold flex-1">{title} <span className="text-faint font-normal tabular-nums">{count}</span></h3>
+        <button onClick={onAll} className="inline-flex items-center gap-0.5 h-7 rounded-full pl-2.5 pr-1.5 text-[13px] font-medium text-accent hover:bg-accent-soft transition-colors cursor-pointer">
+          {allLabel}<ChevronRight className="w-3.5 h-3.5" />
+        </button>
+      </header>
+      {children}
+    </section>
   );
 }

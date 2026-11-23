@@ -41,12 +41,20 @@ export function OnboardingScreen({ profile, onDone }: { profile: PatientProfile;
     <>
       <PageHeader title="Set up your health record"
         description="Add what you know. Everything you enter is stored as patient-reported and you can change it later. If your profile is empty, MedResolve will not invent history — it will ask." />
-      <ol className="flex flex-wrap gap-2 mb-4" aria-label="Onboarding steps">
+      <div className="mb-3 h-1 rounded-full bg-line/70 overflow-hidden" aria-hidden>
+        <div className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out" style={{ width: `${((step + 1) / STEPS.length) * 100}%` }} />
+      </div>
+      <ol className="flex flex-wrap gap-1.5 mb-6" aria-label="Onboarding steps">
         {STEPS.map((st, i) => (
           <li key={st.key}>
-            <button onClick={() => setStep(i)} className={cx('inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] border',
-              i === step ? 'border-[#3675CA] bg-[#EAF2FC] text-[#3675CA] font-medium' : i < step ? 'border-[#DFE7F1] text-[#26845A]' : 'border-[#DFE7F1] text-[#8A99AB]')}>
-              {i < step ? <Check className="w-3 h-3" /> : <span className="tabular-nums">{i + 1}</span>} {st.title}
+            <button onClick={() => setStep(i)} aria-current={i === step ? 'step' : undefined}
+              className={cx('inline-flex items-center gap-2 h-9 pl-1.5 pr-3.5 rounded-full text-[14px] transition-all duration-200 cursor-pointer',
+                i === step ? 'bg-white text-ink font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.04)]' : 'text-muted hover:text-ink hover:bg-black/[0.04]')}>
+              <span className={cx('flex h-6 w-6 items-center justify-center rounded-full text-[12px] font-semibold tabular-nums transition-colors',
+                i === step ? 'bg-accent text-white' : i < step ? 'bg-success-soft text-success-ink' : 'bg-line/70 text-muted')}>
+                {i < step ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : i + 1}
+              </span>
+              {st.title}
             </button>
           </li>
         ))}
@@ -66,19 +74,20 @@ export function OnboardingScreen({ profile, onDone }: { profile: PatientProfile;
           </div>
         )}
         {'leaves' in s && (
-          <div className="space-y-4">
-            <QuickAdd leaves={[...s.leaves]} placeholder={s.placeholder} onAdded={(r) => setRecords((rs) => [r, ...rs])} />
+          <div className="space-y-6">
+            {/* key: remount per step so the record type never carries over (e.g. an allergy saved as a medication) */}
+            <QuickAdd key={s.key} leaves={[...s.leaves]} placeholder={s.placeholder} onAdded={(r) => setRecords((rs) => [r, ...rs])} />
             <RecordTable records={records.filter((r) => (s.leaves as readonly string[]).includes(r.leaf_path))} onDelete={remove}
               emptyText="Nothing added yet — that's fine if none apply." />
           </div>
         )}
         {s.key === 'docs' && (
-          <p className="text-[12px] text-[#61738A]">
+          <p className="text-[14px] text-muted">
             You can upload old prescriptions, lab reports and discharge summaries from <strong>Upload documents</strong> at any time.
             Extracted values are kept as <em>unconfirmed</em> until you review them.
           </p>
         )}
-        <div className="flex justify-between mt-5">
+        <div className="flex justify-between mt-8 pt-5 border-t border-line-soft">
           <Button variant="secondary" disabled={step === 0} onClick={() => setStep(step - 1)}>Back</Button>
           <Button onClick={next}>{step === STEPS.length - 1 ? 'Finish setup' : 'Continue'}</Button>
         </div>

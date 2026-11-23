@@ -1,5 +1,89 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Patient app (v2) design system: calm, neutral, Apple-like.
+   Theme tokens are additive (new utility names only), and the base styles below
+   are scoped to .mr-app, so the #/research console keeps its own look.
+   --------------------------------------------------------------------------- */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+
+  --color-ink: #1d1d1f;
+  --color-ink-2: #48484d;
+  --color-muted: #6e6e73;
+  --color-faint: #8e8e93;
+  --color-ghost: #c7c7cc;
+  --color-line: #e5e5ea;
+  --color-line-soft: #efeff2;
+  --color-canvas: #f5f5f7;
+  --color-panel: #fafafa;
+
+  --color-accent: #0a66e4;
+  --color-accent-strong: #0050c0;
+  --color-accent-soft: #eef4fe;
+  --color-accent-tint: #dce9fd;
+  --color-accent-line: #b9d4fb;
+
+  --color-success: #1f9d55;
+  --color-success-ink: #17803f;
+  --color-success-soft: #e9f7ef;
+  --color-warn: #b25e00;
+  --color-warn-ink: #8a4b00;
+  --color-warn-soft: #fff5e6;
+  --color-danger: #d70015;
+  --color-danger-ink: #b00012;
+  --color-danger-soft: #fff1f0;
+  --color-danger-line: #ffd3cf;
+  --color-danger-tint: #fff8f7;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 24px rgba(0, 0, 0, 0.045);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.05), 0 16px 40px rgba(0, 0, 0, 0.09);
+  --shadow-float: 0 1px 1px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --animate-rise: rise 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade: fade 0.28s ease both;
+  --animate-pop: pop 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+}
+
+@layer base {
+  .mr-app {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-ink);
+    background: var(--color-canvas);
+    letter-spacing: -0.005em;
+  }
+  .mr-app ::selection { background: #cfe2ff; }
+  .mr-app :focus-visible {
+    outline: 3px solid rgba(10, 102, 228, 0.45);
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+  /* Text fields draw their own soft focus ring. */
+  .mr-app input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus-visible,
+  .mr-app textarea:focus-visible,
+  .mr-app select:focus-visible { outline: none; }
+  .mr-app ::-webkit-scrollbar-thumb { background: #d8d8dd; border-radius: 6px; }
+  .mr-app ::-webkit-scrollbar-thumb:hover { background: #b9b9bf; }
+  .mr-app details > summary { list-style: none; }
+  .mr-app details > summary::-webkit-details-marker { display: none; }
+}
+
 @layer base {
   :root {
     /* MedResolve Canonical Healthcare Design Tokens */
