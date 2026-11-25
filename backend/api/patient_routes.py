@@ -250,6 +250,9 @@ async def upload_document(document_type: str = Form("MEDICAL_REPORT"), document_
     s.flush()
     mem = PatientMemory(s, pid)
     created = []
+    # check each lab value against its own line (the frozen OCR extractor can attach a neighbouring row's unit)
+    from backend.document_checks import check_items
+    res["structured_items"] = check_items(res["structured_items"], res["full_text"])
     for i, it in enumerate(res["structured_items"]):
         is_med = bool(it.get("medication_name"))
         target = "medication_history/current_medications" if is_med else "laboratory_observations/laboratory_results"
@@ -266,7 +269,8 @@ async def upload_document(document_type: str = Form("MEDICAL_REPORT"), document_
             confidence=float(it.get("confidence") or 0.0), source_document=doc_id,
             provenance={"document_id": doc_id, "page": it.get("page_number"), "raw_text": it.get("raw_text"),
                         "unit_status": it.get("unit_status"), "extraction_method": it.get("extraction_method"),
-                        "reference_range": it.get("reference_range"), "item_index": i})
+                        "reference_range": it.get("reference_range"), "item_index": i,
+                        "line_check": it.get("line_check"), "check_note": it.get("confirmation_reason")})
         created.append(rec)
     audit(s, pid, "document_upload", f"{doc_id} items={len(created)}")
     return {"document_id": doc_id, "leaf_path": leaf, "pages": res["total_pages"], "extracted_records": created,
@@ -483,6 +487,29 @@ def delete_consultations(pid: str = Depends(current_patient_id), owner: Optional
 def audit_log(pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
     rows = s.scalars(select(AuditEvent).where(AuditEvent.patient_id == pid).order_by(AuditEvent.id.desc()).limit(100))
     return [{"event": a.event, "actor": a.actor, "detail": a.detail, "at": a.created_at.isoformat()} for a in rows]
+
+
+# ---------------------------------------------------------------- speech to text
+MAX_AUDIO_BYTES = 10 * 1024 * 1024
+
+
+@router.post("/speech/transcribe")
+async def speech_transcribe(audio: UploadFile = File(...), language: Optional[str] = Form(None),
+                            pid: str = Depends(current_patient_id)):
+    """Local Whisper transcription of a spoken question. The audio is processed in memory on this
+    machine and never stored or sent anywhere; the text goes back to the question box for the user to edit."""
+    data = await audio.read()
+    if not data:
+        raise HTTPException(400, "The recording is empty")
+    if len(data) > MAX_AUDIO_BYTES:
+        raise HTTPException(413, "The recording is too long (up to about one minute)")
+    from backend import speech
+    try:
+        return await asyncio.to_thread(speech.transcribe, data, (language or None) and language[:5])
+    except speech.SpeechUnavailable as e:
+        raise HTTPException(503, f"Speech to text is not available: {e}")
+    except ValueError as e:
+        raise HTTPException(400, str(e))
 
 
 # ---------------------------------------------------------- research: test cases

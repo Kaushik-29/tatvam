@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowUpRight, ChevronDown, OctagonAlert, Send } from 'lucide-react';
 import type { ConsultInput, PatientProfile } from '../types';
 import { Button, Card, Field, Input, PageHeader, Select, cx } from '../ui';
+import { MicButton } from '../components';
 
 const EXAMPLES = [
   "I've been feeling dizzy when I stand up for the last 3 days. Could it be related to my history or medications?",
@@ -73,7 +74,8 @@ export function ConcernScreen({ profile, onSubmit }: { profile: PatientProfile; 
           </div>
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line-soft px-6 py-4">
-            <p className="hidden sm:block text-[13px] text-faint">Press Ctrl + Enter to send</p>
+            <MicButton onText={(t) => setQuery((q) => (q.trim() ? `${q.trim()} ${t}` : t))} />
+            <p className="hidden sm:block text-[13px] text-faint">Speak or type · Ctrl + Enter to send</p>
             <Button size="lg" onClick={submit} disabled={!query.trim()} className="ml-auto">
               Ask MedResolve <Send className="w-4 h-4" />
             </Button>

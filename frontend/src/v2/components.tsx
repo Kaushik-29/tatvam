@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Loader2, Mic, Plus, Square, Trash2 } from 'lucide-react';
 import { api } from './api';
 import type { RecordItem } from './types';
-import { Button, ErrorNote, Field, Input, Pill, Select, fmtDate } from './ui';
+import { Button, ErrorNote, Field, Input, Pill, Select, cx, fmtDate } from './ui';
 
 export const LEAF_LABEL: Record<string, string> = {
   'medical_history/diagnoses': 'Diagnosis',
@@ -150,5 +150,60 @@ export function RecordTable({ records, onDelete, onConfirm, emptyText, compact }
         </tbody>
       </table>
     </div>
+  );
+}
+
+/** Record a spoken question and turn it into text with local Whisper (nothing leaves this machine).
+ *  Click to start, click again to stop (stops by itself after 60 s). The text is handed back for editing. */
+export function MicButton({ onText, className }: { onText: (text: string) => void; className?: string }) {
+  const [state, setState] = useState<'idle' | 'recording' | 'working'>('idle');
+  const [error, setError] = useState<string | null>(null);
+  const rec = useRef<MediaRecorder | null>(null);
+  const timer = useRef<number | undefined>(undefined);
+  useEffect(() => () => { window.clearTimeout(timer.current); rec.current?.stream.getTracks().forEach((t) => t.stop()); }, []);
+
+  const start = async () => {
+    setError(null);
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+      setError('Voice input is not supported in this browser.'); return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mr = new MediaRecorder(stream);
+      const chunks: Blob[] = [];
+      mr.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+      mr.onstop = async () => {
+        stream.getTracks().forEach((t) => t.stop());
+        setState('working');
+        try {
+          const r = await api.transcribe(new Blob(chunks, { type: mr.mimeType || 'audio/webm' }));
+          if (r.text) onText(r.text); else setError("Didn't catch that. Please try again.");
+        } catch (e) { setError((e as Error).message); }
+        finally { setState('idle'); }
+      };
+      rec.current = mr;
+      mr.start();
+      setState('recording');
+      timer.current = window.setTimeout(() => { if (mr.state === 'recording') mr.stop(); }, 60_000);
+    } catch {
+      setError('Microphone access was blocked. Allow it in the browser to speak your question.');
+    }
+  };
+  const stop = () => { window.clearTimeout(timer.current); rec.current?.state === 'recording' && rec.current.stop(); };
+
+  const label = state === 'recording' ? 'Stop recording' : state === 'working' ? 'Turning speech into text' : 'Speak your question';
+  return (
+    <span className={cx('inline-flex items-center gap-2', className)}>
+      <button type="button" onClick={state === 'recording' ? stop : start} disabled={state === 'working'}
+        aria-label={label} title={label}
+        className={cx('flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors cursor-pointer disabled:cursor-wait',
+          state === 'recording' ? 'bg-danger text-white animate-pulse' : 'bg-accent-soft text-accent hover:bg-accent hover:text-white')}>
+        {state === 'recording' ? <Square className="w-4 h-4" fill="currentColor" />
+          : state === 'working' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Mic className="w-5 h-5" />}
+      </button>
+      {state === 'recording' && <span className="text-[13px] text-danger-ink" role="status">Listening… click to stop</span>}
+      {state === 'working' && <span className="text-[13px] text-muted" role="status">Turning speech into text…</span>}
+      {error && <span className="text-[13px] text-danger-ink" role="alert">{error}</span>}
+    </span>
   );
 }

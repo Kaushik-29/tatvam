@@ -21,3 +21,6 @@ rank-bm25>=0.2.2
 
 # Testing & quality assurance
 pytest>=8.0.0
+
+# Local speech-to-text (Whisper on CPU; needs the ffmpeg command-line tool)
+faster-whisper>=1.0

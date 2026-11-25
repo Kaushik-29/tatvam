@@ -4,6 +4,7 @@ import { api, consultStream } from '../api';
 import type { Consultation, ConsultInput, EvidenceItem, Finding, RecordOffer, ReferenceItem } from '../types';
 import type { V2Screen } from '../PatientApp';
 import { ActionBanner, AnswerText, Button, Empty, ErrorNote, Input, PageHeader, Pill, cx, fmtDate } from '../ui';
+import { MicButton } from '../components';
 
 const STAGES: { key: string; label: string }[] = [
   { key: 'emergency_check', label: 'Checking for emergency warning signs' },
@@ -183,6 +184,7 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
             placeholder={turns.length ? 'Ask a follow-up question…' : 'Ask about your health record…'}
             onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
             className="flex-1 max-h-40 resize-none bg-transparent py-2 text-[16px] leading-relaxed outline-none placeholder:text-[#a1a1a6] [field-sizing:content]" />
+          <MicButton onText={(t) => setDraft((d) => (d.trim() ? `${d.trim()} ${t}` : t))} />
           <button onClick={send} disabled={!draft.trim() || busy} aria-label="Send"
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-white transition-all duration-200 hover:bg-accent-strong active:scale-95 disabled:bg-line disabled:text-faint cursor-pointer disabled:cursor-not-allowed">
             <ArrowUp className="w-5 h-5" strokeWidth={2.4} />

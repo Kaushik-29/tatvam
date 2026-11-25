@@ -107,6 +107,12 @@ export const api = {
   consult: (b: ConsultInput) => req<Consultation>('/consult', { method: 'POST', body: JSON.stringify(b) }),
   consultations: () => req<ConsultationSummary[]>('/consultations'),
   testCases: () => req<TestCaseSet>('/test-cases'),
+  /** Local Whisper speech-to-text; the audio is processed on this machine and not stored. */
+  transcribe: (audio: Blob) => {
+    const fd = new FormData();
+    fd.append('audio', audio, 'question.webm');
+    return req<{ text: string; language: string | null; seconds: number }>('/speech/transcribe', { method: 'POST', body: fd });
+  },
   recordDecision: (id: string, b: { save: boolean; display?: string }) =>
     req<RecordOffer>(`/consultations/${encodeURIComponent(id)}/record-decision`, { method: 'POST', body: JSON.stringify(b) }),
   consultation: (id: string) => req<Consultation>(`/consultations/${id}`),

@@ -61,6 +61,16 @@ export function OcrReviewScreen({ readOnly, initialDoc }: { readOnly: boolean; i
                         <Pill value={r.verification_status} />
                         <span className="text-[12px] text-faint tabular-nums">confidence {(r.confidence ?? 0).toFixed(2)} · unit {String(prov.unit_status ?? 'n/a')} · page {String(prov.page ?? '?')}</span>
                       </div>
+                      {prov.line_check === 'line_not_found' && (
+                        <p className="mt-1.5 rounded-[10px] bg-warn-soft text-warn-ink px-3 py-2 text-[13px]">
+                          Could not match this value to its own line in the document, so the test name, value or unit may be
+                          wrong (common with photos). Check it against the document before confirming.
+                        </p>
+                      )}
+                      {prov.line_check === 'corrected' && (
+                        <p className="mt-1.5 rounded-[10px] bg-accent-soft text-accent-strong px-3 py-2 text-[13px]">{String(prov.check_note)}</p>
+                      )}
+                      {prov.reference_range && <p className="text-[13px] text-muted mt-1">Reference range: {String(prov.reference_range)}</p>}
                       <p className="text-[13px] text-muted mt-1">Raw text: <span className="font-mono">{String(prov.raw_text ?? '')}</span></p>
                       <div className="flex flex-wrap gap-2 items-center mt-2">
                         <span className="text-[13px] tabular-nums">{r.value_num ?? r.value_text} {r.unit ?? <em className="text-danger">no unit</em>} · {fmtDate(r.effective_start)}</span>
