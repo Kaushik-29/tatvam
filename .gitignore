@@ -69,3 +69,6 @@ desktop.ini
 results/*.csv
 results/*.parquet
 results/checkpoints/
+
+# Doctor-review blinding key: never publish (would unblind the clinician review)
+evaluation/experiments/doctor_review/key/
