@@ -111,3 +111,13 @@ def test_record_and_question_based_exclusions():
     a = M.build_answer("diarrhoea", {}, "loose motions with blood in stool")
     assert a["options"] == ["oral rehydration solution (ORS)"] and "Loperamide is not suggested" in a["text"]
     assert "loperamide" in M.build_answer("diarrhoea", {}, "loose motions since morning")["options"]
+
+
+def test_every_medicine_option_states_a_dose_or_how_to_use_it():
+    import re as _re
+    dose = _re.compile(r"\d|as needed|as the pack says")
+    for g in M.KB["groups"].values():
+        for o in g["options"]:
+            assert dose.search(o["use"]), o["generic"]
+    t = M.build_answer("diarrhoea", {}, "loose motions since morning")["text"]
+    assert "no more than 4 tablets (8 mg) in 24 hours" in t and "dailymed.nlm.nih.gov" in t

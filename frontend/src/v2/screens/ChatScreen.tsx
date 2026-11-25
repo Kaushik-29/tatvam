@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUp, BookOpen, Check, ChevronRight, Flag, Plus, Waypoints } from 'lucide-react';
-import { consultStream } from '../api';
-import type { Consultation, ConsultInput, EvidenceItem, Finding, ReferenceItem } from '../types';
+import { ArrowUp, BookOpen, Check, ChevronRight, ClipboardPlus, Flag, Plus, Waypoints } from 'lucide-react';
+import { api, consultStream } from '../api';
+import type { Consultation, ConsultInput, EvidenceItem, Finding, RecordOffer, ReferenceItem } from '../types';
 import type { V2Screen } from '../PatientApp';
-import { ActionBanner, AnswerText, Empty, ErrorNote, PageHeader, Pill, cx, fmtDate } from '../ui';
+import { ActionBanner, AnswerText, Button, Empty, ErrorNote, Input, PageHeader, Pill, cx, fmtDate } from '../ui';
 
 const STAGES: { key: string; label: string }[] = [
   { key: 'emergency_check', label: 'Checking for emergency warning signs' },
@@ -23,9 +23,10 @@ interface Turn {
   error?: string;
 }
 
-export function ChatScreen({ pending, clearPending, current, onResult, onCite, onNavigate }: {
+export function ChatScreen({ pending, clearPending, current, onResult, onCite, onNavigate, readOnly = false }: {
   pending: ConsultInput | null; clearPending: () => void; current: Consultation | null;
   onResult: (c: Consultation) => void; onCite: (alias: string) => void; onNavigate: (s: V2Screen) => void;
+  readOnly?: boolean;
 }) {
   const [turns, setTurns] = useState<Turn[]>(() => current ? [{ input: { query: current.query }, stages: [], answer: current.final_text, result: current }] : []);
   const [draft, setDraft] = useState('');
@@ -123,6 +124,9 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
                 <ErrorNote error={t.error ?? null} />
                 {t.result && <div className="mb-5"><ActionBanner action={t.result.action} reason={t.result.action_reason} /></div>}
                 {t.answer && <div className="animate-fade"><AnswerText text={t.answer} onCite={onCite} /></div>}
+                {t.result?.record_offer && !readOnly && (
+                  <RecordOfferCard consultationId={t.result.consultation_id} offer={t.result.record_offer} />
+                )}
                 {t.result && (
                   <p className="mt-6 pt-4 border-t border-line-soft text-[12px] text-faint tabular-nums">
                     {t.result.engine} · STAIR: {t.result.retrieval_trace?.selector_backend ?? 'n/a'} · {t.result.timings.total_s}s
@@ -202,6 +206,44 @@ function EvidencePanel({ icon, title, count, onAll, allLabel = 'All', children }
         </button>
       </header>
       {children}
+    </section>
+  );
+}
+
+/** Shown under an answer about a new problem: the patient decides whether it goes into their record. */
+function RecordOfferCard({ consultationId, offer }: { consultationId: string; offer: RecordOffer }) {
+  const [state, setState] = useState<RecordOffer>(offer);
+  const [name, setName] = useState(offer.suggested);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const decide = async (save: boolean) => {
+    setBusy(true); setError(null);
+    try { setState(await api.recordDecision(consultationId, { save, display: save ? name.trim() : undefined })); }
+    catch (e) { setError((e as Error).message); }
+    finally { setBusy(false); }
+  };
+  if (state.status === 'saved') {
+    return (
+      <p className="mt-6 flex items-center gap-2 rounded-[14px] bg-success-soft text-success-ink px-4 py-3 text-[14px]">
+        <Check className="w-4 h-4" strokeWidth={3} />
+        Added "{state.display}" to your health record as a symptom, dated today. Future answers will use it.
+      </p>
+    );
+  }
+  if (state.status === 'declined') {
+    return <p className="mt-6 rounded-[14px] bg-panel px-4 py-3 text-[14px] text-muted">Not added to your health record.</p>;
+  }
+  return (
+    <section className="mt-6 rounded-[18px] border border-line bg-panel/60 p-4" aria-label="Add this problem to your health record">
+      <p className="flex items-center gap-2 text-[15px] font-semibold"><ClipboardPlus className="w-4 h-4 text-accent" />Is this a new health problem for you?</p>
+      <p className="mt-1 text-[14px] text-muted">Add it to your health record so future answers can take it into account. Nothing is saved unless you choose to.</p>
+      <label className="mt-3 block text-[13px] text-muted" htmlFor={`offer-${consultationId}`}>Problem to add</label>
+      <Input id={`offer-${consultationId}`} value={name} maxLength={200} onChange={(e) => setName(e.target.value)} />
+      <div className="mt-3 flex flex-wrap gap-2">
+        <Button onClick={() => decide(true)} disabled={busy || !name.trim()}>Add to my health record</Button>
+        <Button variant="secondary" onClick={() => decide(false)} disabled={busy}>Don't add</Button>
+      </div>
+      <ErrorNote error={error} />
     </section>
   );
 }

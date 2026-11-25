@@ -114,6 +114,7 @@ class Consultation(Base):
     result_json = Column(Text)                            # full evidence / verification payload
     system_variant = Column(String(16))
     latency_s = Column(Float)
+    owner = Column(String(64), index=True)                # demo browser session that asked it (None for own account)
 
 
 class AuditEvent(Base):

@@ -134,6 +134,7 @@ export interface Consultation {
     selector_backend: string | null;
   } | null;
   query_understanding?: Record<string, unknown>;
+  record_offer?: RecordOffer;
   timings: Record<string, number>;
   model_config?: Record<string, unknown>;
 }
@@ -194,3 +195,11 @@ export type StreamEvent =
   | { event: 'answer_chunk'; data: { text: string } }
   | { event: 'done'; data: Consultation }
   | { event: 'error'; data: { message: string } };
+
+/** After an answer about a new problem, the patient chooses whether to add it to their record. */
+export interface RecordOffer {
+  status: 'pending' | 'saved' | 'declined';
+  suggested: string;
+  display?: string;
+  record_id?: string;
+}

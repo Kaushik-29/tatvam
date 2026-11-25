@@ -14,6 +14,15 @@ _engine: Optional[Engine] = None
 _SessionLocal: Optional[sessionmaker] = None
 
 
+def _migrate(engine: Engine) -> None:
+    """Add columns introduced after a database was created (create_all never alters existing tables)."""
+    from sqlalchemy import inspect, text
+    cols = {c["name"] for c in inspect(engine).get_columns("consultations")}
+    if "owner" not in cols:
+        with engine.begin() as conn:
+            conn.execute(text("ALTER TABLE consultations ADD COLUMN owner VARCHAR(64)"))
+
+
 def get_engine(url: Optional[str] = None) -> Engine:
     global _engine, _SessionLocal
     if _engine is None or url is not None:
@@ -31,6 +40,7 @@ def get_engine(url: Optional[str] = None) -> Engine:
                 cur.execute("PRAGMA synchronous=NORMAL")
                 cur.close()
         Base.metadata.create_all(engine)
+        _migrate(engine)
         _engine = engine
         _SessionLocal = sessionmaker(bind=engine, expire_on_commit=False, future=True)
     return _engine

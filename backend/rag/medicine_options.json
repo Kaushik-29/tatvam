@@ -1,5 +1,5 @@
 {
-  "_about": "Curated general over-the-counter options for common, non-emergency adult self-care symptoms. Every option, caution and warning sign below is taken from the listed source pages (checked 2026-11-23 / 2026-11-24). Items marked rule=\"medresolve\" are conservative MedResolve rules, not claims from a source. This is general information to discuss with a pharmacist, not a prescription. Clinician review of this file is pending.",
+  "_about": "Curated general over-the-counter options for common, non-emergency adult self-care symptoms. Every option, caution and warning sign below is taken from the listed source pages; adult doses come from FDA over-the-counter labels (DailyMed, sources L1-L10) (checked 2026-11-23 / 2026-11-24). Items marked rule=\"medresolve\" are conservative MedResolve rules, not claims from a source. This is general information to discuss with a pharmacist, not a prescription. Clinician review of this file is pending.",
   "sources": {
     "S1": {
       "title": "Acetaminophen (paracetamol): MedlinePlus Drug Information",
@@ -100,6 +100,50 @@
     "S25": {
       "title": "Tooth Disorders: MedlinePlus",
       "url": "https://medlineplus.gov/toothdisorders.html"
+    },
+    "L1": {
+      "title": "FDA over-the-counter drug label (DailyMed): Ibuprofen 200 mg tablets (Ibuprofen Dye Free)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00653b7c-7099-487e-9a01-e89781c21323"
+    },
+    "L2": {
+      "title": "FDA over-the-counter drug label (DailyMed): Loperamide 2 mg (Imodium A-D)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2"
+    },
+    "L3": {
+      "title": "FDA over-the-counter drug label (DailyMed): Dextromethorphan 15 mg capsules",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=20f7c1a9-fc4d-1f51-e063-6394a90a8be3"
+    },
+    "L4": {
+      "title": "FDA over-the-counter drug label (DailyMed): Oxymetazoline 0.05% nasal spray",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03332596-2c37-4771-b13b-ab766e616866"
+    },
+    "L5": {
+      "title": "FDA over-the-counter drug label (DailyMed): Hydrocortisone 1% (anti itch)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00040bfe-001a-484e-bec0-e21e8b27f369"
+    },
+    "L6": {
+      "title": "FDA over-the-counter drug label (DailyMed): Clotrimazole 1% cream",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0052992a-819c-4c55-bd88-201a09a3573a"
+    },
+    "L7": {
+      "title": "FDA over-the-counter drug label (DailyMed): Ketoconazole 1% shampoo",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=30b75584-3a1e-c125-e063-6294a90acaa7"
+    },
+    "L8": {
+      "title": "FDA over-the-counter drug label (DailyMed): Gelusil antacid tablets (aluminium hydroxide 200 mg, magnesium hydroxide 200 mg, simethicone 25 mg)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=92fbeec1-1562-40f3-9734-41f133d494f9"
+    },
+    "L9": {
+      "title": "FDA over-the-counter drug label (DailyMed): Psyllium husk fibre (1 rounded teaspoon, 7 g)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04e2cb67-b092-47ee-9463-cf30ab2fb2a5"
+    },
+    "L10": {
+      "title": "FDA over-the-counter drug label (DailyMed): Cetirizine 10 mg tablets",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03c0a599-072a-10ef-e063-6394a90a9698"
+    },
+    "S26": {
+      "title": "Diarrhoeal disease: WHO fact sheet",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease"
     }
   },
   "groups": {
@@ -187,7 +231,8 @@
         "sources": [
           "S5"
         ]
-      }
+      },
+      "max_days": 2
     },
     "period": {
       "label": "period pain",
@@ -211,9 +256,10 @@
             "nsaid"
           ],
           "brands": "Brufen",
-          "use": "follow the dose on the package label; you can start when symptoms begin or when your period starts and keep taking it for a few days",
-          "limit": "A heating pad or hot water bottle on the lower abdomen, exercise or a hot bath can also help.",
+          "use": "adults: one 200 mg tablet every 4 to 6 hours while symptoms last; if 1 tablet does not help, 2 tablets (400 mg) may be used, but no more than 6 tablets of 200 mg (1,200 mg) in 24 hours unless a doctor advises. You can start when symptoms begin or when your period starts and keep taking it for a few days",
+          "limit": "A heating pad or hot water bottle on the lower abdomen, exercise or a hot bath can also help. Strengths sold in India can differ from the label quoted here: check the mg on your pack.",
           "sources": [
+            "L1",
             "S24",
             "S2"
           ],
@@ -442,7 +488,8 @@
         "text": "Get medical help right away for numbness, a cold or blue limb, or a joint that looks out of place.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 7
     },
     "fungal": {
       "label": "fungal skin infection (ringworm, jock itch, athlete's foot)",
@@ -464,9 +511,10 @@
             "candid"
           ],
           "brands": "Candid",
-          "use": "wash and dry the area, then apply a thin layer as the package label directs",
-          "limit": "Jock itch should improve over 2 weeks and ringworm or athlete's foot over 4 weeks; it does not work on the scalp or nails.",
+          "use": "1% cream: wash and dry the area, then apply a thin layer twice a day (morning and night); use it daily for 2 weeks for jock itch and 4 weeks for ringworm or athlete's foot",
+          "limit": "It does not work on the scalp or nails.",
           "sources": [
+            "L6",
             "S19"
           ],
           "cautions": []
@@ -485,7 +533,8 @@
         "text": "See a doctor if the rash spreads quickly, becomes painful, swollen or oozing, or you have a fever.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 28
     },
     "dandruff": {
       "label": "dandruff",
@@ -503,9 +552,10 @@
             "nizral"
           ],
           "brands": "Nizral",
-          "use": "use it every 3 to 4 days for up to 8 weeks, then as needed to control dandruff",
-          "limit": "Follow the directions on the package.",
+          "use": "1% shampoo: wet the hair, lather well, rinse and repeat; use it every 3 to 4 days for up to 8 weeks, then only as needed to control dandruff",
+          "limit": "",
           "sources": [
+            "L7",
             "S20"
           ],
           "cautions": []
@@ -523,7 +573,8 @@
         "text": "Stop using it and get help if you have a rash, swelling or trouble breathing after using it.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 56
     },
     "allergy": {
       "label": "sneezing / allergy symptoms",
@@ -547,9 +598,10 @@
             "zyrtec"
           ],
           "brands": "Cetzine, Okacet",
-          "use": "one 10 mg tablet once a day",
+          "use": "adults: one 10 mg tablet once a day, and no more than one 10 mg tablet in 24 hours; adults over 65 should ask a doctor first",
           "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
           "sources": [
+            "L10",
             "S4"
           ],
           "cautions": [
@@ -604,9 +656,10 @@
             "zyrtec"
           ],
           "brands": "Cetzine, Okacet",
-          "use": "one 10 mg tablet once a day; cold compresses, moisturising lotion and lukewarm baths also help",
+          "use": "adults: one 10 mg tablet once a day, and no more than one 10 mg tablet in 24 hours; adults over 65 should ask a doctor first; cold compresses, moisturising lotion and lukewarm baths also help",
           "limit": "It may make you drowsy: do not drive until you know how it affects you, and avoid alcohol with it.",
           "sources": [
+            "L10",
             "S4",
             "S21"
           ],
@@ -631,9 +684,10 @@
             "hydrocortisone"
           ],
           "brands": "",
-          "use": "apply a thin layer to the itchy area as the package label directs",
+          "use": "apply a thin layer to the itchy area no more than 3 to 4 times a day",
           "limit": "Use it only on small areas of skin and for a short time.",
           "sources": [
+            "L5",
             "S21"
           ],
           "cautions": []
@@ -654,7 +708,8 @@
           "S22",
           "S4"
         ]
-      }
+      },
+      "max_days": 21
     },
     "acidity": {
       "label": "acidity or heartburn",
@@ -673,13 +728,13 @@
           "generic": "an antacid",
           "names": [
             "antacid",
-            "gelusil",
-            "digene"
+            "gelusil"
           ],
-          "brands": "Gelusil, Digene",
-          "use": "follow the dose on the package label; antacids neutralise the stomach acid that causes heartburn",
-          "limit": "Antacids can change how your body absorbs other medicines, so take other medicines at a different time.",
+          "brands": "Gelusil",
+          "use": "Gelusil-type tablets (aluminium hydroxide + magnesium hydroxide), adults: chew 2 to 4 tablets, repeat hourly if symptoms return, but no more than 12 tablets in 24 hours, and do not use the maximum dose for more than 2 weeks without a doctor",
+          "limit": "Doses differ between antacid brands, so check your pack. Antacids can change how your body absorbs other medicines, so take other medicines at a different time.",
           "sources": [
+            "L8",
             "S10"
           ],
           "cautions": [
@@ -715,7 +770,8 @@
         "sources": [
           "S11"
         ]
-      }
+      },
+      "max_days": 14
     },
     "diarrhoea": {
       "label": "diarrhoea (loose motions)",
@@ -734,9 +790,10 @@
             "electral"
           ],
           "brands": "Electral",
-          "use": "drink it often to replace lost fluids and salts, along with water, fruit juice and salty broths",
+          "use": "mix one sachet with clean drinking water exactly as the pack says, and sip it often to replace lost fluids and salts, along with water, fruit juice and salty broths",
           "limit": "As you feel better, eat soft, bland food.",
           "sources": [
+            "S26",
             "S9"
           ],
           "cautions": []
@@ -749,9 +806,10 @@
             "eldoper"
           ],
           "brands": "Imodium, Eldoper",
-          "use": "for sudden (acute) diarrhoea; follow the dose on the package label",
-          "limit": "Never take more, more often or for longer than the package says: too much can cause serious heart problems.",
+          "use": "for sudden (acute) diarrhoea, adults: 2 tablets of 2 mg (4 mg) after the first loose stool, then 1 tablet (2 mg) after each later loose stool, but no more than 4 tablets (8 mg) in 24 hours",
+          "limit": "Never take more, more often or for longer than this: too much can cause serious heart problems.",
           "sources": [
+            "L2",
             "S8"
           ],
           "skip_if_query": [
@@ -799,7 +857,8 @@
         "text": "See a doctor the same day for blood in the stool, black stools, high fever, severe stomach pain, or signs of dehydration such as very little urine or dizziness.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 2
     },
     "constipation": {
       "label": "constipation",
@@ -818,9 +877,10 @@
             "isabgul"
           ],
           "brands": "Sat Isabgol",
-          "use": "mix the powder with a full glass (240 ml) of liquid right before taking it, and drink at least another glass",
+          "use": "adults: 1 rounded teaspoon (about 7 g) mixed in a full glass (240 ml) of water or other liquid, drunk straight away, up to 3 times a day; taking it without enough liquid can cause choking",
           "limit": "Do not take it for longer than 1 week unless a doctor advises. Fruit, vegetables, whole grains, plenty of water and exercise also help.",
           "sources": [
+            "L9",
             "S12",
             "S13"
           ],
@@ -854,7 +914,8 @@
         "text": "Get medical help right away for severe stomach pain with a swollen belly and vomiting, or if you cannot pass gas.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 7
     },
     "throat": {
       "label": "sore throat",
@@ -923,7 +984,8 @@
         "text": "Get help right away if you have trouble breathing or swallowing, or cannot open your mouth fully.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 7
     },
     "cough": {
       "label": "cough",
@@ -938,9 +1000,10 @@
             "dextromethorphan"
           ],
           "brands": "",
-          "use": "follow the dose on the package label; it temporarily relieves a cough from a cold or flu but does not treat its cause",
+          "use": "adults: 30 mg (for example 2 capsules of 15 mg) every 6 to 8 hours as needed, no more than 120 mg in 24 hours; syrups differ in strength, so check the mg per 5 ml on the bottle. It temporarily relieves a cough from a cold or flu but does not treat its cause",
           "limit": "Many cough syrups also contain paracetamol: do not take a separate paracetamol tablet on top of one that does.",
           "sources": [
+            "L3",
             "S16",
             "S15"
           ],
@@ -966,7 +1029,8 @@
         "text": "Get help right away if you cough up blood, have trouble breathing, or have chest pain.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 7
     },
     "cold": {
       "label": "common cold or blocked nose",
@@ -999,9 +1063,10 @@
             "nasivion"
           ],
           "brands": "Nasivion",
-          "use": "follow the package label; it relieves a blocked nose from colds and allergies",
+          "use": "0.05% spray, adults: 2 or 3 sprays in each nostril no more often than every 10 to 12 hours, and no more than 2 doses in 24 hours",
           "limit": "Do not use it for longer than 3 days: the blockage can get worse or come back.",
           "sources": [
+            "L4",
             "S14"
           ],
           "cautions": []
@@ -1025,7 +1090,8 @@
         "text": "Get help right away for trouble breathing, wheezing or chest pain.",
         "rule": "medresolve",
         "sources": []
-      }
+      },
+      "max_days": 10
     },
     "pain": {
       "label": "headache or body pain",
@@ -1131,7 +1197,8 @@
         "sources": [
           "S7"
         ]
-      }
+      },
+      "max_days": 10
     }
   }
 }

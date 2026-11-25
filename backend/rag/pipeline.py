@@ -68,6 +68,9 @@ Write in plain language with these headings:
 ## Uncertainties and missing information
 ## Suggested next steps"""
 
+NO_HISTORY_NOTE = ("_Your profile lists no past conditions, medicines or allergies, so this answer is based on general "
+                   "medical information only. If you do have any, add them in your profile for a personalised answer._")
+
 DECISION_RE = re.compile(r"\bshould i (stop|start|take|increase|decrease|double|skip|quit|change)\b|\bwhat dose\b|"
                          r"\bhow (much|many) .{0,30}should i take\b|\bcan i (stop|take|double)\b|\bprescribe\b|"
                          r"\bdo i have (cancer|a tumou?r|diabetes|covid|heart disease)\b|\bdiagnose me\b", re.I)
@@ -100,6 +103,7 @@ class PipelineConfig:
     k_reference: int = 4
     use_llm: bool = True
     persist: bool = True
+    owner: Optional[str] = None        # demo browser session (keeps shared demo patients' questions private)
 
 
 @dataclass
@@ -110,7 +114,8 @@ class PipelineDeps:
     llm: Optional[OllamaClient] = None
 
 
-def _policy(emergency, qu, findings, n_records, query, otc_group=None, age=None) -> (str, str):
+def _policy(emergency, qu, findings, n_records, query, otc_group=None, age=None, otc_block=None,
+            history_confirmed_empty=False) -> (str, str):
     if emergency.is_emergency:
         return "EMERGENCY_OVERRIDE", "Red-flag symptoms: " + "; ".join(emergency.red_flags)
     if any(f.severity == "HIGH" for f in findings):
@@ -118,11 +123,14 @@ def _policy(emergency, qu, findings, n_records, query, otc_group=None, age=None)
     if otc_group:
         if age is not None and age < 18:
             return "ABSTAIN_AND_NAVIGATE", "General medicine options are given for adults only; ask a doctor or pharmacist."
+        if otc_block:      # a child / another person / pregnancy / symptom lasting too long
+            return "ABSTAIN_AND_NAVIGATE", otc_block
         label = medicine_options.KB["groups"][otc_group]["label"]
         return "GENERAL_OPTIONS", f"General over-the-counter options for {label}, checked against your records."
     if DECISION_RE.search(query):
         return "ABSTAIN_AND_NAVIGATE", "The question asks for a diagnostic or prescribing decision."
-    if n_records == 0:
+    if n_records == 0 and not history_confirmed_empty:
+        # the profile was never set up: ask for history rather than answer as if there were none
         return "ASK", "No medical history is on file; history is needed for a personalised answer."
     if any(f.finding_type == "MISSING_INFORMATION" and "mentioned" in f.description for f in findings):
         return "ASK", "A medication you mentioned is not in your record; please confirm it."
@@ -249,10 +257,14 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     emit("evidence", {"evidence": result["evidence"], "references": result["references"], "findings": result["findings"]})
 
     # 7. action policy (B5)
+    # A user who finished setup and added nothing has no known conditions: that is information, not a gap.
+    no_known_history = bool(patient is not None and patient.onboarding_complete and mem.count() == 0)
     action, reason = ("EXPLAIN", "Baseline variant: no selective policy")
     if v == "B5":
         action, reason = _policy(emergency, qu, findings, mem.count(), query, otc_group,
-                                 medicine_options.age_years(patient.birth_date if patient else None))
+                                 medicine_options.age_years(patient.birth_date if patient else None),
+                                 medicine_options.blocked_reason(query, otc_group, otc_history) if otc_group else None,
+                                 history_confirmed_empty=no_known_history)
     result.update(action=action, action_reason=reason)
 
     # 8. generation (buffered: nothing is streamed to the user before verification)
@@ -260,6 +272,9 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     if action in ("EXPLAIN",) or v != "B5":
         emit("stage", {"stage": "generating"})
         prompt = ("Context:\n" + ctx.render() + f"\n\nQuestion: {query}\nAnswer using only the context above.")
+        if v == "B5" and no_known_history:
+            prompt += ("\nThe patient's profile lists no past conditions, medicines or allergies. Give general "
+                       "information only and do not describe any personal medical history.")
         if v == "B0":
             prompt = f"Question: {query}\nAnswer in plain language for a patient."
         raw, engine = None, None
@@ -305,6 +320,13 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     else:
         result["verification"] = None
         result["final_text"] = result["raw_generation"]
+    # A new problem can be added to the record after the answer, only if the patient chooses to (never automatic).
+    if v == "B5" and action != "ASK" and (qu.is_new_concern or otc_group):
+        name = (", ".join(x.capitalize() for x in qu.symptoms) if qu.symptoms
+                else medicine_options.KB["groups"][otc_group]["label"].capitalize() if otc_group else "")
+        result["record_offer"] = {"status": "pending", "suggested": name[:200]}
+    if v == "B5" and no_known_history and action == "EXPLAIN":
+        result["final_text"] = NO_HISTORY_NOTE + "\n\n" + result["final_text"]
     if v == "B5":
         result["final_text"] += ("\n\n_MedResolve is a research prototype that provides medical information, not a "
                                  "diagnosis or treatment. Please consult a qualified clinician._")
@@ -434,6 +456,6 @@ def _persist(s: Session, result: Dict[str, Any], cfg: PipelineConfig) -> Dict[st
                            query=result["query"], intake_json=json.dumps(result.get("intake") or {}),
                            action=result.get("action"), response_text=result.get("final_text"),
                            result_json=json.dumps(result, default=str), system_variant=result["variant"],
-                           latency_s=(result.get("timings") or {}).get("total_s")))
+                           latency_s=(result.get("timings") or {}).get("total_s"), owner=cfg.owner))
         s.flush()
     return result

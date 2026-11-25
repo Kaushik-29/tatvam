@@ -13,12 +13,12 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from backend import config
-from backend.api.auth import DEMO_SOURCES, audit, current_patient_id
+from backend.api.auth import DEMO_SOURCES, audit, consultation_owner, current_patient_id
 from backend.api.services import get_deps
 from backend.patient_memory.db import get_session, session_scope
 from backend.patient_memory.hierarchy import LEAF_BY_PATH, LEAVES
@@ -35,13 +35,27 @@ EDITABLE_LEAVES = [l.path for l in LEAVES if not l.virtual and l.path not in (
 
 
 # ------------------------------------------------------------------ profile
+def iso_date(v: Optional[str]) -> Optional[str]:
+    """Dates must be ISO (YYYY-MM-DD, optionally with a time): a free-text date stored once would make every
+    later answer for this patient fail when the timeline and medication windows are computed."""
+    if v is None or v == "":
+        return None
+    try:
+        datetime.fromisoformat(v.strip()[:19].replace("Z", ""))
+    except ValueError:
+        raise ValueError("Use a date like 2024-05-31")
+    return v.strip()
+
+
 class ProfileIn(BaseModel):
-    given_name: Optional[str] = None
-    family_name: Optional[str] = None
+    given_name: Optional[str] = Field(None, max_length=128)
+    family_name: Optional[str] = Field(None, max_length=128)
     birth_date: Optional[str] = None
-    gender: Optional[str] = None
-    city: Optional[str] = None
+    gender: Optional[str] = Field(None, max_length=32)
+    city: Optional[str] = Field(None, max_length=128)
     onboarding_complete: Optional[bool] = None
+
+    _d = field_validator("birth_date")(lambda cls, v: iso_date(v))
 
 
 def _profile(p: Patient, mem: PatientMemory) -> Dict[str, Any]:
@@ -90,25 +104,29 @@ def toc(pid: str = Depends(current_patient_id), s: Session = Depends(get_session
 
 # ------------------------------------------------------------------ records
 class RecordIn(BaseModel):
-    leaf_path: str
-    display: str
+    leaf_path: str = Field(max_length=128)
+    display: str = Field(min_length=1, max_length=200)
     start: Optional[str] = None
     end: Optional[str] = None
     value_num: Optional[float] = None
-    value_text: Optional[str] = None
-    unit: Optional[str] = None
-    status: Optional[str] = None
+    value_text: Optional[str] = Field(None, max_length=1000)
+    unit: Optional[str] = Field(None, max_length=32)
+    status: Optional[str] = Field(None, max_length=32)
+
+    _d = field_validator("start", "end")(lambda cls, v: iso_date(v))
 
 
 class RecordPatch(BaseModel):
-    concept_display: Optional[str] = None
+    concept_display: Optional[str] = Field(None, max_length=200)
     effective_start: Optional[str] = None
     effective_end: Optional[str] = None
     value_num: Optional[float] = None
-    value_text: Optional[str] = None
-    unit: Optional[str] = None
-    clinical_status: Optional[str] = None
+    value_text: Optional[str] = Field(None, max_length=1000)
+    unit: Optional[str] = Field(None, max_length=32)
+    clinical_status: Optional[str] = Field(None, max_length=32)
     verification_status: Optional[str] = None
+
+    _d = field_validator("effective_start", "effective_end")(lambda cls, v: iso_date(v))
 
 
 @router.get("/records")
@@ -208,6 +226,10 @@ async def upload_document(document_type: str = Form("MEDICAL_REPORT"), document_
                           file: UploadFile = File(...), pid: str = Depends(current_patient_id),
                           s: Session = Depends(get_session)):
     _require_writable(s, pid)
+    try:
+        document_date = iso_date(document_date)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
     from backend.ocr_service import MedicalDocumentProcessor
     proc = MedicalDocumentProcessor()
     content = await file.read()
@@ -291,7 +313,7 @@ def document_file(document_id: str, pid: str = Depends(current_patient_id), s: S
 
 # ------------------------------------------------------------- consultation
 class ConsultIn(BaseModel):
-    query: str
+    query: str = Field(max_length=2000)          # bounds the text sent to the local LLM
     symptoms: Optional[List[str]] = None
     onset: Optional[str] = None
     duration: Optional[str] = None
@@ -306,17 +328,19 @@ def _intake(body: ConsultIn) -> Dict[str, Any]:
 
 
 @router.post("/consult")
-def consult(body: ConsultIn, pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
+def consult(body: ConsultIn, pid: str = Depends(current_patient_id), owner: Optional[str] = Depends(consultation_owner),
+            s: Session = Depends(get_session)):
     if not body.query.strip():
         raise HTTPException(400, "Question is empty")
     variant = body.variant if body.variant in ("B0", "B1", "B2", "B3", "B4", "B5") else "B5"
-    res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant=variant), get_deps())
+    res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant=variant, owner=owner), get_deps())
     audit(s, pid, "consult", res["consultation_id"])
     return res
 
 
 @router.post("/consult/stream")
-async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id)):
+async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id),
+                         owner: Optional[str] = Depends(consultation_owner)):
     """Server-sent events. Stage/evidence events stream live; the answer text is released
     ONLY after claim verification (never raw LLM tokens)."""
     if not body.query.strip():
@@ -326,7 +350,7 @@ async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id)
     def worker():
         try:
             with session_scope() as s:
-                res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant="B5"),
+                res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant="B5", owner=owner),
                                    get_deps(), on_event=lambda ev, data: q.put((ev, data)))
                 audit(s, pid, "consult", res["consultation_id"])
             q.put(("verified_result", res))
@@ -355,28 +379,75 @@ async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id)
                              headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
+def _owned(owner: Optional[str]):
+    """Own account: its questions (owner NULL). Demo session: only that session's questions."""
+    return Consultation.owner.is_(None) if owner is None else Consultation.owner == owner
+
+
 @router.get("/consultations")
-def consultations(limit: int = 50, pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
-    rows = s.scalars(select(Consultation).where(Consultation.patient_id == pid)
+def consultations(limit: int = 50, pid: str = Depends(current_patient_id),
+                  owner: Optional[str] = Depends(consultation_owner), s: Session = Depends(get_session)):
+    rows = s.scalars(select(Consultation).where(Consultation.patient_id == pid, _owned(owner))
                      .order_by(Consultation.created_at.desc()).limit(limit))
     return [{"consultation_id": c.consultation_id, "created_at": c.created_at.isoformat(), "query": c.query,
              "action": c.action, "latency_s": c.latency_s, "preview": (c.response_text or "")[:220]} for c in rows]
 
 
 @router.get("/consultations/{cid}")
-def consultation(cid: str, pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
+def consultation(cid: str, pid: str = Depends(current_patient_id),
+                 owner: Optional[str] = Depends(consultation_owner), s: Session = Depends(get_session)):
     c = s.get(Consultation, cid)
-    if c is None or c.patient_id != pid:
+    if c is None or c.patient_id != pid or c.owner != owner:
         raise HTTPException(404, "Consultation not found")
     return json.loads(c.result_json)
 
 
+class RecordDecisionIn(BaseModel):
+    save: bool
+    display: Optional[str] = Field(None, max_length=200)      # the patient may rename the problem before saving
+    details: Optional[str] = Field(None, max_length=1000)
+
+
+@router.post("/consultations/{cid}/record-decision")
+def record_decision(cid: str, body: RecordDecisionIn, pid: str = Depends(current_patient_id),
+                    s: Session = Depends(get_session)):
+    """After an answer about a new problem, the patient chooses whether it goes into their record.
+    Saved as a patient-reported symptom dated the day of the question, linked to the consultation."""
+    _require_writable(s, pid)
+    c = s.get(Consultation, cid)
+    if c is None or c.patient_id != pid:
+        raise HTTPException(404, "Consultation not found")
+    res = json.loads(c.result_json)
+    offer = res.get("record_offer")
+    if not offer:
+        raise HTTPException(400, "This answer has nothing to add to your record")
+    if offer.get("status") != "pending":
+        raise HTTPException(409, f"Already {offer['status']}")
+    if body.save:
+        name = (body.display or offer.get("suggested") or "").strip()
+        if not name:
+            raise HTTPException(400, "Please give the problem a name")
+        rec = PatientMemory(s, pid).add_patient_entry(
+            "clinical_encounters/previous_symptoms", name, start=c.created_at.date().isoformat(),
+            value_text=(body.details or c.query).strip()[:1000], status="ongoing",
+            provenance={"entered_via": "MedResolve answer", "consultation_id": cid})
+        offer.update(status="saved", record_id=rec["record_id"], display=name)
+        audit(s, pid, "record_add_from_consultation", rec["record_id"])
+    else:
+        offer.update(status="declined")
+        audit(s, pid, "record_offer_declined", cid)
+    res["record_offer"] = offer
+    c.result_json = json.dumps(res, default=str)
+    return offer
+
+
 # ---------------------------------------------------------- data management
 @router.get("/data/export")
-def export_data(pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
+def export_data(pid: str = Depends(current_patient_id), owner: Optional[str] = Depends(consultation_owner),
+                s: Session = Depends(get_session)):
     mem = PatientMemory(s, pid)
     p = mem.patient()
-    cons = s.scalars(select(Consultation).where(Consultation.patient_id == pid))
+    cons = s.scalars(select(Consultation).where(Consultation.patient_id == pid, _owned(owner)))
     audit(s, pid, "data_export")
     return {"exported_at": datetime.utcnow().isoformat(), "profile": _profile(p, mem), "records": mem.records(),
             "documents": [{"document_id": d.document_id, "title": d.title, "doc_date": d.doc_date,
@@ -401,8 +472,9 @@ def delete_account(pid: str = Depends(current_patient_id), s: Session = Depends(
 
 
 @router.delete("/data/consultations")
-def delete_consultations(pid: str = Depends(current_patient_id), s: Session = Depends(get_session)):
-    n = s.execute(delete(Consultation).where(Consultation.patient_id == pid)).rowcount
+def delete_consultations(pid: str = Depends(current_patient_id), owner: Optional[str] = Depends(consultation_owner),
+                         s: Session = Depends(get_session)):
+    n = s.execute(delete(Consultation).where(Consultation.patient_id == pid, _owned(owner))).rowcount
     audit(s, pid, "consultations_deleted", str(n))
     return {"deleted": n}
 

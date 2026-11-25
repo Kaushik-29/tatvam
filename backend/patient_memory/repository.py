@@ -24,6 +24,14 @@ from backend.patient_memory.models import ClinicalRecord, Document, Patient
 MED_LEAVES = ("medication_history/current_medications", "medication_history/previous_medications")
 
 
+def _iso_ok(v: str) -> bool:
+    try:
+        datetime.fromisoformat(v[:19].replace("Z", ""))
+        return True
+    except ValueError:
+        return False
+
+
 def record_to_dict(r: ClinicalRecord) -> Dict[str, Any]:
     return {
         "record_id": r.record_id, "patient_id": r.patient_id, "leaf_path": r.leaf_path,
@@ -177,7 +185,7 @@ class PatientMemory:
         meds = self.records(leaves=list(MED_LEAVES), newest_first=False)
         by = defaultdict(list)
         for m in meds:
-            if m["effective_start"]:
+            if m["effective_start"] and _iso_ok(m["effective_start"]):    # skip unreadable dates, never crash
                 by[m["concept_key"]].append(m)
         out = []
         for key, reqs in by.items():

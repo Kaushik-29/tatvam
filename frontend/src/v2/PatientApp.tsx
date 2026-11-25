@@ -194,7 +194,7 @@ export function PatientApp() {
             {screen === 'concern' && <ConcernScreen profile={profile} onSubmit={(q) => { setPendingQuery(q); go('chat'); }} />}
             {screen === 'chat' && (
               <ChatScreen pending={pendingQuery} clearPending={() => setPendingQuery(null)} current={current}
-                onResult={setCurrent} onCite={openCitation} onNavigate={go} />
+                onResult={setCurrent} onCite={openCitation} onNavigate={go} readOnly={isDemo} />
             )}
             {screen === 'context' && <ContextScreen consultation={current} focus={focusAlias} onNavigate={go} />}
             {screen === 'references' && <ReferencesScreen consultation={current} focus={focusAlias} onNavigate={go} />}

@@ -136,7 +136,7 @@ def test_bm25_baseline_scoped(memdb):
 def test_recorded_medication_end_date_is_used_not_estimated(memdb):
     with session_scope() as s:
         m = PatientMemory(s, "pat-a")
-        r = m.add_patient_entry("medication_history/previous_medications", "Elodper",
+        r = m.add_patient_entry("medication_history/previous_medications", "Loperamide",
                                 start="2021-11-01", end="2022-01-31", status="completed")
         iv = {iv["record_id"]: iv for iv in m.medication_intervals()}[r["record_id"]]
         assert iv["interval_end"].startswith("2022-01-31") and iv["end_uncertain"] is False

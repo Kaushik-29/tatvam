@@ -20,10 +20,10 @@ from typing import Any, Dict, List, Optional, Sequence
 
 KB = json.loads((Path(__file__).with_name("medicine_options.json")).read_text(encoding="utf-8"))
 
+_FORMS = r"medicines?|medications?|tablets?|pills?|drugs?|syrups?|creams?|ointments?|shampoos?|sprays?|drops|gels?|lotions?"
 MED_REQUEST_RE = re.compile(
-    r"\b(which|what|any|suggest|recommend|name of|tell me|give me|need)\b.{0,40}\b(medicines?|medications?|tablets?|"
-    r"pills?|drugs?)\b|\bmedicines? names?\b|\bwhat (can|should) i (take|use)\b|\bsomething (for|to take)\b|"
-    r"\b(medicines?|medications?|tablets?|pills?)\s+(for|to (take|use))\b", re.I)
+    rf"\b(which|what|any|suggest|recommend|name of|tell me|give me|need)\b.{{0,40}}\b({_FORMS})\b|\bmedicines? names?\b|"
+    rf"\bwhat (can|should) i (take|use|apply)\b|\bsomething (for|to take)\b|\b({_FORMS})\s+(for|to (take|use|apply))\b", re.I)
 CHANGE_RE = re.compile(r"\b(stop|stopping|increase|decrease|double|skip|quit|change|switch|reduce)\b|\bprescribe\b|"
                        r"\bdiagnos\w*\b|\binstead of\b", re.I)
 HISTORY_LEAVES = ("medical_history/diagnoses", "medical_history/conditions", "medical_history/procedures")
@@ -40,11 +40,14 @@ def detect(query: str) -> Optional[str]:
     return None
 
 
+PREGNANCY_KWS = ("pregnan", "breastfeed", "breast feeding", "breast-feeding", "lactating")
+
+
 def history_keywords(group: str) -> List[str]:
     g = KB["groups"][group]
     kws = [k for a in g["avoid"] for k in a.get("history_match", [])]
     kws += [k for o in g["options"] for c in o.get("cautions", []) for k in c["match"]]
-    return sorted(set(kws))
+    return sorted(set(kws) | set(PREGNANCY_KWS))
 
 
 def matching_history(records: Sequence[Dict[str, Any]], group: str) -> List[Dict[str, Any]]:
@@ -56,9 +59,60 @@ def matching_history(records: Sequence[Dict[str, Any]], group: str) -> List[Dict
 def age_years(birth_date: Optional[str], today: Optional[date] = None) -> Optional[int]:
     if not birth_date:
         return None
-    b = date.fromisoformat(birth_date[:10])
+    try:
+        b = date.fromisoformat(birth_date[:10])
+    except ValueError:            # malformed stored date: treat the age as unknown, never crash the answer
+        return None
     t = today or date.today()
     return t.year - b.year - ((t.month, t.day) < (b.month, b.day))
+
+
+# ---- who the medicine is for, pregnancy, and how long the symptom has lasted --------------------------
+CHILD_RE = re.compile(r"\b(son|daughter|child|children|kid|kids|baby|babies|infant|toddler|newborn|grandson|"
+                      r"granddaughter|nephew|niece)\b|\b(\d{1,2})[- ]?(?:years?|yrs?)[- ]?old\b|\b\d+[- ]?months?[- ]?old\b",
+                      re.I)
+OTHER_PERSON_RE = re.compile(r"\b(my|our)\s+(mother|mom|mum|amma|father|dad|appa|wife|husband|brother|sister|friend|"
+                             r"grand(mother|father|ma|pa)|aunt|uncle|neighbou?r|colleague|roommate|parents?|partner|"
+                             r"boyfriend|girlfriend|patient)\b|\bfor (him|her|them)\b|\b(he|she) (has|is|have)\b", re.I)
+PREGNANCY_RE = re.compile(r"\bpregnan\w*|\bbreast[- ]?feed\w*|\blactating\b|\bexpecting a baby\b", re.I)
+NUM_WORDS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7,
+             "eight": 8, "nine": 9, "ten": 10, "few": 3, "several": 4}
+DURATION_RE = re.compile(r"\b(?:for|since|from|past|last)\s+(?:the\s+)?(?:past\s+|last\s+)?(\d+|a|an|one|two|three|four|"
+                         r"five|six|seven|eight|nine|ten|few|several)\s+(day|week|month|year)s?\b", re.I)
+UNIT_DAYS = {"day": 1, "week": 7, "month": 30, "year": 365}
+
+
+def symptom_days(query: str) -> Optional[int]:
+    """Longest duration the question states ("for 5 days", "since two weeks"), in days."""
+    best = None
+    for n, unit in DURATION_RE.findall(query):
+        k = int(n) if n.isdigit() else NUM_WORDS.get(n.lower(), 1)
+        d = k * UNIT_DAYS[unit.lower()]
+        best = d if best is None else max(best, d)
+    return best
+
+
+def blocked_reason(query: str, group: str, history: Sequence[Dict[str, Any]] = ()) -> Optional[str]:
+    """Why general options must NOT be given for this question, or None. Options are for the adult account
+    holder only, checked against their own record; they are not given in pregnancy / breastfeeding, nor once
+    the symptom has lasted past the point where the sources say to see a doctor."""
+    q = query.lower()
+    if any(not m.group(2) or int(m.group(2)) < 18 for m in CHILD_RE.finditer(q)):
+        return ("Medicine doses for children depend on their age and weight, and MedResolve's options are for adults "
+                "only. Please ask a doctor or pharmacist for the right medicine and dose for the child.")
+    if OTHER_PERSON_RE.search(q):
+        return ("MedResolve checks medicines against your own records only, so it cannot suggest one for another "
+                "person. Please ask a doctor or pharmacist, or use that person's own profile.")
+    preg = [h for h in history if any(k in _txt(h) for k in PREGNANCY_KWS)]
+    if PREGNANCY_RE.search(q) or preg:
+        return ("Some common medicines are not safe during pregnancy or breastfeeding, so please ask your doctor or "
+                "pharmacist before taking any medicine.")
+    days, max_days = symptom_days(q), KB["groups"][group].get("max_days")
+    if days is not None and max_days is not None and days > max_days:
+        extra = " and ask about a dengue test" if group == "fever" else ""
+        return (f"Your {KB['groups'][group]['label']} has lasted about {days} days, which is longer than the sources "
+                f"advise treating on your own. Please see a doctor{extra}.")
+    return None
 
 
 def _txt(r: Dict[str, Any]) -> str:

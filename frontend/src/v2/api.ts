@@ -1,7 +1,7 @@
 // MedResolve v2 API client (longitudinal patient memory + STAIR-Clinical pipeline).
 import type {
   Consultation, ConsultationSummary, DocumentSummary, LeafDef, PatientProfile, RecordItem,
-  SystemStatus, TimelineEvent, TocNode, DemoPatient, StreamEvent, ConsultInput,
+  SystemStatus, TimelineEvent, TocNode, DemoPatient, StreamEvent, ConsultInput, RecordOffer,
 } from './types';
 
 const BASE = '/api/v2';
@@ -106,6 +106,8 @@ export const api = {
 
   consult: (b: ConsultInput) => req<Consultation>('/consult', { method: 'POST', body: JSON.stringify(b) }),
   consultations: () => req<ConsultationSummary[]>('/consultations'),
+  recordDecision: (id: string, b: { save: boolean; display?: string }) =>
+    req<RecordOffer>(`/consultations/${encodeURIComponent(id)}/record-decision`, { method: 'POST', body: JSON.stringify(b) }),
   consultation: (id: string) => req<Consultation>(`/consultations/${id}`),
   deleteConsultations: () => req<{ deleted: number }>('/data/consultations', { method: 'DELETE' }),
   exportData: () => req<Record<string, unknown>>('/data/export'),

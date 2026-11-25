@@ -15,7 +15,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -32,9 +32,20 @@ class RegisterIn(BaseModel):
     email: str = Field(min_length=5, max_length=255)
     password: str = Field(min_length=8, max_length=128)
     given_name: str = Field(min_length=1, max_length=128)
-    family_name: Optional[str] = None
+    family_name: Optional[str] = Field(None, max_length=128)
     birth_date: Optional[str] = None
-    gender: Optional[str] = None
+    gender: Optional[str] = Field(None, max_length=32)
+
+    @field_validator("birth_date")
+    @classmethod
+    def _iso(cls, v):
+        if v in (None, ""):
+            return None
+        try:
+            datetime.fromisoformat(v.strip()[:10])
+        except ValueError:
+            raise ValueError("Use a date like 2005-08-29")
+        return v.strip()[:10]
 
 
 class LoginIn(BaseModel):
@@ -56,17 +67,27 @@ def _token(user_id: str, patient_id: str, demo: bool = False) -> str:
                       config.JWT_SECRET, algorithm=config.JWT_ALGORITHM)
 
 
-def current_patient_id(creds: Optional[HTTPAuthorizationCredentials] = Depends(bearer)) -> str:
+def _claims(creds: Optional[HTTPAuthorizationCredentials]) -> dict:
     if creds is None:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Not authenticated")
     try:
         payload = jwt.decode(creds.credentials, config.JWT_SECRET, algorithms=[config.JWT_ALGORITHM])
     except JWTError:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid or expired token")
-    pid = payload.get("pid")
-    if not pid:
+    if not payload.get("pid"):
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Token has no patient scope")
-    return pid
+    return payload
+
+
+def current_patient_id(creds: Optional[HTTPAuthorizationCredentials] = Depends(bearer)) -> str:
+    return _claims(creds)["pid"]
+
+
+def consultation_owner(creds: Optional[HTTPAuthorizationCredentials] = Depends(bearer)) -> Optional[str]:
+    """Demo patients are shared by every visitor, so each demo login gets its own session id and sees only
+    the questions asked in that session. Registered users own their whole patient record (None)."""
+    c = _claims(creds)
+    return c.get("sub") if c.get("demo") else None
 
 
 def audit(s: Session, pid: str, event: str, detail: str = "", actor: str = "patient"):
@@ -91,11 +112,22 @@ def register(body: RegisterIn, s: Session = Depends(get_session)):
     return TokenOut(access_token=_token(uid, pid), patient_id=pid, onboarding_complete=False)
 
 
+MAX_FAILED_LOGINS, LOCKOUT_SECONDS = 5, 15 * 60
+_failed: dict = {}            # email -> recent failure times (in-memory; resets on restart)
+
+
 @router.post("/login", response_model=TokenOut)
 def login(body: LoginIn, s: Session = Depends(get_session)):
-    u = s.scalar(select(User).where(User.email == body.email.strip().lower()))
+    email = body.email.strip().lower()
+    now = datetime.utcnow().timestamp()
+    recent = [t for t in _failed.get(email, []) if now - t < LOCKOUT_SECONDS]
+    if len(recent) >= MAX_FAILED_LOGINS:          # slows password guessing against one account
+        raise HTTPException(429, "Too many failed sign-in attempts. Please wait 15 minutes and try again.")
+    u = s.scalar(select(User).where(User.email == email))
     if u is None or not pwd.verify(body.password, u.password_hash):
+        _failed[email] = recent + [now]
         raise HTTPException(401, "Incorrect email or password")
+    _failed.pop(email, None)
     p = s.get(Patient, u.patient_id)
     audit(s, u.patient_id, "login")
     return TokenOut(access_token=_token(u.user_id, u.patient_id), patient_id=u.patient_id,
@@ -127,5 +159,5 @@ def demo_login(patient_id: str, s: Session = Depends(get_session)):
     if p is None or p.source not in DEMO_SOURCES:
         raise HTTPException(404, "Demo patient not found")
     audit(s, patient_id, "demo_login", actor="demo")
-    return TokenOut(access_token=_token("demo", patient_id, demo=True), patient_id=patient_id,
+    return TokenOut(access_token=_token(f"demo-{uuid.uuid4().hex[:16]}", patient_id, demo=True), patient_id=patient_id,
                     onboarding_complete=True, is_demo=True)
