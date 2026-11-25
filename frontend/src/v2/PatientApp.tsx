@@ -18,10 +18,11 @@ import { ChatScreen } from './screens/ChatScreen';
 import { ContextScreen, ReferencesScreen, ConflictsScreen } from './screens/EvidenceScreens';
 import { HistoryScreen } from './screens/HistoryScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
+import { TestCasesScreen } from './screens/TestCasesScreen';
 
 export type V2Screen =
   | 'onboarding' | 'profile' | 'timeline' | 'meds' | 'documents' | 'ocr' | 'concern' | 'chat'
-  | 'context' | 'references' | 'conflicts' | 'history' | 'settings';
+  | 'context' | 'references' | 'conflicts' | 'history' | 'settings' | 'testcases';
 
 const ICON = 'w-[18px] h-[18px]';
 const NAV: { group: string; items: { id: V2Screen; label: string; icon: React.ReactNode }[] }[] = [
@@ -42,6 +43,9 @@ const NAV: { group: string; items: { id: V2Screen; label: string; icon: React.Re
     { id: 'documents', label: 'Upload documents', icon: <FileText className={ICON} /> },
     { id: 'ocr', label: 'Review extracted data', icon: <ScanText className={ICON} /> },
     { id: 'onboarding', label: 'Onboarding', icon: <UserPlus className={ICON} /> },
+  ] },
+  { group: 'Research', items: [
+    { id: 'testcases', label: 'Test cases (40)', icon: <FlaskConical className={ICON} /> },
   ] },
   { group: 'Account', items: [
     { id: 'settings', label: 'Settings & data', icon: <Settings className={ICON} /> },
@@ -200,6 +204,7 @@ export function PatientApp() {
             {screen === 'references' && <ReferencesScreen consultation={current} focus={focusAlias} onNavigate={go} />}
             {screen === 'conflicts' && <ConflictsScreen consultation={current} onNavigate={go} />}
             {screen === 'history' && <HistoryScreen onOpen={(c) => { setCurrent(c); go('chat'); }} />}
+            {screen === 'testcases' && <TestCasesScreen />}
             {screen === 'settings' && <SettingsScreen profile={profile} isDemo={isDemo} onLoggedOut={logout} />}
           </div>
         </main>

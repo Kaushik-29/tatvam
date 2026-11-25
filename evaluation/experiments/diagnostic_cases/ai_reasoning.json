@@ -1,0 +1,210 @@
+{
+ "model": "llama3.2:3b",
+ "temperature": 0.0,
+ "seed": 7,
+ "system": "You are explaining a diagnostic choice in a clinical multiple-choice case. Use only facts stated in the case. Be concise and do not add new findings.",
+ "note": "Post-hoc explanations of the already-chosen answer by the same model; not clinician-reviewed.",
+ "cases": {
+  "1": {
+   "chosen": "Acute inferior ST-elevation myocardial infarction",
+   "reasoning": "The most likely diagnosis is Acute inferior ST-elevation myocardial infarction. The patient's symptoms of crushing retrosternal chest pain radiating to the left arm, sweating, and nausea are consistent with myocardial infarction. The ECG findings of ST elevation in leads II, III, and aVF with reciprocal depression in I and aVL are characteristic of an inferior wall myocardial infarction. The patient's low blood pressure and bradycardia may be related to the infarction. Pulmonary embolism is less likely because the ECG findings do not show the characteristic \"Pulmonary Embolism\" pattern, and the patient's symptoms do not include sudden onset of shortness of breath.",
+   "seconds": 28.0
+  },
+  "2": {
+   "chosen": "Pulmonary embolism",
+   "reasoning": "The most likely diagnosis is pulmonary embolism. The sudden onset of pleuritic chest pain and breathlessness, particularly in the context of recent prolonged travel, supports this answer. The patient's swollen and tender right calf, a common site for deep vein thrombosis, further increases the likelihood of pulmonary embolism. The main alternative, spontaneous pneumothorax, is less likely as the chest is clear on auscultation.",
+   "seconds": 10.1
+  },
+  "3": {
+   "chosen": "Diabetic ketoacidosis",
+   "reasoning": "The most likely diagnosis is Diabetic Ketoacidosis (DKA) because the patient has type 1 diabetes, high capillary glucose, and urine ketones 3+, indicating ketone production. The patient's vomiting and abdominal pain may be related to the underlying diabetic condition, and the deep sighing respirations and low arterial pH with low bicarbonate level are consistent with diabetic ketoacidosis. The main alternative, Hyperosmolar Hyperglycaemic State (HHS), is less likely because the patient's glucose level is not extremely high (480 mg/dL is not typically considered hyperglycaemic in the context of HHS), and the presence of ketones is more characteristic of DKA.",
+   "seconds": 13.8
+  },
+  "4": {
+   "chosen": "Malaria",
+   "reasoning": "The findings that support malaria as the most likely diagnosis are the patient's recent travel to a forested, mosquito-endemic area, recurring fever with rigors every 48 hours, and a palpable spleen. These symptoms are classic for malaria, which is transmitted by mosquitoes. The patient's low hemoglobin level (9.2 g/dL) and thrombocytopenia (96,000/µL) are also consistent with malaria. Scrub typhus is less likely because it typically presents with a characteristic rash and eschar, which are not mentioned in the case.",
+   "seconds": 12.3
+  },
+  "5": {
+   "chosen": "Acute ischaemic stroke (left middle cerebral artery territory)",
+   "reasoning": "The sudden onset of weakness of the right arm and face, difficulty producing words, and the patient's history of atrial fibrillation without anticoagulation support the diagnosis of an acute ischaemic stroke. The patient's blood pressure is elevated, which is consistent with a stroke, particularly an ischaemic stroke. The capillary glucose level is within normal limits, making hypoglycaemia less likely. The patient's symptoms and history do not support chronic subdural haematoma, Bell's palsy, or Todd's paresis, making acute ischaemic stroke the most likely diagnosis.",
+   "seconds": 12.7
+  },
+  "6": {
+   "chosen": "Acute appendicitis",
+   "reasoning": "The most likely diagnosis is acute appendicitis. The case's findings of periumbilical pain that has moved to the right iliac fossa over 12 hours, along with tenderness and rebound at McBurney's point, are classic for appendicitis. The elevated WBC count also supports this diagnosis, as it indicates an inflammatory response. The anorexia and vomiting are also consistent with the systemic effects of appendicitis. Right ureteric colic is less likely because the pain's location and progression do not match the typical ureteric colic pattern, which usually presents with flank pain radiating to the groin.",
+   "seconds": 13.1
+  },
+  "7": {
+   "chosen": "Left ureteric calculus",
+   "reasoning": "The sudden onset of severe colicky left loin pain radiating to the groin, along with microscopic haematuria, strongly supports a diagnosis of left ureteric calculus. The patient's inability to find a comfortable position also suggests a severe, acute condition. The absence of fever and nitrites on urinalysis makes urinary tract infections less likely, making option B, musculoskeletal back pain, less likely as the primary cause of the patient's symptoms.",
+   "seconds": 10.4
+  },
+  "8": {
+   "chosen": "Iron-deficiency anaemia",
+   "reasoning": "The most likely diagnosis is Iron-deficiency anaemia. The findings that support this answer include the patient's heavy menstrual periods, which can lead to iron loss, and the low serum ferritin level, which indicates depleted iron stores. Additionally, the patient's symptoms of fatigue, breathlessness on exertion, and craving ice are also consistent with iron-deficiency anaemia. The low MCV of 68 fL also supports this diagnosis, as iron-deficiency anaemia typically presents with microcytosis. The main alternative, Beta-thalassaemia trait, is less likely because the patient's Hb level is 8.5 g/dL, which is not typically low in beta-thalassaemia trait, and the serum ferritin level is low, which is not characteristic of this condition.",
+   "seconds": 14.9
+  },
+  "9": {
+   "chosen": "Graves' disease",
+   "reasoning": "The findings that support Graves' disease as the most likely diagnosis are the diffuse goitre with bruit, bilateral proptosis, heat intolerance, palpitations, and tremor, all of which are classic symptoms of hyperthyroidism. The suppressed TSH and raised free T4 levels further confirm hyperthyroidism. In contrast, toxic multinodular goitre typically presents with a solitary nodule, and Hashimoto's thyroiditis is associated with hypothyroidism, not hyperthyroidism.",
+   "seconds": 11.0
+  },
+  "10": {
+   "chosen": "Chronic obstructive pulmonary disease",
+   "reasoning": "The most likely diagnosis is Chronic obstructive pulmonary disease (COPD) due to the patient's significant smoking history, progressive exertional breathlessness, and hyperinflated chest. The post-bronchodilator FEV1/FVC ratio of 0.58 with minimal reversibility also supports this diagnosis, as it indicates a fixed airflow limitation characteristic of COPD. The patient's productive cough every winter may be related to seasonal exacerbations of COPD. Bronchial asthma is less likely because the minimal reversibility of the FEV1/FVC ratio and the lack of a significant response to bronchodilators make it less consistent with asthma, which typically shows a more significant reversibility.",
+   "seconds": 13.9
+  },
+  "11": {
+   "chosen": "Acute decompensated heart failure",
+   "reasoning": "The markedly raised NT-proBNP level strongly supports the diagnosis of acute decompensated heart failure. The patient's history of prior myocardial infarction also increases the likelihood of heart failure. The presence of bibasal crackles, raised JVP, and a third heart sound further supports this diagnosis, as these are classic signs of fluid overload and cardiac dysfunction. The main alternative, pulmonary embolism, is less likely because the patient's symptoms of acute breathlessness and orthopnea (sitting upright to breathe) are more typical of heart failure, and there is no mention of sudden onset of chest pain or hemoptysis, which are common presentations of pulmonary embolism.",
+   "seconds": 13.5
+  },
+  "12": {
+   "chosen": "Acute aortic dissection",
+   "reasoning": "The widened mediastinum on the chest X-ray is a key finding that supports the diagnosis of acute aortic dissection. The sudden onset of severe tearing chest pain radiating to the back between the shoulder blades is also consistent with this diagnosis. The difference in blood pressure readings between the two arms may indicate impaired blood flow to the left arm, which is a common complication of acute aortic dissection. This finding, combined with the widened mediastinum, makes acute aortic dissection the most likely diagnosis.",
+   "seconds": 11.3
+  },
+  "13": {
+   "chosen": "Primary spontaneous pneumothorax",
+   "reasoning": "The hyper-resonant sound to percussion in the right hemithorax is a key finding that supports the diagnosis of primary spontaneous pneumothorax. The sudden onset of pleuritic chest pain and breathlessness, particularly when sitting, also suggests a sudden collapse of lung tissue. The patient's tall, thin stature is also a risk factor for primary spontaneous pneumothorax. In contrast, pleural effusion would typically present with dullness to percussion, not hyper-resonance, making option B less likely.",
+   "seconds": 11.0
+  },
+  "14": {
+   "chosen": "Anaphylaxis",
+   "reasoning": "The most likely diagnosis is anaphylaxis. The findings that support this answer include the lip swelling, generalized urticaria, wheeze, and light-headedness, which are all characteristic symptoms of anaphylaxis. Additionally, the patient's low blood pressure (80/50 mmHg) and rapid heart rate (128/min) are also consistent with anaphylaxis. The acute onset of symptoms after eating a peanut-containing snack further supports this diagnosis, as anaphylaxis is often triggered by food allergies.",
+   "seconds": 11.1
+  },
+  "15": {
+   "chosen": "Acute pancreatitis",
+   "reasoning": "The findings that support acute pancreatitis are the severe epigastric pain radiating to the back, which is a classic symptom of pancreatic inflammation, and the patient's history of heavy alcohol use, which is a common cause of acute pancreatitis. The patient's leaning forward for relief also suggests a referred pain pattern, which is consistent with pancreatic pain. The elevated serum lipase level further supports this diagnosis, as lipase is an enzyme released by damaged pancreatic cells. Biliary colic is less likely because the pain pattern and the patient's history do not suggest a gallstone-related issue.",
+   "seconds": 12.0
+  },
+  "16": {
+   "chosen": "Meningococcal meningitis with septicaemia",
+   "reasoning": "The non-blanching petechial rash on the legs is a key finding that supports the diagnosis of meningococcal meningitis with septicaemia. The rash is a classic sign of meningococcal disease, which is caused by the bacterium Neisseria meningitidis. The presence of a rash, along with the other symptoms such as fever, severe headache, photophobia, and neck stiffness, is highly suggestive of meningococcal meningitis. In contrast, the other options do not typically present with a non-blanching petechial rash.",
+   "seconds": 12.1
+  },
+  "17": {
+   "chosen": "Subarachnoid haemorrhage",
+   "reasoning": "The sudden, severe headache, particularly triggered by physical exertion, and the brief loss of consciousness are key findings supporting a diagnosis of subarachnoid haemorrhage. The neck stiffness and photophobia also suggest a subarachnoid space-occupying lesion. In contrast, cluster headaches are typically unilateral and accompanied by autonomic symptoms, making this diagnosis less likely.",
+   "seconds": 9.3
+  },
+  "18": {
+   "chosen": "Hypoglycaemia",
+   "reasoning": "The most likely diagnosis is hypoglycaemia, supported by the patient's symptoms of confusion, sweating, and tremulousness, which are classic signs of low blood glucose levels. The low capillary glucose level of 42 mg/dL further confirms this diagnosis. The patient's high heart rate of 110/min may also be related to the stress response to low blood glucose. The main alternative, acute ischaemic stroke, is less likely because there are no focal neurological signs, which would be expected in a stroke.",
+   "seconds": 11.2
+  },
+  "19": {
+   "chosen": "Organophosphate poisoning",
+   "reasoning": "The findings of pinpoint pupils, profuse salivation, lacrimation, bronchorrhoea, and muscle fasciculations are consistent with organophosphate poisoning. The presence of bronchorrhoea and muscle fasciculations, in particular, are characteristic of this type of poisoning. The main alternative, neurotoxic snake envenomation, is less likely because it typically presents with a more severe and sudden onset of symptoms, including severe pain, swelling, and respiratory distress, which are not mentioned in the case.",
+   "seconds": 11.2
+  },
+  "20": {
+   "chosen": "Septic shock from a urinary source",
+   "reasoning": "The most likely diagnosis is septic shock from a urinary source. The patient's symptoms of dysuria and frequency, followed by confusion and fever, suggest a urinary tract infection. The patient's hypotension (BP 82/50 mmHg) and tachycardia (HR 124/min) despite adequate fluid resuscitation, along with the elevated serum lactate, support the diagnosis of septic shock. The urinary source of sepsis is supported by the patient's initial symptoms, which are consistent with a urinary tract infection. Anaphylactic shock (A) is less likely because the patient's symptoms do not include urticaria, angioedema, or bronchospasm, which are characteristic of anaphylaxis.",
+   "seconds": 14.4
+  },
+  "21": {
+   "chosen": "Multiple sclerosis",
+   "reasoning": "The most likely diagnosis is multiple sclerosis. The episode of painful blurred vision in one eye two years ago that resolved, along with the current numbness of both legs and electric-shock sensations down the spine on neck flexion, are consistent with the relapsing-remitting form of multiple sclerosis. The presence of periventricular white-matter lesions on MRI also supports this diagnosis. The main alternative, neuromyelitis optica spectrum disorder, is less likely because it typically presents with optic neuritis and does not usually involve the spinal cord in this manner.",
+   "seconds": 12.4
+  },
+  "22": {
+   "chosen": "Guillain–Barré syndrome",
+   "reasoning": "The case supports Guillain-Barré syndrome due to the ascending pattern of weakness, which is a hallmark of this condition. The absence of reflexes also aligns with Guillain-Barré syndrome, as it typically presents with areflexia. The raised protein in the CSF, with a normal cell count, is also consistent with Guillain-Barré syndrome, as it often shows elevated protein levels without significant pleocytosis. In contrast, botulism typically presents with descending weakness, myasthenia gravis is characterized by fluctuating weakness and often involves the eyes, and transverse myelitis typically presents with a more localized pattern of weakness, while hypokalaemic periodic paralysis is more associated with episodic muscle weakness and is not typically preceded by a diarrheal illness.",
+   "seconds": 14.9
+  },
+  "23": {
+   "chosen": "Parkinson's disease",
+   "reasoning": "The most likely diagnosis is Parkinson's disease due to the presence of a resting 'pill-rolling' tremor, slowness of movement, and cogwheel rigidity, which are classic symptoms of the disease. The shuffling gait with reduced arm swing also supports this diagnosis, as it is a common feature of Parkinson's disease. In contrast, essential tremor typically presents with a postural tremor, and normal pressure hydrocephalus and drug-induced parkinsonism would not typically cause a resting tremor. Wilson's disease may cause tremors, but the combination of symptoms in this case is more suggestive of Parkinson's disease.",
+   "seconds": 12.6
+  },
+  "24": {
+   "chosen": "Primary biliary cholangitis",
+   "reasoning": "The strongly positive antimitochondrial antibody strongly supports the diagnosis of Primary Biliary Cholangitis. The markedly raised alkaline phosphatase and GGT, with normal bilirubin, also aligns with this condition, as it typically presents with cholestasis without significant elevation in bilirubin. The absence of biliary dilatation on ultrasound is also consistent with Primary Biliary Cholangitis, as it often presents with a more subtle pattern of bile duct injury. The main alternative, Autoimmune Hepatitis, is less likely because it typically presents with a more significant elevation in bilirubin, which is not the case here.",
+   "seconds": 12.8
+  },
+  "25": {
+   "chosen": "Decompensated alcohol-related cirrhosis",
+   "reasoning": "The findings of jaundice, distended abdomen with shifting dullness, and small nodular liver on ultrasound support the diagnosis of decompensated alcohol-related cirrhosis. The presence of spider naevi and palmar erythema are also consistent with chronic alcohol use. The low albumin level and elevated INR further indicate liver dysfunction. Decompensated alcohol-related cirrhosis is the most likely diagnosis because the patient's symptoms and laboratory results are consistent with advanced liver disease, and the ultrasound findings of a small nodular liver are characteristic of cirrhosis. Right-sided heart failure (option A) is less likely because the patient's symptoms and laboratory results do not suggest significant fluid overload or right-sided heart failure.",
+   "seconds": 14.0
+  },
+  "26": {
+   "chosen": "Ulcerative colitis",
+   "reasoning": "The continuous mucosal inflammation extending from the rectum to the splenic flexure supports the diagnosis of ulcerative colitis. The presence of blood and mucus in the stool also aligns with this condition. The negative stool cultures rule out infectious colitis, making option E less likely. The chronic nature of the symptoms and the specific location of the inflammation also make colorectal carcinoma (option A) and infectious colitis (option E) less likely.",
+   "seconds": 10.2
+  },
+  "27": {
+   "chosen": "Nephrotic syndrome",
+   "reasoning": "The most likely diagnosis is Nephrotic syndrome. The presence of significant proteinuria (5 g/24 h), hypoalbuminemia (2.1 g/dL), and edema support this diagnosis. The absence of haematuria and normal blood pressure also align with Nephrotic syndrome, which typically presents with heavy proteinuria and low serum albumin, but without significant kidney damage or hypertension. Liver cirrhosis (B) is less likely as it typically presents with jaundice, ascites, and hepatomegaly, which are not mentioned in the case.",
+   "seconds": 12.3
+  },
+  "28": {
+   "chosen": "Systemic lupus erythematosus",
+   "reasoning": "The findings that support Systemic lupus erythematosus (SLE) are the symmetrical small-joint pain in the hands, painless oral ulcers, and low complement levels. These features are characteristic of SLE, a condition that often presents with joint pain, skin rashes, and mucocutaneous lesions. The positive ANA and anti-dsDNA antibodies further support this diagnosis, as these are common autoantibodies found in SLE. Psoriatic arthritis is less likely because it typically presents with a history of psoriasis, which is not mentioned in the case.",
+   "seconds": 12.4
+  },
+  "29": {
+   "chosen": "Acute gout",
+   "reasoning": "The most likely diagnosis is Acute gout. The patient's sudden onset of severe pain, swelling, and redness in the first metatarsophalangeal joint, particularly after a night of heavy eating and drinking, is highly suggestive of acute gout. The patient's obesity also increases his risk for developing gout. The absence of fever and the fact that the patient is afebrile makes septic arthritis less likely.",
+   "seconds": 9.9
+  },
+  "30": {
+   "chosen": "Primary hypothyroidism (Hashimoto's thyroiditis)",
+   "reasoning": "The most likely diagnosis is Primary hypothyroidism (Hashimoto's thyroiditis) due to the markedly raised TSH and low free T4 levels, which indicate a decreased production of thyroid hormones. The presence of anti-TPO antibodies also supports this diagnosis, as they are commonly found in autoimmune thyroiditis. The symptoms of tiredness, weight gain, cold intolerance, constipation, and dry skin are also consistent with hypothyroidism. The main alternative, Secondary (central) hypothyroidism, is less likely because it is typically associated with a decreased production of TSH, not an increased one, and would not explain the presence of anti-TPO antibodies.",
+   "seconds": 13.4
+  },
+  "31": {
+   "chosen": "Croup (laryngotracheobronchitis)",
+   "reasoning": "The inspiratory stridor that worsens at night and the barking cough are key findings that support the diagnosis of croup. The child's age and symptoms, such as the runny nose and low-grade fever preceding the onset of cough and stridor, are also consistent with croup. In contrast, bacterial tracheitis and acute epiglottitis typically present with more severe symptoms, such as high fever, drooling, and more pronounced airway obstruction, which are not present in this case.",
+   "seconds": 11.1
+  },
+  "32": {
+   "chosen": "Bronchiolitis",
+   "reasoning": "The most likely diagnosis is Bronchiolitis. The findings that support this answer include the infant's symptoms of runny nose, cough, wheeze, fine crackles, and fast breathing, which are typical of a lower respiratory tract infection. The fact that the infant is feeding poorly also suggests a significant respiratory illness. The absence of a previous history of wheeze and the season of onset (winter) also align with the typical presentation of bronchiolitis. The main alternative, Congenital heart disease, is less likely because the infant's symptoms do not suggest a cardiac issue, and there is no previous history of wheeze, which is often a hallmark of congenital heart disease.",
+   "seconds": 13.6
+  },
+  "33": {
+   "chosen": "Kawasaki disease",
+   "reasoning": "The findings of bilateral non-purulent conjunctival injection, strawberry tongue, and unilateral cervical lymphadenopathy are particularly suggestive of Kawasaki disease. The presence of these symptoms, particularly in a young child, is highly characteristic of this condition. The other options, such as Stevens-Johnson syndrome, toxic shock syndrome, and scarlet fever, do not typically present with these specific findings, making Kawasaki disease the most likely diagnosis.",
+   "seconds": 9.7
+  },
+  "34": {
+   "chosen": "Ectopic pregnancy",
+   "reasoning": "The most likely diagnosis is ectopic pregnancy. The presence of a positive urine hCG supports this, as ectopic pregnancy is a common cause of hCG elevation. The empty uterus and left adnexal mass with free fluid on ultrasound are also consistent with an ectopic pregnancy, as the pregnancy has implanted outside the uterus. The left adnexal mass is likely the ectopic pregnancy, and the free fluid may be blood or other products of the pregnancy.",
+   "seconds": 10.5
+  },
+  "35": {
+   "chosen": "Pre-eclampsia with severe features",
+   "reasoning": "The most likely diagnosis is Pre-eclampsia with severe features. The severe headache and flashing lights are indicative of a hypertensive crisis, which is a hallmark of severe pre-eclampsia. The elevated blood pressure (164/110 mmHg) and proteinuria (3+) also support this diagnosis. The presence of oedema of the face and hands further supports the diagnosis of pre-eclampsia, as it is a common feature of this condition. The main alternative, Eclampsia, is less likely because the patient has not had a seizure, which is a defining feature of eclampsia.",
+   "seconds": 12.9
+  },
+  "36": {
+   "chosen": "Polycystic ovary syndrome",
+   "reasoning": "The most likely diagnosis is Polycystic ovary syndrome (PCOS) due to the presence of irregular periods, excess facial hair, and acne, which are common symptoms of PCOS. The pelvic ultrasound showing multiple peripheral follicles in enlarged ovaries also supports this diagnosis, as it is a characteristic finding in PCOS. The normal prolactin and TSH levels further rule out other endocrine disorders. Cushing's syndrome is less likely because it typically presents with weight gain, particularly in the abdominal area, and does not usually cause irregular periods and hirsutism.",
+   "seconds": 11.9
+  },
+  "37": {
+   "chosen": "Plaque psoriasis",
+   "reasoning": "The well-demarcated erythematous plaques with silvery scale over the extensor surfaces of the elbows and knees and in the scalp, along with pitting of the fingernails, are characteristic findings of plaque psoriasis. The presence of silvery scale is particularly suggestive of psoriasis, as it is a hallmark feature of this condition. In contrast, the other options do not typically present with silvery scale, making plaque psoriasis the most likely diagnosis.",
+   "seconds": 10.3
+  },
+  "38": {
+   "chosen": "Bronchogenic carcinoma",
+   "reasoning": "The presence of a cavitating lesion in the right upper lobe, accompanied by a 4-week cough with occasional blood-streaked sputum, evening fevers, night sweats, and significant weight loss, strongly supports a diagnosis of bronchogenic carcinoma. The prolonged duration of symptoms and the presence of systemic symptoms such as fevers and night sweats also suggest a more aggressive and advanced disease process. In contrast, aspergilloma and lung abscess are typically associated with more acute presentations, and community-acquired pneumonia and pulmonary tuberculosis may not typically present with such a large weight loss and cavitating lesions.",
+   "seconds": 12.5
+  },
+  "39": {
+   "chosen": "Dengue fever",
+   "reasoning": "The most likely diagnosis is Dengue fever. The presence of a blanching rash, severe body aches, and pain behind the eyes, particularly during the monsoon season, are characteristic of Dengue fever. Additionally, the rising hematocrit and low platelet count are also consistent with Dengue hemorrhagic fever, a more severe form of the disease. The positive NS1 antigen further supports this diagnosis, as it is a specific marker for Dengue virus infection.",
+   "seconds": 10.5
+  },
+  "40": {
+   "chosen": "Major depressive disorder",
+   "reasoning": "The most likely diagnosis is Major depressive disorder, supported by the patient's persistent low mood, loss of interest in activities, early-morning waking, poor concentration, and feelings of guilt. These symptoms have been present for 2 months, which is a characteristic duration for a depressive episode. The patient's weight loss is also a common physical symptom of depression. Hypothyroidism is less likely because the thyroid function is normal, and the patient has no history of elevated mood, which is not typical of hypothyroidism.",
+   "seconds": 11.1
+  }
+ },
+ "generated_at": "2026-11-25T18:13:36+00:00"
+}

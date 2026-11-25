@@ -160,3 +160,51 @@ def test_healthy_user_with_no_history_gets_a_general_answer(client):
     r = client.post("/api/v2/consult", json=q, headers=h).json()
     assert r["action"] == "EXPLAIN"
     assert r["final_text"].startswith("_Your profile lists no past conditions, medicines or allergies")
+
+
+# ------------------------------------------------------------------ red flags found with the 40 test cases
+@pytest.mark.parametrize("q", [
+    "I suddenly have weakness in my left arm and face and trouble speaking",
+    "worst ever headache came on suddenly",
+    "my father is confused and sweating, he takes insulin",
+    "I'm 7 weeks pregnant with bleeding and stomach pain",
+    "he drank some unknown liquid from the shed",
+    "she swallowed some kerosene by mistake",
+    "I had a loss of consciousness this morning",
+    "I'm diabetic and keep vomiting since morning",
+])
+def test_red_flags_found_with_the_test_cases(q):
+    assert screen_text(q).is_emergency, q
+
+
+@pytest.mark.parametrize("q", [
+    "I'm pregnant, is it safe to keep fit and walk daily?", "I am confused about how to take my cetirizine",
+    "I'm diabetic, what foods are good for breakfast?", "I am pregnant, which fruits are good?",
+    "my arm is weak after gym yesterday", "I fell asleep late and have a headache", "I drank some juice and feel bloated",
+])
+def test_new_red_flags_do_not_fire_on_everyday_questions(q):
+    assert not screen_text(q).is_emergency, q
+
+
+def test_test_cases_snapshot_matches_the_current_emergency_screen():
+    import json
+    from backend.api.patient_routes import TEST_CASES_FILE
+    d = json.loads(TEST_CASES_FILE.read_text(encoding="utf-8"))
+    assert len(d["cases"]) == 40
+    for c in d["cases"]:      # rebuild with scripts/build_test_cases.py whenever the emergency screen changes
+        assert c["patient_app"]["emergency"] == screen_text(c["vignette"]).is_emergency, c["id"]
+        assert c["options"][c["ai_index"]] == c["ai_answer"]
+
+
+def test_test_cases_route_requires_login(client):
+    assert client.get("/api/v2/test-cases").status_code == 401
+    h = {"Authorization": f"Bearer {_register(client, 'tc@example.org').json()['access_token']}"}
+    assert len(client.get("/api/v2/test-cases", headers=h).json()["cases"]) == 40
+
+
+def test_every_test_case_has_an_explanation_of_the_ai_choice():
+    import json
+    from backend.api.patient_routes import TEST_CASES_FILE
+    d = json.loads(TEST_CASES_FILE.read_text(encoding="utf-8"))
+    assert d["reasoning_run"]["model"] == d["ai_run"]["model"]          # same model that chose the answers
+    assert all(c["ai_reasoning"] and len(c["ai_reasoning"].split()) >= 20 for c in d["cases"])

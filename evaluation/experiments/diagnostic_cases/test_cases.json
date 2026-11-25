@@ -1,0 +1,1028 @@
+{
+ "generated_at": "2026-11-25T18:13:43+00:00",
+ "source": "Doctor Diagnostic Assessment app (doctor_assessment_app/backend/data)",
+ "notice": "SAMPLE CONTENT: illustrative demo cases written for this app. They must be reviewed or replaced by the team's clinical supervisor and are not validated assessment material. To enable scoring, add an \"answer_index\" (0-based index into options) to each question.",
+ "ai_run": {
+  "generated_at": "2026-11-22T17:38:40+00:00",
+  "model": "llama3.2:3b",
+  "method": "multiple-choice pick, temperature 0, seed 7",
+  "seconds": 187.4
+ },
+ "reasoning_run": {
+  "model": "llama3.2:3b",
+  "temperature": 0.0,
+  "seed": 7,
+  "note": "Post-hoc explanations of the already-chosen answer by the same model; not clinician-reviewed.",
+  "generated_at": "2026-11-25T18:13:36+00:00"
+ },
+ "phases": [
+  {
+   "number": 1,
+   "title": "Core Clinical Reasoning",
+   "description": "Common presentations across internal medicine."
+  },
+  {
+   "number": 2,
+   "title": "Acute & Emergency Care",
+   "description": "Time-critical presentations in the emergency setting."
+  },
+  {
+   "number": 3,
+   "title": "Systems Medicine",
+   "description": "Neurology, hepatology, gastroenterology, nephrology and rheumatology."
+  },
+  {
+   "number": 4,
+   "title": "Women, Children & Community Health",
+   "description": "Paediatrics, obstetrics, gynaecology, dermatology, infectious disease and psychiatry."
+  }
+ ],
+ "cases": [
+  {
+   "id": 1,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Cardiology",
+   "title": "Chest pain in a smoker",
+   "vignette": "A 58-year-old man who smokes presents with 40 minutes of crushing retrosternal chest pain radiating to the left arm, with sweating and nausea. BP 104/68 mmHg, HR 56/min. ECG shows ST elevation in leads II, III and aVF with reciprocal depression in I and aVL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Acute inferior ST-elevation myocardial infarction",
+    "Pulmonary embolism",
+    "Acute pericarditis",
+    "Acute aortic dissection",
+    "Gastro-oesophageal reflux disease"
+   ],
+   "ai_answer": "Acute inferior ST-elevation myocardial infarction",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Acute inferior ST-elevation myocardial infarction. The patient's symptoms of crushing retrosternal chest pain radiating to the left arm, sweating, and nausea are consistent with myocardial infarction. The ECG findings of ST elevation in leads II, III, and aVF with reciprocal depression in I and aVL are characteristic of an inferior wall myocardial infarction. The patient's low blood pressure and bradycardia may be related to the infarction. Pulmonary embolism is less likely because the ECG findings do not show the characteristic \"Pulmonary Embolism\" pattern, and the patient's symptoms do not include sudden onset of shortness of breath.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible acute coronary syndrome: chest pain/pressure with breathlessness, sweating, or radiation to arm/jaw"
+    ]
+   }
+  },
+  {
+   "id": 2,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Respiratory",
+   "title": "Breathlessness after a long flight",
+   "vignette": "A 26-year-old woman on the combined oral contraceptive pill develops sudden pleuritic chest pain and breathlessness a day after a 12-hour flight. HR 118/min, SpO2 91% on air, chest clear on auscultation. Her right calf is swollen and tender.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Community-acquired pneumonia",
+    "Spontaneous pneumothorax",
+    "Panic attack",
+    "Pulmonary embolism",
+    "Acute asthma exacerbation"
+   ],
+   "ai_answer": "Pulmonary embolism",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is pulmonary embolism. The sudden onset of pleuritic chest pain and breathlessness, particularly in the context of recent prolonged travel, supports this answer. The patient's swollen and tender right calf, a common site for deep vein thrombosis, further increases the likelihood of pulmonary embolism. The main alternative, spontaneous pneumothorax, is less likely as the chest is clear on auscultation.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible acute coronary syndrome: chest pain/pressure with breathlessness, sweating, or radiation to arm/jaw"
+    ]
+   }
+  },
+  {
+   "id": 3,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Endocrinology",
+   "title": "Vomiting in a young diabetic",
+   "vignette": "A 19-year-old man with type 1 diabetes presents with vomiting, abdominal pain and deep sighing respirations after missing insulin doses during a viral illness. Capillary glucose 480 mg/dL, arterial pH 7.12, bicarbonate 9 mmol/L, urine ketones 3+.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Alcoholic ketoacidosis",
+    "Acute pancreatitis",
+    "Acute gastroenteritis",
+    "Hyperosmolar hyperglycaemic state",
+    "Diabetic ketoacidosis"
+   ],
+   "ai_answer": "Diabetic ketoacidosis",
+   "ai_index": 4,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Diabetic Ketoacidosis (DKA) because the patient has type 1 diabetes, high capillary glucose, and urine ketones 3+, indicating ketone production. The patient's vomiting and abdominal pain may be related to the underlying diabetic condition, and the deep sighing respirations and low arterial pH with low bicarbonate level are consistent with diabetic ketoacidosis. The main alternative, Hyperosmolar Hyperglycaemic State (HHS), is less likely because the patient's glucose level is not extremely high (480 mg/dL is not typically considered hyperglycaemic in the context of HHS), and the presence of ketones is more characteristic of DKA.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible diabetic emergency (vomiting or abdominal pain in diabetes)"
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Infectious disease",
+   "title": "Fever after forest travel",
+   "vignette": "A 34-year-old man returned from a forested, mosquito-endemic area 10 days ago. He reports fever with rigors and drenching sweats recurring every 48 hours. Examination shows pallor and a palpable spleen. Hb 9.2 g/dL, platelets 96,000/µL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Malaria",
+    "Scrub typhus",
+    "Enteric (typhoid) fever",
+    "Dengue fever",
+    "Leptospirosis"
+   ],
+   "ai_answer": "Malaria",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The findings that support malaria as the most likely diagnosis are the patient's recent travel to a forested, mosquito-endemic area, recurring fever with rigors every 48 hours, and a palpable spleen. These symptoms are classic for malaria, which is transmitted by mosquitoes. The patient's low hemoglobin level (9.2 g/dL) and thrombocytopenia (96,000/µL) are also consistent with malaria. Scrub typhus is less likely because it typically presents with a characteristic rash and eschar, which are not mentioned in the case.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 5,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Neurology",
+   "title": "Sudden arm weakness",
+   "vignette": "A 67-year-old woman with atrial fibrillation, not on anticoagulation, develops sudden weakness of the right arm and face and difficulty producing words, beginning 1 hour ago. BP 168/94 mmHg, capillary glucose 112 mg/dL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Acute ischaemic stroke (left middle cerebral artery territory)",
+    "Hypoglycaemia",
+    "Chronic subdural haematoma",
+    "Bell's palsy",
+    "Todd's paresis"
+   ],
+   "ai_answer": "Acute ischaemic stroke (left middle cerebral artery territory)",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The sudden onset of weakness of the right arm and face, difficulty producing words, and the patient's history of atrial fibrillation without anticoagulation support the diagnosis of an acute ischaemic stroke. The patient's blood pressure is elevated, which is consistent with a stroke, particularly an ischaemic stroke. The capillary glucose level is within normal limits, making hypoglycaemia less likely. The patient's symptoms and history do not support chronic subdural haematoma, Bell's palsy, or Todd's paresis, making acute ischaemic stroke the most likely diagnosis.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible stroke (face droop, arm weakness, speech difficulty)"
+    ]
+   }
+  },
+  {
+   "id": 6,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "General surgery",
+   "title": "Migrating abdominal pain",
+   "vignette": "A 22-year-old man has periumbilical pain that has moved to the right iliac fossa over 12 hours, with anorexia and one episode of vomiting. Temperature 37.9 °C, tenderness and rebound at McBurney's point. WBC 14,200/µL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Acute appendicitis",
+    "Right ureteric colic",
+    "Mesenteric adenitis",
+    "Crohn's disease flare",
+    "Meckel's diverticulitis"
+   ],
+   "ai_answer": "Acute appendicitis",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is acute appendicitis. The case's findings of periumbilical pain that has moved to the right iliac fossa over 12 hours, along with tenderness and rebound at McBurney's point, are classic for appendicitis. The elevated WBC count also supports this diagnosis, as it indicates an inflammatory response. The anorexia and vomiting are also consistent with the systemic effects of appendicitis. Right ureteric colic is less likely because the pain's location and progression do not match the typical ureteric colic pattern, which usually presents with flank pain radiating to the groin.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 7,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Urology",
+   "title": "Colicky loin pain",
+   "vignette": "A 45-year-old man presents with sudden, severe colicky left loin pain radiating to the groin. He is restless and cannot find a comfortable position. He is afebrile; urinalysis shows microscopic haematuria and no nitrites.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Left ureteric calculus",
+    "Musculoskeletal back pain",
+    "Leaking abdominal aortic aneurysm",
+    "Renal cell carcinoma",
+    "Acute pyelonephritis"
+   ],
+   "ai_answer": "Left ureteric calculus",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The sudden onset of severe colicky left loin pain radiating to the groin, along with microscopic haematuria, strongly supports a diagnosis of left ureteric calculus. The patient's inability to find a comfortable position also suggests a severe, acute condition. The absence of fever and nitrites on urinalysis makes urinary tract infections less likely, making option B, musculoskeletal back pain, less likely as the primary cause of the patient's symptoms.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 8,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Haematology",
+   "title": "Fatigue and heavy periods",
+   "vignette": "A 30-year-old woman reports fatigue, breathlessness on stairs and craving ice. She has heavy menstrual periods. Examination shows pallor and spoon-shaped nails. Hb 8.5 g/dL, MCV 68 fL, serum ferritin 6 ng/mL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Beta-thalassaemia trait",
+    "Iron-deficiency anaemia",
+    "Anaemia of chronic disease",
+    "Vitamin B12 deficiency",
+    "Sideroblastic anaemia"
+   ],
+   "ai_answer": "Iron-deficiency anaemia",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Iron-deficiency anaemia. The findings that support this answer include the patient's heavy menstrual periods, which can lead to iron loss, and the low serum ferritin level, which indicates depleted iron stores. Additionally, the patient's symptoms of fatigue, breathlessness on exertion, and craving ice are also consistent with iron-deficiency anaemia. The low MCV of 68 fL also supports this diagnosis, as iron-deficiency anaemia typically presents with microcytosis. The main alternative, Beta-thalassaemia trait, is less likely because the patient's Hb level is 8.5 g/dL, which is not typically low in beta-thalassaemia trait, and the serum ferritin level is low, which is not characteristic of this condition.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 9,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Endocrinology",
+   "title": "Weight loss and palpitations",
+   "vignette": "A 35-year-old woman reports weight loss despite good appetite, heat intolerance, palpitations and tremor for 3 months. She has a diffuse goitre with a bruit and bilateral proptosis. TSH is suppressed and free T4 is raised.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Toxic multinodular goitre",
+    "Graves' disease",
+    "Hashimoto's thyroiditis",
+    "Subacute (de Quervain) thyroiditis",
+    "Phaeochromocytoma"
+   ],
+   "ai_answer": "Graves' disease",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The findings that support Graves' disease as the most likely diagnosis are the diffuse goitre with bruit, bilateral proptosis, heat intolerance, palpitations, and tremor, all of which are classic symptoms of hyperthyroidism. The suppressed TSH and raised free T4 levels further confirm hyperthyroidism. In contrast, toxic multinodular goitre typically presents with a solitary nodule, and Hashimoto's thyroiditis is associated with hypothyroidism, not hyperthyroidism.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 10,
+   "phase": 1,
+   "phase_title": "Core Clinical Reasoning",
+   "specialty": "Respiratory",
+   "title": "Chronic cough in a smoker",
+   "vignette": "A 62-year-old man with a 40 pack-year smoking history has progressive exertional breathlessness and a productive cough every winter for the last 3 years. He has a hyperinflated chest. Post-bronchodilator FEV1/FVC is 0.58 with minimal reversibility.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Chronic obstructive pulmonary disease",
+    "Chronic heart failure",
+    "Bronchiectasis",
+    "Bronchial asthma",
+    "Idiopathic pulmonary fibrosis"
+   ],
+   "ai_answer": "Chronic obstructive pulmonary disease",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Chronic obstructive pulmonary disease (COPD) due to the patient's significant smoking history, progressive exertional breathlessness, and hyperinflated chest. The post-bronchodilator FEV1/FVC ratio of 0.58 with minimal reversibility also supports this diagnosis, as it indicates a fixed airflow limitation characteristic of COPD. The patient's productive cough every winter may be related to seasonal exacerbations of COPD. Bronchial asthma is less likely because the minimal reversibility of the FEV1/FVC ratio and the lack of a significant response to bronchodilators make it less consistent with asthma, which typically shows a more significant reversibility.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 11,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Cardiology",
+   "title": "Night-time breathlessness",
+   "vignette": "A 72-year-old man with prior myocardial infarction wakes at night acutely breathless and has to sit upright. He has bibasal crackles, raised JVP, bilateral pitting ankle oedema and a third heart sound. NT-proBNP is markedly raised.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Nephrotic syndrome",
+    "Community-acquired pneumonia",
+    "Pulmonary embolism",
+    "Acute decompensated heart failure",
+    "COPD exacerbation"
+   ],
+   "ai_answer": "Acute decompensated heart failure",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The markedly raised NT-proBNP level strongly supports the diagnosis of acute decompensated heart failure. The patient's history of prior myocardial infarction also increases the likelihood of heart failure. The presence of bibasal crackles, raised JVP, and a third heart sound further supports this diagnosis, as these are classic signs of fluid overload and cardiac dysfunction. The main alternative, pulmonary embolism, is less likely because the patient's symptoms of acute breathlessness and orthopnea (sitting upright to breathe) are more typical of heart failure, and there is no mention of sudden onset of chest pain or hemoptysis, which are common presentations of pulmonary embolism.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 12,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Cardiovascular",
+   "title": "Tearing chest pain",
+   "vignette": "A 55-year-old hypertensive man has sudden severe tearing chest pain radiating to the back between the shoulder blades. BP is 182/100 mmHg in the right arm and 138/80 mmHg in the left. Chest X-ray shows a widened mediastinum.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "ST-elevation myocardial infarction",
+    "Acute pericarditis",
+    "Acute aortic dissection",
+    "Pulmonary embolism",
+    "Oesophageal rupture"
+   ],
+   "ai_answer": "Acute aortic dissection",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The widened mediastinum on the chest X-ray is a key finding that supports the diagnosis of acute aortic dissection. The sudden onset of severe tearing chest pain radiating to the back between the shoulder blades is also consistent with this diagnosis. The difference in blood pressure readings between the two arms may indicate impaired blood flow to the left arm, which is a common complication of acute aortic dissection. This finding, combined with the widened mediastinum, makes acute aortic dissection the most likely diagnosis.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible acute coronary syndrome: chest pain/pressure with breathlessness, sweating, or radiation to arm/jaw"
+    ]
+   }
+  },
+  {
+   "id": 13,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Respiratory",
+   "title": "Sudden pleuritic pain at rest",
+   "vignette": "A tall, thin 24-year-old man develops sudden right-sided pleuritic chest pain and breathlessness while sitting at his desk. The right hemithorax has reduced breath sounds and is hyper-resonant to percussion. SpO2 95%.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Primary spontaneous pneumothorax",
+    "Pleural effusion",
+    "Lobar pneumonia",
+    "Pulmonary embolism",
+    "Costochondritis"
+   ],
+   "ai_answer": "Primary spontaneous pneumothorax",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The hyper-resonant sound to percussion in the right hemithorax is a key finding that supports the diagnosis of primary spontaneous pneumothorax. The sudden onset of pleuritic chest pain and breathlessness, particularly when sitting, also suggests a sudden collapse of lung tissue. The patient's tall, thin stature is also a risk factor for primary spontaneous pneumothorax. In contrast, pleural effusion would typically present with dullness to percussion, not hyper-resonance, making option B less likely.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible acute coronary syndrome: chest pain/pressure with breathlessness, sweating, or radiation to arm/jaw"
+    ]
+   }
+  },
+  {
+   "id": 14,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Emergency medicine",
+   "title": "Collapse after a snack",
+   "vignette": "Minutes after eating a peanut-containing snack, a 19-year-old woman develops lip swelling, generalised urticaria, wheeze and light-headedness. BP 80/50 mmHg, HR 128/min.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Vasovagal syncope",
+    "Anaphylaxis",
+    "Panic attack",
+    "Hereditary angioedema",
+    "Acute severe asthma"
+   ],
+   "ai_answer": "Anaphylaxis",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is anaphylaxis. The findings that support this answer include the lip swelling, generalized urticaria, wheeze, and light-headedness, which are all characteristic symptoms of anaphylaxis. Additionally, the patient's low blood pressure (80/50 mmHg) and rapid heart rate (128/min) are also consistent with anaphylaxis. The acute onset of symptoms after eating a peanut-containing snack further supports this diagnosis, as anaphylaxis is often triggered by food allergies.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible anaphylaxis (swelling with breathing or throat symptoms)"
+    ]
+   }
+  },
+  {
+   "id": 15,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Gastroenterology",
+   "title": "Epigastric pain after a binge",
+   "vignette": "A 40-year-old man with heavy alcohol use presents with severe epigastric pain radiating to the back, starting after a weekend binge, with repeated vomiting. He leans forward for relief. Serum lipase is five times the upper limit of normal.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Biliary colic",
+    "Acute pancreatitis",
+    "Acute gastritis",
+    "Perforated peptic ulcer",
+    "Inferior myocardial infarction"
+   ],
+   "ai_answer": "Acute pancreatitis",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The findings that support acute pancreatitis are the severe epigastric pain radiating to the back, which is a classic symptom of pancreatic inflammation, and the patient's history of heavy alcohol use, which is a common cause of acute pancreatitis. The patient's leaning forward for relief also suggests a referred pain pattern, which is consistent with pancreatic pain. The elevated serum lipase level further supports this diagnosis, as lipase is an enzyme released by damaged pancreatic cells. Biliary colic is less likely because the pain pattern and the patient's history do not suggest a gallstone-related issue.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 16,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Infectious disease",
+   "title": "Fever, headache and rash",
+   "vignette": "A 28-year-old man has had fever, severe headache, photophobia and vomiting for 12 hours. He has neck stiffness, a positive Kernig's sign and a non-blanching petechial rash on the legs. BP 96/60 mmHg.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Meningococcal meningitis with septicaemia",
+    "Migraine with aura",
+    "Viral meningitis",
+    "Subarachnoid haemorrhage",
+    "Dengue haemorrhagic fever"
+   ],
+   "ai_answer": "Meningococcal meningitis with septicaemia",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The non-blanching petechial rash on the legs is a key finding that supports the diagnosis of meningococcal meningitis with septicaemia. The rash is a classic sign of meningococcal disease, which is caused by the bacterium Neisseria meningitidis. The presence of a rash, along with the other symptoms such as fever, severe headache, photophobia, and neck stiffness, is highly suggestive of meningococcal meningitis. In contrast, the other options do not typically present with a non-blanching petechial rash.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Possible meningitis (fever with stiff neck / rash that does not fade)"
+    ]
+   }
+  },
+  {
+   "id": 17,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Neurology",
+   "title": "Thunderclap headache",
+   "vignette": "A 50-year-old woman develops a sudden, severe 'worst-ever' headache while lifting weights, followed by a brief loss of consciousness. She now has neck stiffness and photophobia but no fever. GCS 14.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Subarachnoid haemorrhage",
+    "Cluster headache",
+    "Bacterial meningitis",
+    "Hypertensive emergency",
+    "Migraine"
+   ],
+   "ai_answer": "Subarachnoid haemorrhage",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The sudden, severe headache, particularly triggered by physical exertion, and the brief loss of consciousness are key findings supporting a diagnosis of subarachnoid haemorrhage. The neck stiffness and photophobia also suggest a subarachnoid space-occupying lesion. In contrast, cluster headaches are typically unilateral and accompanied by autonomic symptoms, making this diagnosis less likely.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Loss of consciousness / fainting episode"
+    ]
+   }
+  },
+  {
+   "id": 18,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Endocrinology",
+   "title": "Confusion in an insulin user",
+   "vignette": "A 68-year-old man with type 2 diabetes on insulin is found confused, sweaty and tremulous after skipping lunch. HR 110/min, no focal neurological signs. Capillary glucose is 42 mg/dL.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Post-ictal state",
+    "Acute ischaemic stroke",
+    "Hypoglycaemia",
+    "Alcohol intoxication",
+    "Hyperosmolar hyperglycaemic state"
+   ],
+   "ai_answer": "Hypoglycaemia",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is hypoglycaemia, supported by the patient's symptoms of confusion, sweating, and tremulousness, which are classic signs of low blood glucose levels. The low capillary glucose level of 42 mg/dL further confirms this diagnosis. The patient's high heart rate of 110/min may also be related to the stress response to low blood glucose. The main alternative, acute ischaemic stroke, is less likely because there are no focal neurological signs, which would be expected in a stroke.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Sudden confusion with fever, sweating, diabetes medicine or a head injury"
+    ]
+   }
+  },
+  {
+   "id": 19,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Toxicology",
+   "title": "Farmer found unwell",
+   "vignette": "A 33-year-old farmer is brought in after ingesting an unknown substance kept in the field shed. He has pinpoint pupils, profuse salivation, lacrimation, bronchorrhoea, bradycardia and muscle fasciculations.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Neurotoxic snake envenomation",
+    "Organophosphate poisoning",
+    "Paracetamol overdose",
+    "Datura (anticholinergic) poisoning",
+    "Opioid overdose"
+   ],
+   "ai_answer": "Organophosphate poisoning",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The findings of pinpoint pupils, profuse salivation, lacrimation, bronchorrhoea, and muscle fasciculations are consistent with organophosphate poisoning. The presence of bronchorrhoea and muscle fasciculations, in particular, are characteristic of this type of poisoning. The main alternative, neurotoxic snake envenomation, is less likely because it typically presents with a more severe and sudden onset of symptoms, including severe pain, swelling, and respiratory distress, which are not mentioned in the case.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Overdose or poisoning"
+    ]
+   }
+  },
+  {
+   "id": 20,
+   "phase": 2,
+   "phase_title": "Acute & Emergency Care",
+   "specialty": "Critical care",
+   "title": "Hypotension with fever",
+   "vignette": "A 75-year-old woman with two days of dysuria and frequency is now confused. Temperature 39.2 °C, HR 124/min, BP 82/50 mmHg despite 30 mL/kg IV fluids, serum lactate 4.5 mmol/L.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Anaphylactic shock",
+    "Septic shock from a urinary source",
+    "Adrenal crisis",
+    "Hypovolaemic shock",
+    "Cardiogenic shock"
+   ],
+   "ai_answer": "Septic shock from a urinary source",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is septic shock from a urinary source. The patient's symptoms of dysuria and frequency, followed by confusion and fever, suggest a urinary tract infection. The patient's hypotension (BP 82/50 mmHg) and tachycardia (HR 124/min) despite adequate fluid resuscitation, along with the elevated serum lactate, support the diagnosis of septic shock. The urinary source of sepsis is supported by the patient's initial symptoms, which are consistent with a urinary tract infection. Anaphylactic shock (A) is less likely because the patient's symptoms do not include urticaria, angioedema, or bronchospasm, which are characteristic of anaphylaxis.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Sudden confusion with fever, sweating, diabetes medicine or a head injury"
+    ]
+   }
+  },
+  {
+   "id": 21,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Neurology",
+   "title": "Relapsing neurological symptoms",
+   "vignette": "A 26-year-old woman had an episode of painful blurred vision in one eye two years ago that resolved. She now has numbness of both legs and electric-shock sensations down the spine on neck flexion. MRI shows periventricular white-matter lesions.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Functional neurological disorder",
+    "Guillain–Barré syndrome",
+    "Neuromyelitis optica spectrum disorder",
+    "Multiple sclerosis",
+    "Subacute combined degeneration (B12 deficiency)"
+   ],
+   "ai_answer": "Multiple sclerosis",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is multiple sclerosis. The episode of painful blurred vision in one eye two years ago that resolved, along with the current numbness of both legs and electric-shock sensations down the spine on neck flexion, are consistent with the relapsing-remitting form of multiple sclerosis. The presence of periventricular white-matter lesions on MRI also supports this diagnosis. The main alternative, neuromyelitis optica spectrum disorder, is less likely because it typically presents with optic neuritis and does not usually involve the spinal cord in this manner.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 22,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Neurology",
+   "title": "Ascending weakness",
+   "vignette": "A 35-year-old man develops symmetrical weakness starting in the legs and ascending over 5 days, two weeks after a diarrhoeal illness. Reflexes are absent. CSF shows raised protein with a normal cell count.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Botulism",
+    "Myasthenia gravis",
+    "Guillain–Barré syndrome",
+    "Transverse myelitis",
+    "Hypokalaemic periodic paralysis"
+   ],
+   "ai_answer": "Guillain–Barré syndrome",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The case supports Guillain-Barré syndrome due to the ascending pattern of weakness, which is a hallmark of this condition. The absence of reflexes also aligns with Guillain-Barré syndrome, as it typically presents with areflexia. The raised protein in the CSF, with a normal cell count, is also consistent with Guillain-Barré syndrome, as it often shows elevated protein levels without significant pleocytosis. In contrast, botulism typically presents with descending weakness, myasthenia gravis is characterized by fluctuating weakness and often involves the eyes, and transverse myelitis typically presents with a more localized pattern of weakness, while hypokalaemic periodic paralysis is more associated with episodic muscle weakness and is not typically preceded by a diarrheal illness.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 23,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Neurology",
+   "title": "Tremor and slowness",
+   "vignette": "A 64-year-old man has a resting 'pill-rolling' tremor of the right hand, slowness of movement, cogwheel rigidity and a shuffling gait with reduced arm swing. He takes no regular medications.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Parkinson's disease",
+    "Normal pressure hydrocephalus",
+    "Drug-induced parkinsonism",
+    "Wilson's disease",
+    "Essential tremor"
+   ],
+   "ai_answer": "Parkinson's disease",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Parkinson's disease due to the presence of a resting 'pill-rolling' tremor, slowness of movement, and cogwheel rigidity, which are classic symptoms of the disease. The shuffling gait with reduced arm swing also supports this diagnosis, as it is a common feature of Parkinson's disease. In contrast, essential tremor typically presents with a postural tremor, and normal pressure hydrocephalus and drug-induced parkinsonism would not typically cause a resting tremor. Wilson's disease may cause tremors, but the combination of symptoms in this case is more suggestive of Parkinson's disease.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 24,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Hepatology",
+   "title": "Itching and fatigue",
+   "vignette": "A 45-year-old woman has generalised itching and fatigue for 6 months. Liver tests show a markedly raised alkaline phosphatase and GGT with normal bilirubin. Antimitochondrial antibody is strongly positive. Ultrasound shows no biliary dilatation.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Choledocholithiasis",
+    "Autoimmune hepatitis",
+    "Primary biliary cholangitis",
+    "Drug-induced cholestasis",
+    "Primary sclerosing cholangitis"
+   ],
+   "ai_answer": "Primary biliary cholangitis",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The strongly positive antimitochondrial antibody strongly supports the diagnosis of Primary Biliary Cholangitis. The markedly raised alkaline phosphatase and GGT, with normal bilirubin, also aligns with this condition, as it typically presents with cholestasis without significant elevation in bilirubin. The absence of biliary dilatation on ultrasound is also consistent with Primary Biliary Cholangitis, as it often presents with a more subtle pattern of bile duct injury. The main alternative, Autoimmune Hepatitis, is less likely because it typically presents with a more significant elevation in bilirubin, which is not the case here.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 25,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Hepatology",
+   "title": "Jaundice and abdominal swelling",
+   "vignette": "A 52-year-old man with long-standing heavy alcohol use has jaundice, a distended abdomen with shifting dullness, spider naevi and palmar erythema. Albumin 2.4 g/dL, INR 1.9. Ultrasound shows a small nodular liver.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Right-sided heart failure",
+    "Hepatocellular carcinoma",
+    "Acute viral hepatitis",
+    "Decompensated alcohol-related cirrhosis",
+    "Budd–Chiari syndrome"
+   ],
+   "ai_answer": "Decompensated alcohol-related cirrhosis",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The findings of jaundice, distended abdomen with shifting dullness, and small nodular liver on ultrasound support the diagnosis of decompensated alcohol-related cirrhosis. The presence of spider naevi and palmar erythema are also consistent with chronic alcohol use. The low albumin level and elevated INR further indicate liver dysfunction. Decompensated alcohol-related cirrhosis is the most likely diagnosis because the patient's symptoms and laboratory results are consistent with advanced liver disease, and the ultrasound findings of a small nodular liver are characteristic of cirrhosis. Right-sided heart failure (option A) is less likely because the patient's symptoms and laboratory results do not suggest significant fluid overload or right-sided heart failure.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 26,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Gastroenterology",
+   "title": "Bloody diarrhoea",
+   "vignette": "A 23-year-old man has 3 months of diarrhoea with blood and mucus, urgency and tenesmus. Stool cultures are negative. Colonoscopy shows continuous mucosal inflammation extending from the rectum to the splenic flexure.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Colorectal carcinoma",
+    "Crohn's disease",
+    "Irritable bowel syndrome",
+    "Ulcerative colitis",
+    "Infectious colitis"
+   ],
+   "ai_answer": "Ulcerative colitis",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The continuous mucosal inflammation extending from the rectum to the splenic flexure supports the diagnosis of ulcerative colitis. The presence of blood and mucus in the stool also aligns with this condition. The negative stool cultures rule out infectious colitis, making option E less likely. The chronic nature of the symptoms and the specific location of the inflammation also make colorectal carcinoma (option A) and infectious colitis (option E) less likely.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 27,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Nephrology",
+   "title": "Swelling and frothy urine",
+   "vignette": "A 30-year-old woman presents with puffiness around the eyes, generalised oedema and frothy urine. BP is normal. Urine protein is 5 g/24 h with no haematuria, serum albumin 2.1 g/dL and cholesterol is raised.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Congestive heart failure",
+    "Liver cirrhosis",
+    "Nephritic syndrome",
+    "Hypothyroidism",
+    "Nephrotic syndrome"
+   ],
+   "ai_answer": "Nephrotic syndrome",
+   "ai_index": 4,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Nephrotic syndrome. The presence of significant proteinuria (5 g/24 h), hypoalbuminemia (2.1 g/dL), and edema support this diagnosis. The absence of haematuria and normal blood pressure also align with Nephrotic syndrome, which typically presents with heavy proteinuria and low serum albumin, but without significant kidney damage or hypertension. Liver cirrhosis (B) is less likely as it typically presents with jaundice, ascites, and hepatomegaly, which are not mentioned in the case.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 28,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Rheumatology",
+   "title": "Joint pain and rash",
+   "vignette": "A 32-year-old woman has symmetrical small-joint pain in the hands, a photosensitive rash across the cheeks and nose, and painless oral ulcers. ANA and anti-dsDNA antibodies are positive and complement levels are low.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Psoriatic arthritis",
+    "Viral (parvovirus) arthritis",
+    "Systemic lupus erythematosus",
+    "Dermatomyositis",
+    "Rheumatoid arthritis"
+   ],
+   "ai_answer": "Systemic lupus erythematosus",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The findings that support Systemic lupus erythematosus (SLE) are the symmetrical small-joint pain in the hands, painless oral ulcers, and low complement levels. These features are characteristic of SLE, a condition that often presents with joint pain, skin rashes, and mucocutaneous lesions. The positive ANA and anti-dsDNA antibodies further support this diagnosis, as these are common autoantibodies found in SLE. Psoriatic arthritis is less likely because it typically presents with a history of psoriasis, which is not mentioned in the case.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 29,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Rheumatology",
+   "title": "Painful big toe",
+   "vignette": "A 55-year-old obese man wakes with excruciating pain, swelling and redness of the first metatarsophalangeal joint after a night of heavy eating and drinking. He is afebrile. He takes a thiazide diuretic.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Acute gout",
+    "Cellulitis",
+    "Pseudogout (CPPD)",
+    "Septic arthritis",
+    "Rheumatoid arthritis"
+   ],
+   "ai_answer": "Acute gout",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Acute gout. The patient's sudden onset of severe pain, swelling, and redness in the first metatarsophalangeal joint, particularly after a night of heavy eating and drinking, is highly suggestive of acute gout. The patient's obesity also increases his risk for developing gout. The absence of fever and the fact that the patient is afebrile makes septic arthritis less likely.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 30,
+   "phase": 3,
+   "phase_title": "Systems Medicine",
+   "specialty": "Endocrinology",
+   "title": "Tiredness and weight gain",
+   "vignette": "A 48-year-old woman reports tiredness, weight gain, cold intolerance, constipation and dry skin. HR 54/min, with slow-relaxing ankle reflexes. TSH is markedly raised and free T4 is low. Anti-TPO antibodies are positive.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Iron-deficiency anaemia",
+    "Secondary (central) hypothyroidism",
+    "Cushing's syndrome",
+    "Depression",
+    "Primary hypothyroidism (Hashimoto's thyroiditis)"
+   ],
+   "ai_answer": "Primary hypothyroidism (Hashimoto's thyroiditis)",
+   "ai_index": 4,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Primary hypothyroidism (Hashimoto's thyroiditis) due to the markedly raised TSH and low free T4 levels, which indicate a decreased production of thyroid hormones. The presence of anti-TPO antibodies also supports this diagnosis, as they are commonly found in autoimmune thyroiditis. The symptoms of tiredness, weight gain, cold intolerance, constipation, and dry skin are also consistent with hypothyroidism. The main alternative, Secondary (central) hypothyroidism, is less likely because it is typically associated with a decreased production of TSH, not an increased one, and would not explain the presence of anti-TPO antibodies.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 31,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Paediatrics",
+   "title": "Barking cough",
+   "vignette": "An 18-month-old child has a barking cough, hoarse voice and inspiratory stridor that is worse at night, following two days of runny nose and low-grade fever. The child is alert and not drooling.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Bacterial tracheitis",
+    "Acute epiglottitis",
+    "Foreign body aspiration",
+    "Bronchiolitis",
+    "Croup (laryngotracheobronchitis)"
+   ],
+   "ai_answer": "Croup (laryngotracheobronchitis)",
+   "ai_index": 4,
+   "answer_index": null,
+   "ai_reasoning": "The inspiratory stridor that worsens at night and the barking cough are key findings that support the diagnosis of croup. The child's age and symptoms, such as the runny nose and low-grade fever preceding the onset of cough and stridor, are also consistent with croup. In contrast, bacterial tracheitis and acute epiglottitis typically present with more severe symptoms, such as high fever, drooling, and more pronounced airway obstruction, which are not present in this case.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 32,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Paediatrics",
+   "title": "Wheezy infant",
+   "vignette": "A 6-month-old infant has two days of runny nose followed by cough, wheeze, fine crackles and fast breathing during winter. The infant is feeding poorly. SpO2 93%. There is no previous history of wheeze.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Congenital heart disease",
+    "Pertussis",
+    "Bacterial pneumonia",
+    "Bronchiolitis",
+    "Childhood asthma"
+   ],
+   "ai_answer": "Bronchiolitis",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Bronchiolitis. The findings that support this answer include the infant's symptoms of runny nose, cough, wheeze, fine crackles, and fast breathing, which are typical of a lower respiratory tract infection. The fact that the infant is feeding poorly also suggests a significant respiratory illness. The absence of a previous history of wheeze and the season of onset (winter) also align with the typical presentation of bronchiolitis. The main alternative, Congenital heart disease, is less likely because the infant's symptoms do not suggest a cardiac issue, and there is no previous history of wheeze, which is often a hallmark of congenital heart disease.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 33,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Paediatrics",
+   "title": "Prolonged fever with red eyes",
+   "vignette": "A 4-year-old child has had fever for 6 days, bilateral non-purulent conjunctival injection, red cracked lips, a strawberry tongue, unilateral cervical lymphadenopathy and swelling of the hands and feet.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Stevens–Johnson syndrome",
+    "Kawasaki disease",
+    "Toxic shock syndrome",
+    "Scarlet fever",
+    "Measles"
+   ],
+   "ai_answer": "Kawasaki disease",
+   "ai_index": 1,
+   "answer_index": null,
+   "ai_reasoning": "The findings of bilateral non-purulent conjunctival injection, strawberry tongue, and unilateral cervical lymphadenopathy are particularly suggestive of Kawasaki disease. The presence of these symptoms, particularly in a young child, is highly characteristic of this condition. The other options, such as Stevens-Johnson syndrome, toxic shock syndrome, and scarlet fever, do not typically present with these specific findings, making Kawasaki disease the most likely diagnosis.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 34,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Obstetrics",
+   "title": "Pain and spotting in early pregnancy",
+   "vignette": "A 26-year-old woman with 7 weeks of amenorrhoea has lower abdominal pain on the left and vaginal spotting. Urine hCG is positive. Transvaginal ultrasound shows an empty uterus and a left adnexal mass with free fluid.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Ovarian torsion",
+    "Ruptured corpus luteum cyst",
+    "Ectopic pregnancy",
+    "Pelvic inflammatory disease",
+    "Threatened miscarriage"
+   ],
+   "ai_answer": "Ectopic pregnancy",
+   "ai_index": 2,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is ectopic pregnancy. The presence of a positive urine hCG supports this, as ectopic pregnancy is a common cause of hCG elevation. The empty uterus and left adnexal mass with free fluid on ultrasound are also consistent with an ectopic pregnancy, as the pregnancy has implanted outside the uterus. The left adnexal mass is likely the ectopic pregnancy, and the free fluid may be blood or other products of the pregnancy.",
+   "patient_app": {
+    "emergency": true,
+    "red_flags": [
+     "Pregnancy with bleeding, abdominal pain or severe headache / vision changes"
+    ]
+   }
+  },
+  {
+   "id": 35,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Obstetrics",
+   "title": "Headache in late pregnancy",
+   "vignette": "A 32-year-old primigravida at 34 weeks' gestation reports severe headache and flashing lights. BP 164/110 mmHg, urine protein 3+, brisk reflexes and oedema of the face and hands. She has had no seizures.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Eclampsia",
+    "Migraine",
+    "Gestational hypertension",
+    "Pre-eclampsia with severe features",
+    "Cerebral venous sinus thrombosis"
+   ],
+   "ai_answer": "Pre-eclampsia with severe features",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Pre-eclampsia with severe features. The severe headache and flashing lights are indicative of a hypertensive crisis, which is a hallmark of severe pre-eclampsia. The elevated blood pressure (164/110 mmHg) and proteinuria (3+) also support this diagnosis. The presence of oedema of the face and hands further supports the diagnosis of pre-eclampsia, as it is a common feature of this condition. The main alternative, Eclampsia, is less likely because the patient has not had a seizure, which is a defining feature of eclampsia.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 36,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Gynaecology",
+   "title": "Irregular periods and acne",
+   "vignette": "A 24-year-old woman has irregular periods since menarche, excess facial hair and acne. BMI 31 kg/m². Pelvic ultrasound shows multiple peripheral follicles in enlarged ovaries. Prolactin and TSH are normal.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Cushing's syndrome",
+    "Non-classic congenital adrenal hyperplasia",
+    "Hypothyroidism",
+    "Polycystic ovary syndrome",
+    "Androgen-secreting ovarian tumour"
+   ],
+   "ai_answer": "Polycystic ovary syndrome",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Polycystic ovary syndrome (PCOS) due to the presence of irregular periods, excess facial hair, and acne, which are common symptoms of PCOS. The pelvic ultrasound showing multiple peripheral follicles in enlarged ovaries also supports this diagnosis, as it is a characteristic finding in PCOS. The normal prolactin and TSH levels further rule out other endocrine disorders. Cushing's syndrome is less likely because it typically presents with weight gain, particularly in the abdominal area, and does not usually cause irregular periods and hirsutism.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 37,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Dermatology",
+   "title": "Scaly plaques",
+   "vignette": "A 28-year-old man has well-demarcated erythematous plaques with silvery scale over the extensor surfaces of the elbows and knees and in the scalp. He has pitting of the fingernails.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Tinea corporis",
+    "Lichen planus",
+    "Atopic dermatitis",
+    "Seborrhoeic dermatitis",
+    "Plaque psoriasis"
+   ],
+   "ai_answer": "Plaque psoriasis",
+   "ai_index": 4,
+   "answer_index": null,
+   "ai_reasoning": "The well-demarcated erythematous plaques with silvery scale over the extensor surfaces of the elbows and knees and in the scalp, along with pitting of the fingernails, are characteristic findings of plaque psoriasis. The presence of silvery scale is particularly suggestive of psoriasis, as it is a hallmark feature of this condition. In contrast, the other options do not typically present with silvery scale, making plaque psoriasis the most likely diagnosis.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 38,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Infectious disease",
+   "title": "Chronic cough and weight loss",
+   "vignette": "A 38-year-old man has a 4-week cough with occasional blood-streaked sputum, evening fevers, night sweats and 6 kg weight loss. Chest X-ray shows a cavitating lesion in the right upper lobe.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Bronchogenic carcinoma",
+    "Aspergilloma",
+    "Community-acquired pneumonia",
+    "Lung abscess",
+    "Pulmonary tuberculosis"
+   ],
+   "ai_answer": "Bronchogenic carcinoma",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The presence of a cavitating lesion in the right upper lobe, accompanied by a 4-week cough with occasional blood-streaked sputum, evening fevers, night sweats, and significant weight loss, strongly supports a diagnosis of bronchogenic carcinoma. The prolonged duration of symptoms and the presence of systemic symptoms such as fevers and night sweats also suggest a more aggressive and advanced disease process. In contrast, aspergilloma and lung abscess are typically associated with more acute presentations, and community-acquired pneumonia and pulmonary tuberculosis may not typically present with such a large weight loss and cavitating lesions.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 39,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Infectious disease",
+   "title": "Fever with low platelets",
+   "vignette": "During the monsoon, a 22-year-old woman has high fever, severe body aches, pain behind the eyes and a blanching rash on day 4 of illness. Platelets 60,000/µL and haematocrit is rising. NS1 antigen is positive.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Dengue fever",
+    "Enteric (typhoid) fever",
+    "Malaria",
+    "Leptospirosis",
+    "Chikungunya"
+   ],
+   "ai_answer": "Dengue fever",
+   "ai_index": 0,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Dengue fever. The presence of a blanching rash, severe body aches, and pain behind the eyes, particularly during the monsoon season, are characteristic of Dengue fever. Additionally, the rising hematocrit and low platelet count are also consistent with Dengue hemorrhagic fever, a more severe form of the disease. The positive NS1 antigen further supports this diagnosis, as it is a specific marker for Dengue virus infection.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  },
+  {
+   "id": 40,
+   "phase": 4,
+   "phase_title": "Women, Children & Community Health",
+   "specialty": "Psychiatry",
+   "title": "Persistent low mood",
+   "vignette": "A 29-year-old woman reports 2 months of persistent low mood, loss of interest in activities, early-morning waking, poor concentration, feelings of guilt and weight loss. She has no history of elevated mood. Thyroid function is normal.",
+   "question": "What is the most likely diagnosis?",
+   "options": [
+    "Generalised anxiety disorder",
+    "Hypothyroidism",
+    "Adjustment disorder",
+    "Major depressive disorder",
+    "Bipolar affective disorder"
+   ],
+   "ai_answer": "Major depressive disorder",
+   "ai_index": 3,
+   "answer_index": null,
+   "ai_reasoning": "The most likely diagnosis is Major depressive disorder, supported by the patient's persistent low mood, loss of interest in activities, early-morning waking, poor concentration, and feelings of guilt. These symptoms have been present for 2 months, which is a characteristic duration for a depressive episode. The patient's weight loss is also a common physical symptom of depression. Hypothyroidism is less likely because the thyroid function is normal, and the patient has no history of elevated mood, which is not typical of hypothyroidism.",
+   "patient_app": {
+    "emergency": false,
+    "red_flags": []
+   }
+  }
+ ]
+}

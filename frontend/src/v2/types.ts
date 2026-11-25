@@ -203,3 +203,19 @@ export interface RecordOffer {
   display?: string;
   record_id?: string;
 }
+
+/** One of the 40 doctor-assessment cases (see scripts/build_test_cases.py). */
+export interface TestCase {
+  id: number; phase: number; phase_title: string; specialty: string; title: string; vignette: string;
+  question: string; options: string[]; ai_answer: string; ai_index: number; answer_index: number | null;
+  ai_reasoning: string | null;
+  patient_app: { emergency: boolean; red_flags: string[] };
+}
+
+export interface TestCaseSet {
+  generated_at: string; source: string; notice: string;
+  ai_run: { generated_at: string; model: string; method: string; seconds: number };
+  reasoning_run: { model: string; temperature: number; seed: number; note: string; generated_at: string } | null;
+  phases: { number: number; title: string; description: string }[];
+  cases: TestCase[];
+}

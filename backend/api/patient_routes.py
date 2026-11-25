@@ -485,6 +485,19 @@ def audit_log(pid: str = Depends(current_patient_id), s: Session = Depends(get_s
     return [{"event": a.event, "actor": a.actor, "detail": a.detail, "at": a.created_at.isoformat()} for a in rows]
 
 
+# ---------------------------------------------------------- research: test cases
+TEST_CASES_FILE = config.PROJECT_ROOT / "evaluation" / "experiments" / "diagnostic_cases" / "test_cases.json"
+
+
+@router.get("/test-cases")
+def test_cases(pid: str = Depends(current_patient_id)):
+    """The 40 doctor-assessment cases with the AI model's chosen diagnosis and what the patient app would do
+    (built by scripts/build_test_cases.py). Read-only research material, the same for every user."""
+    if not TEST_CASES_FILE.exists():
+        raise HTTPException(404, "Test cases have not been built (run scripts/build_test_cases.py)")
+    return json.loads(TEST_CASES_FILE.read_text(encoding="utf-8"))
+
+
 # ------------------------------------------------------------------- system
 @router.get("/system/status")
 def system_status():
