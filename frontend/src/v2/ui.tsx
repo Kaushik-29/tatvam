@@ -148,13 +148,13 @@ const ACTIONS: Record<Action, { label: string; icon: React.ReactNode; tone: stri
   },
 };
 
-export function ActionBanner({ action, reason }: { action: Action; reason?: string }) {
+export function ActionBanner({ action, reason, label }: { action: Action; reason?: string; label?: string }) {
   const a = ACTIONS[action] ?? ACTIONS.EXPLAIN;
   return (
     <div className={cx('rounded-[16px] px-4 py-3.5 flex items-start gap-3 animate-fade', a.tone)} role={action === 'EMERGENCY_OVERRIDE' ? 'alert' : 'status'}>
       <span className={cx('mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-full', a.dot)}>{a.icon}</span>
       <div className="min-w-0">
-        <p className="text-[15px] font-semibold leading-snug">{a.label}</p>
+        <p className="text-[15px] font-semibold leading-snug">{label ?? a.label}</p>
         <p className="text-[14px] opacity-85 mt-0.5 leading-snug">{reason || a.text}</p>
       </div>
     </div>

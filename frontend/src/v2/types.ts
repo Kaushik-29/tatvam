@@ -135,6 +135,11 @@ export interface Consultation {
   } | null;
   query_understanding?: Record<string, unknown>;
   record_offer?: RecordOffer;
+  /** 'normal' = answered without the health record; pair_id links the two answers of a comparison. */
+  memory_mode?: MemoryMode;
+  pair_id?: string;
+  panel?: MemoryMode;
+  medicine_options?: { options: string[]; sources: string[]; record_aliases: string[] };
   timings: Record<string, number>;
   model_config?: Record<string, unknown>;
 }
@@ -146,10 +151,16 @@ export interface ConsultationSummary {
   action: Action;
   latency_s: number | null;
   preview: string;
+  memory_mode?: MemoryMode;
 }
+
+/** How a question is answered: with the health record, without it, or both side by side. */
+export type MemoryMode = 'memory' | 'normal';
+export type AnswerMode = MemoryMode | 'both';
 
 export interface ConsultInput {
   query: string;
+  mode?: AnswerMode;
   symptoms?: string[];
   onset?: string;
   duration?: string;
@@ -189,12 +200,14 @@ export interface SystemStatus {
   disclaimer: string;
 }
 
+/** Every event names its panel (memory / normal); "both" mode streams the normal answer first. */
 export type StreamEvent =
-  | { event: 'stage'; data: { stage: string; is_emergency?: boolean } }
-  | { event: 'evidence'; data: { evidence: EvidenceItem[]; references: ReferenceItem[]; findings: Finding[] } }
-  | { event: 'answer_chunk'; data: { text: string } }
+  | { event: 'panel_start'; data: { panel: MemoryMode; pair_id: string | null } }
+  | { event: 'stage'; data: { stage: string; is_emergency?: boolean; panel?: MemoryMode } }
+  | { event: 'evidence'; data: { evidence: EvidenceItem[]; references: ReferenceItem[]; findings: Finding[]; panel?: MemoryMode } }
+  | { event: 'answer_chunk'; data: { text: string; panel?: MemoryMode } }
   | { event: 'done'; data: Consultation }
-  | { event: 'error'; data: { message: string } };
+  | { event: 'error'; data: { message: string; panel?: MemoryMode } };
 
 /** After an answer about a new problem, the patient chooses whether to add it to their record. */
 export interface RecordOffer {
@@ -209,6 +222,7 @@ export interface TestCase {
   id: number; phase: number; phase_title: string; specialty: string; title: string; vignette: string;
   question: string; options: string[]; ai_answer: string; ai_index: number; answer_index: number | null;
   ai_reasoning: string | null;
+  rater_answer: string | null;
   patient_app: { emergency: boolean; red_flags: string[] };
 }
 
@@ -216,6 +230,7 @@ export interface TestCaseSet {
   generated_at: string; source: string; notice: string;
   ai_run: { generated_at: string; model: string; method: string; seconds: number };
   reasoning_run: { model: string; temperature: number; seed: number; note: string; generated_at: string } | null;
+  rater: { rater: string; qualification: string; relationship: string; blinded?: boolean; collected: string; note: string } | null;
   phases: { number: number; title: string; description: string }[];
   cases: TestCase[];
 }

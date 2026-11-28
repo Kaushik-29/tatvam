@@ -1,22 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUp, BookOpen, Check, ChevronRight, ClipboardPlus, Flag, Plus, Waypoints } from 'lucide-react';
+import { ArrowUp, BookOpen, Brain, Check, ChevronRight, ClipboardPlus, Flag, MessageCircle, Plus, Sparkles, Waypoints } from 'lucide-react';
 import { api, consultStream } from '../api';
-import type { Consultation, ConsultInput, EvidenceItem, Finding, RecordOffer, ReferenceItem } from '../types';
+import type { AnswerMode, Consultation, ConsultInput, EvidenceItem, Finding, MemoryMode, RecordOffer, ReferenceItem } from '../types';
 import type { V2Screen } from '../PatientApp';
 import { ActionBanner, AnswerText, Button, Empty, ErrorNote, Input, PageHeader, Pill, cx, fmtDate } from '../ui';
-import { MicButton } from '../components';
+import { AnswerModeSwitch, MicButton, useAnswerMode } from '../components';
 
-const STAGES: { key: string; label: string }[] = [
+const STAGES: { key: string; label: string; memoryOnly?: boolean }[] = [
   { key: 'emergency_check', label: 'Checking for emergency warning signs' },
-  { key: 'retrieving_patient_context', label: 'Finding relevant records in your history' },
+  { key: 'retrieving_patient_context', label: 'Finding relevant records in your history', memoryOnly: true },
   { key: 'retrieving_references', label: 'Looking up medical references' },
-  { key: 'reconciling', label: 'Checking for conflicts and missing information' },
+  { key: 'reconciling', label: 'Checking for conflicts and missing information', memoryOnly: true },
   { key: 'generating', label: 'Drafting an answer, held back until verified' },
   { key: 'verifying', label: 'Verifying each statement against the evidence' },
 ];
 
-interface Turn {
-  input: ConsultInput;
+const PANEL_INFO: Record<MemoryMode, { title: string; sub: string; icon: React.ReactNode; chip: string }> = {
+  memory: { title: 'With your memory', sub: 'Uses your health record', icon: <Brain className="w-4 h-4" strokeWidth={2.4} />, chip: 'bg-accent text-white' },
+  normal: { title: 'Normal answer', sub: 'Your health record is not used', icon: <MessageCircle className="w-4 h-4" strokeWidth={2.4} />, chip: 'bg-ink-2 text-white' },
+};
+
+interface Panel {
+  started: boolean;
   stages: string[];
   evidence?: { evidence: EvidenceItem[]; references: ReferenceItem[]; findings: Finding[] };
   answer: string;
@@ -24,31 +29,57 @@ interface Turn {
   error?: string;
 }
 
+interface Turn {
+  input: ConsultInput;
+  mode: AnswerMode;
+  panels: Partial<Record<MemoryMode, Panel>>;
+}
+
+const panelsFor = (mode: AnswerMode): MemoryMode[] => (mode === 'both' ? ['normal', 'memory'] : [mode]);
+const blankPanel = (started: boolean): Panel => ({ started, stages: [], answer: '' });
+
 export function ChatScreen({ pending, clearPending, current, onResult, onCite, onNavigate, readOnly = false }: {
   pending: ConsultInput | null; clearPending: () => void; current: Consultation | null;
   onResult: (c: Consultation) => void; onCite: (alias: string) => void; onNavigate: (s: V2Screen) => void;
   readOnly?: boolean;
 }) {
-  const [turns, setTurns] = useState<Turn[]>(() => current ? [{ input: { query: current.query }, stages: [], answer: current.final_text, result: current }] : []);
+  const [mode, setMode] = useAnswerMode();
+  const [turns, setTurns] = useState<Turn[]>(() => {
+    if (!current) return [];
+    const m: MemoryMode = current.memory_mode ?? 'memory';
+    return [{ input: { query: current.query }, mode: m, panels: { [m]: { started: true, stages: [], answer: current.final_text, result: current } } }];
+  });
   const [draft, setDraft] = useState('');
   const [busy, setBusy] = useState(false);
   const bottom = useRef<HTMLDivElement>(null);
 
   const ask = async (input: ConsultInput) => {
+    const m: AnswerMode = input.mode ?? mode;
+    const body = { ...input, mode: m };
     setBusy(true);
     const idx = turns.length;
-    setTurns((t) => [...t, { input, stages: [], answer: '' }]);
-    const update = (fn: (t: Turn) => Turn) => setTurns((ts) => ts.map((t, i) => (i === idx ? fn(t) : t)));
+    const order = panelsFor(m);
+    const panels: Turn['panels'] = {};
+    order.forEach((p, i) => { panels[p] = blankPanel(i === 0); });
+    setTurns((t) => [...t, { input: body, mode: m, panels }]);
+    const update = (p: MemoryMode, fn: (x: Panel) => Panel) =>
+      setTurns((ts) => ts.map((t, i) => (i === idx && t.panels[p] ? { ...t, panels: { ...t.panels, [p]: fn(t.panels[p]!) } } : t)));
+    const finished: Partial<Record<MemoryMode, Consultation>> = {};
     try {
-      await consultStream(input, (e) => {
-        if (e.event === 'stage') update((t) => ({ ...t, stages: [...t.stages, e.data.stage] }));
-        else if (e.event === 'evidence') update((t) => ({ ...t, evidence: e.data }));
-        else if (e.event === 'answer_chunk') update((t) => ({ ...t, answer: t.answer + e.data.text }));
-        else if (e.event === 'done') { update((t) => ({ ...t, result: e.data, answer: e.data.final_text })); onResult(e.data); }
-        else if (e.event === 'error') update((t) => ({ ...t, error: e.data.message }));
+      await consultStream(body, (e) => {
+        const p: MemoryMode = ('panel' in e.data && e.data.panel) || order[order.length - 1];
+        if (e.event === 'panel_start') update(p, (x) => ({ ...x, started: true }));
+        else if (e.event === 'stage') update(p, (x) => ({ ...x, started: true, stages: [...x.stages, e.data.stage] }));
+        else if (e.event === 'evidence') update(p, (x) => ({ ...x, evidence: e.data }));
+        else if (e.event === 'answer_chunk') update(p, (x) => ({ ...x, answer: x.answer + e.data.text }));
+        else if (e.event === 'done') { finished[p] = e.data; update(p, (x) => ({ ...x, result: e.data, answer: e.data.final_text })); }
+        else if (e.event === 'error') update(p, (x) => ({ ...x, started: true, error: e.data.message }));
       });
+      // "Why this answer" screens follow the record-based answer when there is one
+      const main = finished.memory ?? finished.normal;
+      if (main) onResult(main);
     } catch (err) {
-      update((t) => ({ ...t, error: (err as Error).message }));
+      order.forEach((p) => update(p, (x) => (x.result ? x : { ...x, started: true, error: (err as Error).message })));
     } finally {
       setBusy(false);
     }
@@ -81,7 +112,7 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
             <Empty title="Start a conversation">
               Ask a question below, or use{' '}
               <button className="text-accent font-medium hover:underline cursor-pointer" onClick={() => onNavigate('concern')}>New health concern</button>{' '}
-              to add symptoms, timing and severity.
+              to add symptoms, timing and severity. Choose <span className="text-ink font-medium">Compare both</span> to see how your record changes the answer.
             </Empty>
           </div>
         )}
@@ -92,92 +123,38 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
                 {t.input.query}
               </p>
             </div>
-            <div className="grid xl:grid-cols-[1fr_320px] gap-5 items-start">
-              <article className="bg-white rounded-[22px] border border-line/70 shadow-card p-6 animate-rise [animation-delay:60ms]">
-                <div className="flex items-center gap-2.5 mb-5">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-accent text-white"><Plus className="w-4 h-4" strokeWidth={3} /></span>
-                  <span className="text-[14px] font-semibold">MedResolve</span>
-                  {!t.result && !t.error && <span className="text-[13px] text-faint">· working</span>}
-                </div>
-                {!t.result && !t.error && (
-                  <div aria-live="polite">
-                    <div className="h-1 rounded-full bg-canvas overflow-hidden mb-5">
-                      <div className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out"
-                        style={{ width: `${Math.max(6, (t.stages.length / STAGES.length) * 100)}%` }} />
+            {t.mode === 'both' ? (
+              <>
+                {t.panels.normal?.result && t.panels.memory?.result && (
+                  <CompareSummary normal={t.panels.normal.result} memory={t.panels.memory.result} onCite={onCite} />
+                )}
+                <div className="grid lg:grid-cols-2 gap-5 items-start">
+                  {panelsFor('both').map((p) => t.panels[p] && (
+                    <div key={p} className="space-y-4 min-w-0">
+                      <AnswerCard panel={t.panels[p]!} which={p} labelled waitingFor={p === 'memory' ? 'the normal answer' : undefined}
+                        onCite={onCite} readOnly={readOnly} />
+                      {t.panels[p]!.evidence && p === 'memory' && <EvidenceAside ev={t.panels[p]!.evidence!} onCite={onCite} onNavigate={onNavigate} compact />}
+                      {t.panels[p]!.evidence && p === 'normal' && <ReferencesOnly ev={t.panels[p]!.evidence!} onNavigate={onNavigate} />}
                     </div>
-                    <ol className="space-y-2.5">
-                      {STAGES.map((st) => {
-                        const seen = t.stages.includes(st.key);
-                        const last = t.stages[t.stages.length - 1] === st.key;
-                        return (
-                          <li key={st.key} className={cx('flex items-center gap-3 text-[15px] transition-colors duration-300', seen ? 'text-ink' : 'text-ghost')}>
-                            <span className={cx('flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-all duration-300',
-                              seen && !last ? 'bg-success text-white' : last ? 'border-2 border-accent border-t-transparent animate-spin' : 'border-[1.5px] border-line')}>
-                              {seen && !last && <Check className="w-3 h-3 animate-pop" strokeWidth={3} />}
-                            </span>
-                            {st.label}
-                          </li>
-                        );
-                      })}
-                    </ol>
-                  </div>
-                )}
-                <ErrorNote error={t.error ?? null} />
-                {t.result && <div className="mb-5"><ActionBanner action={t.result.action} reason={t.result.action_reason} /></div>}
-                {t.answer && <div className="animate-fade"><AnswerText text={t.answer} onCite={onCite} /></div>}
-                {t.result?.record_offer && !readOnly && (
-                  <RecordOfferCard consultationId={t.result.consultation_id} offer={t.result.record_offer} />
-                )}
-                {t.result && (
-                  <p className="mt-6 pt-4 border-t border-line-soft text-[12px] text-faint tabular-nums">
-                    {t.result.engine} · STAIR: {t.result.retrieval_trace?.selector_backend ?? 'n/a'} · {t.result.timings.total_s}s
-                    {t.result.verification && ` · ${t.result.verification.stats.withheld_claims} statement(s) withheld`}
-                  </p>
-                )}
-              </article>
-              {t.evidence && (
-                <aside className="space-y-4 animate-rise [animation-delay:120ms]">
-                  <EvidencePanel icon={<Waypoints className="w-4 h-4" />} title="Records used" count={t.evidence.evidence.length} onAll={() => onNavigate('context')}>
-                    <ul className="max-h-60 overflow-y-auto -mx-1">
-                      {t.evidence.evidence.slice(0, 8).map((e) => (
-                        <li key={e.alias}>
-                          <button onClick={() => onCite(e.alias)}
-                            className="w-full flex items-baseline gap-2 rounded-[10px] px-1 py-1.5 text-left text-[13px] hover:bg-panel transition-colors cursor-pointer">
-                            <span className="font-semibold text-accent tabular-nums shrink-0">{e.alias}</span>
-                            <span className="text-ink truncate flex-1">{e.concept_display}</span>
-                            <span className="text-faint tabular-nums shrink-0">{fmtDate(e.effective_start).slice(0, 4)}</span>
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </EvidencePanel>
-                  <EvidencePanel icon={<BookOpen className="w-4 h-4" />} title="References" count={t.evidence.references.length} onAll={() => onNavigate('references')}>
-                    <ul className="space-y-1.5">
-                      {t.evidence.references.map((r) => (
-                        <li key={r.alias} className="text-[13px] leading-snug flex gap-2">
-                          <span className="font-semibold text-muted shrink-0">{r.alias}</span>
-                          <span className="text-ink-2">{r.section} <span className="text-faint">› {r.subsection}</span></span>
-                        </li>
-                      ))}
-                    </ul>
-                  </EvidencePanel>
-                  {t.evidence.findings.length > 0 && (
-                    <EvidencePanel icon={<Flag className="w-4 h-4" />} title="Flags" count={t.evidence.findings.length} onAll={() => onNavigate('conflicts')} allLabel="Review">
-                      <ul className="space-y-2.5">
-                        {t.evidence.findings.slice(0, 4).map((f, k) => (
-                          <li key={k} className="text-[13px] leading-snug space-y-1"><Pill value={f.severity} /><p className="text-ink-2">{f.description}</p></li>
-                        ))}
-                      </ul>
-                    </EvidencePanel>
-                  )}
-                </aside>
-              )}
-            </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="grid xl:grid-cols-[1fr_320px] gap-5 items-start">
+                {panelsFor(t.mode).map((p) => t.panels[p] && (
+                  <AnswerCard key={p} panel={t.panels[p]!} which={p} labelled={p === 'normal'} onCite={onCite} readOnly={readOnly} />
+                ))}
+                {panelsFor(t.mode).map((p) => t.panels[p]?.evidence && (
+                  <EvidenceAside key={`ev-${p}`} ev={t.panels[p]!.evidence!} onCite={onCite} onNavigate={onNavigate} />
+                ))}
+              </div>
+            )}
           </div>
         ))}
         <div ref={bottom} />
       </div>
       <div className="sticky bottom-0 -mx-2 px-2 pt-6 pb-2 mt-8 bg-gradient-to-t from-canvas from-70% to-transparent">
+        <div className="mb-2.5 pl-1"><AnswerModeSwitch mode={mode} onChange={setMode} disabled={busy} /></div>
         <div className="flex items-end gap-2 rounded-[26px] bg-white border border-line shadow-float pl-5 pr-2 py-2 transition-[border-color,box-shadow] focus-within:border-accent focus-within:ring-4 focus-within:ring-accent/15">
           <label htmlFor="chat-draft" className="sr-only">Message</label>
           <textarea id="chat-draft" rows={1} value={draft} onChange={(e) => setDraft(e.target.value)}
@@ -192,6 +169,181 @@ export function ChatScreen({ pending, clearPending, current, onResult, onCite, o
         </div>
       </div>
     </div>
+  );
+}
+
+/** One answer: progress while working, then the action banner, verified text and footer. */
+function AnswerCard({ panel, which, labelled, waitingFor, onCite, readOnly }: {
+  panel: Panel; which: MemoryMode; labelled: boolean; waitingFor?: string; onCite: (a: string) => void; readOnly: boolean;
+}) {
+  const info = PANEL_INFO[which];
+  const stages = STAGES.filter((s) => which === 'memory' || !s.memoryOnly);
+  const working = !panel.result && !panel.error;
+  const bannerLabel = which === 'normal' && panel.result?.action === 'GENERAL_OPTIONS'
+    ? 'General medicine options, not checked against your records' : undefined;
+  return (
+    <article className="bg-white rounded-[22px] border border-line/70 shadow-card p-6 animate-rise [animation-delay:60ms] min-w-0">
+      <div className="flex items-center gap-2.5 mb-5">
+        {labelled ? (
+          <>
+            <span className={cx('flex h-7 w-7 items-center justify-center rounded-[8px]', info.chip)}>{info.icon}</span>
+            <span className="min-w-0">
+              <span className="block text-[14px] font-semibold leading-tight">{info.title}</span>
+              <span className="block text-[12px] text-faint leading-tight">{info.sub}</span>
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-accent text-white"><Plus className="w-4 h-4" strokeWidth={3} /></span>
+            <span className="text-[14px] font-semibold">MedResolve</span>
+          </>
+        )}
+        {working && <span className="text-[13px] text-faint">· {panel.started ? 'working' : 'waiting'}</span>}
+      </div>
+      {working && !panel.started && (
+        <p className="text-[14px] text-muted" aria-live="polite">Starts as soon as {waitingFor ?? 'the other answer'} is ready.</p>
+      )}
+      {working && panel.started && (
+        <div aria-live="polite">
+          <div className="h-1 rounded-full bg-canvas overflow-hidden mb-5">
+            <div className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out"
+              style={{ width: `${Math.max(6, (panel.stages.length / stages.length) * 100)}%` }} />
+          </div>
+          <ol className="space-y-2.5">
+            {stages.map((st) => {
+              const seen = panel.stages.includes(st.key);
+              const last = panel.stages[panel.stages.length - 1] === st.key;
+              return (
+                <li key={st.key} className={cx('flex items-center gap-3 text-[15px] transition-colors duration-300', seen ? 'text-ink' : 'text-ghost')}>
+                  <span className={cx('flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-all duration-300',
+                    seen && !last ? 'bg-success text-white' : last ? 'border-2 border-accent border-t-transparent animate-spin' : 'border-[1.5px] border-line')}>
+                    {seen && !last && <Check className="w-3 h-3 animate-pop" strokeWidth={3} />}
+                  </span>
+                  {st.label}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      )}
+      <ErrorNote error={panel.error ?? null} />
+      {panel.result && <div className="mb-5"><ActionBanner action={panel.result.action} reason={panel.result.action_reason} label={bannerLabel} /></div>}
+      {panel.answer && <div className="animate-fade min-w-0 [overflow-wrap:anywhere]"><AnswerText text={panel.answer} onCite={onCite} /></div>}
+      {panel.result?.record_offer && !readOnly && (
+        <RecordOfferCard consultationId={panel.result.consultation_id} offer={panel.result.record_offer} />
+      )}
+      {panel.result && (
+        <p className="mt-6 pt-4 border-t border-line-soft text-[12px] text-faint tabular-nums">
+          {panel.result.engine} · {which === 'normal' ? 'record not used' : `STAIR: ${panel.result.retrieval_trace?.selector_backend ?? 'n/a'}`} · {panel.result.timings.total_s}s
+          {panel.result.verification && ` · ${panel.result.verification.stats.withheld_claims} statement(s) withheld`}
+        </p>
+      )}
+    </article>
+  );
+}
+
+const cited = (text: string) => new Set(Array.from(text.matchAll(/\[(E\d+(?:\s*,\s*E\d+)*)\]/g)).flatMap((m) => m[1].split(/\s*,\s*/)));
+
+/** "Compare both": what the health record changed, so the patient can see where the difference comes from. */
+function CompareSummary({ normal, memory, onCite }: { normal: Consultation; memory: Consultation; onCite: (a: string) => void }) {
+  const aliases = cited(memory.final_text);
+  for (const a of memory.medicine_options?.record_aliases ?? []) aliases.add(a);
+  const used = memory.evidence.filter((e) => aliases.has(e.alias));
+  const points: React.ReactNode[] = [];
+  if (normal.action !== memory.action) {
+    points.push(<>The normal answer gave <b className="font-semibold">{label(normal.action)}</b>. With your memory, MedResolve chose{' '}
+      <b className="font-semibold">{label(memory.action)}</b>: {memory.action_reason}</>);
+  }
+  const nOpts = normal.medicine_options?.options ?? [];
+  const mOpts = memory.medicine_options?.options ?? [];
+  const dropped = nOpts.filter((o) => !mOpts.includes(o));
+  if (dropped.length) {
+    points.push(<>Your record removed <b className="font-semibold">{dropped.join(', ')}</b> from the medicine options (see the "Checked against your records" part of the memory answer).</>);
+  }
+  if (memory.findings.length) {
+    points.push(<>Your record raised {memory.findings.length} flag{memory.findings.length > 1 ? 's' : ''}: {memory.findings.slice(0, 2).map((f) => f.description).join(' ')}</>);
+  }
+  if (used.length) {
+    points.push(<>The memory answer cites {used.length} record{used.length > 1 ? 's' : ''} from your history. The normal answer cites none.</>);
+  }
+  return (
+    <section className="rounded-[22px] border border-accent/25 bg-accent-soft/50 p-5 animate-rise" aria-label="What your memory changed">
+      <h3 className="flex items-center gap-2 text-[15px] font-semibold text-ink"><Sparkles className="w-4 h-4 text-accent" />What your memory changed</h3>
+      {points.length ? (
+        <ul className="mt-2.5 space-y-1.5 text-[14px] leading-snug text-ink-2 list-disc pl-5">
+          {points.map((p, k) => <li key={k}>{p}</li>)}
+        </ul>
+      ) : (
+        <p className="mt-2 text-[14px] text-ink-2">Nothing in your record changed this answer: no record was relevant to the question, so both answers give the same general information.</p>
+      )}
+      {used.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {used.slice(0, 10).map((e) => (
+            <button key={e.alias} onClick={() => onCite(e.alias)}
+              className="inline-flex items-baseline gap-1.5 rounded-full bg-white border border-line px-2.5 py-1 text-[13px] hover:border-accent transition-colors cursor-pointer">
+              <span className="font-semibold text-accent tabular-nums">{e.alias}</span>
+              <span className="text-ink">{e.concept_display}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+const ACTION_WORDS: Record<string, string> = {
+  EXPLAIN: 'an explanation', GENERAL_OPTIONS: 'general medicine options', ASK: 'follow-up questions',
+  ABSTAIN_AND_NAVIGATE: 'advice to see a clinician', EMERGENCY_OVERRIDE: 'an emergency warning',
+};
+const label = (a: string) => ACTION_WORDS[a] ?? a;
+
+function EvidenceAside({ ev, onCite, onNavigate, compact = false }: {
+  ev: NonNullable<Panel['evidence']>; onCite: (a: string) => void; onNavigate: (s: V2Screen) => void; compact?: boolean;
+}) {
+  return (
+    <aside className={cx('animate-rise [animation-delay:120ms]', compact ? 'grid sm:grid-cols-2 gap-4' : 'space-y-4')}>
+      <EvidencePanel icon={<Waypoints className="w-4 h-4" />} title="Records used" count={ev.evidence.length} onAll={() => onNavigate('context')}>
+        <ul className="max-h-60 overflow-y-auto -mx-1">
+          {ev.evidence.slice(0, 8).map((e) => (
+            <li key={e.alias}>
+              <button onClick={() => onCite(e.alias)}
+                className="w-full flex items-baseline gap-2 rounded-[10px] px-1 py-1.5 text-left text-[13px] hover:bg-panel transition-colors cursor-pointer">
+                <span className="font-semibold text-accent tabular-nums shrink-0">{e.alias}</span>
+                <span className="text-ink truncate flex-1">{e.concept_display}</span>
+                <span className="text-faint tabular-nums shrink-0">{fmtDate(e.effective_start).slice(0, 4)}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </EvidencePanel>
+      <ReferencesOnly ev={ev} onNavigate={onNavigate} />
+      {ev.findings.length > 0 && (
+        <EvidencePanel icon={<Flag className="w-4 h-4" />} title="Flags" count={ev.findings.length} onAll={() => onNavigate('conflicts')} allLabel="Review">
+          <ul className="space-y-2.5">
+            {ev.findings.slice(0, 4).map((f, k) => (
+              <li key={k} className="text-[13px] leading-snug space-y-1"><Pill value={f.severity} /><p className="text-ink-2">{f.description}</p></li>
+            ))}
+          </ul>
+        </EvidencePanel>
+      )}
+    </aside>
+  );
+}
+
+function ReferencesOnly({ ev, onNavigate }: { ev: NonNullable<Panel['evidence']>; onNavigate: (s: V2Screen) => void }) {
+  return (
+    <EvidencePanel icon={<BookOpen className="w-4 h-4" />} title="References" count={ev.references.length} onAll={() => onNavigate('references')}>
+      {ev.references.length === 0 ? <p className="text-[13px] text-faint">Medicine options cite their sources in the answer.</p> : (
+        <ul className="space-y-1.5">
+          {ev.references.map((r) => (
+            <li key={r.alias} className="text-[13px] leading-snug flex gap-2">
+              <span className="font-semibold text-muted shrink-0">{r.alias}</span>
+              <span className="text-ink-2">{r.section} <span className="text-faint">› {r.subsection}</span></span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </EvidencePanel>
   );
 }
 

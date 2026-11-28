@@ -68,6 +68,16 @@ Write in plain language with these headings:
 ## Uncertainties and missing information
 ## Suggested next steps"""
 
+NORMAL_MODE_NOTE = ("_Normal mode: this answer does not use your health records (conditions, medicines, allergies, "
+                    "results or documents). It is general information only and has not been checked against your history._")
+NORMAL_MODE_PROMPT = ("\nNormal mode: the person chose not to use their health records for this answer. Give general "
+                      "information only. Do not describe or guess any personal medical history, and do not use [E#] citations.")
+
+# In normal mode the "What your records show" section is filled in deterministically (an uncited line from the
+# model would be withheld by the verifier and the heading would vanish).
+NORMAL_RECORDS_RE = re.compile(r"^## What your records show[ \t]*\n.*?(?=^## |\Z)", re.M | re.S)
+NORMAL_RECORDS_SECTION = "## What your records show\nNot used: normal mode does not read your health records.\n\n"
+
 NO_HISTORY_NOTE = ("_Your profile lists no past conditions, medicines or allergies, so this answer is based on general "
                    "medical information only. If you do have any, add them in your profile for a personalised answer._")
 
@@ -104,6 +114,8 @@ class PipelineConfig:
     use_llm: bool = True
     persist: bool = True
     owner: Optional[str] = None        # demo browser session (keeps shared demo patients' questions private)
+    use_memory: bool = True            # False = "normal mode": B5 safety steps, but no patient records are read
+    pair_id: Optional[str] = None      # links the two answers of a side-by-side comparison
 
 
 @dataclass
@@ -166,7 +178,11 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     mem = PatientMemory(s, patient_id)
     patient = mem.patient()
     result: Dict[str, Any] = {"consultation_id": f"c_{uuid.uuid4().hex[:12]}", "patient_id": patient_id,
-                              "query": query, "variant": v, "intake": intake or {}}
+                              "query": query, "variant": v, "intake": intake or {},
+                              "memory_mode": "memory" if cfg.use_memory else "normal"}
+    if cfg.pair_id:
+        result["pair_id"] = cfg.pair_id
+    use_mem = cfg.use_memory
 
     # 1. emergency pre-emption (B5) — before any retrieval or generation
     full_text = query + " " + " ".join(str(x) for x in (intake or {}).values() if x)
@@ -185,7 +201,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
 
     # 2. query understanding
     known_meds = sorted({r["concept_key"] for r in mem.records(leaves=["medication_history/current_medications",
-                                                                        "medication_history/previous_medications"])})
+                                                                        "medication_history/previous_medications"])}) if use_mem else []
     qu = understand(query, known_medications=known_meds)
     result["query_understanding"] = qu.to_dict()
 
@@ -193,8 +209,11 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     retriever = PatientRetriever(mem, deps.embedder)
     retrieved, trace = [], None
     ts = time.time()
-    emit("stage", {"stage": "retrieving_patient_context"})
-    if v in ("B2", "B4", "B5"):
+    if use_mem:
+        emit("stage", {"stage": "retrieving_patient_context"})
+    if not use_mem:
+        pass                               # normal mode: the patient's records are not read
+    elif v in ("B2", "B4", "B5"):
         stair_recs, trace = retriever.stair(query, qu, deps.selector, k=cfg.k_patient)
         if v == "B2":
             retrieved = stair_recs
@@ -206,14 +225,14 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     elif v == "B3":
         retrieved, trace = retriever.hybrid_structured(query, qu, k=cfg.k_patient)
     timings["patient_retrieval_s"] = round(time.time() - ts, 3)
-    uses_history = v in ("B2", "B3", "B4", "B5")
+    uses_history = v in ("B2", "B3", "B4", "B5") and use_mem
     current_meds = mem.records(leaves=["medication_history/current_medications"]) if uses_history else []
     allergies = mem.records(leaves=["allergy_history"]) if uses_history else []
     med_intervals = mem.medication_intervals() if uses_history else []
     windows = _window_context(mem, patient_id, retrieved, qu) if uses_history else []
     otc_group = medicine_options.detect(query) if v == "B5" else None
     otc_history = (medicine_options.matching_history(mem.records(leaves=list(medicine_options.HISTORY_LEAVES)), otc_group)
-                   if otc_group else [])
+                   if otc_group and use_mem else [])
 
     # 4. reference retrieval
     refs = []
@@ -228,7 +247,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
 
     # 5. reconciliation (B5)
     findings = []
-    if v == "B5":
+    if v == "B5" and use_mem:
         emit("stage", {"stage": "reconciling"})
         leaf_counts = {n.path: n.count for n in mem.toc() for n in ([n] + n.children)}
         needed = [lp for lp, _ in (trace.selected_leaves if trace else [])]
@@ -258,13 +277,16 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
 
     # 7. action policy (B5)
     # A user who finished setup and added nothing has no known conditions: that is information, not a gap.
-    no_known_history = bool(patient is not None and patient.onboarding_complete and mem.count() == 0)
+    no_known_history = bool(use_mem and patient is not None and patient.onboarding_complete and mem.count() == 0)
     action, reason = ("EXPLAIN", "Baseline variant: no selective policy")
     if v == "B5":
-        action, reason = _policy(emergency, qu, findings, mem.count(), query, otc_group,
+        # normal mode answers like a profile with no history: generally, never "add your history first"
+        action, reason = _policy(emergency, qu, findings, mem.count() if use_mem else 0, query, otc_group,
                                  medicine_options.age_years(patient.birth_date if patient else None),
                                  medicine_options.blocked_reason(query, otc_group, otc_history) if otc_group else None,
-                                 history_confirmed_empty=no_known_history)
+                                 history_confirmed_empty=no_known_history or not use_mem)
+        if action == "GENERAL_OPTIONS" and not use_mem:
+            reason = reason.replace("checked against your records", "not checked against your records (normal mode)")
     result.update(action=action, action_reason=reason)
 
     # 8. generation (buffered: nothing is streamed to the user before verification)
@@ -275,6 +297,8 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         if v == "B5" and no_known_history:
             prompt += ("\nThe patient's profile lists no past conditions, medicines or allergies. Give general "
                        "information only and do not describe any personal medical history.")
+        if v == "B5" and not use_mem:
+            prompt += NORMAL_MODE_PROMPT
         if v == "B0":
             prompt = f"Question: {query}\nAnswer in plain language for a patient."
         raw, engine = None, None
@@ -291,7 +315,7 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         result["raw_generation"] = raw
         result["engine"] = engine
     elif action == "GENERAL_OPTIONS":   # deterministic: curated options + record checks, no LLM text
-        opt = medicine_options.build_answer(otc_group, ctx.evidence, query)
+        opt = medicine_options.build_answer(otc_group, ctx.evidence, query, use_records=use_mem)
         result.update(raw_generation=opt["text"], engine="general_options", medicine_options=opt)
     elif action == "ASK":
         raw = _ask_text(reason, qu, mem.count())
@@ -321,12 +345,16 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
         result["verification"] = None
         result["final_text"] = result["raw_generation"]
     # A new problem can be added to the record after the answer, only if the patient chooses to (never automatic).
-    if v == "B5" and action != "ASK" and (qu.is_new_concern or otc_group):
+    if v == "B5" and use_mem and action != "ASK" and (qu.is_new_concern or otc_group):
         name = (", ".join(x.capitalize() for x in qu.symptoms) if qu.symptoms
                 else medicine_options.KB["groups"][otc_group]["label"].capitalize() if otc_group else "")
         result["record_offer"] = {"status": "pending", "suggested": name[:200]}
     if v == "B5" and no_known_history and action == "EXPLAIN":
         result["final_text"] = NO_HISTORY_NOTE + "\n\n" + result["final_text"]
+    if v == "B5" and not use_mem and action != "EMERGENCY_OVERRIDE":
+        if action == "EXPLAIN":
+            result["final_text"] = _normal_records_section(result["final_text"])
+        result["final_text"] = NORMAL_MODE_NOTE + "\n\n" + result["final_text"]
     if v == "B5":
         result["final_text"] += ("\n\n_MedResolve is a research prototype that provides medical information, not a "
                                  "diagnosis or treatment. Please consult a qualified clinician._")
@@ -335,6 +363,19 @@ def run_pipeline(s: Session, patient_id: str, query: str, intake: Optional[Dict[
     result["model_config"] = {"llm": deps.llm.model if deps.llm else None, "embedding_model": config.EMBEDDING_MODEL,
                               "stair_backend": getattr(deps.selector, "backend_name", None)}
     return _persist(s, result, cfg)
+
+
+def _normal_records_section(text: str) -> str:
+    """Normal mode: replace (or add) the "What your records show" section with a fixed line saying the
+    record was not read. Only answers written with section headings get it (not medicine options)."""
+    if "## " not in text or text.lstrip().startswith("## General medicine options"):
+        return text
+    text = NORMAL_RECORDS_RE.sub("", text, count=1)
+    for anchor in ("## General medical information", "## Uncertainties", "## Suggested next steps"):
+        i = text.find(anchor)
+        if i >= 0:
+            return text[:i] + NORMAL_RECORDS_SECTION + text[i:]
+    return text.rstrip() + "\n\n" + NORMAL_RECORDS_SECTION.rstrip()
 
 
 ALLERGY_Q_RE = re.compile(r"\ballerg\w*", re.I)

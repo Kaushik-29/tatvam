@@ -23,6 +23,7 @@ from backend.evidence_reconciliation.emergency import screen_text  # noqa: E402
 SRC = ROOT / "doctor_assessment_app" / "backend" / "data"
 OUT = ROOT / "evaluation" / "experiments" / "diagnostic_cases" / "test_cases.json"
 REASONING = OUT.with_name("ai_reasoning.json")          # from scripts/generate_case_reasoning.py (optional)
+RATER = OUT.with_name("rater_1.json")                    # one clinician rater's answers (optional; not an answer key)
 
 
 def main():
@@ -31,6 +32,7 @@ def main():
     picks = {c["id"]: c for c in run["cases"]}
     phases = {p["number"]: p for p in qs["phases"]}
     reasoning = json.loads(REASONING.read_text(encoding="utf-8")) if REASONING.exists() else {"cases": {}}
+    rater = json.loads(RATER.read_text(encoding="utf-8")) if RATER.exists() else None
     cases = []
     for q in qs["questions"]:
         pick = picks[q["id"]]
@@ -41,6 +43,7 @@ def main():
             "options": q["options"], "ai_answer": pick["app_answer"], "ai_index": pick["chosen_index"],
             "answer_index": q.get("answer_index"),                     # filled in only after clinician review
             "ai_reasoning": (reasoning["cases"].get(str(q["id"])) or {}).get("reasoning"),
+            "rater_answer": rater["answers"].get(str(q["id"])) if rater else None,
             "patient_app": {"emergency": em.is_emergency, "red_flags": em.red_flags},
         })
     out = {
@@ -50,11 +53,15 @@ def main():
         "ai_run": {k: run[k] for k in ("generated_at", "model", "method", "seconds")},
         "reasoning_run": ({k: reasoning.get(k) for k in ("model", "temperature", "seed", "note", "generated_at")}
                           if reasoning["cases"] else None),
+        "rater": ({k: v for k, v in rater.items() if k != "answers"} if rater else None),
         "phases": qs["phases"],
         "cases": cases,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, indent=1, ensure_ascii=False), encoding="utf-8")
+    for c in cases:
+        if c["rater_answer"] is not None and c["rater_answer"] not in c["options"]:
+            raise SystemExit(f"case {c['id']}: rater answer is not one of the options")
     n_em = sum(c["patient_app"]["emergency"] for c in cases)
     print(f"wrote {OUT.relative_to(ROOT)}: {len(cases)} cases, {n_em} would get an emergency warning in the patient app")
 

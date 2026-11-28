@@ -208,3 +208,14 @@ def test_every_test_case_has_an_explanation_of_the_ai_choice():
     d = json.loads(TEST_CASES_FILE.read_text(encoding="utf-8"))
     assert d["reasoning_run"]["model"] == d["ai_run"]["model"]          # same model that chose the answers
     assert all(c["ai_reasoning"] and len(c["ai_reasoning"].split()) >= 20 for c in d["cases"])
+
+
+def test_rater_answers_are_recorded_as_a_rater_not_an_answer_key():
+    import json
+    from backend.api.patient_routes import TEST_CASES_FILE
+    d = json.loads(TEST_CASES_FILE.read_text(encoding="utf-8"))
+    assert d["rater"]["qualification"] == "MBBS graduate" and "not an answer key" in d["rater"]["note"].lower() \
+        or "NOT an answer key" in d["rater"]["note"]
+    assert all(c["rater_answer"] in c["options"] for c in d["cases"])
+    assert sum(c["rater_answer"] == c["ai_answer"] for c in d["cases"]) == 34
+    assert all(c["answer_index"] is None for c in d["cases"])          # no adjudicated key yet

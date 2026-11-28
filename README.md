@@ -1,93 +1,267 @@
 # MedResolve
 
-**STAIR-enabled, longitudinal, patient-context-aware medical information assistant (research prototype).**
+**A patient-context-aware medical information assistant (research prototype).**
 
-MedResolve answers a patient's new health question in light of their **own history**: earlier conditions, current and previous medications, allergies, earlier symptoms, encounters and lab results. Every patient-specific statement must cite the record it comes from, and the app shows which records and which medical references shaped each answer.
+MedResolve answers a patient's health question using **their own medical history**: conditions, current and past medicines, allergies, earlier symptoms, visits and lab results. Every statement about the patient must cite the record it comes from. The app shows which records and which medical references shaped each answer.
 
-> ⚠️ Academic research prototype. **Not** a diagnostic or prescribing system and **not** clinically validated. All bundled data is synthetic (Synthea).
+> ⚠️ **Academic research prototype.** It is **not** a diagnostic or prescribing system, and it is **not** clinically validated. The demo patients are synthetic (Synthea). Never rely on it for real medical decisions.
 
-## What is in this repository
-| Area | Where |
+**Team:** Kaushik Kumar Reddy S, Abhiram Boyidi. **Guide:** Dr. B. Jothi (SRM).
+
+| Document | Read it for |
 |---|---|
-| Longitudinal patient memory (FHIR R4 → normalized records, provenance, ToC) | `backend/patient_memory/`, `backend/fhir_ingestion/` |
-| STAIR-Clinical (hierarchy, prompts, constrained scoring, selectors, data generator, LoRA trainer) | `backend/stair_retriever/` |
-| Hybrid retrieval (BM25, BGE-M3, RRF, structured ops) + reference corpus | `backend/structured_retrieval/`, `backend/rag/` |
-| Safety: emergency pre-emption, reconciliation, claim verification | `backend/evidence_reconciliation/`, `backend/claim_verification/` |
-| API (FastAPI, JWT, patient isolation, SSE) | `backend/api/`, mounted in `backend/main.py` |
-| Web app (React + TypeScript + Vite + Tailwind) — 14 patient screens | `frontend/src/v2/` (default route) |
-| Phase 1–6 research system (unchanged, incl. frozen benchmarks) | `experiments/`, `/api/*`, frontend `#/research` |
-| Evaluation (retrieval, SearchTome, B0–B5 responses) | `evaluation/` |
-| Documentation | `docs/` (start with `system_architecture.md`) |
+| `README.md` (this file) | Installing, configuring, starting and stopping the app |
+| [`TECHNICAL_DOCUMENTATION.md`](TECHNICAL_DOCUMENTATION.md) | How the system was built: technologies, models, architecture, workflows, evaluation |
+| [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md) | Finding your way around the code, making changes, debugging, testing |
 
-## Quick start (Windows / Linux, Python 3.11, Node 20+)
-```bash
-pip install -r requirements.txt
+---
+
+## 1. What you need
+
+| Requirement | Version | Notes |
+|---|---|---|
+| Python | 3.11 (3.10–3.12 work) | The app is developed and tested on 3.11.0 |
+| Node.js + npm | 20 or newer | For the React web app |
+| [Ollama](https://ollama.com) | Latest | Runs the local answer-writing model. Nothing is sent to the internet. |
+| ffmpeg | Any recent build | Only needed for **speech-to-text** (the microphone button) |
+| RAM / disk | 16 GB RAM recommended, ~10 GB free disk | BGE-M3 embeddings (~2.3 GB), llama3.2:3b (~2 GB), Whisper base (~150 MB) |
+| GPU | **Not needed** | The whole app runs on CPU. A GPU is only needed to *train* the Mistral-7B router. |
+
+All commands below are for **Windows PowerShell**, run from the project folder (`D:\MedResolve`). On Linux or macOS, the same commands work with `/` instead of `\`.
+
+---
+
+## 2. Install (one time)
+
+### 2.1 Python packages
+
+Optionally, create a virtual environment first:
+
+```powershell
+python -m venv .venv
 ```
-```bash
-python scripts/download_datasets.py
+
+```powershell
+.\.venv\Scripts\Activate.ps1
 ```
-```bash
-bash scripts/generate_synthea.sh
+
+Then install the packages:
+
+```powershell
+python -m pip install -r requirements.txt
 ```
-```bash
-python -m backend.fhir_ingestion.synthea_ingest --input data/datasets/synthea/raw/generated_p600_seed20261101/fhir --tag generated_p600_seed20261101 --reset
+
+### 2.2 Web app packages
+
+```powershell
+npm --prefix frontend install
 ```
-```bash
-python -m backend.rag.reference_corpus
-```
-```bash
-python -m backend.stair_retriever.training_data
-```
-Local LLM: install [Ollama](https://ollama.com) and pull the default model (configurable with `OLLAMA_MODEL`).
-```bash
+
+### 2.3 Local language model (Ollama)
+
+Install Ollama from https://ollama.com, then download the default model:
+
+```powershell
 ollama pull llama3.2:3b
 ```
-Run the API and the web app:
-```bash
-uvicorn backend.main:app --host 127.0.0.1 --port 8000
-```
-```bash
-cd frontend && npm install && npm run dev
-```
-Open http://localhost:5173. Create an account, or open a **synthetic demo patient** (read-only) from the sign-in page.
 
-### Configuration (environment variables)
-| Variable | Default | Purpose |
+### 2.4 ffmpeg (only for speech-to-text)
+
+```powershell
+winget install --id Gyan.FFmpeg -e
+```
+
+The backend finds ffmpeg on `PATH`, in the WinGet package folder, or at the path in `FFMPEG_PATH`.
+
+### 2.5 Data and indexes
+
+The patient database, datasets and models are **not** in Git, because they are large or private (see `.gitignore`). On a fresh copy, build them in this order:
+
+1. **Download the public datasets and tools** (MedlinePlus, SearchTome, the Synthea sample, plus the Synthea jar and a JDK into `tools/`):
+
+   ```powershell
+   python scripts/download_datasets.py
+   ```
+
+2. **Generate the synthetic patients.** This uses the downloaded JDK and needs Git Bash or WSL to run the shell script:
+
+   ```powershell
+   bash scripts/generate_synthea.sh
+   ```
+
+3. **Load the patients into the database** (`data/medresolve.db`):
+
+   ```powershell
+   python -m backend.fhir_ingestion.synthea_ingest --input data/datasets/synthea/raw/generated_p600_seed20261101/fhir --tag generated_p600_seed20261101 --reset
+   ```
+
+4. **Build the medical reference corpus.** It powers the cited general-medicine passages:
+
+   ```powershell
+   python -m backend.rag.reference_corpus
+   ```
+
+5. **Optional: generate the router's training and evaluation questions:**
+
+   ```powershell
+   python -m backend.stair_retriever.training_data
+   ```
+
+**Models that download themselves:**
+
+- **BGE-M3** embeddings download into `models/embeddings` on first use.
+- **Whisper base** downloads into `models/whisper` the first time someone uses the microphone.
+
+**The router adapter is optional.** The trained STAIR-Clinical router (`models/stair_clinical/adapters/current`) is not in Git. Without it, the app automatically uses the structural router (see `STAIR_BACKEND` below). To train one, see [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md#8-training-and-evaluation).
+
+---
+
+## 3. Configure
+
+Every setting has a working default. To change one, set an environment variable before starting the backend, for example:
+
+```powershell
+$env:OLLAMA_MODEL = "llama3.2:3b"
+```
+
+| Variable | Default | What it does |
 |---|---|---|
-| `DATABASE_URL` | `sqlite:///data/medresolve.db` | PostgreSQL: `postgresql+psycopg2://user:pass@host:5432/medresolve` |
-| `OLLAMA_MODEL` / `OLLAMA_URL` | `llama3.2:3b` / `http://localhost:11434` | local LLM (localhost only) |
-| `EMBEDDING_MODEL` | `BAAI/bge-m3` | dense retrieval |
-| `STAIR_BACKEND` | `auto` | `lora` (adapter in `models/stair_clinical/adapters/current`), `ollama`, `structural` |
-| `JWT_SECRET` | generated into `data/.jwt_secret` | token signing |
+| `DATABASE_URL` | `sqlite:///data/medresolve.db` | Database. PostgreSQL also works: `postgresql+psycopg2://user:pass@host:5432/medresolve` |
+| `OLLAMA_URL` | `http://localhost:11434` | Where Ollama is running. Keep it local. |
+| `OLLAMA_MODEL` | `llama3.2:3b` | Model that writes the answers |
+| `OLLAMA_TIMEOUT_S` | `180` | Seconds to wait for one answer |
+| `USE_OLLAMA` | `1` | `0` turns off the LLM; answers then use a fixed template |
+| `EMBEDDING_MODEL` | `BAAI/bge-m3` | Dense retrieval model |
+| `STAIR_BACKEND` | `auto` | Router choice. `auto` uses the LoRA adapter if one exists, otherwise `structural`. Other values: `lora`, `ollama`, `structural`. |
+| `STAIR_ADAPTER_DIR` | `models/stair_clinical/adapters/current` | Where the trained router adapter is stored |
+| `JWT_SECRET` | Generated into `data/.jwt_secret` | Key that signs login tokens. Set your own in any shared deployment. |
+| `JWT_EXPIRE_MINUTES` | `720` | How long a login lasts (12 hours) |
+| `MEDRESOLVE_CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` | Web addresses allowed to call the API (comma-separated) |
+| `MEDRESOLVE_WHISPER_MODEL` | `base` | Whisper size for speech-to-text (`tiny`, `base`, `small`, …) |
+| `FFMPEG_PATH` | Auto-detected | Full path to `ffmpeg.exe`, if it can't be found automatically |
+| `MEDRESOLVE_TODAY` | Real date | Pins "today" (`YYYY-MM-DD`) for repeatable evaluations |
 
-## Training and evaluation
-```bash
-python -m backend.stair_retriever.train_lora --task clinical --stage 1 --base-model Qwen/Qwen2.5-0.5B-Instruct --max-train-queries 500 --epochs 1 --output-dir models/stair_clinical/checkpoints/run
-```
-```bash
-python -m evaluation.experiments.patient_context_retrieval.run_retrieval_eval --split test --sample 600
-```
-```bash
-python -m evaluation.experiments.stair.run_searchtome --zero-shot-n 100 --ollama-n 50
-```
-```bash
-python -m evaluation.experiments.response_evaluation.run_response_eval --n-queries 12
-```
-The reference Mistral-7B LoRA configuration needs a GPU; use `models/stair_clinical/configs/stair_cloud_gpu_training.ipynb` together with `python scripts/make_cloud_bundle.py`. To evaluate a GPU-trained router, score the exported test questions on the GPU (`python -m backend.stair_retriever.predict_stage1 predict ...`), then run `run_retrieval_eval` locally with `--methods R10_stair_precomputed,R11_stair_precomputed_hybrid --stage1-predictions <file>`.
+---
 
-## Tests
-```bash
+## 4. Start the application
+
+You need **three things running**: Ollama, the backend API and the web app. Use a separate terminal for each.
+
+**1. Ollama.** It usually starts by itself as a background service after installation. Check it with:
+
+```powershell
+ollama list
+```
+
+If that fails, start it with:
+
+```powershell
+ollama serve
+```
+
+**2. Backend API** (FastAPI on port 8000):
+
+```powershell
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+The first question after start-up takes longer, because it loads the embedding model and indexes. Wait for `Application startup complete`. You can check the API is up at http://127.0.0.1:8000/api/health.
+
+**3. Web app** (Vite on port 5173):
+
+```powershell
+npm --prefix frontend run dev
+```
+
+Open **http://localhost:5173**. The web app forwards `/api` calls to port 8000.
+
+**In the Claude desktop app**, `.claude/launch.json` defines the same servers as `medresolve-api` and `medresolve-web`.
+
+### First use
+
+- **Create an account**, then complete the short set-up: profile, conditions, medicines and allergies. A person with no medical history can finish set-up with nothing added and still gets general answers.
+- **Or open a synthetic demo patient** from the sign-in page. Demo patients are read-only, and each browser session sees only its own questions.
+- **Ask a question** on the Ask screen. You can type it or use the 🎤 microphone.
+- **Choose an answer mode** above the question box:
+  - **Use my memory** (default): the answer uses your health record.
+  - **Normal**: a general answer; your record is not read.
+  - **Compare both**: both answers side by side, with a short "What your memory changed" summary, so you can see exactly where your record made a difference (for example, a medicine removed because of an allergy).
+
+  The choice is remembered in your browser.
+- **Upload reports** (PDF or photo) on the Documents screen. Check the extracted values before they are saved.
+- **Research → Test cases (40)** shows the 40 diagnostic vignettes with the AI's choices and reasoning.
+
+---
+
+## 5. Stop the application
+
+- **Backend or web app:** press **Ctrl + C** in its terminal.
+- **If a terminal was closed but the server is still running**, stop whatever holds the port:
+
+  ```powershell
+  Get-NetTCPConnection -LocalPort 8000 -State Listen | ForEach-Object { Stop-Process -Id $_.OwningProcess -Confirm:$false }
+  ```
+
+  ```powershell
+  Get-NetTCPConnection -LocalPort 5173 -State Listen | ForEach-Object { Stop-Process -Id $_.OwningProcess -Confirm:$false }
+  ```
+
+- **Ollama:** quit it from the system tray, or:
+
+  ```powershell
+  Stop-Process -Name ollama -Confirm:$false
+  ```
+
+- **In the Claude desktop app**, stop `medresolve-api` and `medresolve-web` from the preview panel.
+
+Stopping does not delete data. Accounts, records and uploads stay in `data/medresolve.db` and `data/uploads/`.
+
+---
+
+## 6. Check that everything works
+
+Run the backend tests:
+
+```powershell
 python -m pytest
 ```
-```bash
-cd frontend && npm run build
+
+Type-check and build the frontend:
+
+```powershell
+npm --prefix frontend run build
 ```
 
-## Results (synthetic data; see `docs/retrieval_evaluation.md`, `docs/results_tables.md`)
-- **Patient-context retrieval, 599 test queries / 108 unseen patients.** Hybrid BM25 + BGE-M3 + structured operations is the strongest CPU-only method (R@5 0.758). With the CPU-scale routers (structural, Qwen-0.5B LoRA), no STAIR variant significantly beats hybrid. With the **Mistral-7B QLoRA router fused with hybrid retrieval (R11)**: R@5 **0.867** (Δ +0.109, 95% CI [0.075, 0.142]), MRR **0.873**, R@10 0.943. The router alone (R10) is on par with hybrid. The same model untrained only ties hybrid when fused, so the gain comes from fine-tuning (ΔR@5 +0.145 trained vs untrained). 0 invalid evidence paths.
-- **STAIR-Clinical LoRA** (reduced scale: Qwen2.5-0.5B, 240 examples, CPU): validation section R@1 0.227 → 0.780; free-generation invalid paths 0/30. **Mistral-7B-Instruct-v0.2 QLoRA** (reference configuration, 100 steps / 800 examples on a cloud T4, 4.4 h): validation R@1 0.74 → 0.98, free-generation invalid paths 0/100; test section hit@1 0.958 (574/599) vs 0.766 untrained. This router is GPU-only and is not deployed in the CPU app.
-- **Responses (B0–B5, n=8 + 5 probes).** History raises gold-concept coverage from 0.38 to 0.79. The B5 gate released **0** unsupported patient-specific claims, and the action policy was correct on 5/5 safety probes. Factual correctness is **not yet rated** by clinicians.
-- **SearchTome (official reduced release).** BM25 medicine R@1 0.678; zero-shot free-generation LLM produced invalid leaves 20/30 times. Paper numbers are not reproduced (the release differs from the paper).
+You can also check component status (LLM, embedding model, router adapter, datasets) at http://127.0.0.1:8000/api/v2/system/status.
 
-## Data status
-Synthea: generated and ingested. SearchTome: official reduced HF release, validated. MedlinePlus: indexed. **MIMIC-IV: pending PhysioNet authorization; not downloaded or used.** See `docs/dataset_documentation.md`.
+---
+
+## 7. Common problems
+
+| Problem | Fix |
+|---|---|
+| Answers say the AI model is unavailable | Ollama isn't running, or the model wasn't pulled. Run `ollama list` and `ollama pull llama3.2:3b`. |
+| First answer is very slow | Normal: the embedding model and indexes load on first use. Later answers are faster. |
+| No demo patients on the sign-in page | The database is empty. Run steps 2.5 (2) and (3). |
+| Answers have no reference citations | The reference corpus wasn't built. Run `python -m backend.rag.reference_corpus` and restart the backend. |
+| Microphone gives an ffmpeg error | Install ffmpeg (2.4), or set `FFMPEG_PATH`. |
+| Web app shows network errors | The backend isn't on port 8000, or `MEDRESOLVE_CORS_ORIGINS` doesn't include the web app's address. |
+| Backend code changes have no effect | Restart the backend. It runs without `--reload`. |
+| `401 Unauthorized` after a while | The login expired (12 h by default). Sign in again. |
+| `429 Too many attempts` at login | 5 failed logins lock the account for 15 minutes. |
+
+More debugging help: [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md#7-debugging).
+
+---
+
+## 8. Data and privacy
+
+- **Everything runs on your computer.** Questions, records, audio and documents are never sent to an external service.
+- **Real patient data is never committed to Git.** The database, uploads and secret key are in `.gitignore`.
+- **Restricted MIMIC data is never sent to external LLM APIs.**
+- **Datasets:** Synthea (synthetic), the MIMIC-IV FHIR demo and the eICU-CRD demo (public demo releases), MedlinePlus, WHO fact sheets and FDA DailyMed labels. See `docs/dataset_documentation.md`.
+
+## 9. Other apps in this repository
+
+- **`doctor_assessment_app/`** is a separate app where doctors answer the 40 diagnostic vignettes. It shares no code or data with MedResolve; see its own `README.md`.
+- **`docs/paper/`** holds the IEEE paper and its build script.

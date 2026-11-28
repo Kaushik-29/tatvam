@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArrowUpRight, ChevronDown, OctagonAlert, Send } from 'lucide-react';
 import type { ConsultInput, PatientProfile } from '../types';
 import { Button, Card, Field, Input, PageHeader, Select, cx } from '../ui';
-import { MicButton } from '../components';
+import { AnswerModeSwitch, MicButton, useAnswerMode } from '../components';
 
 const EXAMPLES = [
   "I've been feeling dizzy when I stand up for the last 3 days. Could it be related to my history or medications?",
@@ -20,6 +20,7 @@ export function ConcernScreen({ profile, onSubmit }: { profile: PatientProfile; 
   const [temp, setTemp] = useState('');
   const [notes, setNotes] = useState('');
   const [showDetails, setShowDetails] = useState(false);
+  const [mode, setMode] = useAnswerMode();
   const detailCount = [symptoms, onset, duration, severity, temp, notes].filter((v) => v.trim()).length;
 
   const submit = () => {
@@ -27,6 +28,7 @@ export function ConcernScreen({ profile, onSubmit }: { profile: PatientProfile; 
     const t = temp.trim() === '' ? undefined : Number(temp);
     onSubmit({
       query: query.trim(),
+      mode,
       symptoms: symptoms.split(',').map((s) => s.trim()).filter(Boolean),
       onset: onset || undefined, duration: duration || undefined, severity: severity || undefined,
       temperature_c: t !== undefined && !Number.isNaN(t) ? t : undefined, notes: notes || undefined,
@@ -73,7 +75,10 @@ export function ConcernScreen({ profile, onSubmit }: { profile: PatientProfile; 
             </div>
           </div>
 
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line-soft px-6 py-4">
+          <div className="mt-3 border-t border-line-soft px-6 pt-4">
+            <AnswerModeSwitch mode={mode} onChange={setMode} />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4">
             <MicButton onText={(t) => setQuery((q) => (q.trim() ? `${q.trim()} ${t}` : t))} />
             <p className="hidden sm:block text-[13px] text-faint">Speak or type · Ctrl + Enter to send</p>
             <Button size="lg" onClick={submit} disabled={!query.trim()} className="ml-auto">

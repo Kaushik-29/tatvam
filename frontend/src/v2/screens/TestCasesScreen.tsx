@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, Bot, CheckCircle2, ChevronDown, Info } from 'lucide-react';
+import { AlertTriangle, Bot, CheckCircle2, ChevronDown, Info, Stethoscope } from 'lucide-react';
 import { api } from '../api';
 import type { TestCase, TestCaseSet } from '../types';
 import { Card, ErrorNote, PageHeader, Spinner, cx } from '../ui';
@@ -24,15 +24,19 @@ export function TestCasesScreen() {
   const nEmergency = data.cases.filter((c) => c.patient_app.emergency).length;
   const scored = data.cases.filter((c) => c.answer_index != null);
   const nCorrect = scored.filter((c) => c.answer_index === c.ai_index).length;
+  const rated = data.cases.filter((c) => c.rater_answer);
+  const nAgree = rated.filter((c) => c.rater_answer === c.ai_answer).length;
 
   return (
     <>
       <PageHeader eyebrow="Research" title="Test cases"
         description="The 40 cases from the Doctor Diagnostic Assessment, with the diagnosis the AI model chose for each and what MedResolve's patient app would do if a patient described the same situation." />
 
-      <div className="grid sm:grid-cols-3 gap-3 mb-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Stat label="Cases" value={String(data.cases.length)} note={`${data.phases.length} phases`} />
         <Stat label="Patient app: emergency warning" value={String(nEmergency)} note="cases where the story itself triggers it" />
+        {data.rater && <Stat label={`Agrees with ${data.rater.qualification}`} value={`${nAgree} / ${rated.length}`}
+          note={`${Math.round((100 * nAgree) / Math.max(1, rated.length))}% · one rater, not an answer key`} />}
         <Stat label="AI diagnosis correct" value={scored.length ? `${nCorrect} / ${scored.length}` : 'Not scored yet'}
           note={scored.length ? 'against the clinician answer key' : 'needs a clinician answer key'} />
       </div>
@@ -41,10 +45,16 @@ export function TestCasesScreen() {
         <Info className="w-4 h-4 mt-0.5 shrink-0" />
         <span>
           Diagnoses were picked by the AI model alone ({data.ai_run.model}, {data.ai_run.method}). MedResolve's patient app never names a
-          diagnosis: it gives information, refers to a clinician, or raises an emergency warning. These are sample cases that a clinician
-          has not yet reviewed, so no answer is marked right or wrong.
+          diagnosis: it gives information, refers to a clinician, or raises an emergency warning. No answer is marked right or wrong until the
+          answers are adjudicated (an answer key agreed by clinicians).
         </span>
       </p>
+      {data.rater && (
+        <p className="mb-5 flex gap-2 rounded-[14px] bg-panel text-ink-2 px-4 py-3 text-[14px] leading-snug">
+          <Stethoscope className="w-4 h-4 mt-0.5 shrink-0" />
+          <span>{data.rater.rater} ({data.rater.qualification}, {data.rater.relationship}) answered the same 40 cases{data.rater.blinded ? " without seeing the AI's answers" : ''}. {data.rater.note}</span>
+        </p>
+      )}
 
       <div className="flex flex-wrap items-center gap-2 mb-4">
         {(['all', ...data.phases.map((p) => p.number)] as (number | 'all')[]).map((p) => (
@@ -91,6 +101,9 @@ function CaseRow({ c, open, onToggle }: { c: TestCase; open: boolean; onToggle: 
           <span className="block text-[15px] font-medium truncate">{c.title}</span>
           <span className="block text-[13px] text-muted truncate">{c.specialty} · AI: {c.ai_answer}</span>
         </span>
+        {c.rater_answer && (c.rater_answer === c.ai_answer
+          ? <span className="hidden sm:inline-flex items-center h-[22px] px-2.5 rounded-full bg-success-soft text-success-ink text-[12px] font-medium">Agrees</span>
+          : <span className="hidden sm:inline-flex items-center h-[22px] px-2.5 rounded-full bg-warn-soft text-warn-ink text-[12px] font-medium">Differs</span>)}
         {em && <span className="hidden sm:inline-flex items-center gap-1 h-[22px] px-2.5 rounded-full bg-danger-soft text-danger-ink text-[12px] font-medium">
           <AlertTriangle className="w-3 h-3" />Emergency</span>}
         <ChevronDown className={cx('w-4 h-4 text-faint transition-transform', open && 'rotate-180')} />
@@ -107,6 +120,7 @@ function CaseRow({ c, open, onToggle }: { c: TestCase; open: boolean; onToggle: 
                   <span className="w-5 shrink-0 font-semibold">{String.fromCharCode(65 + i)}.</span>
                   <span className="flex-1">{o}</span>
                   {i === c.ai_index && <span className="inline-flex items-center gap-1 text-[12px]"><Bot className="w-3.5 h-3.5" />AI's choice</span>}
+                  {c.rater_answer === o && <span className="inline-flex items-center gap-1 text-[12px] text-success-ink"><Stethoscope className="w-3.5 h-3.5" />Doctor's choice</span>}
                   {c.answer_index === i && <span className="inline-flex items-center gap-1 text-[12px] text-success-ink"><CheckCircle2 className="w-3.5 h-3.5" />Answer key</span>}
                 </li>
               ))}

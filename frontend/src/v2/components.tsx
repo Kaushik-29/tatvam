@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { Loader2, Mic, Plus, Square, Trash2 } from 'lucide-react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Brain, Columns2, Loader2, MessageCircle, Mic, Plus, Square, Trash2 } from 'lucide-react';
 import { api } from './api';
-import type { RecordItem } from './types';
+import type { AnswerMode, RecordItem } from './types';
 import { Button, ErrorNote, Field, Input, Pill, Select, cx, fmtDate } from './ui';
 
 export const LEAF_LABEL: Record<string, string> = {
@@ -205,5 +205,46 @@ export function MicButton({ onText, className }: { onText: (text: string) => voi
       {state === 'working' && <span className="text-[13px] text-muted" role="status">Turning speech into text…</span>}
       {error && <span className="text-[13px] text-danger-ink" role="alert">{error}</span>}
     </span>
+  );
+}
+
+/* ---------------------------------------------------------------- answer mode */
+
+const MODE_KEY = 'medresolve.answerMode';
+const MODES: { id: AnswerMode; label: string; hint: string; icon: ReactNode }[] = [
+  { id: 'memory', label: 'Use my memory', hint: 'Answers use your health record', icon: <Brain className="w-4 h-4" /> },
+  { id: 'normal', label: 'Normal', hint: 'General answer, your record is not used', icon: <MessageCircle className="w-4 h-4" /> },
+  { id: 'both', label: 'Compare both', hint: 'Both answers side by side', icon: <Columns2 className="w-4 h-4" /> },
+];
+
+/** The chosen answer mode, remembered in this browser (shared by the Ask and Chat screens). */
+export function useAnswerMode(): [AnswerMode, (m: AnswerMode) => void] {
+  const read = (): AnswerMode => {
+    const v = typeof localStorage !== 'undefined' ? localStorage.getItem(MODE_KEY) : null;
+    return v === 'normal' || v === 'both' ? v : 'memory';
+  };
+  const [mode, setMode] = useState<AnswerMode>(read);
+  const set = (m: AnswerMode) => { setMode(m); try { localStorage.setItem(MODE_KEY, m); } catch { /* private mode */ } };
+  return [mode, set];
+}
+
+export function AnswerModeSwitch({ mode, onChange, disabled = false }: {
+  mode: AnswerMode; onChange: (m: AnswerMode) => void; disabled?: boolean;
+}) {
+  const current = MODES.find((m) => m.id === mode) ?? MODES[0];
+  return (
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+      <div role="radiogroup" aria-label="Answer mode" className="inline-flex rounded-full bg-canvas p-1 border border-line/70">
+        {MODES.map((m) => (
+          <button key={m.id} type="button" role="radio" aria-checked={mode === m.id} disabled={disabled}
+            onClick={() => onChange(m.id)} title={m.hint}
+            className={cx('inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-[13px] font-medium transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60',
+              mode === m.id ? 'bg-white text-ink shadow-[0_1px_3px_rgba(0,0,0,0.12)]' : 'text-muted hover:text-ink')}>
+            {m.icon}{m.label}
+          </button>
+        ))}
+      </div>
+      <span className="text-[13px] text-faint">{current.hint}</span>
+    </div>
   );
 }

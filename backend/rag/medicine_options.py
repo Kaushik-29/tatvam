@@ -127,9 +127,13 @@ def _hits(names: Sequence[str], recs: Sequence[Dict[str, Any]]) -> List[Dict[str
     return [r for r in recs if any(re.search(rf"\b{re.escape(n)}", _txt(r)) for n in names)]
 
 
-def build_answer(group: str, evidence: Dict[str, Dict[str, Any]], query: str = "") -> Dict[str, Any]:
-    """Deterministic answer from the curated file + the patient's assembled evidence (alias -> record)."""
+def build_answer(group: str, evidence: Dict[str, Dict[str, Any]], query: str = "",
+                 use_records: bool = True) -> Dict[str, Any]:
+    """Deterministic answer from the curated file + the patient's assembled evidence (alias -> record).
+    use_records=False (normal mode): the record is not consulted, and the answer says so."""
     g = KB["groups"][group]
+    if not use_records:
+        evidence = {}
     by_leaf = lambda pred: [e for e in evidence.values() if pred(e.get("leaf_path", ""))]
     allergies = by_leaf(lambda l: l == "allergy_history")
     current = by_leaf(lambda l: l == "medication_history/current_medications")
@@ -203,7 +207,13 @@ def build_answer(group: str, evidence: Dict[str, Dict[str, Any]], query: str = "
         names = ", ".join(o["generic"] for o in offered)
         checks.append("Current medicines: " + ", ".join(f"{c['concept_display']} [{c['alias']}]" for c in others)
                       + f". None is on the caution list MedResolve checks for {names}.")
-    lines += ["", "## Checked against your records"] + [f"- {c}" for c in checks]
+    if use_records:
+        lines += ["", "## Checked against your records"] + [f"- {c}" for c in checks]
+    else:
+        lines += ["", "## Not checked against your records",
+                  "- Normal mode does not look at your allergies, current medicines or conditions. Tell the "
+                  "pharmacist about any you have, or ask again in memory mode for options checked against your records."]
+        lines += [f"- {c}" for c in checks if not c.startswith("No allergies are recorded")]
 
     lines += ["", "## See a doctor if"]
     for sd in g["see_doctor"]:

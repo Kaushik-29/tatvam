@@ -7,9 +7,10 @@ import asyncio
 import json
 import queue
 import threading
+import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
@@ -325,10 +326,13 @@ class ConsultIn(BaseModel):
     temperature_c: Optional[float] = None
     notes: Optional[str] = None
     variant: str = "B5"
+    # memory = use the health record (default); normal = general answer without the record;
+    # both = the two answers side by side, so the patient can see what the record changes
+    mode: Literal["memory", "normal", "both"] = "memory"
 
 
 def _intake(body: ConsultIn) -> Dict[str, Any]:
-    return {k: v for k, v in body.model_dump().items() if k not in ("query", "variant") and v not in (None, "", [])}
+    return {k: v for k, v in body.model_dump().items() if k not in ("query", "variant", "mode") and v not in (None, "", [])}
 
 
 @router.post("/consult")
@@ -337,9 +341,27 @@ def consult(body: ConsultIn, pid: str = Depends(current_patient_id), owner: Opti
     if not body.query.strip():
         raise HTTPException(400, "Question is empty")
     variant = body.variant if body.variant in ("B0", "B1", "B2", "B3", "B4", "B5") else "B5"
-    res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant=variant, owner=owner), get_deps())
-    audit(s, pid, "consult", res["consultation_id"])
-    return res
+    if body.mode != "memory":
+        variant = "B5"                    # the modes are a product feature, built on B5
+    runs = _mode_runs(body.mode)
+    out = {}
+    for panel, cfg in runs:
+        cfg.variant, cfg.owner = variant, owner
+        out[panel] = run_pipeline(s, pid, body.query.strip(), _intake(body), cfg, get_deps())
+        audit(s, pid, "consult", out[panel]["consultation_id"] + f" mode={panel}")
+    if body.mode == "both":
+        return {"mode": "both", "pair_id": runs[0][1].pair_id, "normal": out["normal"], "memory": out["memory"]}
+    return out[body.mode]
+
+
+def _mode_runs(mode: str):
+    """(panel, PipelineConfig) for each answer a mode needs. In "both", the normal answer runs first:
+    it reads no records, so it is ready sooner, and both answers share a pair_id."""
+    if mode == "both":
+        pair = f"p_{uuid.uuid4().hex[:12]}"
+        return [("normal", PipelineConfig(use_memory=False, pair_id=pair)),
+                ("memory", PipelineConfig(use_memory=True, pair_id=pair))]
+    return [(mode, PipelineConfig(use_memory=(mode != "normal")))]
 
 
 @router.post("/consult/stream")
@@ -351,15 +373,22 @@ async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id)
         raise HTTPException(400, "Question is empty")
     q: "queue.Queue" = queue.Queue()
 
+    runs = _mode_runs(body.mode)
+
     def worker():
-        try:
-            with session_scope() as s:
-                res = run_pipeline(s, pid, body.query.strip(), _intake(body), PipelineConfig(variant="B5", owner=owner),
-                                   get_deps(), on_event=lambda ev, data: q.put((ev, data)))
-                audit(s, pid, "consult", res["consultation_id"])
-            q.put(("verified_result", res))
-        except Exception as e:      # never leak internals
-            q.put(("error", {"message": "The assistant could not complete this request.", "type": type(e).__name__}))
+        # every event carries its "panel" (memory / normal), so the page can show both answers side by side
+        for panel, cfg in runs:
+            cfg.variant, cfg.owner = "B5", owner
+            q.put(("panel_start", {"panel": panel, "pair_id": cfg.pair_id}))
+            try:
+                with session_scope() as s:
+                    res = run_pipeline(s, pid, body.query.strip(), _intake(body), cfg, get_deps(),
+                                       on_event=lambda ev, data, p=panel: q.put((ev, {**data, "panel": p})))
+                    audit(s, pid, "consult", res["consultation_id"] + f" mode={panel}")
+                q.put(("verified_result", {**res, "panel": panel}))
+            except Exception as e:      # never leak internals
+                q.put(("error", {"message": "The assistant could not complete this request.",
+                                 "type": type(e).__name__, "panel": panel}))
         q.put(None)
 
     threading.Thread(target=worker, daemon=True).start()
@@ -373,7 +402,7 @@ async def consult_stream(body: ConsultIn, pid: str = Depends(current_patient_id)
             if ev == "verified_result":
                 text = data.get("final_text") or ""
                 for i in range(0, len(text), 120):            # release verified text in chunks
-                    yield f"event: answer_chunk\ndata: {json.dumps({'text': text[i:i + 120]})}\n\n"
+                    yield f"event: answer_chunk\ndata: {json.dumps({'text': text[i:i + 120], 'panel': data['panel']})}\n\n"
                     await asyncio.sleep(0.01)
                 yield f"event: done\ndata: {json.dumps(data, default=str)}\n\n"
             else:
@@ -394,7 +423,15 @@ def consultations(limit: int = 50, pid: str = Depends(current_patient_id),
     rows = s.scalars(select(Consultation).where(Consultation.patient_id == pid, _owned(owner))
                      .order_by(Consultation.created_at.desc()).limit(limit))
     return [{"consultation_id": c.consultation_id, "created_at": c.created_at.isoformat(), "query": c.query,
-             "action": c.action, "latency_s": c.latency_s, "preview": (c.response_text or "")[:220]} for c in rows]
+             "action": c.action, "latency_s": c.latency_s, "preview": (c.response_text or "")[:220],
+             "memory_mode": _mode_of(c)} for c in rows]
+
+
+def _mode_of(c: Consultation) -> str:
+    try:
+        return json.loads(c.result_json or "{}").get("memory_mode", "memory")
+    except ValueError:
+        return "memory"
 
 
 @router.get("/consultations/{cid}")

@@ -22,6 +22,7 @@ export function HistoryScreen({ onOpen }: { onOpen: (c: Consultation) => void })
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-[13px] tabular-nums text-faint">{new Date(r.created_at + 'Z').toLocaleString()}</span>
                     <Pill value={ACTION_PILL[r.action] ?? 'INFO'} label={r.action} />
+                    {r.memory_mode === 'normal' && <span className="text-[12px] font-medium text-muted bg-canvas rounded-full px-2 py-0.5">Normal mode</span>}
                     {r.latency_s !== null && <span className="text-[12px] text-faint tabular-nums">{r.latency_s.toFixed(1)}s</span>}
                   </div>
                   <p className="text-[14px] text-ink mt-0.5">{r.query}</p>
